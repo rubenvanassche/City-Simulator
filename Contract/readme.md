@@ -1,18 +1,18 @@
 # Contracts
 
-Gives information about the procedures of a class.
+Gives information about the procedures of class.
 
-[a Building](Building.md)
-[a City](City.md)
-[a Control](Control.md)
-[a Fire Depot](Fire Depot.md)
-[a Fire Truck](Fire Truck.md)
-[a House](House.md)
-[a Parser](Parser.md)
-[a Point](Point.md)
-[a Size](Size.md)
-[a Street](Street.md)
-[a Vehicle](Vehicle.md)
+[Building](Building.md) <br />
+[City](City.md) <br />
+[Control](Control.md) <br />
+[Fire Depot](Fire Depot.md) <br />
+[Fire Truck](Fire Truck.md) <br />
+[House](House.md) <br />
+[Parser](Parser.md) <br />
+[Point](Point.md) <br />
+[Size](Size.md) <br />
+[Street](Street.md) <br />
+[Vehicle](Vehicle.md) <br />
 
 
 
