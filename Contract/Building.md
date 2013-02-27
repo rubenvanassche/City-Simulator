@@ -4,13 +4,12 @@ The whole class for buildings!
 
 ## general
 
-Overloading : 
-* << operator
+No general things.
 
 ## Functions
 
-### City(file)
-Create a city based upon an XML file.
+### Building(point, size)
+Create a b
 
 ### add(fireDepot)
 Add an new fire depot(obj) to the city.
