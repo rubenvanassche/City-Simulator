@@ -34,15 +34,15 @@ Calculate the with and the height of the map.
 **Uncertain**
 To be defined by the calculateMap() function.
 
-### height __unsigned int_
+### height _unsigned int_
 **Uncertain**
 To be defined by the calculateMap() function.
 
-### fireDepots __vector<fireDepot>__
+### fireDepots _vector<fireDepot>_
 Vector for storing all the fire depots.
 
-### streets __vector<street>__
+### streets _vector<street>_
 Vector for storing all the streets.
 
-### houses __vector<house>__
+### houses _vector<house>_
 Vector for storing all the houses.
