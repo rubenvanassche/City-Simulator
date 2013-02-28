@@ -1,8 +1,9 @@
-# Building Class
+# Size Class
 
-The whole class for buildings!
+Object for giving a size to buildings.
 
-## general
+## General
+[Header](../src/Size.h)
 
 No general things.
 

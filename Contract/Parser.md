@@ -1,8 +1,9 @@
-# Building Class
+# Parser Class
 
-The whole class for buildings!
+The class for parsing xml files correctly.
 
-## general
+## General
+[Header](../src/Parser.h)
 
 No general things.
 

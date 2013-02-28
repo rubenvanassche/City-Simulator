@@ -1,8 +1,9 @@
-# Building Class
+# Street Class
 
-The whole class for buildings!
+Class for constructing streets.
 
-## general
+## General
+[Header](../src/Street.h)
 
 No general things.
 

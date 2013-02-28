@@ -1,8 +1,9 @@
-# Building Class
+# Control Class
 
-The whole class for buildings!
+Class for controling the city.
 
-## general
+## General
+[Header](../src/Control.h)
 
 No general things.
 

@@ -1,8 +1,9 @@
-# Building Class
+# Point Class
 
-The whole class for buildings!
+Class for creating point objects.
 
-## general
+## General
+[Header](../src/Point.h)
 
 No general things.
 

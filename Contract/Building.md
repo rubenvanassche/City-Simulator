@@ -2,7 +2,8 @@
 
 The whole class for buildings!
 
-## general
+## General
+[Header](../src/Building.h)
 
 No general things.
 

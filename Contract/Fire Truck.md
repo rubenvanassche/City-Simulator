@@ -1,8 +1,9 @@
-# Building Class
+# Fire Truck Class
 
-The whole class for buildings!
+Class for creating fire trucks, inheritates the class Vehicle.
 
-## general
+## General
+[Header](../src/Fire Truck.h)
 
 No general things.
 

@@ -2,7 +2,7 @@
 
 The whole class!
 
-## general
+## General
 [Header](../src/City.h)
 
 Overloading : 

@@ -1,8 +1,9 @@
-# Building Class
+# Fire Depot Class
 
-The whole class for buildings!
+Class for building fire depots, inheritates the class Building.
 
-## general
+## General
+[Header](../src/Fire Depot.h)
 
 No general things.
 

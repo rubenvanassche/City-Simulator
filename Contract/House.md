@@ -1,8 +1,9 @@
-# Building Class
+# House Class
 
-The whole class for buildings!
+Class for building houses, inheritates the class Building.
 
-## general
+## General
+[Header](../src/House.h)
 
 No general things.
 
