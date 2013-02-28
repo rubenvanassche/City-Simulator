@@ -10,26 +10,26 @@
 #include "Point.h"
 
 Point::Point(){
-	setX(0);
-	setY(0);
+	X(0);
+	Y(0);
 }
 
 Point::Point(int X, int Y){
-	setX(X);
-	setY(Y);
+	X(X);
+	Y(Y);
 }
 
 void Point::set(int X, int Y){
-	setX(X);
-	setY(Y);
+	X(X);
+	Y(Y);
 }
-void Point::setX(int X){
+void Point::X(int X){
 	REQUIRE(X >= 0,"No negative x allowed (Point)");
 
 	Xcoordinate = X;
 }
 
-void Point::setY(int Y){
+void Point::Y(int Y){
 	REQUIRE(Y >= 0,"No negative y allowed (Point)");
 
 	Ycoordinate = Y;
@@ -51,16 +51,16 @@ std::ostream& operator<<(std::ostream &stream, Point &p){
 
 Point Point::operator+(Point &p){
 	Point P;
-	P.setX(Xcoordinate + p.X());
-	P.setY(Ycoordinate + p.Y());
+	P.X(Xcoordinate + p.X());
+	P.Y(Ycoordinate + p.Y());
 
 	return P;
 }
 
 Point Point::operator-(Point &p){
 	Point P;
-	P.setX(Xcoordinate - p.X());
-	P.setY(Ycoordinate - p.Y());
+	P.X(Xcoordinate - p.X());
+	P.Y(Ycoordinate - p.Y());
 
 	return P;
 }

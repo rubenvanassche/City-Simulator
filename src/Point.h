@@ -18,9 +18,9 @@ friend std::ostream& operator<<(std::ostream &stream, Point &p);
 public:
 	Point();
 	Point(int X, int Y);
-	void set(int X, int Yco);
-	void setX(int X);
-	void setY(int Y);
+	void set(int X, int Y);
+	void X(int X);
+	void Y(int Y);
 	int X();
 	int Y();
 
