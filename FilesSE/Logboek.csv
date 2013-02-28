@@ -1,0 +1,16 @@
+;Context:;Inleiding Software Engineering;;;
+;Project:;Project BA1 informatica (*);;;
+;Documentsoort:;Tijdsblad;;;
+;Versie:;1.0 (*);;;
+;Datum:;27 februari 2013;;;
+;Auteur:;Ruben Van Assche & Stijn Wouters;;;
+;Status:;Operatie contracten opstellen;;;
+;;;;;
+Id(+);Behoefte(+);;;;TOTAAL(+)
+;Initialen (+);Datum(+);Van(+);Tot(+);Totaal(+)
+1,0;Operatie contracten opstellen;;;;1u 45m
+;RVA & SW;27/feb.;09:30;10:30;1u
+;RVA & SW;27/feb.;13:00;13:45;45m
+;;;;;
+(*)Aan te passen ;;;;;
+(+)Kolommen aan te passen ;;;;;
