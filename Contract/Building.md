@@ -9,40 +9,28 @@ No general things.
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### Building(location, size)
+Creates an new Building with an size(obj).
+At a certain location(Point obj).
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### location(location)
+Change the location(Point obj) of a building.
 
-### add(house)
-Add an new house(obj) to the city.
+### location()
+Returns the location(Point obj) of a building.
 
-### add(street)
-Add an new street(obj) to the city.
+### size(size)
+Change the size(obj) of a building.
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
+### size()
+Returns the size(obj) of a building.
 
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### size _Size_
+Size obj for storing the size of a building.
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### location _Point_
+Point obj for storing the location of a building.
 
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
-
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.

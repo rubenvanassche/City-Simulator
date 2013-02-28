@@ -5,44 +5,34 @@ Class for building fire depots, inheritates the class Building.
 ## General
 [Header](../src/Fire Depot.h)
 
-No general things.
+Overloading : 
+* << operator
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### FireDepot(Name, entrance, location)
+Create a fire depot with a name(String obj).
+And entrance(Point obj) and location(Point obj).
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### addFireTruck(firetruck)
+Add a firetruck(obj) to a fire depot.
 
-### add(house)
-Add an new house(obj) to the city.
+### trucks()
+Returns the amount of firetrucks(obj) in the fire depot.
 
-### add(street)
-Add an new street(obj) to the city.
+### name()
+Returns the name(String obj) of the fire depot.
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
-
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
+### entrance()
+Returns the entrance(Point obj) of the fire depot.
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### trucks _list<FireTruck>_
+Vector for storing all the FireTrucks(obj).
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### name _string_
+String(obj) to store the name of the fire depot.
 
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
-
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.
+### entrance _Point_
+Point(obj) to store the entrance of the fire depot.

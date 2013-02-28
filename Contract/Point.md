@@ -5,44 +5,46 @@ Class for creating point objects.
 ## General
 [Header](../src/Point.h)
 
-No general things.
+Overloading : 
+* << operator
+* == operator
+* != operator
+* +  operator
+* -  operator
+* <  operator
+* >  operator
+* <= operator
+* => operator
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### Point()
+Creates a new point with coordinates 0 and 0.
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### Point(X, Y)
+Creates a new point with coordinates X and Y.
 
-### add(house)
-Add an new house(obj) to the city.
+### set(X, Y)
+Change a point with coordinates X and Y.
 
-### add(street)
-Add an new street(obj) to the city.
+### X()
+Returns the Xcoordinate of a point.
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
+### X(X)
+Change a point with coordinate X.
 
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
+### Y()
+Returns the Ycoordinate of a point.
+
+### Y(Y)
+Change a point with coordinate Y.
+
+
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### Xcoordinate _int_
+The X coordinate of the point.
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
-
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
-
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.
+### Ycoordinate _int_
+The Y coordinate of the point.

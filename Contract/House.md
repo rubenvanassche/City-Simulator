@@ -5,44 +5,33 @@ Class for building houses, inheritates the class Building.
 ## General
 [Header](../src/House.h)
 
-No general things.
+Overloading : 
+* << operator
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### House(location, flammability)
+Creates an house with a location(Point obj) and a flammability.
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### isBurning()
+Checks if the house is burning.
 
-### add(house)
-Add an new house(obj) to the city.
+### setFire()
+Set fire to a house.
 
-### add(street)
-Add an new street(obj) to the city.
+### stopFire()
+Stops the fire in a house.
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
+### flammability()
+Returns the flammability of a house.
 
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
+### flammability(flamability)
+Change the flammabilty of a house.
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### burns _bool_
+Keep track if a house is burning
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
-
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
-
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.
+### flammability _int_
+Stores the flammability of a house.

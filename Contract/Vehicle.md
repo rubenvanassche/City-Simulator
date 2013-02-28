@@ -5,44 +5,40 @@ Class for creating vehicles.
 ## General
 [Header](../src/Vehicle.h)
 
-No general things.
+Position = place of the vehicle reight now.
+Location = place where the car is headed.
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### Vehicle(position, location, name)
+Create's a vehicle with a position (Point obj), a location (Point obj) and a name(String obj).
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### position()
+Returns the position (Point obj) of a vehicle.
 
-### add(house)
-Add an new house(obj) to the city.
+### position(point)
+Change the position (Point obj) of a vehicle.
 
-### add(street)
-Add an new street(obj) to the city.
+### location()
+Returns the location (Point obj) of a vehicle.
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
+### location(point)
+Change the location (Point obj) of a vehicle.
 
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
+### name()
+Returns the name (String obj) of a vehicle
+
+### name(name)
+Change the name (String obj) of a vehicle
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### position _Point_
+The position of a vehicle.
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### location _Point_
+The location of a vehicle.
 
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
+### name _String_
+The name of a vehicle.
 
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.

@@ -5,44 +5,39 @@ Class for constructing streets.
 ## General
 [Header](../src/Street.h)
 
-No general things.
+Overloading : 
+* << operator
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### Street(start, end, name)
+Create's a street with a start Point(obj), an end Point(obj) and a name(String obj).
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### end()
+Returns the end Point(obj) of a street
 
-### add(house)
-Add an new house(obj) to the city.
+### start()
+Returns the start Point(obj) of a street
 
-### add(street)
-Add an new street(obj) to the city.
+### name()
+Returns the name (String obj) of a street
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
+### end(point)
+Change the end Point(obj) of a street
 
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
+### start(point)
+Change the start Point(obj) of a street
+
+### name(name)
+Change the name (String obj) of a street
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### start _Point_
+The starting point of a street.
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### end _Point_
+The ending point of a street.
 
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
-
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.
+### name String
+The name of a street.

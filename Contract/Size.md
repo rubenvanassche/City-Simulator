@@ -9,40 +9,37 @@ No general things.
 
 ## Functions
 
-### Building(point, size)
-Create a b
+### Size(value)
+Create a new Size with width,height = value.
 
-### add(fireDepot)
-Add an new fire depot(obj) to the city.
+### Size(width, heigth)
+Create a new Size with sizeWidth = width and sizeHeight = height.
 
-### add(house)
-Add an new house(obj) to the city.
+### set(width, height)
+Change a Size with sizeWidth = width and sizeHeight = height.
 
-### add(street)
-Add an new street(obj) to the city.
+### width()
+Returns the sizeWidth value of a size.
 
-### _check(house)
-Check if the city is still correct, there are no overlapping houses or streets.
+### width(width)
+Change the sizeWidth value of a size.
 
-### calculateMap()
-**Uncertain**
-Calculate the with and the height of the map.
+### height()
+Returns the sizeHeight value of a size.
+
+### height(height)
+Change the sizeHeight value of a size.
+
+### value()
+Returns the value of a size if sizeWidth = sizeHeight.
+
+### value(value)
+Change a Size with width,height = value.
 
 ## Data Members
 
-### width _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
+### sizeWidth _int_
+The width of a size.
 
-### height _unsigned int_
-**Uncertain**
-To be defined by the calculateMap() function.
-
-### fireDepots _vector<fireDepot>_
-Vector for storing all the fire depots.
-
-### streets _vector<street>_
-Vector for storing all the streets.
-
-### houses _vector<house>_
-Vector for storing all the houses.
+### sizeHeight _int_
+The height of a size.
