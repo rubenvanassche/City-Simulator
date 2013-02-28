@@ -3,11 +3,10 @@
 The whole class!
 
 ## general
+[Header](../src/City.h)
 
 Overloading : 
 * << operator
-
-[Header](../src/City.h)
 
 ## Functions
 
