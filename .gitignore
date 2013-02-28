@@ -6,6 +6,7 @@ profile
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 src/Point.h
 
 Contract/Control.md
@@ -14,3 +15,5 @@ Contract/Parser.md
 
 Contract/Control.md
 >>>>>>> contracts
+=======
+>>>>>>> change of gignore
