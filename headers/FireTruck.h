@@ -18,32 +18,40 @@ class FireTruck : public Vehicle {
 public:
 	friend std::ostream& operator<< (std::ostream& stream, FireTruck& firetruck);
 
+	bool isInitialized();
+	/*
+	 * Check whether the FireDepot is initialized properly
+	 */
+
 	FireTruck(FireDepot* base=NULL);
 	/*
 	 * Constructor
 	 *
-	 * REQUIRE:	The reference to the base exist
-	 * ENSURE:	The FireTruck is set properly
+	 * REQUIRE( ( (base != NULL) || (base->isInitialized()) ), "The reference to the base does not exist")
+	 * ENSURE(isInitialized(), "The FireTruck is not initialized properly")
 	 */
 
 	bool setBase(FireDepot* base);
 	/*
 	 * Set the base of the firetruck
 	 *
-	 * REQUIRE:	The FireTruck is set properly
-	 * ENSURE:	The FireTruck is set properly
+	 * REQUIRE(this->isInitialized(), "The FireTruck object is not initialized properly")
+	 * REQUIRE( ( (base != NULL) || (base->isInitialized()) ), "The reference to the base does not exist")
+	 * ENSURE(this->fBase == base, "The base is not set")
 	 */
 
 	FireDepot* getBase() const;
 	/*
 	 * Get the reference to his base
 	 *
-	 * REQUIRE:	The FireTruck is set properly
-	 * ENSURE:	The reference exist
+	 * REQUIRE(this->isInitialized(), "The FireTruck object is not initialized properly")
+	 * REQUIRE( ( (base != NULL) || (base->isInitialized()) ), "The reference to the base does not exist")
 	 */
 
 private:
 	FireDepot* fBase;	// The base of the FireTruck
+
+	FireTruck* fMyself;	// a pointer to myself for initialize check
 };
 
 

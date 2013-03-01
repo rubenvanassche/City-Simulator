@@ -15,52 +15,59 @@
 
 class Building {
 public:
+	bool isInitialized();
+	/*
+	 * Checks if i'm initialized properly
+	 */
+
 	Building(const Point& location, const Size& size);
 	/*
 	 * Create a new building
 	 *
-	 * REQUIRE:	The Point is valid.
-	 * 			The size is valid
-	 * ENSURE:	The Building is set properly
+	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
+	 * REQUIRE(size.isInitialized(), "The size is not initialized properly")
+	 * ENSURE(isInitialized(), "The Building object is not initialized properly")
 	 */
 
 	bool setLocation(const Point& location);
 	/*
 	 * Set the location of the building
 	 *
-	 * REQUIRE:	The Building is set properly
-	 * 			The Point is valid
-	 * ENSURE:	The Building is set properly
+	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
+	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
+	 * ENSURE(this->fLocation == location, "The location is not set properly")
 	 */
 
 	Point getLocation() const;
 	/*
 	 * Returns a the location
 	 *
-	 * REQUIRE:	The Building is set properly
-	 * ENSURE:	The point is valid
+	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
+	 * ENSURE(this->fLocation.isInitialized(), "The returned location is invalid")
 	 */
 
 	bool setSize(const Size& size);
 	/*
 	 * Set the size of the building
 	 *
-	 * REQUIRE:	The Size is valid
-	 * 			The Building is set properly
-	 * ENSURE:	The Building is set properly
+	 * REQUIRE(size.isInitialized(), "The size is not initialized properly")
+	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
+	 * ENSURE(this->fSize == size, "The size is not set")
 	 */
 
 	Size getSize() const;
 	/*
 	 * Get the size of the building
 	 *
-	 * REQUIRE:	The Building is set properly
-	 * ENSURE:	The Size is valid
+	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
+	 * ENSURE(this->fSize.isInitialized(), "The returned size is invalid")
 	 */
 
 private:
 	Size fSize;	// the size of the building
 	Point fLocation;	// the location of the building
+
+	Building* fMyself;	// a pointer to myself to check if I'm initialized properly
 };
 
 

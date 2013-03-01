@@ -25,32 +25,34 @@ public:
 	/*
 	 * Constructor
 	 *
-	 * REQUIRE:	None
-	 * ENSURE:	The City is set properly
+	 * REQUIRE(true, "OOOOOOOOOoooops, something went wrong with city..")
+	 * ENSURE(isInitialized(), "The City object is not initialized properly")
 	 */
 
 	bool add(const FireDepot& depot);
 	/*
 	 * Adds a new FireDepot
 	 *
-	 * REQUIRE:	The City is set properly
-	 * ENSURE:	a FireDepot is added
+	 * REQUIRE(this->isInitialized(), "The City object is not initialized properly
+	 * REQUIRE(depot.isInitialized(), "The depot is not initialized properly")
+	 * ENSURE(this->fFireDepots.back().getName() == depot.getName(), "The depot is not added")
 	 */
 
 	bool add(const House& house);
 	/*
 	 * Add a new house
 	 *
-	 * REQUIRE:	The City is set properly
-	 * ENSURE:	A house is added
+	 * REQUIRE(this->isInitialized(), "The City object is not initialized properly
+	 * REQUIRE(house.isInitialized(), "The house is not initialized properly")
 	 */
 
 	bool add(const Street& street);
 	/*
 	 * Add a new street
 	 *
-	 * REQUIRE:	The City is set properly
-	 * ENSURE:	A street is added
+	 * REQUIRE(this->isInitialized(), "The City object is not initialized properly
+	 * REQUIRE(street.isInitialized(), "The street is not initialized properly")
+	 * ENSURE(this->fStreets.back().getName() == street.getName(), "The street is not added")
 	 */
 
 	bool _check();
@@ -77,6 +79,7 @@ public:
 	std::vector<Street> fStreets;	// all streets
 	std::vector<House> fHouses;	// all houses
 
+	City* fMyself;	// a pointer to myself for initialize checking
 };
 
 

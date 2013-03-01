@@ -24,41 +24,50 @@ public:
 	friend bool operator<= (Point& pointobject1, Point& pointobject2);
 	friend bool operator>= (Point& pointobject1, Point& pointobject2);
 
-	Point(const unsigned int& x=0, const unsigned int& y=0);
+	bool isInitialized();
+	/*
+	 * Checks if the Point is initialized Properly
+	 */
+
+	Point(const int& x=0, const int& y=0);
 	/*
 	 * Constructor.
 	 *
-	 * REQUIRE:	The x, y values must be >= 0
-	 * ENSURE:	The point is set properly
+	 * REQUIRE( ((x >= 0) && (y >= 0)), "Invalid xy-coordinates.")
+	 * ENSURE(isInitialized(), "Point object is not initialized properly")
+	 * ENSURE( ( (this->fX == x) && (this->fY == y) ), "Point object has not the given coordinates")
 	 */
 
 	bool set(const unsigned int& x=0, const unsigned int& y=0);
 	/*
 	 * Change the x, y values.
 	 *
-	 * REQUIRE:	The point was set properly.
-	 * ENSURE:	The x, y values are set properly
+	 * REQUIRE(this->isInitialized(), "The Point object is not initialized properly")
+	 * REQUIRE( ( (x >= 0) && (y >= 0) ), "Invalid xy-coordinates.")
+	 * ENSURE( ( (x == this->fX) && (y == this->fY) ), "Point object has not the given coordinates")
 	 */
 
 	unsigned int getX() const;
 	/*
 	 * Returns the x-coordinate.
 	 *
-	 * REQUIRE:	The point was set properly
-	 * ENSURE:	The given x coordinate is >= 0
+	 * REQUIRE(this->isInitialized(), "The Point object is not initialized properly")
+	 * ENSURE(this->fX >= 0, "Returned x-coordinate is invalid")
 	 */
 
 	unsigned int getY() const;
 	/*
 	 * Returns the y-coordinate.
 	 *
-	 * REQUIRE:	The point was set properly
-	 * ENSURE:	The given y coordinate is >= 0
+	 * REQUIRE(this->isInitialized(), "The Point object is not initialized properly")
+	 * ENSURE(this->fY >= 0, "Returned y-coordinate is invalid")
 	 */
 
 private:
 	unsigned int fX;	// the x-coordinate
 	unsigned int fY;	// the y-coordinate
+
+	Point* fMyself;	// a pointer to myself to check if it's initialized properly
 };
 
 

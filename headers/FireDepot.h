@@ -20,50 +20,57 @@ class FireDepot : public Building {
 public:
 	friend std::ostream& operator<< (std::ostream& stream, FireDepot& objectDepot);
 
+	bool isInitialized();
+	/*
+	 * Check whether the FireDepot is initialized properly
+	 */
+
 	FireDepot(const std::string& name, const Point& entrance);
 	/*
 	 * Constructor
 	 *
-	 * REQUIRE:	The point location is valid
-	 * ENSURE:	The FireDepot is set properly
+	 * REQUIRE(entrance.isInitialized(), "The entrance location is not initialized properly")
+	 * ENSURE(isInitialized(), "The FireDepot object is not initialized properly")
 	 */
 
 	bool addFireTruck(const FireTruck& truck);
 	/*
 	 * Add a firetruck to a fire depot
 	 *
-	 * REQUIRE:	The FireDepot is set properly
-	 * ENSURE:	The FireTruck is added
+	 * REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly")
+	 * REQUIRE(truck.isInitialized(), "The Truck object is not initialized properly")
+	 * ENSURE(this->fTrucks.back().getName() == truck.getName(), "The FireTruck is not added")
 	 */
 
 	unsigned int getNrTrucks();
 	/*
 	 * Get the amount of FireTrucks in the depot
 	 *
-	 * REQUIRE:	The FireDepot is set properly
-	 * ENSURE:	The given value is >= 0
+	 * REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly")
+	 * ENSURE(this->fTrucks.size >= 0, "The returned value is not valid")
 	 */
 
 	std::string getName() const;
 	/*
 	 * Get the name of the depot
 	 *
-	 * REQUIRE:	The FireDepot is set properly
-	 * ENSURE:	A string is returned
+	 * REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly")
 	 */
 
 	Point getEntrance() const;
 	/*
 	 * Get the entrance of the fire depot
 	 *
-	 * REQUIRE:	The FireDepot is set properly
-	 * ENSURE:	The returned point is valid
+	 * REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly")
+	 * ENSURE(this->fEntrance.isInitialized(), "The Point object is not valid")
 	 */
 
 private:
 	std::vector<FireTruck> fTrucks;	// the vector of FireTrucks in depot
 	std::string fName;	// the name of the depot
 	Point fEntrance;	// the entrance of the depot
+
+	FireDepot* fMyself;	// a pointer to myself to check if I'm initialized properly
 };
 
 

@@ -12,67 +12,77 @@
 
 class Size {
 public:
+	bool isInitialized();
+	/*
+	 * Checks if the Size object is initialized properly
+	 */
+
 	Size(const unsigned int& value);
 	/*
 	 * Constructor.
 	 *
-	 * REQUIRE:	The value is > 0
-	 * ENSURE:	The Size is set properly
+	 * REQUIRE(value > 0, "Invalid value")
+	 * ENSURE(isInitialized(), "The Size object is not initialized properly")
+	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
 	Size(const unsigned int& width, const unsigned int& height);
 	/*
 	 * Constructor
 	 *
-	 * REQUIRE:	The values are > 0
-	 * ENSURE:	The Size is set properly
+	 * REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height")
+	 * REQUIRE(this->isInitialized(), "The Size object is not initialized properly")
+	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
 	bool set(const unsigned int& width, const unsigned int& height);
 	/*
 	 * Change the width & height.
 	 *
-	 * REQUIRE:	The Size is set properly
-	 * ENSURE:	width and height are > 0
-	 * 			The Size is set properly
+	 * REQUIRE(this->isInitialized(), "The Size object is not initialized properly")
+	 * REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height")
+	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
 	unsigned int getWidth() const;
 	/*
 	 * Gets the width
 	 *
-	 * REQUIRE:	The Size is set properly
-	 * ENSURE:	The given value is > 0
+	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
+	 * ENSURE(this->fWidth > 0, "Returned width is not valid.")
 	 */
 
 	unsigned int getHeight() const;
 	/*
 	 * Gets the height
 	 *
-	 * REQUIRE:	The Size is set properly
-	 * ENSURE:	The given value is > 0
+	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
+	 * ENSURE(this->fHeight > 0, "Returned height is not valid.")
 	 */
 
 	bool setValue(const unsigned int& value);
 	/*
 	 * set the width & height to value
 	 *
-	 * REQUIRE:	The Size is set properly
-	 * ENSURE:	the width and height are both the same and > 0
+	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
+	 * REQUIRE(value > 0, "Invalid value")
+	 * ENSURE( ( (this->fX == value) && this->fY == value), "Width and/or height is not set.")
 	 */
 
 	unsigned int getValue() const;
 	/*
 	 * Returns the value
 	 *
-	 * REQUIRE:	The Size is set properly
-	 * 			The width and height are both the same and > 0
-	 * ENSURE:	The given value is > 0
+	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
+	 * REQUIRE(this->fHeight == this->fWidth, "The width and height are not both the same")
+	 * ENSURE(this->fWidth > 0, "Returned value is invalid")
 	 */
 
 private:
 	unsigned int fWidth;
 	unsigned int fHeight;
+
+	Size* fMyself;	// a pointer to myself to check if I'm initialized properly
 };
 
 

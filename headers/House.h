@@ -18,59 +18,65 @@ class House : public Building {
 public:
 	friend std::ostream& operator<< (std::ostream& stream, House& house);
 
+	bool isInitialized();
+	/*
+	 * Check whether the FireDepot is initialized properly
+	 */
+
 	House(const Point& location, unsigned int health);
 	/*
 	 * Constructor
 	 *
-	 * REQUIRE:	Point is valid
-	 * 			health point >= 0
-	 * ENSURE:	The house is set properly
+	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
+	 * REQUIRE(health >= 0, "The health point is not >= 0")
+	 * ENSURE(isInitialized(), "The House object is not initialized properly")
 	 */
 
 	bool isBurning() const;
 	/*
 	 * Check whether the house is burning
 	 *
-	 * REQUIRE:	The house is set properly
-	 * ENSURE:	A boolean is returned
+	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
 	 */
 
 	bool setFire();
 	/*
 	 * Set the house on fire
 	 *
-	 * REQUIRE:	The house is set properly
-	 * ENSURE:	The house is burning
+	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
+	 * ENSURE(this->fIsBurning == true, "The house is not set on fire")
 	 */
 
 	bool stopFire();
 	/*
 	 * stop burning down the house
 	 *
-	 * REQUIRE:	The house is set properly
-	 * ENSURE:	The house is NOT burning
+	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
+	 * ENSURE(this->fIsBurning == false, "The fire on the house is not stopped")
 	 */
 
 	bool setHealth(const unsigned int& health);
 	/*
 	 * Set the health point of the house
 	 *
-	 * REQUIRE:	The house is set properly
-	 * 			The health is >= 0
-	 * ENSURE:	The house is set properly
+	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
+	 * REQUIRE(health >= 0, "The health point is not >= 0")
+	 * ENSURE(this->fHealth == health, "The health point is not set")
 	 */
 
 	unsigned int getHealth() const;
 	/*
 	 * Get the health points of the house
 	 *
-	 * REQUIRE:	The house is set properly
-	 * ENSURE:	a value >= 0 is returned
+	 * REQUIRE(this->isInitialized(), "The House object is not set properly")
+	 * ENSURE(this->fHealth >= 0, "The returned health point is not valid")
 	 */
 
 private:
 	bool fIsBurning;	// keep track whether the house is burning
 	unsigned int fHealth;	// keep track whether the house is burned down
+
+	House* fMyself;	// a pointer to myself to check if I'm initialized properly
 };
 
 

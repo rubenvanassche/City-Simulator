@@ -17,68 +17,74 @@ class Street {
 public:
 	friend std::ostream& operator<< (std::ostream& stream, Street& objectStreet);
 
+	bool isInitialized();
+	/*
+	 * Check whether the FireDepot is initialized properly
+	 */
+
 	Street(const Point& startPoint, const Point& endPoint, std::string name);
 	/*
 	 * Constructor
 	 *
-	 * REQUIRE:	The points are valid (a line, not a bend)
-	 * ENSURE:	Street is set properly
+	 * REQUIRE( ( (startPoint.isInitialized()) && (endPoint.isInitialized()) ), "Points are not valid")
+	 * ENSURE(isInitialized(), "The Street object is not initialized properly")
 	 */
 
 	bool setEndPoint(const Point& end);
 	/*
 	 * Set the end of the street
 	 *
-	 * REQUIRE:	The point is valid
-	 * ENSURE:	The street is valid (a straight line, not a bend)
-	 * 			Street is set properly
+	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
+	 * REQUIRE(end.isInitialized(), "The endPoint is not valid")
+	 * ENSURE(this->fEndPoint == end, "The end is not set")
 	 */
 
 	Point getEndPoint() const;
 	/*
 	 * Get the endpoint of the street
 	 *
-	 * REQUIRE:	The Street is set properly
-	 * ENSURE:	The returned point is valid
+	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
+	 * ENSURE(this->fEndPoint.isInitialized(), "The returned endpoint is not valid")
 	 */
 
 	bool setStartPoint(const Point& start);
 	/*
 	 * Set the start of the street
 	 *
-	 * REQUIRE:	The point is valid
-	 * ENSURE:	The street is valid (a straight line, not a bend)
-	 * 			Street is set properly
+	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
+	 * REQUIRE(start.isInitialized(), "The startpoint is not valid")
+	 * ENSURE(this->fStartPoint == end, "The startpoint is not set")
 	 */
 
 	Point getStartPoint() const;
 	/*
 	 * Get the startpoint of the street
 	 *
-	 * REQUIRE:	The Street is set properly
-	 * ENSURE:	The returned point is valid
+	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
+	 * ENSURE(this->fStartPoint.isInitialized(), "The returned startpoint is not valid")
 	 */
 
 	bool setName(const std::string& name);
 	/*
 	 * Set the name of the street
 	 *
-	 * REQUIRE:	The Street is set properly
-	 * ENSURE:	The Street is set properly
+	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
+	 * ENSURE(this->fName == name, "The name is not set")
 	 */
 
 	std::string getName() const;
 	/*
 	 * Get the name of the street
 	 *
-	 * REQUIRE:	The Street is set properly
-	 * ENSURE:	A string is returned
+	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
 	 */
 
 private:
 	Point fStartPoint;	// the start of the street
 	Point fEndPoint;	// the end of the street
 	std::string fName;	// the name of the street
+
+	Street* fMyself;	// a pointer to myself for initialize checking
 };
 
 
