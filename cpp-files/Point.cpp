@@ -1,98 +1,84 @@
 /*
- * Point.h
+ * Point.cpp
  *
- * @author:		Ruben Van Assche & Stijn Wouters
+ * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Wednesday 27 February
+ * @date:		Saturday 2 March 2013
  * 
  */
 
 #include "Point.h"
+#include "DesignByContract.h"
 
-Point::Point(){
-	X(0);
-	Y(0);
+std::ostream& operator<< (std::ostream& stream, Point& pointobject) {
+	stream << "(" << pointobject.fX << ", " << pointobject.fY << ")";
+	return stream;
 }
 
-Point::Point(int X, int Y){
-	X(X);
-	Y(Y);
-}
-
-void Point::set(int X, int Y){
-	X(X);
-	Y(Y);
-}
-void Point::X(int X){
-	REQUIRE(X >= 0,"No negative x allowed (Point)");
-
-	Xcoordinate = X;
-}
-
-void Point::Y(int Y){
-	REQUIRE(Y >= 0,"No negative y allowed (Point)");
-
-	Ycoordinate = Y;
-}
-
-int Point::X(){
-	return Xcoordinate;
-}
-
-int Point::Y(){
-	return Ycoordinate;
-}
-
-std::ostream& operator<<(std::ostream &stream, Point &p){
-  stream << '(' << p.Xcoordinate << ',' << p.Ycoordinate << ')';
-
-  return stream;
-}
-
-Point Point::operator+(Point &p){
-	Point P;
-	P.X(Xcoordinate + p.X());
-	P.Y(Ycoordinate + p.Y());
-
-	return P;
-}
-
-Point Point::operator-(Point &p){
-	Point P;
-	P.X(Xcoordinate - p.X());
-	P.Y(Ycoordinate - p.Y());
-
-	return P;
-}
-
-int Point::operator<(Point &p){
-	if((Xcoordinate < p.X()) && (Ycoordinate < p.Y())){
-		return true;
-	}else{
-		return false;
+bool operator== (Point& pointobject1, Point& pointobject2) {
+	if ( (pointobject1.fX == pointobject2.fX) && (pointobject1.fY == pointobject2.fY) ) {
+			return true;
 	}
+	return false;
 }
 
-int Point::operator>(Point &p){
-	if((Xcoordinate > p.X()) && (Ycoordinate > p.Y())){
-		return true;
-	}else{
-		return false;
+bool operator!= (Point& pointobject1, Point& pointobject2) {
+	if ( (pointobject1.fX != pointobject2.fX) || (pointobject1.fY == pointobject2.fY) ) {
+			return true;
 	}
+	return false;
 }
 
-bool Point::operator==(Point &p){
-	if((Xcoordinate == p.X()) && (Ycoordinate == p.Y())){
-		return true;
-	}else{
-		return false;
-	}
+Point operator+ (Point& pointobject1, Point& pointobject2) {
+	int x = pointobject1.fX + pointobject2.fX;
+	int y = pointobject1.fY + pointobject2.fY;
+
+	Point p(x, y);
+	return p;
 }
 
-bool Point::operator!=(Point &p){
-	if((Xcoordinate != p.X()) || (Ycoordinate != p.Y())){
-		return true;
-	}else{
-		return false;
-	}
+Point operator- (Point& pointobject1, Point& pointobject2) {
+	int x = pointobject1.fX - pointobject2.fX;
+	int y = pointobject1.fY - pointobject2.fY;
+
+	Point p(x, y);
+	return p;
+}
+
+bool Point::isInitialized() {
+	return this == Point::fMyself;
+}
+
+Point::Point(const int& x, const int& y) {
+	REQUIRE( ( (x >= 0) && (y >= 0) ), "Invalid xy-coordinates.");
+
+	Point::fX = x;
+	Point::fY = y;
+	Point::fMyself = this;
+
+	ENSURE(isInitialized(), "Point object is not initialized properly.");
+	ENSURE( ( (this->fX == x) && (this->fY == y) ), "Point object has not the given coordinates");
+}
+
+bool Point::set(const int& x, const int& y) {
+	 REQUIRE(this->isInitialized(), "The Point object is not initialized properly");
+	 REQUIRE( ( (x >= 0) && (y >= 0) ), "Invalid xy-coordinates.");
+
+	 Point::fX = x;
+	 Point::fY = y;
+
+	 ENSURE( ( (x == this->fX) && (y == this->fY) ), "Point object has not the given coordinates");
+	 return true;
+}
+
+int Point::getX() {
+	REQUIRE(this->isInitialized(), "The Point object is not initialized properly");
+	ENSURE(this->fX >= 0, "Returned x-coordinate is invalid");
+	return this->fX;
+}
+
+int Point::getY() {
+	REQUIRE(this->isInitialized(), "The Point object is not initialized properly");
+	ENSURE(this->fY >= 0, "Returned x-coordinate is invalid");
+	return this->fY;
 }

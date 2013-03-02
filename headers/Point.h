@@ -19,10 +19,6 @@ public:
 	friend bool operator!= (Point& pointobject1, Point& pointobject2);
 	friend Point operator+ (Point& pointobject1, Point& pointobject2);
 	friend Point operator- (Point& pointobject1, Point& pointobject2);
-	friend bool operator< (Point& pointobject1, Point& pointobject2);
-	friend bool operator> (Point& pointobject1, Point& pointobject2);
-	friend bool operator<= (Point& pointobject1, Point& pointobject2);
-	friend bool operator>= (Point& pointobject1, Point& pointobject2);
 
 	bool isInitialized();
 	/*
@@ -38,7 +34,7 @@ public:
 	 * ENSURE( ( (this->fX == x) && (this->fY == y) ), "Point object has not the given coordinates")
 	 */
 
-	bool set(const unsigned int& x=0, const unsigned int& y=0);
+	bool set(const int& x=0, const int& y=0);
 	/*
 	 * Change the x, y values.
 	 *
@@ -47,7 +43,7 @@ public:
 	 * ENSURE( ( (x == this->fX) && (y == this->fY) ), "Point object has not the given coordinates")
 	 */
 
-	unsigned int getX() const;
+	int getX();
 	/*
 	 * Returns the x-coordinate.
 	 *
@@ -55,7 +51,7 @@ public:
 	 * ENSURE(this->fX >= 0, "Returned x-coordinate is invalid")
 	 */
 
-	unsigned int getY() const;
+	int getY();
 	/*
 	 * Returns the y-coordinate.
 	 *
@@ -64,8 +60,8 @@ public:
 	 */
 
 private:
-	unsigned int fX;	// the x-coordinate
-	unsigned int fY;	// the y-coordinate
+	int fX;	// the x-coordinate
+	int fY;	// the y-coordinate
 
 	Point* fMyself;	// a pointer to myself to check if it's initialized properly
 };

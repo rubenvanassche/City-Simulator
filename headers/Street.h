@@ -22,7 +22,7 @@ public:
 	 * Check whether the FireDepot is initialized properly
 	 */
 
-	Street(const Point& startPoint, const Point& endPoint, std::string name);
+	Street(Point& startPoint, Point& endPoint, std::string name);
 	/*
 	 * Constructor
 	 *
@@ -30,7 +30,7 @@ public:
 	 * ENSURE(isInitialized(), "The Street object is not initialized properly")
 	 */
 
-	bool setEndPoint(const Point& end);
+	bool setEndPoint(Point& end);
 	/*
 	 * Set the end of the street
 	 *
@@ -39,7 +39,7 @@ public:
 	 * ENSURE(this->fEndPoint == end, "The end is not set")
 	 */
 
-	Point getEndPoint() const;
+	Point getEndPoint();
 	/*
 	 * Get the endpoint of the street
 	 *
@@ -47,7 +47,7 @@ public:
 	 * ENSURE(this->fEndPoint.isInitialized(), "The returned endpoint is not valid")
 	 */
 
-	bool setStartPoint(const Point& start);
+	bool setStartPoint(Point& start);
 	/*
 	 * Set the start of the street
 	 *
@@ -56,7 +56,7 @@ public:
 	 * ENSURE(this->fStartPoint == end, "The startpoint is not set")
 	 */
 
-	Point getStartPoint() const;
+	Point getStartPoint();
 	/*
 	 * Get the startpoint of the street
 	 *
@@ -72,7 +72,7 @@ public:
 	 * ENSURE(this->fName == name, "The name is not set")
 	 */
 
-	std::string getName() const;
+	std::string getName();
 	/*
 	 * Get the name of the street
 	 *
