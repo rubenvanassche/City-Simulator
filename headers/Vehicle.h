@@ -20,7 +20,7 @@ public:
 	 */
 
 
-	Vehicle(const Point& cur_pos, const Point& destination, const std::string& name);
+	Vehicle(Point& cur_pos, Point& destination, std::string& name);
 	/*
 	 * Constructor
 	 *
@@ -28,7 +28,7 @@ public:
 	 * ENSURE(isInitialized(), "The Vehicle object is not initialized properly")
 	 */
 
-	bool setPosition(const Point& point);
+	bool setPosition(Point& point);
 	/*
 	 * Set the current position of the vehicle
 	 *
@@ -37,15 +37,14 @@ public:
 	 * ENSURE(this->fPosition == point, "The position is not set")
 	 */
 
-	Point getPosition() const;
+	Point getPosition();
 	/*
 	 * Get the current position of the vehicle
 	 *
 	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 * ENSURE(this->fPosition.isInitialized(), "The returned point is not valid")
 	 */
 
-	bool setDestination(const Point& point);
+	bool setDestination(Point& point);
 	/*
 	 * set the destination of the vehicle
 	 *
@@ -54,12 +53,11 @@ public:
 	 * ENSURE(this->fDestination == point, "Destination is not set")
 	 */
 
-	Point getDestination() const;
+	Point getDestination();
 	/*
 	 * get the destination of the vehicle
 	 *
 	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 * ENSURE(this->fDestination.isInitialized(), "The returned destination is not valid")
 	 */
 
 	bool setName(const std::string& name);
@@ -70,7 +68,7 @@ public:
 	 * ENSURE(this->fName == name, "The name is not set.")
 	 */
 
-	std::string getName() const;
+	std::string getName();
 	/*
 	 * Get the name of the vehicle
 	 *
