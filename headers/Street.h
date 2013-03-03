@@ -44,7 +44,6 @@ public:
 	 * Get the endpoint of the street
 	 *
 	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
-	 * ENSURE(this->fEndPoint.isInitialized(), "The returned endpoint is not valid")
 	 */
 
 	bool setStartPoint(Point& start);
@@ -53,7 +52,7 @@ public:
 	 *
 	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
 	 * REQUIRE(start.isInitialized(), "The startpoint is not valid")
-	 * ENSURE(this->fStartPoint == end, "The startpoint is not set")
+	 * ENSURE(this->fStartPoint == start, "The startpoint is not set")
 	 */
 
 	Point getStartPoint();
@@ -61,7 +60,6 @@ public:
 	 * Get the startpoint of the street
 	 *
 	 * REQUIRE(this->isInitialized(), "The Street object is not initialized properly")
-	 * ENSURE(this->fStartPoint.isInitialized(), "The returned startpoint is not valid")
 	 */
 
 	bool setName(const std::string& name);

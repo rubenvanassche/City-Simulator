@@ -26,6 +26,7 @@ Street::Street(Point& startPoint, Point& endPoint, std::string name) {
 
 	Street::fStartPoint = startPoint;
 	Street::fEndPoint = endPoint;
+	Street::fName = name;
 	Street::fMyself = this;
 
 	ENSURE(isInitialized(), "The Street object is not initialized properly");
@@ -43,7 +44,6 @@ bool Street::setEndPoint(Point& end) {
 
 Point Street::getEndPoint() {
 	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	 ENSURE(this->fEndPoint.isInitialized(), "The returned endpoint is not valid");
 	 return this->fEndPoint;
 }
 
@@ -59,7 +59,6 @@ bool Street::setStartPoint(Point& start) {
 
 Point Street::getStartPoint() {
 	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	 ENSURE(this->fStartPoint.isInitialized(), "The returned startpoint is not valid");
 	 return this->fStartPoint;
 }
 
