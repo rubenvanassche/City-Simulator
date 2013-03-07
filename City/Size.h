@@ -12,6 +12,8 @@
 
 class Size {
 public:
+	friend bool operator== (Size& sizeobject1, Size& sizeobject2);
+
 	bool isInitialized();
 	/*
 	 * Checks if the Size object is initialized properly
@@ -73,6 +75,8 @@ public:
 	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
 	 * REQUIRE(this->fHeight == this->fWidth, "The width and height are not both the same")
 	 */
+
+
 
 private:
 	unsigned int fWidth;

@@ -10,6 +10,14 @@
 #include "Size.h"
 #include "DesignByContract.h"
 
+
+bool operator== (Size& sizeobject1, Size& sizeobject2){
+	if ( (sizeobject1.fHeight == sizeobject2.fHeight) && (sizeobject1.fWidth == sizeobject2.fWidth) ) {
+			return true;
+	}
+	return false;	
+}
+
 bool Size::isInitialized() {
 	return this == Size::fMyself;
 }
