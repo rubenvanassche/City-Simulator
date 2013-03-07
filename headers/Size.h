@@ -17,7 +17,7 @@ public:
 	 * Checks if the Size object is initialized properly
 	 */
 
-	Size(int& value);
+	Size(const int& value);
 	/*
 	 * Constructor.
 	 *
@@ -26,7 +26,7 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	Size(int& width, int& height);
+	Size(const int& width, const int& height);
 	/*
 	 * Constructor
 	 *
@@ -34,7 +34,7 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	bool set(int& width, int& height);
+	bool set(const int& width, const int& height);
 	/*
 	 * Change the width & height.
 	 *
@@ -57,7 +57,7 @@ public:
 	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
 	 */
 
-	bool setValue(int& value);
+	bool setValue(const int& value);
 	/*
 	 * set the width & height to value
 	 *
