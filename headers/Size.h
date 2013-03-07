@@ -17,7 +17,7 @@ public:
 	 * Checks if the Size object is initialized properly
 	 */
 
-	Size(const unsigned int& value);
+	Size(int& value);
 	/*
 	 * Constructor.
 	 *
@@ -26,16 +26,15 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	Size(const unsigned int& width, const unsigned int& height);
+	Size(int& width, int& height);
 	/*
 	 * Constructor
 	 *
 	 * REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height")
-	 * REQUIRE(this->isInitialized(), "The Size object is not initialized properly")
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	bool set(const unsigned int& width, const unsigned int& height);
+	bool set(int& width, int& height);
 	/*
 	 * Change the width & height.
 	 *
@@ -44,23 +43,21 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	unsigned int getWidth() const;
+	unsigned int getWidth();
 	/*
 	 * Gets the width
 	 *
 	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
-	 * ENSURE(this->fWidth > 0, "Returned width is not valid.")
 	 */
 
-	unsigned int getHeight() const;
+	unsigned int getHeight();
 	/*
 	 * Gets the height
 	 *
 	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
-	 * ENSURE(this->fHeight > 0, "Returned height is not valid.")
 	 */
 
-	bool setValue(const unsigned int& value);
+	bool setValue(int& value);
 	/*
 	 * set the width & height to value
 	 *
@@ -69,13 +66,12 @@ public:
 	 * ENSURE( ( (this->fX == value) && this->fY == value), "Width and/or height is not set.")
 	 */
 
-	unsigned int getValue() const;
+	unsigned int getValue();
 	/*
 	 * Returns the value
 	 *
 	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
 	 * REQUIRE(this->fHeight == this->fWidth, "The width and height are not both the same")
-	 * ENSURE(this->fWidth > 0, "Returned value is invalid")
 	 */
 
 private:
