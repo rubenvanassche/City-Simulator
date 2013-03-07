@@ -38,7 +38,7 @@ public:
 	 * ENSURE(this->fLocation == location, "The location is not set properly")
 	 */
 
-	Point getLocation() const;
+	Point getLocation();
 	/*
 	 * Returns a the location
 	 *
@@ -55,7 +55,7 @@ public:
 	 * ENSURE(this->fSize == size, "The size is not set")
 	 */
 
-	Size getSize() const;
+	Size getSize();
 	/*
 	 * Get the size of the building
 	 *

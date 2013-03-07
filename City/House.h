@@ -13,6 +13,7 @@
 #include "Building.h"
 #include <iostream>
 #include "Point.h"
+#include "Size.h"
 
 class House : public Building {
 public:
@@ -23,7 +24,7 @@ public:
 	 * Check whether the FireDepot is initialized properly
 	 */
 
-	House(const Point& location, unsigned int health);
+	House(const Point& location,  int health);
 	/*
 	 * Constructor
 	 *
@@ -55,7 +56,7 @@ public:
 	 * ENSURE(this->fIsBurning == false, "The fire on the house is not stopped")
 	 */
 
-	bool setHealth(const unsigned int& health);
+	bool setHealth(const  int& health);
 	/*
 	 * Set the health point of the house
 	 *
@@ -64,7 +65,7 @@ public:
 	 * ENSURE(this->fHealth == health, "The health point is not set")
 	 */
 
-	unsigned int getHealth() const;
+	 int getHealth();
 	/*
 	 * Get the health points of the house
 	 *
@@ -72,9 +73,18 @@ public:
 	 * ENSURE(this->fHealth >= 0, "The returned health point is not valid")
 	 */
 
+	bool check(const int& subtracter = 1);
+	/*
+	 * Lower the health of the house by one, or a specified number if the house is burning
+	 *
+	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
+	 * REQUIRE(subtracter >= 0, "The subtracter is not >= 0")
+	 * REQUIRE(subtracter > this->getHealth(), "The subtracter is greater then the health")
+	 */
+
 private:
 	bool fIsBurning;	// keep track whether the house is burning
-	unsigned int fHealth;	// keep track whether the house is burned down
+	 int fHealth;	// keep track whether the house is burned down
 
 	House* fMyself;	// a pointer to myself to check if I'm initialized properly
 };

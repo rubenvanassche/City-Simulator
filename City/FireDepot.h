@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "Point.h"
+#include "Size.h"
 #include "FireTruck.h"
 #include <vector>
 #include "Building.h"
@@ -25,11 +26,12 @@ public:
 	 * Check whether the FireDepot is initialized properly
 	 */
 
-	FireDepot(const std::string& name, const Point& entrance);
+	FireDepot::FireDepot(const std::string& name, const Point& entrance, const Point& location);
 	/*
 	 * Constructor
 	 *
 	 * REQUIRE(entrance.isInitialized(), "The entrance location is not initialized properly")
+	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
 	 * ENSURE(isInitialized(), "The FireDepot object is not initialized properly")
 	 */
 
@@ -42,7 +44,7 @@ public:
 	 * ENSURE(this->fTrucks.back().getName() == truck.getName(), "The FireTruck is not added")
 	 */
 
-	unsigned int getNrTrucks();
+	 int getNrTrucks();
 	/*
 	 * Get the amount of FireTrucks in the depot
 	 *
@@ -50,14 +52,14 @@ public:
 	 * ENSURE(this->fTrucks.size >= 0, "The returned value is not valid")
 	 */
 
-	std::string getName() const;
+	std::string getName();
 	/*
 	 * Get the name of the depot
 	 *
 	 * REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly")
 	 */
 
-	Point getEntrance() const;
+	Point getEntrance();
 	/*
 	 * Get the entrance of the fire depot
 	 *
