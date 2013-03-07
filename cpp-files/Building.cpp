@@ -13,32 +13,22 @@ bool Building::isInitialized(){
 	return this == Building::fMyself;
 }
 
-Building::Building(Point& location){
-	REQUIRE(location.isInitialized(), "The location is not initialized properly");
-
-	Building::fLocation = location;
-	Building::fSize = Size(1);
-
-	ENSURE(isInitialized(), "The Building object is not initialized properly");
-}
-
-
-Building::Building(Point& location, Size& size){
+Building::Building(const Point& location, const Size& size){
 	REQUIRE(location.isInitialized(), "The location is not initialized properly");
 	REQUIRE(size.isInitialized(), "The size is not initialized properly");
 
-	Building::fLocation = location;
-	Building::fSize = size;
+	fLocation = location;
+	fSize = size;
 
 	ENSURE(isInitialized(), "The Building object is not initialized properly");
 }
 
 
-bool Building::setLocation(Point& location){
+bool Building::setLocation(const Point& location){
 	REQUIRE(this->isInitialized(), "The Building object is not initialized properly");
 	REQUIRE(location.isInitialized(), "The location is not initialized properly");
 
-	Building::fLocation = location;
+	fLocation = location;
 
 	ENSURE(this->fLocation == location, "The location is not set properly");
 }
@@ -50,11 +40,11 @@ Point Building::getLocation(){
 	return fLocation;
 }
 
-bool Building::setSize(Size& size){
+bool Building::setSize(const Size& size){
 	REQUIRE(size.isInitialized(), "The size is not initialized properly");
 	REQUIRE(this->isInitialized(), "The Building object is not initialized properly");
 
-	Building::fSize = size;
+	fSize = size;
 
 	ENSURE(this->fSize == size, "The size is not set");
 }

@@ -12,35 +12,33 @@
 
 std::ostream& operator<< (std::ostream& stream, FireDepot& objectDepot){
 	Size size = objectDepot.getSize();
-	for(int i = 0; i < size.getHeight(); i++){
-		for(int j = 0; j < size.getWidth(); j++){
+	for(int i = 0; i < size.getHeight; i++){
+		for(int j = 0; j < size.getWidth; j++){
 			stream << "F";
 		}
 		stream << std::endl;
 	}
-	stream << objectDepot.fName << std::endl;
+	stream << fName << std::endl;
 	return stream;
 }
 
 bool FireDepot::isInitialized(){
-	return this == FireDepot::fMyself;
+	return this == FireDepot:fMyself;
 }
 
-FireDepot::FireDepot(std::string& name, Point& entrance, Point& location)  : Building(location){
+FireDepot::FireDepot(const std::string& name, const Point& entrance, const Point& location){
 	REQUIRE(entrance.isInitialized(), "The entrance location is not initialized properly");
 	REQUIRE(location.isInitialized(), "The location is not initialized properly");
 
-	Size size(4);
-
-	this->setSize(size);
 	fName = name;
 	fEntrance = entrance;
+	fLocation = location;
 
 	ENSURE(isInitialized(), "The FireDepot object is not initialized properly");
 }
 
 
-bool FireDepot::addFireTruck(FireTruck& truck){
+bool FireDepot::addFireTruck(const FireTruck& truck){
 	REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly");
 	REQUIRE(truck.isInitialized(), "The Truck object is not initialized properly");
 
@@ -51,9 +49,9 @@ bool FireDepot::addFireTruck(FireTruck& truck){
 
  int FireDepot::getNrTrucks(){
 	REQUIRE(this->isInitialized(), "The FireDepot object is not initialized properly");
-	ENSURE(this->fTrucks.size() >= 0, "The returned value is not valid");
+	ENSURE(this->fTrucks.size >= 0, "The returned value is not valid");
 
-	return fTrucks.size();
+	return fTrucks.size;
 }
 
 std::string FireDepot::getName(){

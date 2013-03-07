@@ -26,7 +26,7 @@ public:
 	 * Check whether the FireDepot is initialized properly
 	 */
 
-	FireDepot(std::string& name, Point& entrance, Point& location);
+	FireDepot::FireDepot(const std::string& name, const Point& entrance, const Point& location);
 	/*
 	 * Constructor
 	 *
@@ -35,7 +35,7 @@ public:
 	 * ENSURE(isInitialized(), "The FireDepot object is not initialized properly")
 	 */
 
-	bool addFireTruck(FireTruck& truck);
+	bool addFireTruck(const FireTruck& truck);
 	/*
 	 * Add a firetruck to a fire depot
 	 *

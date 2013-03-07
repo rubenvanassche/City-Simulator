@@ -24,7 +24,7 @@ public:
 	 * Check whether the FireDepot is initialized properly
 	 */
 
-	House(Point& location, int health);
+	House(const Point& location,  int health);
 	/*
 	 * Constructor
 	 *
@@ -33,7 +33,7 @@ public:
 	 * ENSURE(isInitialized(), "The House object is not initialized properly")
 	 */
 
-	bool isBurning();
+	bool isBurning() const;
 	/*
 	 * Check whether the house is burning
 	 *
@@ -56,7 +56,7 @@ public:
 	 * ENSURE(this->fIsBurning == false, "The fire on the house is not stopped")
 	 */
 
-	bool setHealth(int health);
+	bool setHealth(const  int& health);
 	/*
 	 * Set the health point of the house
 	 *
@@ -73,7 +73,7 @@ public:
 	 * ENSURE(this->fHealth >= 0, "The returned health point is not valid")
 	 */
 
-	bool check(int subtracter);
+	bool check(const int& subtracter = 1);
 	/*
 	 * Lower the health of the house by one, or a specified number if the house is burning
 	 *

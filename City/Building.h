@@ -20,7 +20,15 @@ public:
 	 * Checks if i'm initialized properly
 	 */
 
-	Building(const Point& location, const Size& size);
+	Building(Point& location);
+	/*
+	 * Create a new building
+	 *
+	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
+	 * ENSURE(isInitialized(), "The Building object is not initialized properly")
+	 */
+
+	Building(Point& location, Size& size);
 	/*
 	 * Create a new building
 	 *
@@ -29,7 +37,7 @@ public:
 	 * ENSURE(isInitialized(), "The Building object is not initialized properly")
 	 */
 
-	bool setLocation(const Point& location);
+	bool setLocation(Point& location);
 	/*
 	 * Set the location of the building
 	 *
@@ -46,7 +54,7 @@ public:
 	 * ENSURE(this->fLocation.isInitialized(), "The returned location is invalid")
 	 */
 
-	bool setSize(const Size& size);
+	bool setSize(Size& size);
 	/*
 	 * Set the size of the building
 	 *

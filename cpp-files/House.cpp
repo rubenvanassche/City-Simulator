@@ -11,28 +11,26 @@
 #include "DesignByContract.h"
 
 std::ostream& operator<< (std::ostream& stream, House& house){
-	Size size = house.getSize();
-	for(int i = 0; i < size.getHeight(); i++){
-		for(int j = 0; j < size.getWidth(); j++){
+	Size size = objectDepot.getSize();
+	for(int i = 0; i < size.getHeight; i++){
+		for(int j = 0; j < size.getWidth; j++){
 			stream << "H";
 		}
 		stream << std::endl;
 	}
-	stream << "Health : " << house.fHealth << std::endl;
+	stream << "Health : " << fHealth << std::endl;
 	return stream;
 }
 
-bool House::isInitialized(){
+bool isInitialized(){
 	return this == House::fMyself;
 }
 
-House::House(Point& location, int health) : Building(location){
+House(const Point& location,  int health){
 	REQUIRE(location.isInitialized(), "The location is not initialized properly");
 	REQUIRE(health >= 0, "The health point is not >= 0");
 
-	Size size(2);
-
-	this->setSize(size);
+	fLocation = location;
 	fHealth = health;
 	fIsBurning = false;
 
@@ -40,14 +38,14 @@ House::House(Point& location, int health) : Building(location){
 }
 
 
-bool House::isBurning(){
+bool isBurning(){
 	REQUIRE(this->isInitialized(), "The House object is not initialized properly");
 
 	return fIsBurning;
 }
 
 
-bool House::setFire(){
+bool setFire(){
 	REQUIRE(this->isInitialized(), "The House object is not initialized properly");
 
 	fIsBurning = true;
@@ -56,7 +54,7 @@ bool House::setFire(){
 }
 
 
-bool House::stopFire(){
+bool stopFire(){
 	REQUIRE(this->isInitialized(), "The House object is not initialized properly");
 
 	fIsBurning = false;
@@ -65,7 +63,7 @@ bool House::stopFire(){
 }
 
 
-bool House::setHealth(int health){
+bool setHealth(const  int& health){
 	REQUIRE(this->isInitialized(), "The House object is not initialized properly");
 	REQUIRE(health >= 0, "The health point is not >= 0");
 
@@ -75,14 +73,14 @@ bool House::setHealth(int health){
 }
 
 
- int House::getHealth(){
+ int getHealth(){
 	REQUIRE(this->isInitialized(), "The House object is not set properly");
 	ENSURE(this->fHealth >= 0, "The returned health point is not valid");
 
 	return fHealth;
 }
 
-bool House::check(int subtracter = 1){
+bool check(const int& subtracter = 1){
 	REQUIRE(this->isInitialized(), "The House object is not initialized properly");
 	REQUIRE(subtracter >= 0, "The subtracter is  not >= 0");
 	REQUIRE(subtracter > this->getHealth(), "The subtracter is greater then the health");
