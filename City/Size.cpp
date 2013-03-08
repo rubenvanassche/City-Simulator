@@ -22,7 +22,7 @@ bool Size::isInitialized() {
 	return this == Size::fMyself;
 }
 
-Size::Size(const int& value) {
+Size::Size(const int value) {
 	REQUIRE(value > 0, "Invalid value");
 
 	Size::fMyself = this;
@@ -33,7 +33,7 @@ Size::Size(const int& value) {
 	ENSURE( ( (this->fWidth == value) && (this->fHeight == value) ), "Width and/or height not set properly");
 }
 
-Size::Size(const int& width, const int& height) {
+Size::Size(const int width, const int height) {
 	REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height");
 
 	Size::fMyself = this;
@@ -42,6 +42,7 @@ Size::Size(const int& width, const int& height) {
 
 	ENSURE( ( (this->fWidth == width) && (this->fHeight == height) ), "Width and/or height not set properly");
 }
+
 
 bool Size::set(const int& width, const int& height) {
 	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");

@@ -19,7 +19,7 @@ public:
 	 * Checks if the Size object is initialized properly
 	 */
 
-	Size(const int& value);
+	Size(const int value);
 	/*
 	 * Constructor.
 	 *
@@ -28,7 +28,7 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	Size(const int& width, const int& height);
+	Size(const int width, const int height);
 	/*
 	 * Constructor
 	 *
