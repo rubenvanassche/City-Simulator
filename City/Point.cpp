@@ -10,6 +10,7 @@
 #include "Point.h"
 #include "DesignByContract.h"
 
+#include <iostream>
 std::ostream& operator<< (std::ostream& stream, Point& pointobject) {
 	stream << "(" << pointobject.fX << ", " << pointobject.fY << ")";
 	return stream;
@@ -45,6 +46,12 @@ Point operator- (Point& pointobject1, Point& pointobject2) {
 	return p;
 }
 
+Point& Point::operator= (Point& pointobject) {
+	Point::fX = pointobject.fX;
+	Point::fY = pointobject.fY;
+	return *this;
+}
+
 bool Point::isInitialized() {
 	return this == Point::fMyself;
 }
@@ -58,6 +65,12 @@ Point::Point(const int& x, const int& y) {
 
 	ENSURE(isInitialized(), "Point object is not initialized properly.");
 	ENSURE( ( (this->fX == x) && (this->fY == y) ), "Point object has not the given coordinates");
+}
+
+Point::Point(const Point& p) {
+	Point::fMyself = this;
+	Point::fX = p.fX;
+	Point::fY = p.fY;
 }
 
 bool Point::set(const int& x, const int& y) {

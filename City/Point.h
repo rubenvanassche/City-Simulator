@@ -34,6 +34,16 @@ public:
 	 * ENSURE( ( (this->fX == x) && (this->fY == y) ), "Point object has not the given coordinates")
 	 */
 
+	Point(const Point& p);
+	/*
+	 * copy constructor (for copy by initialization)
+	 */
+
+	Point& operator= (Point& pointobject);
+	/*
+	 * copy by assignment
+	 */
+
 	bool set(const int& x=0, const int& y=0);
 	/*
 	 * Change the x, y values.
