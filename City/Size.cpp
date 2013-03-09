@@ -12,6 +12,7 @@
 
 
 bool operator== (Size& sizeobject1, Size& sizeobject2){
+	REQUIRE( (sizeobject1.isInitialized() && sizeobject2.isInitialized() ), "The Size objects are not initialized properly");
 	if ( (sizeobject1.fHeight == sizeobject2.fHeight) && (sizeobject1.fWidth == sizeobject2.fWidth) ) {
 			return true;
 	}
@@ -43,6 +44,17 @@ Size::Size(const int width, const int height) {
 	ENSURE( ( (this->fWidth == width) && (this->fHeight == height) ), "Width and/or height not set properly");
 }
 
+Size::Size(const Size& size) {
+	Size::fMyself = this;
+	Size::fWidth = size.fWidth;
+	Size::fHeight = size.fHeight;
+}
+
+Size& Size::operator= (Size& sizeObject) {
+	Size::fWidth = sizeObject.fWidth;
+	Size::fHeight = sizeObject.fHeight;
+	return *this;
+}
 
 bool Size::set(const int& width, const int& height) {
 	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
@@ -55,14 +67,14 @@ bool Size::set(const int& width, const int& height) {
 	return true;
 }
 
-unsigned int Size::getWidth() {
+unsigned int* Size::getWidth() {
 	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	return Size::fWidth;
+	return &(Size::fWidth);
 }
 
-unsigned int Size::getHeight() {
+unsigned int* Size::getHeight() {
 	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	return Size::fHeight;
+	return &(Size::fHeight);
 }
 
 bool Size::setValue(const int& value) {
@@ -76,8 +88,8 @@ bool Size::setValue(const int& value) {
 	return true;
 }
 
-unsigned int Size::getValue() {
+unsigned int* Size::getValue() {
 	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
 	REQUIRE(this->fHeight == this->fWidth, "The Width and height are not both the same");
-	return Size::fWidth;
+	return &(Size::fWidth);
 }

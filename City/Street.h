@@ -16,6 +16,9 @@
 class Street {
 public:
 	friend std::ostream& operator<< (std::ostream& stream, Street& objectStreet);
+	/*
+	 * REQUIRE( objectStreet.isInitialized(), "The Street object is not initialized properly")
+	 */
 
 	bool isInitialized();
 	/*
@@ -30,6 +33,16 @@ public:
 	 * ENSURE(isInitialized(), "The Street object is not initialized properly")
 	 */
 
+	Street(const Street& s);
+	/*
+	 * Copy by initializing
+	 */
+
+	Street& operator= (const Street& s);
+	/*
+	 * Copy by assignment
+	 */
+
 	bool setEndPoint(Point& end);
 	/*
 	 * Set the end of the street
@@ -39,7 +52,7 @@ public:
 	 * ENSURE(this->fEndPoint == end, "The end is not set")
 	 */
 
-	Point getEndPoint();
+	Point* getEndPoint();
 	/*
 	 * Get the endpoint of the street
 	 *
@@ -55,7 +68,7 @@ public:
 	 * ENSURE(this->fStartPoint == start, "The startpoint is not set")
 	 */
 
-	Point getStartPoint();
+	Point* getStartPoint();
 	/*
 	 * Get the startpoint of the street
 	 *
@@ -70,7 +83,7 @@ public:
 	 * ENSURE(this->fName == name, "The name is not set")
 	 */
 
-	std::string getName();
+	std::string* getName();
 	/*
 	 * Get the name of the street
 	 *

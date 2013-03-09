@@ -25,27 +25,27 @@ TEST(testPoint, invalidConstructs) {
 TEST(testPoint, getters){
 	ASSERT_NO_FATAL_FAILURE(Point p(5, 6));
 	Point p(5, 6);
-	EXPECT_EQ(5, p.getX());
-	EXPECT_EQ(6, p.getY());
+	EXPECT_EQ(5, *p.getX());
+	EXPECT_EQ(6, *p.getY());
 
 	ASSERT_NO_FATAL_FAILURE(Point s(3, 6));
 	Point s(3, 6);
-	EXPECT_EQ(3, s.getX());
-	EXPECT_EQ(6, s.getY());
+	EXPECT_EQ(3, *s.getX());
+	EXPECT_EQ(6, *s.getY());
 }
 
 TEST(testPoint, validSetters){
 	ASSERT_NO_FATAL_FAILURE(Point s(5, 6));
 	Point s(5, 6);
 	EXPECT_NO_FATAL_FAILURE(s.set());
-	EXPECT_EQ(0, s.getX());
-	EXPECT_EQ(0, s.getY());
+	EXPECT_EQ(0, *s.getX());
+	EXPECT_EQ(0, *s.getY());
 	EXPECT_NO_FATAL_FAILURE(s.set(10));
-	EXPECT_EQ(10, s.getX());
-	EXPECT_EQ(0, s.getY());
+	EXPECT_EQ(10, *s.getX());
+	EXPECT_EQ(0, *s.getY());
 	EXPECT_NO_FATAL_FAILURE(s.set(1, 4));
-	EXPECT_EQ(1, s.getX());
-	EXPECT_EQ(4, s.getY());
+	EXPECT_EQ(1, *s.getX());
+	EXPECT_EQ(4, *s.getY());
 }
 
 TEST(testPoint, invalidSetters) {
@@ -68,15 +68,14 @@ TEST(testPoint, operators){
 
 	EXPECT_NO_FATAL_FAILURE(r = t);	// copy by assignment
 	r = t;
-	EXPECT_EQ(t.getX(), r.getX());
-	EXPECT_EQ(t.getY(), r.getY());
+	EXPECT_EQ(*t.getX(), *r.getX());
+	EXPECT_EQ(*t.getY(), *r.getY());
 	EXPECT_TRUE(t == r);
-
 
 	EXPECT_NO_FATAL_FAILURE(Point q = t);	// copy by initialization
 	Point q = r;
-	EXPECT_EQ(t.getX(), q.getX());
-	EXPECT_EQ(t.getY(), q.getY());
+	EXPECT_EQ(*t.getX(), *q.getX());
+	EXPECT_EQ(*t.getY(), *q.getY());
 	EXPECT_TRUE(t == q);
 
 	EXPECT_NO_FATAL_FAILURE(t - s);

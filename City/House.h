@@ -33,6 +33,16 @@ public:
 	 * ENSURE(isInitialized(), "The House object is not initialized properly")
 	 */
 
+	House(House& h);
+	/*
+	 * copy by initializing
+	 */
+
+	House& operator= (House& h);
+	/*
+	 * copy by assignment
+	 */
+
 	bool isBurning();
 	/*
 	 * Check whether the house is burning
@@ -65,12 +75,11 @@ public:
 	 * ENSURE(this->fHealth == health, "The health point is not set")
 	 */
 
-	 int getHealth();
+	 int* getHealth();
 	/*
 	 * Get the health points of the house
 	 *
 	 * REQUIRE(this->isInitialized(), "The House object is not set properly")
-	 * ENSURE(this->fHealth >= 0, "The returned health point is not valid")
 	 */
 
 	bool check(int subtracter);

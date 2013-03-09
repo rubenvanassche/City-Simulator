@@ -15,8 +15,20 @@
 class Point {
 public:
 	friend std::ostream& operator<< (std::ostream& stream, Point& pointobject);
+	/*
+	 * REQUIRE( pointobject.isInitialized(), "The Point object are not initialized properly")
+	 */
+
 	friend bool operator== (Point& pointobject1, Point& pointobject2);
+	/*
+	 * REQUIRE( (pointobject1.isInitialized() && pointobject2.isInitialized() ), "The Point objects are not initialized properly")
+	 */
+
 	friend bool operator!= (Point& pointobject1, Point& pointobject2);
+	/*
+	 * REQUIRE( (pointobject1.isInitialized() && pointobject2.isInitialized() ), "The Point objects are not initialized properly")
+	 */
+
 	friend Point operator+ (Point& pointobject1, Point& pointobject2);
 	friend Point operator- (Point& pointobject1, Point& pointobject2);
 
@@ -39,7 +51,7 @@ public:
 	 * copy constructor (for copy by initialization)
 	 */
 
-	Point& operator= (Point& pointobject);
+	Point& operator= (const Point& pointobject);
 	/*
 	 * copy by assignment
 	 */
@@ -53,7 +65,7 @@ public:
 	 * ENSURE( ( (x == this->fX) && (y == this->fY) ), "Point object has not the given coordinates")
 	 */
 
-	int getX();
+	int* getX();
 	/*
 	 * Returns the x-coordinate.
 	 *
@@ -61,7 +73,7 @@ public:
 	 * ENSURE(this->fX >= 0, "Returned x-coordinate is invalid")
 	 */
 
-	int getY();
+	int* getY();
 	/*
 	 * Returns the y-coordinate.
 	 *

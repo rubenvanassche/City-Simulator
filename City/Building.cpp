@@ -13,26 +13,37 @@ bool Building::isInitialized(){
 	return this == Building::fMyself;
 }
 
-Building::Building(Point& location){
+Building::Building(Point& location) : fSize(1) {
 	REQUIRE(location.isInitialized(), "The location is not initialized properly");
 
+	Building::fMyself = this;
 	Building::fLocation = location;
-	Building::fSize = Size(1);
 
 	ENSURE(isInitialized(), "The Building object is not initialized properly");
 }
 
-
-Building::Building(Point& location, Size& size){
+Building::Building(Point& location, Size& size) : fSize(1) {
 	REQUIRE(location.isInitialized(), "The location is not initialized properly");
 	REQUIRE(size.isInitialized(), "The size is not initialized properly");
 
+	Building::fMyself = this;
 	Building::fLocation = location;
 	Building::fSize = size;
 
 	ENSURE(isInitialized(), "The Building object is not initialized properly");
 }
 
+Building::Building(Building& b) : fSize(1) {
+	Building::fMyself = this;
+	Building::fSize = b.fSize;
+	Building::fLocation = b.fLocation;
+}
+
+Building& Building::operator= (Building& b) {
+	Building::fSize = b.fSize;
+	Building::fLocation = b.fLocation;
+	return *this;
+}
 
 bool Building::setLocation(Point& location){
 	REQUIRE(this->isInitialized(), "The Building object is not initialized properly");
@@ -41,13 +52,13 @@ bool Building::setLocation(Point& location){
 	Building::fLocation = location;
 
 	ENSURE(this->fLocation == location, "The location is not set properly");
+	return true;
 }
 
-Point Building::getLocation(){
+Point* Building::getLocation(){
 	REQUIRE(this->isInitialized(), "The Building object is not initialized properly");
-	ENSURE(this->fLocation.isInitialized(), "The returned location is invalid");
 
-	return fLocation;
+	return &(Building::fLocation);
 }
 
 bool Building::setSize(Size& size){
@@ -57,15 +68,11 @@ bool Building::setSize(Size& size){
 	Building::fSize = size;
 
 	ENSURE(this->fSize == size, "The size is not set");
+	return true;
 }
 
 
-Size Building::getSize(){
+Size* Building::getSize(){
 	REQUIRE(this->isInitialized(), "The Building object is not initialized properly");
-	ENSURE(this->fSize.isInitialized(), "The returned size is invalid");
-
-	return fSize;
+	return &(Building::fSize);
 }
-
-
-

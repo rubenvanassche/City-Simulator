@@ -29,6 +29,20 @@ Vehicle::Vehicle(Point& cur_pos, Point& destination, std::string& name) {
 	ENSURE(isInitialized(), "The Vehicle object is not initialized properly");
 }
 
+Vehicle::Vehicle(const Vehicle& v) {
+	Vehicle::fMyself = this;
+	Vehicle::fPosition = v.fPosition;
+	Vehicle::fName = v.fName;
+	Vehicle::fDestination = v.fDestination;
+}
+
+Vehicle& Vehicle::operator= (Vehicle& v) {
+	Vehicle::fPosition = v.fPosition;
+	Vehicle::fName = v.fName;
+	Vehicle::fDestination = v.fDestination;
+	return *this;
+}
+
 bool Vehicle::setPosition(Point& point) {
 	REQUIRE(point.isInitialized(), "The point is not initialized");
 	REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly");
@@ -39,10 +53,10 @@ bool Vehicle::setPosition(Point& point) {
 	return true;
 }
 
-Point Vehicle::getPosition() {
+Point* Vehicle::getPosition() {
 	REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly");
 
-	return this->fPosition;
+	return &(Vehicle::fPosition);
 }
 
 bool Vehicle::setDestination(Point& point) {
@@ -55,10 +69,10 @@ bool Vehicle::setDestination(Point& point) {
 	return true;
 }
 
-Point Vehicle::getDestination() {
+Point* Vehicle::getDestination() {
 	REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly");
 
-	return this->fDestination;
+	return &(Vehicle::fDestination);
 }
 
 bool Vehicle::setName(const std::string& name) {
@@ -70,8 +84,8 @@ bool Vehicle::setName(const std::string& name) {
 	return true;
 }
 
-std::string Vehicle::getName() {
+std::string* Vehicle::getName() {
 	REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly");
 
-	return this->fName;
+	return &(Vehicle::fName);
 }

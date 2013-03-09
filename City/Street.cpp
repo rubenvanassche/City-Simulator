@@ -12,6 +12,7 @@
 #include "DesignByContract.h"
 
 std::ostream& operator<< (std::ostream& stream, Street& objectStreet) {
+	REQUIRE( objectStreet.isInitialized(), "The Street object is not initialized properly");
 	stream << objectStreet.fName << " [" << objectStreet.fStartPoint
 			<< " -> " << objectStreet.fEndPoint << "]";
 	return stream;
@@ -32,6 +33,22 @@ Street::Street(Point& startPoint, Point& endPoint, std::string name) {
 	ENSURE(isInitialized(), "The Street object is not initialized properly");
 }
 
+Street::Street(const Street& s) {
+	Street::fMyself = this;
+
+	Street::fStartPoint = s.fStartPoint;
+	Street::fEndPoint = s.fEndPoint;
+
+	Street::fName = s.fName;
+}
+
+Street& Street::operator= (const Street& s) {
+	Street::fStartPoint = s.fStartPoint;
+	Street::fEndPoint = s.fEndPoint;
+	Street::fName = s.fName;
+	return *this;
+}
+
 bool Street::setEndPoint(Point& end) {
 	REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
 	REQUIRE(end.isInitialized(), "The endPoint is not valid");
@@ -42,9 +59,9 @@ bool Street::setEndPoint(Point& end) {
 	return true;
 }
 
-Point Street::getEndPoint() {
+Point* Street::getEndPoint() {
 	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	 return this->fEndPoint;
+	 return &(Street::fEndPoint);
 }
 
 bool Street::setStartPoint(Point& start) {
@@ -57,9 +74,9 @@ bool Street::setStartPoint(Point& start) {
 	return true;
 }
 
-Point Street::getStartPoint() {
+Point* Street::getStartPoint() {
 	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	 return this->fStartPoint;
+	 return &(Street::fStartPoint);
 }
 
 bool Street::setName(const std::string& name) {
@@ -71,7 +88,7 @@ bool Street::setName(const std::string& name) {
 	return true;
 }
 
-std::string Street::getName() {
+std::string* Street::getName() {
 	REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	return this->fName;
+	return &(Street::fName);
 }

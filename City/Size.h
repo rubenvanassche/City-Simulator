@@ -13,6 +13,9 @@
 class Size {
 public:
 	friend bool operator== (Size& sizeobject1, Size& sizeobject2);
+	/*
+	 * REQUIRE( (sizeobject1.isInitialized() && sizeobject2.isInitialized() ), "The Size objects are not initialized properly")
+	 */
 
 	bool isInitialized();
 	/*
@@ -36,6 +39,16 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
+	Size(const Size& size);
+	/*
+	 * Copy by initialization overloading
+	 */
+
+	Size& operator= (Size& sizeObject);
+	/*
+	 * Copy by assignment overloading
+	 */
+
 	bool set(const int& width, const int& height);
 	/*
 	 * Change the width & height.
@@ -45,14 +58,14 @@ public:
 	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
 	 */
 
-	unsigned int getWidth();
+	unsigned int* getWidth();
 	/*
 	 * Gets the width
 	 *
 	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
 	 */
 
-	unsigned int getHeight();
+	unsigned int* getHeight();
 	/*
 	 * Gets the height
 	 *
@@ -68,7 +81,7 @@ public:
 	 * ENSURE( ( (this->fX == value) && this->fY == value), "Width and/or height is not set.")
 	 */
 
-	unsigned int getValue();
+	unsigned int* getValue();
 	/*
 	 * Returns the value
 	 *

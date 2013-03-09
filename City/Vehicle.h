@@ -28,6 +28,16 @@ public:
 	 * ENSURE(isInitialized(), "The Vehicle object is not initialized properly")
 	 */
 
+	Vehicle(const Vehicle& v);
+	/*
+	 * Copy by initializing
+	 */
+
+	Vehicle& operator= (Vehicle& v);
+	/*
+	 * Copy by assignment
+	 */
+
 	bool setPosition(Point& point);
 	/*
 	 * Set the current position of the vehicle
@@ -37,7 +47,7 @@ public:
 	 * ENSURE(this->fPosition == point, "The position is not set")
 	 */
 
-	Point getPosition();
+	Point* getPosition();
 	/*
 	 * Get the current position of the vehicle
 	 *
@@ -53,7 +63,7 @@ public:
 	 * ENSURE(this->fDestination == point, "Destination is not set")
 	 */
 
-	Point getDestination();
+	Point* getDestination();
 	/*
 	 * get the destination of the vehicle
 	 *
@@ -68,7 +78,7 @@ public:
 	 * ENSURE(this->fName == name, "The name is not set.")
 	 */
 
-	std::string getName();
+	std::string* getName();
 	/*
 	 * Get the name of the vehicle
 	 *
