@@ -8,16 +8,22 @@
 ;;;;;
 Id(+);Behoefte(+);;;;TOTAAL(+)
 ;Initialen (+);Datum(+);Van(+);Tot(+);Totaal(+)
-1,0;Operatie contracten opstellen;;;;03:45:00
+1;Operatie contracten opstellen;;;;03:45:00
 ;RVA & SW;27/feb.;09:30;10:30;01:00:00
 ;RVA & SW;27/feb.;13:00;13:45;00:45:00
 ;RVA & SW;28-02-13;13:00:00;15:00:00;02:00:00
 ;;;;;
-1,0;Headers maken op basis van contracten;;;;06:00:00
+1;Headers maken op basis van contracten;;;;06:00:00
 ;SW;28-02-13;18:00:00;21:00:00;03:00:00
 ;SW;01-03-13;14:00:00;17:00:00;03:00:00
-1,0;Classes maken en testen;;;;11:00:00
+;;;;;
+1;Classes maken en testen;;;;11:00:00
 ;SW;03-03-13;13:00:00;15:30:00;02:30:00
 ;SW;07-03-13;14:00:00;16:00:00;02:00:00
 ;SW;09-03-13;10:00:00;12:00:00;02:00:00
 ;SW;09-03-13;14:00:00;18:30:00;04:30:00
+;;;;;
+1;Parser maken;;;;02:00:00
+;SW;10-03-13;11:00:00;13:00:00;02:00:00
+;;;;;
+1;City samenstellen;;;;
