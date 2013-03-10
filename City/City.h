@@ -11,7 +11,7 @@
 #define CITY_H_
 
 #include <iostream>
-#include "FireDepot.h"
+#include "Fire.h"
 #include "House.h"
 #include "Street.h"
 //#include "Point.h"
@@ -29,7 +29,7 @@ public:
 	 * ENSURE(isInitialized(), "The City object is not initialized properly")
 	 */
 
-	bool add(const FireDepot& depot);
+	bool addFireDepot(const FireDepot& depot);
 	/*
 	 * Adds a new FireDepot
 	 *
@@ -38,7 +38,7 @@ public:
 	 * ENSURE(this->fFireDepots.back().getName() == depot.getName(), "The depot is not added")
 	 */
 
-	bool add(const House& house);
+	bool addHouse(const House& house);
 	/*
 	 * Add a new house
 	 *
@@ -46,7 +46,7 @@ public:
 	 * REQUIRE(house.isInitialized(), "The house is not initialized properly")
 	 */
 
-	bool add(const Street& street);
+	bool addStreet(const Street& street);
 	/*
 	 * Add a new street
 	 *
