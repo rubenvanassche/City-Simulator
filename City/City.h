@@ -14,7 +14,7 @@
 #include "Fire.h"
 #include "House.h"
 #include "Street.h"
-//#include "Point.h"
+#include "Point.h"
 #include <vector>
 
 class City {
@@ -60,6 +60,11 @@ public:
 	 * Check whether the City is still right, no overlapping place
 	 */
 
+	bool _check(const Point& p);
+	/*
+	 * Check whether there is something on a certain point
+	 */
+
 	/*
 	 * UNCERTAIN
 	 *
@@ -67,7 +72,9 @@ public:
 	 *
 	 */
 
-public:
+	 int failure // Sets 0 when everything is oké, 1 when something went wrong(but program can still work) and 2 when total crash
+
+private:
 	/*
 	 * UNCERTAIN
 	 *
