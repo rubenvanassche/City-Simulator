@@ -73,15 +73,16 @@ bool FireDepot::operator= (FireDepot& f) {
 bool FireDepot::addFireTruck(FireTruck& f) {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
-	FireDepot::fTrucks.push_back(f.getName());
+	FireTruck* p = new FireTruck(f);
+	FireDepot::fTrucks.push_back(p);
 
-	ENSURE(this->fTrucks.back() == f.getName(), "FireTruck is added");
+	ENSURE(this->fTrucks.back()->getName() == f.getName(), "FireTruck is added");
 	return true;
 }
 
-std::string& FireDepot::getAvailableTruck() {
+FireTruck& FireDepot::getAvailableTruck() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	return FireDepot::fTrucks[0];
+	return *FireDepot::fTrucks[0];
 }
 
 bool FireDepot::popTruck() {
@@ -125,4 +126,15 @@ bool FireDepot::setEntrance(Point& entrance) {
 
 	ENSURE(this->fEntrance == entrance, "Entrance is set");
 	return true;
+}
+
+
+FireDepot::~FireDepot() {
+	REQUIRE(this->isInitialized(), "FireDepot is initialized");
+
+	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
+		delete FireDepot::fTrucks[index];
+	}
+
+	ENSURE(this->fTrucks.empty(), "No trucks in depot");
 }

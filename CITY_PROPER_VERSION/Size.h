@@ -18,14 +18,14 @@ public:
 
 	friend bool operator== (Size& s1, Size& s2);
 
-	Size(int& value);
+	Size(int value);
 	// constructor
 	// REQUIRE(value > 0, "Positive value");
 	// ENSURE(this->isInitialized(), "Size is initialized");
 	// ENSURE(this->fWidth == value, "Width is initialized");
 	// ENSURE(this->fHeight == value, "Height is initialized");
 
-	Size(int& width, int& height);
+	Size(int width, int height);
 	// REQUIRE(width > 0, "Positive width");
 	// REQUIRE(height > 0, "Positive height");
 	// ENSURE(this->isInitialized(), "Size is initialized");
@@ -43,7 +43,7 @@ public:
 	// ENSURE(this->fWidth == s.fWidth, "Width copied");
 	// ENSURE(this->fHeight == s.fHeight, "Heigt copied");
 
-	bool set(int& width, int& height);
+	bool set(int width, int height);
 	// REQUIRE(this->isInitialized(), "Size is initialized");
 	// REQUIRE(width > 0, "Positive width");
 	// REQUIRE(height > 0, "Positive height");

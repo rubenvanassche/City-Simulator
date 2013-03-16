@@ -36,7 +36,7 @@ public:
 	// REQUIRE(p1.isInitialized(), "Point is initialized");
 	// REQUIRE(p2.isInitialized(), "Point is initialized");
 
-	Point(int& x, int& y);
+	Point(int x, int y);
 	// Constructor
 	//REQUIRE(x >= 0, "x >= 0");
 	//REQUIRE(y >= 0, "y >= 0");
@@ -57,7 +57,7 @@ public:
 	// ENSURE(this->fX == p.fX, "X copied");
 	// ENSURE(this->fY == p.fY, "Y copied");
 
-	bool set(int& x, int& y);
+	bool set(int x, int y);
 	// REQUIRE(this->isInitialized(), "Point is initialized");
 	// REQUIRE(x >= 0, "x >= 0");
 	// REQUIRE(y >= 0, "y >= 0");

@@ -51,9 +51,9 @@ public:
 
 	bool addFireTruck(FireTruck& f);
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fTrucks.back().getName() == f.getName(), "FireTruck is added");
+	// ENSURE(this->fTrucks.back()->getName() == f.getName(), "FireTruck is added");
 
-	std::string& getAvailableTruck();
+	FireTruck& getAvailableTruck();
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
 	bool popTruck();
@@ -77,8 +77,13 @@ public:
 	// REQUIRE(entrance.isInitialized(), "Point is initialized");
 	// ENSURE(this->fEntrance == entrance, "Entrance is set");
 
+	~FireDepot();
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+	// ENSURE(this->fTrucks.empty(), "No trucks in depot")
+
+
 private:
-	std::vector<std::string> fTrucks;
+	std::vector<FireTruck*> fTrucks;
 	std::string fName;
 	Point fEntrance;
 

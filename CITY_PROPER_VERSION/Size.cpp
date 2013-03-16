@@ -23,7 +23,7 @@ bool operator== (Size& s1, Size& s2) {
 	return false;
 }
 
-Size::Size(int& value) {
+Size::Size(int value) {
 	REQUIRE(value > 0, "Positive value");
 
 	Size::fMyself = this;
@@ -35,7 +35,7 @@ Size::Size(int& value) {
 	ENSURE(this->fHeight == value, "Height is initialized");
 }
 
-Size::Size(int& width, int& height) {
+Size::Size(int width, int height) {
 	REQUIRE(width > 0, "Positive width");
 	REQUIRE(height > 0, "Positive height");
 
@@ -71,7 +71,7 @@ bool Size::operator= (Size& s) {
 	return true;
 }
 
-bool Size::set(int& width, int& height) {
+bool Size::set(int width, int height) {
 	REQUIRE(this->isInitialized(), "Size is initialized");
 	REQUIRE(width > 0, "Positive width");
 	REQUIRE(height > 0, "Positive height");

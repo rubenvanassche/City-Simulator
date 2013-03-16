@@ -19,7 +19,7 @@ std::ostream& operator<< (std::ostream& stream, House& h) {
 	return stream;
 }
 
-House::House(Point& location, Size& size, int& health)
+House::House(Point& location, Size& size, int health)
 	: Building(location, size) {
 	REQUIRE(location.isInitialized(), "Location is initialized");
 	REQUIRE(size.isInitialized(), "Size is initialized");
@@ -87,7 +87,7 @@ bool House::stopFire() {
 	return true;
 }
 
-bool House::setHealth(int& health) {
+bool House::setHealth(int health) {
 	REQUIRE(this->isInitialized(), "House is initialized");
 	REQUIRE(health >= 0, "Health points is positive");
 
@@ -102,7 +102,7 @@ unsigned int House::getHealth() {
 	return House::fHealth;
 }
 
-bool House::check(const int& substracter) {
+bool House::check(int substracter) {
 	REQUIRE(this->isInitialized(), "House is initialized");
 	REQUIRE(substracter >= 0, "Substracter is positive");
 	REQUIRE(this->fHealth != 0, "Health is not 0");
