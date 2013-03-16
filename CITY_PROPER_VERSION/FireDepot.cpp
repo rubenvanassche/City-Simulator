@@ -17,7 +17,7 @@ std::ostream& operator<< (std::ostream& stream, FireDepot& f) {
 	REQUIRE(f.isInitialized(), "FireDepot is initialized");
 	stream << "Brandweerkazerne " << f.fName << " heeft de volgende trucks in de depot: " << std::endl;
 	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
-		stream << "\t" << f.fTrucks[index] << std::endl;
+		stream << "\t" << f.fTrucks[index]->getName() << std::endl;
 	}
 	return stream;
 }

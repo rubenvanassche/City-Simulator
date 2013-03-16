@@ -110,7 +110,11 @@ City parse(std::string& filename) {
 			Size size(4);
 			FireDepot newDepot(name, location, size, entrance);
 
-			town.addFireDepot(newDepot);
+			if (!town.addFireDepot(newDepot)) {
+				std::cerr << "Can not add FireDepot " << name << std::endl;
+				City emptyTown;
+				return emptyTown;
+			}
 		}
 
 		else if (tag == "brandweerwagen") {
@@ -138,7 +142,11 @@ City parse(std::string& filename) {
 			Point destination(0, 0);
 			FireTruck newTruck(name, curPos, destination, base);
 
-			town.addFireTruck(newTruck);
+			if (!town.addFireTruck(newTruck)) {
+				std::cerr << "Can not add FireTruck" << name << std::endl;
+				City emptyTown;
+				return emptyTown;
+			}
 		}
 
 		else if (tag == "straat") {
@@ -206,7 +214,11 @@ City parse(std::string& filename) {
 			Point endPoint(xEnd, yEnd);
 			Street newStreet(name, startPoint, endPoint);
 
-			town.addStreet(newStreet);
+			if (!town.addStreet(newStreet)) {
+				std::cerr << "Can not add Street " << name << std::endl;
+				City emptyTown;
+				return emptyTown;
+			}
 		}
 
 		if (tag == "huis") {
@@ -257,7 +269,11 @@ City parse(std::string& filename) {
 			Size size(2);
 			House newHouse(location, size, hPoints);
 
-			town.addHouse(newHouse);
+			if (!town.addHouse(newHouse)) {
+				std::cerr << "Can not add House " << std::endl;
+				City emptyTown;
+				return emptyTown;
+			}
 		}
 	}
 

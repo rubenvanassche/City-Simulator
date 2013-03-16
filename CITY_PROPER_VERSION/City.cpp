@@ -64,7 +64,15 @@ bool City::addFireTruck(FireTruck& truck) {
 	FireTruck* f = new FireTruck(truck);
 	City::fTrucks.push_back(f);
 
-	return true;
+	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
+		if (City::fFireDepots[index]->getName() == truck.getBase()) {
+			City::fFireDepots[index]->addFireTruck(truck);
+			return true;
+		}
+	}
+
+	std::cout << "FireTruck " << truck.getName() << " has unknown base." << std::endl;
+	return false;
 }
 
 bool City::addStreet(Street& street) {
@@ -107,8 +115,11 @@ bool City::writeTrucksStatus(const char* filename) {
 
 	std::ofstream filestream;
 	filestream.open(filename, std::ios_base::app);
+	filestream << "Brandweerwagens onderweg:" << std::endl;
 	for (unsigned int index=0; index < City::fTrucks.size(); index++) {
-		filestream << *(City::fTrucks[index]) << std::endl;
+		if (City::fTrucks[index]->getPosition() != City::fTrucks[index]->getDestination()) {
+			filestream << "\t" << *(City::fTrucks[index]) << std::endl;
+		}
 	}
 	filestream.close();
 	return true;
@@ -131,8 +142,11 @@ bool City::writeHousesStatus(const char* filename) {
 
 	std::ofstream filestream;
 	filestream.open(filename, std::ios_base::app);
+	filestream << "Brandende huizen:" << std::endl;
 	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		filestream << *(City::fHouses[index]) << std::endl;
+		if (City::fHouses[index]->isBurning()) {
+			filestream << "\t" << *(City::fHouses[index]) << std::endl;
+		}
 	}
 	filestream.close();
 	return true;
