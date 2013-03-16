@@ -11,12 +11,15 @@
 #define CITY_H_
 
 #include <iostream>
+#include <vector>
 #include "DesignByContract.h"
 #include "FireDepot.h"
 #include "FireTruck.h"
 #include "Street.h"
 #include "House.h"
+#include "Size.h"
 #include <fstream>
+#include <algorithm> 
 
 class City {
 public:
@@ -64,19 +67,37 @@ public:
 	bool writeDepotsStatus(const char* filename);
 	// ENSURE(this->isInitialized(), "City is initialized");
 
+	std::vector<Point*> calculatePoints(House& house);
+
+	std::vector<Point*> calculatePoints(FireDepot& depot);
+
+	std::vector<Point*> calculatePoints(Street& street);
+
+	bool check(House& house);
+
+	bool check(FireDepot& depot);
+
+	bool check(int width, int height, Point &location);
+
+	bool check(Street& street);
+
+	bool checkPoint(Point& p);
+
+	bool isOnHouse(Point &p);
+
+	bool isOnStreet(Point &p);
+
+	bool isOnFireDepot(Point &p);
+
+	int fFailure;
+	// Sets 0 when everything is ok, 1 when something went wrong(but program can still work) and 2 when total crash
+
 	~City();
 	// IMPORTANT! BECAUSE WE HOLD A VECTOR OF POINTERS
 	// REQUIRE(this->isInitialized(), "City is initialized")
 	// ENSURE(this->fFireDepots.empty(), "FireDepots is empty'd")
 	// ENSURE(this->fStreets.empty(), "Street is empty'd")
 	// ENSURE(this->fHouses.empty(), "Houses is empty'd")
-
-	//bool _check();
-
-	//bool _check(Point& p);
-
-	//int fFailure;
-	// Sets 0 when everything is ok, 1 when something went wrong(but program can still work) and 2 when total crash
 
 private:
 	std::vector<FireDepot*> fFireDepots;	// all firedepots (must be pointers, or won't work)
