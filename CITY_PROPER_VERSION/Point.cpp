@@ -16,7 +16,7 @@ bool Point::isInitialized() {
 std::ostream& operator<< (std::ostream& stream, Point& pointobject) {
 	REQUIRE(pointobject.isInitialized(), "Point object is initialized properly");
 
-	stream << "(" << pointobject.fX << ", " << pointobject.fY << ")" << std::endl;
+	stream << "(" << pointobject.fX << ", " << pointobject.fY << ")";
 	return stream;
 }
 

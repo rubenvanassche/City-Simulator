@@ -8,6 +8,7 @@
  */
 
 #include "City.h"
+#include <iostream>
 
 bool City::isInitialized() {
 	return this == City::fMyself;
@@ -22,10 +23,26 @@ City::City(const City& town) {
 	//REQUIRE(town.isInitialized(), "City is initialized");
 
 	City::fMyself = this;
-	City::fTrucks = town.fTrucks;
-	City::fStreets = town.fStreets;
-	City::fHouses = town.fHouses;
-	City::fFireDepots = town.fFireDepots;
+
+	for (unsigned int index=0; index < town.fTrucks.size(); index++) {
+		FireTruck* f = new FireTruck( *(town.fTrucks[index]) );
+		City::fTrucks.push_back(f);
+	}
+
+	for (unsigned int index=0; index < town.fStreets.size(); index++) {
+		Street* s = new Street( *(town.fStreets[index]) );
+		City::fStreets.push_back(s);
+	}
+
+	for (unsigned int index=0; index < town.fHouses.size(); index++) {
+		House* h = new House( *(town.fHouses[index]) );
+		City::fHouses.push_back(h);
+	}
+
+	for (unsigned int index=0; index < town.fFireDepots.size(); index++) {
+		FireDepot* f = new FireDepot( *(town.fFireDepots[index]) );
+		City::fFireDepots.push_back(f);
+	}
 
 	ENSURE(this->isInitialized(), "City is copied");
 }
@@ -34,7 +51,8 @@ bool City::addFireDepot(FireDepot& depot) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(depot.isInitialized(), "FireDepot is initialized");
 
-	// do something useful here
+	FireDepot* d = new FireDepot(depot);
+	City::fFireDepots.push_back(d);
 
 	return true;
 }
@@ -43,7 +61,8 @@ bool City::addFireTruck(FireTruck& truck) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(truck.isInitialized(), "FireTruck is initialized");
 
-	// do something useful here
+	FireTruck* f = new FireTruck(truck);
+	City::fTrucks.push_back(f);
 
 	return true;
 }
@@ -52,7 +71,8 @@ bool City::addStreet(Street& street) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(street.isInitialized(), "Street is initialized");
 
-	// do something useful here
+	Street* s = new Street(street);
+	City::fStreets.push_back(s);
 
 	return true;
 }
@@ -61,7 +81,8 @@ bool City::addHouse(House& house) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(house.isInitialized(), "House is initialized");
 
-	// do something useful here
+	House* h = new House(house);
+	City::fHouses.push_back(h);
 
 	return true;
 }
@@ -81,13 +102,15 @@ bool City::trucksOnWay() {
 }
 
 
-bool City::writeTrucksStatus(std::fstream& filestream) {
+bool City::writeTrucksStatus(const char* filename) {
 	ENSURE(this->isInitialized(), "City is initialized");
 
+	std::ofstream filestream;
+	filestream.open(filename, std::ios_base::app);
 	for (unsigned int index=0; index < City::fTrucks.size(); index++) {
 		filestream << *(City::fTrucks[index]) << std::endl;
 	}
-
+	filestream.close();
 	return true;
 }
 
@@ -103,42 +126,54 @@ bool City::housesOnFire() {
 	return false;
 }
 
-bool City::writeHousesStatus(std::fstream& filestream) {
+bool City::writeHousesStatus(const char* filename) {
 	ENSURE(this->isInitialized(), "City is initialized");
 
+	std::ofstream filestream;
+	filestream.open(filename, std::ios_base::app);
 	for (unsigned int index=0; index < City::fHouses.size(); index++) {
 		filestream << *(City::fHouses[index]) << std::endl;
 	}
-
+	filestream.close();
 	return true;
 }
 
 
-bool City::writeDepotsStatus(std::fstream& filestream) {
+bool City::writeDepotsStatus(const char* filename) {
 	ENSURE(this->isInitialized(), "City is initialized");
 
+	std::ofstream filestream;
+	filestream.open(filename, std::ios_base::app);
 	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
 		filestream << *(City::fFireDepots[index]) << std::endl;
 	}
+	filestream.close();
 	return true;
 }
 
 City::~City() {
 	REQUIRE(this->isInitialized(), "City is initialized");
 
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
+	for (unsigned int index=0; index < City::fFireDepots.size(); index--) {
 		delete City::fFireDepots[index];
 	}
+	City::fFireDepots.clear();
 
 	for (unsigned int index=0; index < City::fStreets.size(); index++) {
 		delete City::fStreets[index];
 	}
-
+	City::fStreets.clear();
 	for (unsigned int index=0; index < City::fHouses.size(); index++) {
 		delete City::fHouses[index];
 	}
+	City::fHouses.clear();
 
-	ENSURE(this->fFireDepots.empty(), "FireDepots is empty'd");
-	ENSURE(this->fStreets.empty(), "Street is empty'd");
-	ENSURE(this->fHouses.empty(), "Houses is empty'd");
+	for (unsigned int index=0; index < City::fTrucks.size(); index++) {
+		delete City::fTrucks[index];
+	}
+	City::fTrucks.clear();
+
+	ENSURE(this->fFireDepots.empty() == true, "FireDepots is empty'd");
+	ENSURE(this->fStreets.empty() == true, "Street is empty'd");
+	ENSURE(this->fHouses.empty() == true, "Houses is empty'd");
 }

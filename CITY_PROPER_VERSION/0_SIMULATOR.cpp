@@ -13,8 +13,8 @@
 #include "Simulator.h"
 
 int main(int argc, char* argv[]) {
-	if (argc != 2) {
-		std::cout << "Usage: " << argv[0] << " <XML-file>" << std::endl;
+	if (argc != 3) {
+		std::cout << "Usage: " << argv[0] << " <XML-file> <Ouput-file>" << std::endl;
 		return 0;
 	}
 
@@ -22,8 +22,12 @@ int main(int argc, char* argv[]) {
 	ss << argv[1];
 	std::string filename = ss.str();
 
+	std::stringstream tt;
+	tt << argv[2];
+	std::string outputname = tt.str();
+
 	City town = CityParser::parse(filename);
-	Simulator sim(&town);
+	Simulator sim(&town, outputname);
 	while (!sim.endSimulation()	) {
 		sim.simulate();
 		sim.output();

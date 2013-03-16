@@ -52,16 +52,16 @@ public:
 	bool trucksOnWay();
 	// ENSURE(this->isInitialized(), "City is initialized");
 
-	bool writeTrucksStatus(std::fstream& filestream);
+	bool writeTrucksStatus(const char* filename);
 	// ENSURE(this->isInitialized(), "City is initialized");
 
 	bool housesOnFire();
 	// ENSURE(this->isInitialized(), "City is initialized");
 
-	bool writeHousesStatus(std::fstream& filestream);
+	bool writeHousesStatus(const char* filename);
 	// ENSURE(this->isInitialized(), "City is initialized");
 
-	bool writeDepotsStatus(std::fstream& filestream);
+	bool writeDepotsStatus(const char* filename);
 	// ENSURE(this->isInitialized(), "City is initialized");
 
 	~City();

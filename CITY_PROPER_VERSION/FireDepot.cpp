@@ -46,7 +46,11 @@ FireDepot::FireDepot(FireDepot& f)
 	FireDepot::fMyself = this;
 	FireDepot::fName = f.fName;
 	FireDepot::fEntrance = f.fEntrance;
-	FireDepot::fTrucks = f.fTrucks;
+
+	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
+		FireTruck* pt = new FireTruck( *(f.fTrucks[index]) );
+		FireDepot::fTrucks.push_back(pt);
+	}
 
 	ENSURE(this->isInitialized(), "FireDepot is initialized");
 	ENSURE(this->fName == f.fName, "Name is initialized");
@@ -98,6 +102,10 @@ bool FireDepot::popTruck() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
 	delete FireDepot::fTrucks[0];
+	for (unsigned int index=1; index < FireDepot::fTrucks.size(); index++) {
+		FireDepot::fTrucks[index - 1] = FireDepot::fTrucks[index];
+	}
+
 	return true;
 }
 
@@ -142,6 +150,7 @@ FireDepot::~FireDepot() {
 	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
 		delete FireDepot::fTrucks[index];
 	}
+	FireDepot::fTrucks.clear();
 
-	ENSURE(this->fTrucks.empty(), "No trucks in depot");
+	ENSURE(this->fTrucks.empty() == true, "No trucks in depot");
 }

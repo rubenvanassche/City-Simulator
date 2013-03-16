@@ -17,7 +17,7 @@ class Simulator {
 public:
 	bool isInitialized();
 
-	Simulator(City* town);
+	Simulator(City* town, std::string& outputfilename);
 	// REQUIRE(town->isInitialized(), "City is initialized");
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
 
