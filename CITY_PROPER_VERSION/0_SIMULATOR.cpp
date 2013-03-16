@@ -10,6 +10,7 @@
 #include <iostream>
 #include "CityParser.h"
 #include <sstream>
+#include "Simulator.h"
 
 int main(int argc, char* argv[]) {
 	if (argc != 2) {
@@ -18,12 +19,15 @@ int main(int argc, char* argv[]) {
 	}
 
 	std::stringstream ss;
-	ss << argv[0];
+	ss << argv[1];
 	std::string filename = ss.str();
 
 	City town = CityParser::parse(filename);
-	// std::stringstream ss = Simulator::simulate(town); todo: write this function
-	// output::writeToFile(ss);	todo: write this function
+	Simulator sim(&town);
+	while (!sim.endSimulation()	) {
+		sim.simulate();
+		sim.output();
+	}
 
 	return 0;
 }

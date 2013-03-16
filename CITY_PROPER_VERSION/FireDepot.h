@@ -40,6 +40,7 @@ public:
 	// ENSURE(this->getLocation() == f.getLocation, "Location is copied");
 	// ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	// ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
+	// ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
 
 	bool operator= (FireDepot& f);
 	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
@@ -48,6 +49,7 @@ public:
 	// ENSURE(this->getLocation() == f.getLocation, "Location is copied");
 	// ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	// ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
+	// ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
 
 	bool addFireTruck(FireTruck& f);
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");

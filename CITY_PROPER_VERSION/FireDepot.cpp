@@ -46,12 +46,17 @@ FireDepot::FireDepot(FireDepot& f)
 	FireDepot::fMyself = this;
 	FireDepot::fName = f.fName;
 	FireDepot::fEntrance = f.fEntrance;
+	FireDepot::fTrucks = f.fTrucks;
 
 	ENSURE(this->isInitialized(), "FireDepot is initialized");
 	ENSURE(this->fName == f.fName, "Name is initialized");
 	ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
 	ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
+
+	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
+		ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
+	}
 }
 
 bool FireDepot::operator= (FireDepot& f) {
@@ -62,11 +67,15 @@ bool FireDepot::operator= (FireDepot& f) {
 	this->setSize(f.getSize());
 	FireDepot::fName = f.fName;
 	FireDepot::fEntrance = f.fEntrance;
+	FireDepot::fTrucks = f.fTrucks;
 
 	ENSURE(this->fName == f.fName, "Name is initialized");
 	ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
 	ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
+	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
+		ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
+	}
 	return true;
 }
 
@@ -88,9 +97,7 @@ FireTruck& FireDepot::getAvailableTruck() {
 bool FireDepot::popTruck() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
-	for (unsigned int index=1; index < FireDepot::fTrucks.size(); index++) {
-		FireDepot::fTrucks[index-1] = FireDepot::fTrucks[index];
-	}
+	delete FireDepot::fTrucks[0];
 	return true;
 }
 

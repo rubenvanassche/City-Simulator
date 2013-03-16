@@ -18,6 +18,18 @@ City::City() {
 	ENSURE(this->isInitialized(), "City is initialized");
 }
 
+City::City(const City& town) {
+	//REQUIRE(town.isInitialized(), "City is initialized");
+
+	City::fMyself = this;
+	City::fTrucks = town.fTrucks;
+	City::fStreets = town.fStreets;
+	City::fHouses = town.fHouses;
+	City::fFireDepots = town.fFireDepots;
+
+	ENSURE(this->isInitialized(), "City is copied");
+}
+
 bool City::addFireDepot(FireDepot& depot) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(depot.isInitialized(), "FireDepot is initialized");
@@ -51,6 +63,63 @@ bool City::addHouse(House& house) {
 
 	// do something useful here
 
+	return true;
+}
+
+bool City::trucksOnWay() {
+	ENSURE(this->isInitialized(), "City is initialized");
+
+	for (unsigned int index=0; index < City::fTrucks.size(); index++) {
+		if (City::fTrucks[index]->getPosition() == City::fTrucks[index]->getDestination()) {
+			continue;
+		}
+		else {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+bool City::writeTrucksStatus(std::fstream& filestream) {
+	ENSURE(this->isInitialized(), "City is initialized");
+
+	for (unsigned int index=0; index < City::fTrucks.size(); index++) {
+		filestream << *(City::fTrucks[index]) << std::endl;
+	}
+
+	return true;
+}
+
+bool City::housesOnFire() {
+	ENSURE(this->isInitialized(), "City is initialized");
+
+	for (unsigned int index=0; index < City::fHouses.size(); index++) {
+		if (City::fHouses[index]->isBurning()) {
+			return true;
+		}
+		continue;
+	}
+	return false;
+}
+
+bool City::writeHousesStatus(std::fstream& filestream) {
+	ENSURE(this->isInitialized(), "City is initialized");
+
+	for (unsigned int index=0; index < City::fHouses.size(); index++) {
+		filestream << *(City::fHouses[index]) << std::endl;
+	}
+
+	return true;
+}
+
+
+bool City::writeDepotsStatus(std::fstream& filestream) {
+	ENSURE(this->isInitialized(), "City is initialized");
+
+	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
+		filestream << *(City::fFireDepots[index]) << std::endl;
+	}
 	return true;
 }
 

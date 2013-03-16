@@ -16,6 +16,7 @@
 #include "FireTruck.h"
 #include "Street.h"
 #include "House.h"
+#include <fstream>
 
 class City {
 public:
@@ -26,6 +27,11 @@ public:
 	City();
 	// Constructor
 	// ENSURE(this->isInitialized(), "City is initialized");
+
+	City(const City& town);
+	// REQUIRE(town.isInitialized(), "City is initialized");
+	// ENSURE(this->isInitialized(), "City is initialized");
+
 
 	bool addFireDepot(FireDepot& depot);
 	// ENSURE(this->isInitialized(), "City is initialized");
@@ -42,6 +48,21 @@ public:
 	bool addHouse(House& house);
 	// ENSURE(this->isInitialized(), "City is initialized");
 	// ENSURE(house.isInitialized(), "House is initialized");
+
+	bool trucksOnWay();
+	// ENSURE(this->isInitialized(), "City is initialized");
+
+	bool writeTrucksStatus(std::fstream& filestream);
+	// ENSURE(this->isInitialized(), "City is initialized");
+
+	bool housesOnFire();
+	// ENSURE(this->isInitialized(), "City is initialized");
+
+	bool writeHousesStatus(std::fstream& filestream);
+	// ENSURE(this->isInitialized(), "City is initialized");
+
+	bool writeDepotsStatus(std::fstream& filestream);
+	// ENSURE(this->isInitialized(), "City is initialized");
 
 	~City();
 	// IMPORTANT! BECAUSE WE HOLD A VECTOR OF POINTERS
@@ -61,6 +82,7 @@ private:
 	std::vector<FireDepot*> fFireDepots;	// all firedepots (must be pointers, or won't work)
 	std::vector<Street*> fStreets;	// all streets (must be pointers, or won't work)
 	std::vector<House*> fHouses;	// all houses (must be pointers, or won't work)
+	std::vector<FireTruck*> fTrucks;	// all trucks (must be pointers, or won't work)
 
 	City* fMyself;	// a pointer to myself for initialize checking
 };
