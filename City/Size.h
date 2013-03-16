@@ -3,100 +3,65 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Thursday 28 February 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
 #ifndef SIZE_H_
 #define SIZE_H_
 
+#include "DesignByContract.h"
+
 class Size {
 public:
-	friend bool operator== (Size& sizeobject1, Size& sizeobject2);
-	/*
-	 * REQUIRE( (sizeobject1.isInitialized() && sizeobject2.isInitialized() ), "The Size objects are not initialized properly")
-	 */
-
 	bool isInitialized();
-	/*
-	 * Checks if the Size object is initialized properly
-	 */
 
-	Size(const int value);
-	/*
-	 * Constructor.
-	 *
-	 * REQUIRE(value > 0, "Invalid value")
-	 * ENSURE(isInitialized(), "The Size object is not initialized properly")
-	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
-	 */
+	friend bool operator== (Size& s1, Size& s2);
 
-	Size(const int width, const int height);
-	/*
-	 * Constructor
-	 *
-	 * REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height")
-	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
-	 */
+	Size(int value);
+	// constructor
+	// REQUIRE(value > 0, "Positive value");
+	// ENSURE(this->isInitialized(), "Size is initialized");
+	// ENSURE(this->fWidth == value, "Width is initialized");
+	// ENSURE(this->fHeight == value, "Height is initialized");
 
-	Size(const Size& size);
-	/*
-	 * Copy by initialization overloading
-	 */
+	Size(int width, int height);
+	// REQUIRE(width > 0, "Positive width");
+	// REQUIRE(height > 0, "Positive height");
+	// ENSURE(this->isInitialized(), "Size is initialized");
+	// ENSURE(this->fWidth == width, "Width is initialized");
+	// ENSURE(this->fHeight == height, "Height is initialized");
 
-	Size& operator= (Size& sizeObject);
-	/*
-	 * Copy by assignment overloading
-	 */
+	Size(Size& s);
+	// REQUIRE(s.isInitialized(), "Size is initialized");
+	// ENSURE(this->fWidth == s.fWidth, "Width is initialized");
+	// ENSURE(this->fHeight == s.fHeight, "Height is initialized");
+	// ENSURE(this->isInitialized(), "Size is initialized");
 
-	bool set(const int& width, const int& height);
-	/*
-	 * Change the width & height.
-	 *
-	 * REQUIRE(this->isInitialized(), "The Size object is not initialized properly")
-	 * REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height")
-	 * ENSURE( ( (this->fWidth == value) && (this->fHeight == value)), "Width and/or height not set properly")
-	 */
+	bool operator= (Size& s);
+	// REQUIRE(s.isInitialized(), "Size is initialized");
+	// ENSURE(this->fWidth == s.fWidth, "Width copied");
+	// ENSURE(this->fHeight == s.fHeight, "Heigt copied");
 
-	unsigned int* getWidth();
-	/*
-	 * Gets the width
-	 *
-	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
-	 */
+	bool set(int width, int height);
+	// REQUIRE(this->isInitialized(), "Size is initialized");
+	// REQUIRE(width > 0, "Positive width");
+	// REQUIRE(height > 0, "Positive height");
+	// ENSURE(this->fWidth == width, "Width is set");
+	// ENSURE(this->fHeight == height, "Height is set");
 
-	unsigned int* getHeight();
-	/*
-	 * Gets the height
-	 *
-	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
-	 */
+	unsigned int getWidth();
+	// 	REQUIRE(this->isInitialized(), "Size is initialized");
 
-	bool setValue(const int& value);
-	/*
-	 * set the width & height to value
-	 *
-	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
-	 * REQUIRE(value > 0, "Invalid value")
-	 * ENSURE( ( (this->fX == value) && this->fY == value), "Width and/or height is not set.")
-	 */
-
-	unsigned int* getValue();
-	/*
-	 * Returns the value
-	 *
-	 * REQUIRE(this->isInitialized, "The Size object is not initialized properly")
-	 * REQUIRE(this->fHeight == this->fWidth, "The width and height are not both the same")
-	 */
-
+	unsigned int getHeight();
+	// 	REQUIRE(this->isInitialized(), "Size is initialized");
 
 
 private:
 	unsigned int fWidth;
 	unsigned int fHeight;
 
-	Size* fMyself;	// a pointer to myself to check if I'm initialized properly
+	Size* fMyself;
 };
-
 
 #endif /* SIZE_H_ */

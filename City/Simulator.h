@@ -3,7 +3,7 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @date:		Saturday 16 March 2013
  * 
  */
 
@@ -11,20 +11,31 @@
 #define SIMULATOR_H_
 
 #include "City.h"
-#include <iostream>
+#include "DesignByContract.h"
 
-namespace Simulator {
+class Simulator {
+public:
+	bool isInitialized();
 
-City parse(std::string& filename);
-/*
- * Create a city based upon a XML-file
- */
+	Simulator(City* town, std::string& outputfilename);
+	// REQUIRE(town->isInitialized(), "City is initialized");
+	// ENSURE(this->isInitialized(), "Simulator is initialized");
 
-void simulate(City& town);
-/*
- * Simulate the given town
- */
+	bool output();
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
+	bool endSimulation();
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-} /* namespace Simulator */
+	bool simulate();
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+
+private:
+	bool fEndSimulation;
+	City* fTown;
+	std::string fFileName;
+
+	Simulator* fMyself;
+};
+
 #endif /* SIMULATOR_H_ */

@@ -3,92 +3,104 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Saturday 2 March 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
 #include "Street.h"
-#include "Point.h"
-#include "DesignByContract.h"
 
-std::ostream& operator<< (std::ostream& stream, Street& objectStreet) {
-	REQUIRE( objectStreet.isInitialized(), "The Street object is not initialized properly");
-	stream << objectStreet.fName << " [" << objectStreet.fStartPoint
-			<< " -> " << objectStreet.fEndPoint << "]";
+bool Street::isInitialized() {
+	return Street::fMyself == this;
+}
+
+std::ostream& operator<< (std::ostream& stream, Street& s) {
+	REQUIRE(s.isInitialized(), "Street is initialized");
+
+	stream << s.fName << " [van " << s.fStartPoint << "naar " <<  s.fEndPoint << "]" << std::endl;
 	return stream;
 }
 
-bool Street::isInitialized() {
-	return this == Street::fMyself;
-}
+Street::Street(std::string& name, Point& start, Point& end)
+	: fStartPoint(start), fEndPoint(end) {
+	REQUIRE(start.isInitialized(), "Startpoint is initialized");
+	REQUIRE(end.isInitialized(), "Endpoint is initialized");
 
-Street::Street(Point& startPoint, Point& endPoint, std::string name) {
-	REQUIRE( ( startPoint.isInitialized() && endPoint.isInitialized() ), "Points are not valid");
-
-	Street::fStartPoint = startPoint;
-	Street::fEndPoint = endPoint;
+	Street::fMyself = this;
 	Street::fName = name;
-	Street::fMyself = this;
 
-	ENSURE(isInitialized(), "The Street object is not initialized properly");
+	ENSURE(this->isInitialized(), "Street is initialized");
+	ENSURE(this->fStartPoint == start, "Startpoint is set");
+	ENSURE(this->fEndPoint == end, "Endpoint is set");
+	ENSURE(this->fName == name, "Name is set");
 }
 
-Street::Street(const Street& s) {
+Street::Street(Street& s)
+	: fStartPoint(s.fStartPoint), fEndPoint(s.fEndPoint) {
+	REQUIRE(s.isInitialized(), "Street is initialized");
+
 	Street::fMyself = this;
+	Street::fName = s.fName;
+
+	ENSURE(this->isInitialized(), "Street is initialized");
+	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is set");
+	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is set");
+	ENSURE(this->fName == s.fName, "Name is set");
+}
+
+bool Street::operator= (Street& s) {
+	REQUIRE(s.isInitialized(), "Street is initialized");
+	REQUIRE(this->isInitialized(), "Street is initialized");
 
 	Street::fStartPoint = s.fStartPoint;
 	Street::fEndPoint = s.fEndPoint;
-
 	Street::fName = s.fName;
-}
 
-Street& Street::operator= (const Street& s) {
-	Street::fStartPoint = s.fStartPoint;
-	Street::fEndPoint = s.fEndPoint;
-	Street::fName = s.fName;
-	return *this;
-}
-
-bool Street::setEndPoint(Point& end) {
-	REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	REQUIRE(end.isInitialized(), "The endPoint is not valid");
-
-	Street::fEndPoint = end;
-
-	ENSURE(this->fEndPoint == end, "The end is not set");
+	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is set");
+	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is set");
+	ENSURE(this->fName == s.fName, "Name is set");
 	return true;
-}
-
-Point* Street::getEndPoint() {
-	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	 return &(Street::fEndPoint);
 }
 
 bool Street::setStartPoint(Point& start) {
-	REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	REQUIRE(start.isInitialized(), "The startpoint is not valid");
+	REQUIRE(start.isInitialized(), "Point is initialized");
 
 	Street::fStartPoint = start;
 
-	ENSURE(this->fStartPoint == start, "The startpoint is not set");
+	REQUIRE(this->isInitialized(), "Street is initialized");
+	ENSURE(this->fStartPoint == start, "Startpoint is set");
 	return true;
 }
 
-Point* Street::getStartPoint() {
-	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	 return &(Street::fStartPoint);
-}
+bool Street::setEndPoint(Point& end) {
+	REQUIRE(end.isInitialized(), "Point is initialized");
+	REQUIRE(this->isInitialized(), "Street is initialized");
 
-bool Street::setName(const std::string& name) {
-	 REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
+	Street::fEndPoint = end;
 
-	 Street::fName = name;
-
-	ENSURE(this->fName == name, "The name is not set");
+	ENSURE(this->fEndPoint == end, "Endpoint is set");
 	return true;
 }
 
-std::string* Street::getName() {
-	REQUIRE(this->isInitialized(), "The Street object is not initialized properly");
-	return &(Street::fName);
+bool Street::setName(std::string& name) {
+	REQUIRE(this->isInitialized(), "Street is initialized");
+
+	Street::fName = name;
+
+	ENSURE(this->fName == name, "Name is set");
+	return true;
+}
+
+Point& Street::getStartPoint() {
+	REQUIRE(this->isInitialized(), "Street is initialized");
+	return Street::fStartPoint;
+}
+
+Point& Street::getEndPoint() {
+	REQUIRE(this->isInitialized(), "Street is initialized");
+	return Street::fEndPoint;
+}
+
+std::string& Street::getName() {
+	REQUIRE(this->isInitialized(), "Street is initialized");
+	return Street::fName;
 }

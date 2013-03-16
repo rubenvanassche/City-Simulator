@@ -10,112 +10,139 @@
 #include "gtest/gtest.h"
 #include "Vehicle.h"
 #include "Point.h"
-#include <sstream>
+#include <cstdlib>
 
 TEST(testVehicles, constructs) {
-	ASSERT_NO_FATAL_FAILURE(Point position);
-	Point position;
-	ASSERT_NO_FATAL_FAILURE(Point destination);
-	Point destination;
-	std::string name = "Car BMW007";
-	EXPECT_NO_FATAL_FAILURE(Vehicle truck(position, destination, name));
+	const int nrTests = 10;
+	const int range = 100;
+	std::string carname = "bananacar";
 
-	ASSERT_NO_FATAL_FAILURE(Point cur_pos(5, 6));
-	Point cur_pos(5, 6);
-	ASSERT_NO_FATAL_FAILURE(Point home(10, 12));
-	Point home(10, 12);
-	EXPECT_NO_FATAL_FAILURE(Vehicle v(cur_pos, home, name));
+	for (int i=0; i < nrTests; i++) {
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point curPos(x0, y0));
+		Point curPos(x0, y0);
+
+		int x1 = std::rand() % range;
+		int y1 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point d(x1, y1));
+		Point d(x1, y1);
+
+		EXPECT_NO_FATAL_FAILURE(Vehicle car(carname, curPos, d));
+	}
 }
 
 TEST(testVehicles, getters) {
-	ASSERT_NO_FATAL_FAILURE(Point position(5, 3));
-	Point position(5, 3);
-	ASSERT_NO_FATAL_FAILURE(Point destination(7, 9));
-	Point destination(7, 9);
-	std::string name = "Truck";
-	ASSERT_NO_FATAL_FAILURE(Vehicle truck(position, destination, name));
-	Vehicle truck(position, destination, name);
+	const int nrTests = 10;
+	const int range = 100;
+	std::string carname = "fancy-car";
 
-	EXPECT_TRUE(position == *truck.getPosition());
-	EXPECT_TRUE(destination == *truck.getDestination());
-	EXPECT_TRUE("Truck" == *truck.getName());
+	for (int i=0; i < nrTests; i++) {
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point curPos(x0, y0));
+		Point curPos(x0, y0);
+
+		int x1 = std::rand() % range;
+		int y1 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point d(x1, y1));
+		Point d(x1, y1);
+
+		ASSERT_NO_FATAL_FAILURE(Vehicle car(carname, curPos, d));
+		Vehicle car(carname, curPos, d);
+		EXPECT_TRUE(curPos == car.getPosition());
+		EXPECT_TRUE(d == car.getDestination());
+		EXPECT_TRUE(carname == car.getName());
+	}
 }
 
 TEST(testVehicles, setters) {
-	ASSERT_NO_FATAL_FAILURE(Point destination);
-	Point destination;
-	ASSERT_NO_FATAL_FAILURE(Point position);
-	Point position;
-	std::string name = "";
-	ASSERT_NO_FATAL_FAILURE(Vehicle v(position, destination, name));
-	Vehicle v(position, destination, name);
+	const int nrTests = 10;
+	const int range = 100;
+	std::string carname = "truck";
+	std::string newName = "pickup";
 
-	std::string newName = "Opel Prius";
-	EXPECT_NO_FATAL_FAILURE(v.setName(newName));
+	for (int i=0; i < nrTests; i++) {
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point p(x0, y0));
+		Point p(x0, y0);
 
-	ASSERT_NO_FATAL_FAILURE(Point newPosition(9, 14));
-	Point newPosition(9, 14);
-	EXPECT_NO_FATAL_FAILURE(v.setPosition(newPosition));
+		int x1 = std::rand() % range;
+		int y1 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point q(x1, y1));
+		Point q(x1, y1);
 
-	ASSERT_NO_FATAL_FAILURE(Point newDestination(0, 5));
-	Point newDestination(0, 5);
-	EXPECT_NO_FATAL_FAILURE(v.setDestination(newDestination));
+		ASSERT_NO_FATAL_FAILURE(Vehicle str(carname, p, q));
+		Vehicle car(carname, p, q);
+
+		int newX0 = std::rand() % range;
+		int newY0 = std::rand() % range;
+		int newX1 = std::rand() % range;
+		int newY1 = std::rand() % range;
+
+		ASSERT_NO_FATAL_FAILURE(Point newP(newX0, newY0) );
+		Point newP(newX0, newY0);
+		ASSERT_NO_FATAL_FAILURE(Point newQ(newX1, newY1) );
+		Point newQ(newX1, newY1);
+
+		EXPECT_NO_FATAL_FAILURE(car.setPosition(newP));
+		car.setPosition(newP);
+		EXPECT_TRUE(newP == car.getPosition());
+
+		EXPECT_NO_FATAL_FAILURE(car.setDestination(newQ));
+		car.setDestination(newQ);
+		EXPECT_TRUE(newQ == car.getDestination());
+
+		EXPECT_NO_FATAL_FAILURE(car.setName(newName));
+		car.setName(newName);
+		EXPECT_TRUE(newName == car.getName());
+	}
 }
 
 TEST(testVehicles, copying) {
-	ASSERT_NO_FATAL_FAILURE(Point position(5, 3));
-	Point position(5, 3);
-	ASSERT_NO_FATAL_FAILURE(Point destination(7, 9));
-	Point destination(7, 9);
-	std::string name = "Pick-up";
-	ASSERT_NO_FATAL_FAILURE(Vehicle truck(position, destination, name));
-	Vehicle truck(position, destination, name);
+	const int nrTests = 10;
+	const int range = 100;
+	std::string carname = "car";
+	std::string newName = "zomfg-Car!";
 
-	EXPECT_NO_FATAL_FAILURE(Vehicle pickup = truck);	// copy by initializing
-	Vehicle pickup = truck;
-	EXPECT_TRUE(*pickup.getPosition() == *truck.getPosition());
-	EXPECT_TRUE(*pickup.getDestination() == *truck.getDestination());
-	EXPECT_TRUE(*pickup.getName() == *truck.getName());
+	for (int i=0; i < nrTests; i++) {
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point p(x0, y0));
+		Point p(x0, y0);
 
-	ASSERT_NO_FATAL_FAILURE(Point pos(12, 1));
-	Point pos(12, 1);
-	ASSERT_NO_FATAL_FAILURE(Point des(0, 9));
-	Point des(0, 9);
-	std::string newName = "new pick-up";
-	ASSERT_NO_FATAL_FAILURE(Vehicle newPick(pos, des, newName));
-	Vehicle newPick(position, destination, name);
-	EXPECT_NO_FATAL_FAILURE(newPick = pickup);	// copy by initializing
-	newPick = pickup;
-	EXPECT_TRUE(*pickup.getPosition() == *newPick.getPosition());
-	EXPECT_TRUE(*pickup.getDestination() == *newPick.getDestination());
-	EXPECT_TRUE(*pickup.getName() == *newPick.getName());
-}
+		int x1 = std::rand() % range;
+		int y1 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point q(x1, y1));
+		Point q(x1, y1);
 
-TEST(testVehicles, mix) {
-	ASSERT_NO_FATAL_FAILURE(Point cur_pos);
-	Point cur_pos;
-	ASSERT_NO_FATAL_FAILURE(Point home(7, 5));
-	Point home(7, 5);
-	std::string name = "Peugeot 206";
-	ASSERT_NO_FATAL_FAILURE(Vehicle car(cur_pos, home, name));
-	Vehicle car(cur_pos, home, name);
+		ASSERT_NO_FATAL_FAILURE(Vehicle str(carname, p, q));
+		Vehicle car(carname, p, q);
 
-	EXPECT_TRUE("Peugeot 206" == *car.getName());
-	EXPECT_NO_FATAL_FAILURE(car.setName("Citroen MX"));
-	car.setName("Citroen MX");
-	EXPECT_TRUE("Citroen MX" == *car.getName());
+		EXPECT_NO_FATAL_FAILURE(Vehicle copycat = car);
+		Vehicle copycat = car;
+		EXPECT_TRUE(copycat.getPosition() == car.getPosition());
+		EXPECT_TRUE(copycat.getDestination() == car.getDestination());
+		EXPECT_TRUE(copycat.getName() == car.getName());
 
-	EXPECT_TRUE(cur_pos == *car.getPosition());
-	ASSERT_NO_FATAL_FAILURE(Point newPos(3, 5));
-	Point newPos(3, 5);
-	EXPECT_NO_FATAL_FAILURE(car.setPosition(newPos));
-	car.setPosition(newPos);
-	EXPECT_TRUE(newPos == *car.getPosition());
+		int newX0 = std::rand() % range;
+		int newY0 = std::rand() % range;
+		int newX1 = std::rand() % range;
+		int newY1 = std::rand() % range;
 
-	EXPECT_TRUE(home == *car.getDestination());
-	ASSERT_NO_FATAL_FAILURE(Point newHome(5, 3));
-	Point newHome(5, 3);
-	EXPECT_NO_FATAL_FAILURE(car.setDestination(newHome));
-	car.setDestination(newHome);
-	EXPECT_TRUE(newHome == *car.getDestination());
+		ASSERT_NO_FATAL_FAILURE(Point newP(newX0, newY0) );
+		Point newP(newX0, newY0);
+		ASSERT_NO_FATAL_FAILURE(Point newQ(newX1, newY1) );
+		Point newQ(newX1, newY1);
+		ASSERT_NO_FATAL_FAILURE(Vehicle ccar(newName, newP, newQ) );
+		Vehicle ccar(newName, newP, newQ);
+
+		EXPECT_NO_FATAL_FAILURE(car = ccar);
+		car = ccar;
+
+		EXPECT_TRUE(ccar.getPosition() == car.getPosition());
+		EXPECT_TRUE(ccar.getDestination() == car.getDestination());
+		EXPECT_TRUE(ccar.getName() == car.getName());
+	}
 }

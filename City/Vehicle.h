@@ -3,95 +3,71 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Thursday 28 February 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
 #ifndef VEHICLE_H_
 #define VEHICLE_H_
 
+#include "DesignByContract.h"
 #include "Point.h"
 
 class Vehicle {
 public:
 	bool isInitialized();
-	/*
-	 * Check whether the FireDepot is initialized properly
-	 */
 
+	Vehicle(std::string& name, Point& curPos, Point& destination);
+	// REQUIRE(curPos.isInitialized(), "Point is initialized");
+	// REQUIRE(destination.isInitialized(), "Point is initialized");
+	// ENSURE(this->isInitialized(), "Vehicle is initialized");
+	// ENSURE(this->fName == name, "Name is initialized");
+	// ENSURE(this->fDestination == destination, "Destination is initialized");
+	// ENSURE(this->fPosition == curPos, "Position is initialized");
 
-	Vehicle(Point& cur_pos, Point& destination, std::string& name);
-	/*
-	 * Constructor
-	 *
-	 * REQUIRE( ( (cur_pos.isInitialized() ) && (destination.isInitialized()) ), "Points are invalid.")
-	 * ENSURE(isInitialized(), "The Vehicle object is not initialized properly")
-	 */
+	Vehicle(Vehicle& v);
+	// REQUIRE(v.isInitialized(), "Vehicle is initialized");
+	// ENSURE(this->isInitialized(), "Vehicle is initialized");
+	// ENSURE(this->fName == v.fName, "Name is initialized");
+	// ENSURE(this->fDestination == v.fDestination, "Destination is initialized");
+	// ENSURE(this->fPosition == v.fPosition, "Position is initialized");
 
-	Vehicle(const Vehicle& v);
-	/*
-	 * Copy by initializing
-	 */
+	bool operator= (Vehicle& v);
+	// REQUIRE(v.isInitialized(), "Vehicle is initialized");
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// ENSURE(this->fName == v.fName, "Name is initialized");
+	// ENSURE(this->fDestination == v.fDestination, "Destination is initialized");
+	// ENSURE(this->fPosition == v.fPosition, "Position is initialized");
 
-	Vehicle& operator= (Vehicle& v);
-	/*
-	 * Copy by assignment
-	 */
+	bool setPosition(Point& p);
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// REQUIRE(p.isInitialized(), "Point is initialized");
+	// ENSURE(this->fPosition == p, "Position is set");
 
-	bool setPosition(Point& point);
-	/*
-	 * Set the current position of the vehicle
-	 *
-	 * REQUIRE(point.isInitialized(), "The point is not initialized")
-	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 * ENSURE(this->fPosition == point, "The position is not set")
-	 */
+	Point& getPosition();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
-	Point* getPosition();
-	/*
-	 * Get the current position of the vehicle
-	 *
-	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 */
+	bool setDestination(Point& destination);
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// REQUIRE(destination.isInitialized(), "Point is initialized");
+	// ENSURE(this->fDestination == destination, "Destination is set");
 
-	bool setDestination(Point& point);
-	/*
-	 * set the destination of the vehicle
-	 *
-	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 * REQUIRE(point.isInitialized(), "The point is not valid")
-	 * ENSURE(this->fDestination == point, "Destination is not set")
-	 */
+	Point& getDestination();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
-	Point* getDestination();
-	/*
-	 * get the destination of the vehicle
-	 *
-	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 */
+	bool setName(std::string& name);
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// ENSURE(this->fName == name, "Name is set");
 
-	bool setName(const std::string& name);
-	/*
-	 * Set the name of the vehicle
-	 *
-	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 * ENSURE(this->fName == name, "The name is not set.")
-	 */
-
-	std::string* getName();
-	/*
-	 * Get the name of the vehicle
-	 *
-	 * REQUIRE(this->isInitialized(), "The Vehicle object is not initialized properly")
-	 */
+	std::string& getName();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
 private:
-	Point fPosition;	// the current position of the vehicle
-	Point fDestination;	// the destination of the vehicle
-	std::string fName;	// the name of the vehicle
+	Point fPosition;
+	Point fDestination;
+	std::string fName;
 
-	Vehicle* fMyself;	// a pointer to myself to check whether I'm initialized properly
+	Vehicle* fMyself;
 };
-
 
 #endif /* VEHICLE_H_ */

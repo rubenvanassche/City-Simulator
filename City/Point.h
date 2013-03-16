@@ -3,90 +3,78 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Thursday 28 February 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
 #ifndef POINT_H_
 #define POINT_H_
 
+#include "DesignByContract.h"
 #include <iostream>
 
 class Point {
 public:
-	friend std::ostream& operator<< (std::ostream& stream, Point& pointobject);
-	/*
-	 * REQUIRE( pointobject.isInitialized(), "The Point object are not initialized properly")
-	 */
-
-	friend bool operator== (Point& pointobject1, Point& pointobject2);
-	/*
-	 * REQUIRE( (pointobject1.isInitialized() && pointobject2.isInitialized() ), "The Point objects are not initialized properly")
-	 */
-
-	friend bool operator!= (Point& pointobject1, Point& pointobject2);
-	/*
-	 * REQUIRE( (pointobject1.isInitialized() && pointobject2.isInitialized() ), "The Point objects are not initialized properly")
-	 */
-
-	friend Point operator+ (Point& pointobject1, Point& pointobject2);
-	friend Point operator- (Point& pointobject1, Point& pointobject2);
-
 	bool isInitialized();
-	/*
-	 * Checks if the Point is initialized Properly
-	 */
 
-	Point(const int& x=0, const int& y=0);
-	/*
-	 * Constructor.
-	 *
-	 * REQUIRE( ((x >= 0) && (y >= 0)), "Invalid xy-coordinates.")
-	 * ENSURE(isInitialized(), "Point object is not initialized properly")
-	 * ENSURE( ( (this->fX == x) && (this->fY == y) ), "Point object has not the given coordinates")
-	 */
+	friend std::ostream& operator<< (std::ostream& stream, Point& pointobject);
+	// REQUIRE(pointobject.isInitialized(), "Point object is initialized properly");
 
-	Point(const Point& p);
-	/*
-	 * copy constructor (for copy by initialization)
-	 */
+	friend bool operator== (Point& p1, Point& p2);
+	//REQUIRE(p1.isInitialized(), "Point is initialized");
+	//REQUIRE(p2.isInitialized(), "Point is initialized");
 
-	Point& operator= (const Point& pointobject);
-	/*
-	 * copy by assignment
-	 */
+	friend bool operator!= (Point& p1, Point& p2);
+	// REQUIRE(p1.isInitialized(), "Point is initialized");
+	// REQUIRE(p2.isInitialized(), "Point is initialized");
 
-	bool set(const int& x=0, const int& y=0);
-	/*
-	 * Change the x, y values.
-	 *
-	 * REQUIRE(this->isInitialized(), "The Point object is not initialized properly")
-	 * REQUIRE( ( (x >= 0) && (y >= 0) ), "Invalid xy-coordinates.")
-	 * ENSURE( ( (x == this->fX) && (y == this->fY) ), "Point object has not the given coordinates")
-	 */
+	friend Point operator+ (Point& p1, Point& p2);
+	// REQUIRE(p1.isInitialized(), "Point is initialized");
+	// REQUIRE(p2.isInitialized(), "Point is initialized");
 
-	int* getX();
-	/*
-	 * Returns the x-coordinate.
-	 *
-	 * REQUIRE(this->isInitialized(), "The Point object is not initialized properly")
-	 * ENSURE(this->fX >= 0, "Returned x-coordinate is invalid")
-	 */
+	friend Point operator- (Point& p1, Point& p2);
+	// REQUIRE(p1.isInitialized(), "Point is initialized");
+	// REQUIRE(p2.isInitialized(), "Point is initialized");
 
-	int* getY();
-	/*
-	 * Returns the y-coordinate.
-	 *
-	 * REQUIRE(this->isInitialized(), "The Point object is not initialized properly")
-	 * ENSURE(this->fY >= 0, "Returned y-coordinate is invalid")
-	 */
+	Point(int x, int y);
+	// Constructor
+	//REQUIRE(x >= 0, "x >= 0");
+	//REQUIRE(y >= 0, "y >= 0");
+	//ENSURE(this->fX == x, "X is initizialized");
+	//ENSURE(this->fY == y, "Y is initialized");
+	//ENSURE(this->isInitialized(), "Point is initialized");
+
+	Point(Point& p);
+	// copy constructor
+	//REQUIRE(p.isInitialized(), "Point is initialized");
+	//ENSURE(this->fX == p.fX, "X copied");
+	//ENSURE(this->fY == p.fY, "Y copied");
+	//ENSURE(this->isInitialized(), "Point is initialized");
+
+	bool operator= (Point& p);
+	// copy by assignment
+	// REQUIRE(p.isInitialized(), "Point is initialized");
+	// ENSURE(this->fX == p.fX, "X copied");
+	// ENSURE(this->fY == p.fY, "Y copied");
+
+	bool set(int x, int y);
+	// REQUIRE(this->isInitialized(), "Point is initialized");
+	// REQUIRE(x >= 0, "x >= 0");
+	// REQUIRE(y >= 0, "y >= 0");
+	// ENSURE(this->fX == x, "X is set");
+	// ENSURE(this->fY == y, "Y is set");
+
+	unsigned int getX();
+	// REQUIRE(this->isInitialized(), "Point is initialized");
+
+	unsigned int getY();
+	// REQUIRE(this->isInitialized(), "Point is initialized");
 
 private:
-	int fX;	// the x-coordinate
-	int fY;	// the y-coordinate
+	unsigned int fX;
+	unsigned int fY;
 
-	Point* fMyself;	// a pointer to myself to check if it's initialized properly
+	Point* fMyself;
 };
-
 
 #endif /* POINT_H_ */

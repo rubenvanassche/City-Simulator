@@ -3,7 +3,7 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Thursday 28 February 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
@@ -11,92 +11,70 @@
 #define HOUSE_H_
 
 #include "Building.h"
+#include "DesignByContract.h"
 #include <iostream>
-#include "Point.h"
-#include "Size.h"
 
-class House : public Building {
+class House: public Building {
 public:
-	friend std::ostream& operator<< (std::ostream& stream, House& house);
-
 	bool isInitialized();
-	/*
-	 * Check whether the FireDepot is initialized properly
-	 */
 
-	House(Point& location, int health);
-	/*
-	 * Constructor
-	 *
-	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
-	 * REQUIRE(health >= 0, "The health point is not >= 0")
-	 * ENSURE(isInitialized(), "The House object is not initialized properly")
-	 */
+	friend std::ostream& operator<< (std::ostream& stream, House& h);
+	// REQUIRE(h.isInitialized(), "House is initialized");
+
+	House(Point& location, Size& size, int health);
+	// REQUIRE(location.isInitialized(), "Location is initialized");
+	// REQUIRE(size.isInitialized(), "Size is initialized");
+	// REQUIRE(health >= 0, "Positive healthpoints");
+	// ENSURE(this->isInitialized(), "House is initialized");
+	// ENSURE(this->fHealth == health, "Health points is set");
+	// ENSURE(this->getLocation() == location, "Location is set");
+	// ENSURE(this->getSize() == size, "Size is set");
 
 	House(House& h);
-	/*
-	 * copy by initializing
-	 */
+	// REQUIRE(h.isInitialized(), "House is initialized");
+	// ENSURE(this->isInitialized(), "House is initialized");
+	// ENSURE(this->fIsBurning == h.fIsBurning, "Burning copied");
+	// ENSURE(this->fHealth == h.fHealth, "Health copied");
+	// ENSURE(this->getLocation() == h.getLocation(), "Location copied");
+	// ENSURE(this->getSize() == h.getSize(), "Size copied");
 
-	House& operator= (House& h);
-	/*
-	 * copy by assignment
-	 */
+	bool operator= (House& h);
+	// REQUIRE(h.isInitialized(), "House is initialized");
+	// REQUIRE(this->isInitialized(), "House is initialized");
+	// ENSURE(this->fIsBurning == h.fIsBurning, "Burning copied");
+	// ENSURE(this->fHealth == h.fHealth, "Health copied");
+	// ENSURE(this->getLocation() == h.getLocation(), "Location copied");
+	// ENSURE(this->getSize() == h.getSize(), "Size copied");
 
 	bool isBurning();
-	/*
-	 * Check whether the house is burning
-	 *
-	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
-	 */
+	// REQUIRE(this->isInitialized(), "House is initialized");
 
 	bool setFire();
-	/*
-	 * Set the house on fire
-	 *
-	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
-	 * ENSURE(this->fIsBurning == true, "The house is not set on fire")
-	 */
+	// REQUIRE(this->isInitialized(), "House is initialized");
+	// ENSURE(this->fIsBurning == true, "House is set on fire");
 
 	bool stopFire();
-	/*
-	 * stop burning down the house
-	 *
-	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
-	 * ENSURE(this->fIsBurning == false, "The fire on the house is not stopped")
-	 */
+	// REQUIRE(this->isInitialized(), "House is initialized");
+	// ENSURE(this->fIsBurning == false, "House is set on fire");
 
 	bool setHealth(int health);
-	/*
-	 * Set the health point of the house
-	 *
-	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
-	 * REQUIRE(health >= 0, "The health point is not >= 0")
-	 * ENSURE(this->fHealth == health, "The health point is not set")
-	 */
+	// REQUIRE(this->isInitialized(), "House is initialized");
+	// REQUIRE(health >= 0, "Health points is positive");
+	// ENSURE(this->fHealth == health, "Health is set");
 
-	 int* getHealth();
-	/*
-	 * Get the health points of the house
-	 *
-	 * REQUIRE(this->isInitialized(), "The House object is not set properly")
-	 */
+	unsigned int getHealth();
+	// REQUIRE(this->isInitialized(), "House is initialized");
 
-	bool check(int subtracter);
-	/*
-	 * Lower the health of the house by one, or a specified number if the house is burning
-	 *
-	 * REQUIRE(this->isInitialized(), "The House object is not initialized properly")
-	 * REQUIRE(subtracter >= 0, "The subtracter is not >= 0")
-	 * REQUIRE(subtracter > this->getHealth(), "The subtracter is greater then the health")
-	 */
+	bool check(int substracter = 1);
+	// REQUIRE(this->isInitialized(), "House is initialized");
+	// REQUIRE(substracter >= 0, "Substracter is positive");
+	// REQUIRE(this->fHealth != 0, "Health is not 0");
 
 private:
-	bool fIsBurning;	// keep track whether the house is burning
-	 int fHealth;	// keep track whether the house is burned down
+	bool fIsBurning;
+	unsigned int fHealth;
 
-	House* fMyself;	// a pointer to myself to check if I'm initialized properly
+	House* fMyself;
 };
-
 
 #endif /* HOUSE_H_ */

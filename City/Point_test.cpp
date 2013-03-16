@@ -10,85 +10,129 @@
 #include "gtest/gtest.h"
 #include "Point.h"
 #include <sstream>
+#include <cstdlib>
 
 TEST(testPoint, validConstructs){
-	EXPECT_NO_FATAL_FAILURE(Point p(5, 6));
+	const int nrTests = 10;
+	const int range = 100;
+
+	for (int i=0; i < nrTests; i++) {
+		int x = std::rand() % range;
+		int y = std::rand() % range;
+		EXPECT_NO_FATAL_FAILURE(Point p(x, y));
+	}
 }
 
 TEST(testPoint, invalidConstructs) {
-	EXPECT_DEATH(Point p(-2), "\\w");
-	EXPECT_DEATH(Point p(-5, 3), "\\w");
-	EXPECT_DEATH(Point p(5, -3), "\\w");
-	EXPECT_DEATH(Point p(-10, -8), "\\w");
+	const int nrTests = 10;
+	const int range = 100;
+
+	for (int i=0; i < nrTests; i++) {
+		int x = std::rand() % range;
+		int y = -1 * (std::rand() % range);
+		EXPECT_DEATH(Point p(x, y), "\\w");
+	}
+
+	for (int i=0; i < nrTests; i++) {
+		int x = -1 * (std::rand() % range);
+		int y = -1 * (std::rand() % range);
+		EXPECT_DEATH(Point p(x, y), "\\w");
+	}
+
+	for (int i=0; i < nrTests; i++) {
+		int x = -1 * (std::rand() % range);
+		int y = std::rand() % range;
+		EXPECT_DEATH(Point p(x, y), "\\w");
+	}
 }
+
 
 TEST(testPoint, getters){
-	ASSERT_NO_FATAL_FAILURE(Point p(5, 6));
-	Point p(5, 6);
-	EXPECT_EQ(5, *p.getX());
-	EXPECT_EQ(6, *p.getY());
+	const int nrTests = 10;
+	const int range = 100;
 
-	ASSERT_NO_FATAL_FAILURE(Point s(3, 6));
-	Point s(3, 6);
-	EXPECT_EQ(3, *s.getX());
-	EXPECT_EQ(6, *s.getY());
+	for (int i=0; i < nrTests; i++) {
+		int x = std::rand() % range;
+		int y = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point p(x, y));
+		Point p(x, y);
+
+		EXPECT_EQ(x, p.getX());
+		EXPECT_EQ(y, p.getY());
+	}
 }
 
+
 TEST(testPoint, validSetters){
-	ASSERT_NO_FATAL_FAILURE(Point s(5, 6));
-	Point s(5, 6);
-	EXPECT_NO_FATAL_FAILURE(s.set());
-	EXPECT_EQ(0, *s.getX());
-	EXPECT_EQ(0, *s.getY());
-	EXPECT_NO_FATAL_FAILURE(s.set(10));
-	EXPECT_EQ(10, *s.getX());
-	EXPECT_EQ(0, *s.getY());
-	EXPECT_NO_FATAL_FAILURE(s.set(1, 4));
-	EXPECT_EQ(1, *s.getX());
-	EXPECT_EQ(4, *s.getY());
+	const int nrTests = 10;
+	const int range = 100;
+
+	for (int i=0; i < nrTests; i++) {
+		int x = std::rand() % range;
+		int y = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point p(x, y));
+		Point p(x, y);
+
+		int newX = std::rand() % range;
+		int newY = std::rand() % range;
+
+		EXPECT_NO_FATAL_FAILURE(p.set(newX, newY) );
+		EXPECT_EQ(newX, p.getX() );
+		EXPECT_EQ(newY, p.getY() );
+	}
 }
 
 TEST(testPoint, invalidSetters) {
-	ASSERT_NO_FATAL_FAILURE(Point p(47, 3));
-	Point p(47, 3);
-	EXPECT_DEATH(p.set(-1), "\\w");
-	EXPECT_DEATH(p.set(-5, -2), "\\w");
-}
+	const int nrTests = 10;
+	const int range = 100;
 
+	for (int i=0; i < nrTests; i++) {
+		int x = std::rand() % range;
+		int y = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point p(x, y));
+		Point p(x, y);
+
+		int newX = -1 * (std::rand() % range);
+		int newY = -1 * (std::rand() % range);
+
+		EXPECT_DEATH(p.set(newX, newY), "\\w");
+	}
+}
+/*
 TEST(testPoint, operators){
-	ASSERT_NO_FATAL_FAILURE(Point s(5, 6));
-	Point s(5, 6);
-	ASSERT_NO_FATAL_FAILURE(Point p(55, 33));
-	Point p(55, 33);
-	ASSERT_NO_FATAL_FAILURE(Point t(60, 39));
-	Point t(60, 39);
+	const int nrTests = 10;
+	const int range = 100;
 
-	ASSERT_NO_FATAL_FAILURE(Point r);
-	Point r;
+	for (int i=0; i < nrTests; i++) {
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point p(x0, y0));
+		Point p(x0, y0);
 
-	EXPECT_NO_FATAL_FAILURE(r = t);	// copy by assignment
-	r = t;
-	EXPECT_EQ(*t.getX(), *r.getX());
-	EXPECT_EQ(*t.getY(), *r.getY());
-	EXPECT_TRUE(t == r);
+		EXPECT_NO_FATAL_FAILURE(Point q = p);
+		Point q = p;
 
-	EXPECT_NO_FATAL_FAILURE(Point q = t);	// copy by initialization
-	Point q = r;
-	EXPECT_EQ(*t.getX(), *q.getX());
-	EXPECT_EQ(*t.getY(), *q.getY());
-	EXPECT_TRUE(t == q);
+		EXPECT_TRUE(q == p);
 
-	EXPECT_NO_FATAL_FAILURE(t - s);
-	Point substr = t - s;
-	EXPECT_TRUE(substr == p);
+		int x1 = std::rand() % x0;
+		int y1 = std::rand() % y0;
+		ASSERT_NO_FATAL_FAILURE(Point r(x1, y1) );
+		Point r(x1, y1);
 
-	EXPECT_NO_FATAL_FAILURE(p + s);
-	Point add = p + s;
-	EXPECT_TRUE(add == t);
+		int xResult = x0 - x1;
+		int yResult = y0 - y1;
+		EXPECT_NO_FATAL_FAILURE(p - r);
+		EXPECT_EQ(xResult, (p - r).getX() );
+		EXPECT_EQ(yResult, (p - r).getY() );
 
-	EXPECT_TRUE(t != s);
+		xResult = x0 + x1;
+		yResult = y0 + y1;
+		EXPECT_NO_FATAL_FAILURE(p + r);
+		EXPECT_EQ(xResult, (p + r).getX() );
+		EXPECT_EQ(yResult, (p + r).getY() );
 
-	std::stringstream ss;
-	ss << s;
-	EXPECT_EQ("(5, 6)", ss.str());
+		EXPECT_NO_FATAL_FAILURE(r = p);
+		EXPECT_TRUE(r == p);
+	}
 }
+*/

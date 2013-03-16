@@ -3,93 +3,93 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Thursday 7 March 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
 #include "Size.h"
-#include "DesignByContract.h"
-
-
-bool operator== (Size& sizeobject1, Size& sizeobject2){
-	REQUIRE( (sizeobject1.isInitialized() && sizeobject2.isInitialized() ), "The Size objects are not initialized properly");
-	if ( (sizeobject1.fHeight == sizeobject2.fHeight) && (sizeobject1.fWidth == sizeobject2.fWidth) ) {
-			return true;
-	}
-	return false;	
-}
 
 bool Size::isInitialized() {
 	return this == Size::fMyself;
 }
 
-Size::Size(const int value) {
-	REQUIRE(value > 0, "Invalid value");
+bool operator== (Size& s1, Size& s2) {
+	REQUIRE(s1.isInitialized(), "Size is initialized");
+	REQUIRE(s2.isInitialized(), "Size is initialized");
+
+	if ( (s1.fHeight == s2.fHeight) && (s1.fWidth == s2.fWidth) ) {
+		return true;
+	}
+	return false;
+}
+
+Size::Size(int value) {
+	REQUIRE(value > 0, "Positive value");
 
 	Size::fMyself = this;
 	Size::fWidth = value;
 	Size::fHeight = value;
 
-	ENSURE(isInitialized(), "The Size object is not initialized properly");
-	ENSURE( ( (this->fWidth == value) && (this->fHeight == value) ), "Width and/or height not set properly");
+	ENSURE(this->isInitialized(), "Size is initialized");
+	ENSURE(this->fWidth == value, "Width is initialized");
+	ENSURE(this->fHeight == value, "Height is initialized");
 }
 
-Size::Size(const int width, const int height) {
-	REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height");
+Size::Size(int width, int height) {
+	REQUIRE(width > 0, "Positive width");
+	REQUIRE(height > 0, "Positive height");
 
 	Size::fMyself = this;
 	Size::fWidth = width;
 	Size::fHeight = height;
 
-	ENSURE( ( (this->fWidth == width) && (this->fHeight == height) ), "Width and/or height not set properly");
+	ENSURE(this->isInitialized(), "Size is initialized");
+	ENSURE(this->fWidth == width, "Width is initialized");
+	ENSURE(this->fHeight == height, "Height is initialized");
 }
 
-Size::Size(const Size& size) {
+Size::Size(Size& s) {
+	REQUIRE(s.isInitialized(), "Size is initialized");
+
 	Size::fMyself = this;
-	Size::fWidth = size.fWidth;
-	Size::fHeight = size.fHeight;
+	Size::fWidth = s.fWidth;
+	Size::fHeight = s.fHeight;
+
+	ENSURE(this->fWidth == s.fWidth, "Width is initialized");
+	ENSURE(this->fHeight == s.fHeight, "Height is initialized");
+	ENSURE(this->isInitialized(), "Size is initialized");
 }
 
-Size& Size::operator= (Size& sizeObject) {
-	Size::fWidth = sizeObject.fWidth;
-	Size::fHeight = sizeObject.fHeight;
-	return *this;
+bool Size::operator= (Size& s) {
+	REQUIRE(s.isInitialized(), "Size is initialized");
+
+	Size::fWidth = s.fWidth;
+	Size::fHeight = s.fHeight;
+
+	ENSURE(this->fWidth == s.fWidth, "Width copied");
+	ENSURE(this->fHeight == s.fHeight, "Heigt copied");
+	return true;
 }
 
-bool Size::set(const int& width, const int& height) {
-	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	REQUIRE( ( (width > 0) && (height > 0) ), "Invalid width and/or height");
+bool Size::set(int width, int height) {
+	REQUIRE(this->isInitialized(), "Size is initialized");
+	REQUIRE(width > 0, "Positive width");
+	REQUIRE(height > 0, "Positive height");
 
 	Size::fWidth = width;
 	Size::fHeight = height;
 
-	ENSURE( ( (this->fWidth == width) && (this->fHeight == height) ), "Width and/or height not set properly");
+	ENSURE(this->fWidth == width, "Width is set");
+	ENSURE(this->fHeight == height, "Height is set");
 	return true;
 }
 
-unsigned int* Size::getWidth() {
-	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	return &(Size::fWidth);
+unsigned int Size::getWidth() {
+	REQUIRE(this->isInitialized(), "Size is initialized");
+	return Size::fWidth;
 }
 
-unsigned int* Size::getHeight() {
-	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	return &(Size::fHeight);
-}
-
-bool Size::setValue(const int& value) {
-	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	REQUIRE(value > 0, "Invalid value");
-
-	Size::fWidth = value;
-	Size::fHeight = value;
-
-	ENSURE( ( (this->fWidth == value) && (this->fHeight == value) ), "Width and/or height is not set");
-	return true;
-}
-
-unsigned int* Size::getValue() {
-	REQUIRE(this->isInitialized(), "The Size object is not initialized properly");
-	REQUIRE(this->fHeight == this->fWidth, "The Width and height are not both the same");
-	return &(Size::fWidth);
+unsigned int Size::getHeight() {
+	REQUIRE(this->isInitialized(), "Size is initialized");
+	return Size::fHeight;
 }

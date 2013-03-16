@@ -3,87 +3,59 @@
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
  * @version:	1.0
- * @date:		Thursday 28 February 2013
+ * @date:		Friday 15 March 2013
  * 
  */
 
 #ifndef BUILDING_H_
 #define BUILDING_H_
 
-
+#include "DesignByContract.h"
 #include "Point.h"
 #include "Size.h"
 
 class Building {
 public:
 	bool isInitialized();
-	/*
-	 * Checks if i'm initialized properly
-	 */
-
-	Building(Point& location);
-	/*
-	 * Create a new building
-	 *
-	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
-	 * ENSURE(isInitialized(), "The Building object is not initialized properly")
-	 */
 
 	Building(Point& location, Size& size);
-	/*
-	 * 	REQUIRE(location.isInitialized(), "The location is not initialized properly")
-	 * 	REQUIRE(size.isInitialized(), "The size is not initialized properly")
-	 * 	ENSURE(isInitialized(), "The Building object is not initialized properly")
-	 */
+	// REQUIRE(location.isInitialized(), "Point is initialized");
+	// REQUIRE(size.isInitialized(), "Size is initialized");
+	// ENSURE(this->isInitialized(), "Building is initialized");
+	// ENSURE(this->fLocation == location, "Location is set");
+	// ENSURE(this->fSize == size, "Size is set");
 
 	Building(Building& b);
-	/*
-	 * copy by initializing
-	 */
+	// REQUIRE(b.isInitialized(), "Point is initialized");
+	// ENSURE(this->isInitialized(), "Building is initialized");
+	// ENSURE(this->fLocation == b.fLocation, "Location is set");
+	// ENSURE(this->fSize == b.fSize, "Size is set");
 
-	Building& operator= (Building& b);
-	/*
-	 * copy by assignment
-	 */
+	bool operator= (Building& b);
+	// REQUIRE(b.isInitialized(), "Building is initialized");
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+	// ENSURE(this->fLocation == b.fLocation, "Location is set");
+	// ENSURE(this->fSize == b.fSize, "Size is set");
 
 	bool setLocation(Point& location);
-	/*
-	 * Set the location of the building
-	 *
-	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
-	 * REQUIRE(location.isInitialized(), "The location is not initialized properly")
-	 * ENSURE(this->fLocation == location, "The location is not set properly")
-	 */
-
-	Point* getLocation();
-	/*
-	 * Returns a the location
-	 *
-	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
-	 */
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+	// ENSURE(this->fLocation == location, "Locations is set");
 
 	bool setSize(Size& size);
-	/*
-	 * Set the size of the building
-	 *
-	 * REQUIRE(size.isInitialized(), "The size is not initialized properly")
-	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
-	 * ENSURE(this->fSize == size, "The size is not set")
-	 */
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+	// ENSURE(this->fSize == size, "Size is set");
 
-	Size* getSize();
-	/*
-	 * Get the size of the building
-	 *
-	 * REQUIRE(this->isInitialized(), "The Building object is not initialized properly")
-	 */
+	Point& getLocation();
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+
+	Size& getSize();
+	// REQUIRE(this->isInitialized(), "Building is initialized");
 
 private:
-	Size fSize;	// the size of the building
-	Point fLocation;	// the location of the building
+	Size fSize;
+	Point fLocation;
 
-	Building* fMyself;	// a pointer to myself to check if I'm initialized properly
+	Building* fMyself;
 };
-
 
 #endif /* BUILDING_H_ */
