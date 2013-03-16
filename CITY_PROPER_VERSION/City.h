@@ -37,57 +37,88 @@ public:
 
 
 	bool addFireDepot(FireDepot& depot);
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(depot.isInitialized(), "FireDepot is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(depot.isInitialized(), "FireDepot is initialized");
 
 	bool addFireTruck(FireTruck& truck);
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(truck.isInitialized(), "FireTruck is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(truck.isInitialized(), "FireTruck is initialized");
 
 	bool addStreet(Street& street);
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(street.isInitialized(), "Street is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(street.isInitialized(), "Street is initialized");
 
 	bool addHouse(House& house);
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(house.isInitialized(), "House is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(house.isInitialized(), "House is initialized");
 
 	bool trucksOnWay();
-	// ENSURE(this->isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	bool writeTrucksStatus(const char* filename);
-	// ENSURE(this->isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	bool housesOnFire();
-	// ENSURE(this->isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	bool writeHousesStatus(const char* filename);
-	// ENSURE(this->isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	bool writeDepotsStatus(const char* filename);
-	// ENSURE(this->isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	std::vector<Point*> calculatePoints(House& house);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(house.isInitialized(), "House is initialized");
 
 	std::vector<Point*> calculatePoints(FireDepot& depot);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(depot.isInitialized(), "Fire Depot is initialized");
+
+	std::vector<Point*> calculatePoints(int width, int height, Point& location);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(location.isInitialized(), "Location is initialized");
+	// ENSURE(out.size() > 0, "There are no points given as output");
 
 	std::vector<Point*> calculatePoints(Street& street);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(street.isInitialized(), "Street is initialized");
+	// ENSURE(out.size() > 0, "There are no points given as output");
 
 	bool check(House& house);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(house.isInitialized(), "House is initialized");
 
 	bool check(FireDepot& depot);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(depot.isInitialized(), "Fire Depot is initialized");
 
 	bool check(int width, int height, Point &location);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(location.isInitialized(), "Location is initialized");
 
 	bool check(Street& street);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(street.isInitialized(), "Street is initialized");
 
 	bool checkPoint(Point& p);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(p.isInitialized(), "Location is initialized");
 
 	bool isOnHouse(Point &p);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(p.isInitialized(), "Location is initialized");
 
 	bool isOnStreet(Point &p);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(p.isInitialized(), "Location is initialized");
 
 	bool isOnFireDepot(Point &p);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(p.isInitialized(), "Location is initialized");
+
+	void error(int level);
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	int fFailure;
 	// Sets 0 when everything is ok, 1 when something went wrong(but program can still work) and 2 when total crash
