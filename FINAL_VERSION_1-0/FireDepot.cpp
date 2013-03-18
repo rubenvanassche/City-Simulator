@@ -150,7 +150,7 @@ unsigned int FireDepot::getAvailableTrucks() {
 	return count;
 }
 
-bool FireDepot::sendTruck(Point& location) {
+bool FireDepot::sendTruck(Point& location, House* house) {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	REQUIRE(location.isInitialized(), "Point is initialized");
 	REQUIRE(this->getAvailableTrucks() > 0, "There is a truck available");
@@ -159,6 +159,7 @@ bool FireDepot::sendTruck(Point& location) {
 		if (FireDepot::fTrucks[index]->getPosition() == this->getLocation()) {
 			FireDepot::fTrucks[index]->setDestination(location);
 			FireDepot::fTrucks[index]->setPosition(FireDepot::fEntrance);
+			FireDepot::fTrucks[index]->setHouseOnFire(house);
 			return true;
 		}
 	}
@@ -200,7 +201,7 @@ std::vector<Point*> FireDepot::updateArrivedTrucks() {
 				FireDepot::fTrucks[index]->setDestination(this->getLocation() );
 			}
 			else {
-				Point* p = new Point(FireDepot::fTrucks[index]->getDestination());
+				Point* p = & (FireDepot::fTrucks[index]->getDestination() );
 				blushed.push_back(p);
 				FireDepot::fTrucks[index]->setDestination(FireDepot::fEntrance);
 			}
@@ -231,7 +232,7 @@ bool FireDepot::statusTrucksOnWay(const char* fileName) {
 		else if ( FireDepot::fTrucks[index]->isArrived() ) {
 			if (FireDepot::fTrucks[index]->getPosition() != this->getLocation() ) {
 				filestream << "\t" << *(FireDepot::fTrucks[index]) << " blust de brand op "
-						<< FireDepot::fTrucks[index]->getPosition() << std::endl;
+						<< FireDepot::fTrucks[index]->getHouseOnFire() << std::endl;
 			}
 		}
 	}

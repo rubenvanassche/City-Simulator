@@ -168,7 +168,28 @@ bool City::driveTrucks() {
 		// else we will send a firetruck;
 		for (unsigned int i=0; i < City::fFireDepots.size(); i++) {
 			if (City::fFireDepots[i]->getAvailableTrucks() > 0) {
-				City::fFireDepots[i]->sendTruck(City::fHouses[index]->getLocation() );
+				Point p = City::fHouses[index]->getLocation();
+				int originX = p.getX();
+				int originY = p.getY();
+
+				if ( !City::fMap.isInMap(p) ) {
+					int y = p.getY() + 1;
+					p.set(originX, y);
+				}
+				if ( !City::fMap.isInMap(p) ) {
+					int x = p.getX() - 1;
+					p.set(x, originY);
+				}
+				if ( !City::fMap.isInMap(p) ) {
+					int x =  originX + City::fHouses[index]->getSize().getWidth();
+					p.set(x, originY);
+				}
+				if ( !City::fMap.isInMap(p) ) {
+					int y = originY - City::fHouses[index]->getSize().getHeight();
+					p.set(originX, y);
+				}
+
+				City::fFireDepots[i]->sendTruck(p, City::fHouses[index]);
 				break;
 			}
 		}
@@ -187,19 +208,17 @@ bool City::extinguish() {
 	std::vector<Point*> blushed;
 	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
 		blushed = City::fFireDepots[index]->updateArrivedTrucks();
-	}
-
-	for (unsigned int index=0; index < blushed.size(); index++) {
-		for (unsigned int i=0; i < City::fHouses.size(); i++) {
-			if (City::fHouses[i]->getLocation() == *(blushed[index]) ) {
-				City::fHouses[i]->stopFire();
-				delete blushed[index];
-				break;
+		for (unsigned int index=0; index < blushed.size(); index++) {
+			for (unsigned int i=0; i < City::fHouses.size(); i++) {
+				if (City::fHouses[i]->getLocation() == *(blushed[index]) ) {
+					City::fHouses[i]->stopFire();
+					break;
+				}
 			}
 		}
-	}
 
-	blushed.clear();
+		blushed.clear();
+	}
 	return true;
 }
 

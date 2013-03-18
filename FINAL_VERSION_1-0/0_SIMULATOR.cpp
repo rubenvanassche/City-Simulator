@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 	Output out(town, outputname);
 
 	// use this for debugging:
-	for (unsigned int i=0; i < 20; i++) {
+	for (unsigned int i=0; i < 50; i++) {
 		sim.simulate(out);
 		if (sim.endSimulation() ) {
 			break;

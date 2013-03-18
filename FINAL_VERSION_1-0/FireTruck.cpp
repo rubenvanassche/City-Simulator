@@ -26,6 +26,7 @@ FireTruck::FireTruck(std::string& name, Point& curPos, Point& destination, std::
 
 	FireTruck::fMyself = this;
 	FireTruck::fBaseName = basename;
+	FireTruck::fHouseOnFire = NULL;
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
 	ENSURE(this->getName() == name, "Name is initialized");
@@ -40,6 +41,7 @@ FireTruck::FireTruck(FireTruck& f)
 
 	FireTruck::fMyself = this;
 	FireTruck::fBaseName = f.fBaseName;
+	FireTruck::fHouseOnFire = f.fHouseOnFire;
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
 	ENSURE(this->getName() == f.getName(), "Name is initialized");
@@ -56,6 +58,7 @@ bool FireTruck::operator= (FireTruck& f) {
 	this->setPosition(f.getPosition());
 	this->setDestination(f.getDestination());
 	FireTruck::fBaseName = f.fBaseName;
+	FireTruck::fHouseOnFire = f.fHouseOnFire;
 
 	ENSURE(this->getName() == f.getName(), "Name is initialized");
 	ENSURE(this->getPosition() == f.getPosition(), "Position is initialized");
@@ -77,3 +80,18 @@ std::string& FireTruck::getBase() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	return FireTruck::fBaseName;
 }
+
+bool FireTruck::setHouseOnFire(House* house) {
+	REQUIRE(this->isInitialized(), "FireTruck is initialized");
+	REQUIRE(house->isInitialized(), "House is initialized");
+
+	FireTruck::fHouseOnFire = house;
+	return true;
+}
+
+House& FireTruck::getHouseOnFire() {
+	REQUIRE(this->isInitialized(), "FireTruck is initialized");
+
+	return *(FireTruck::fHouseOnFire);
+}
+

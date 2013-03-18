@@ -15,6 +15,8 @@
 #include <vector>
 #include "FireTruck.h"
 #include <iostream>
+#include "House.h"
+#include "WorldMap.h"
 
 class FireDepot: public Building {
 public:
@@ -80,7 +82,7 @@ public:
 	unsigned int getAvailableTrucks();
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
-	bool sendTruck(Point& location);
+	bool sendTruck(Point& location, House* house);
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	// REQUIRE(location.isInitialized(), "Point is initialized");
 
