@@ -75,3 +75,48 @@ Size& Building::getSize() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 	return Building::fSize;
 }
+
+bool Building::isElement(Point& p) {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(p.isInitialized(), "Point is initialized");
+
+	std::vector<Point*>::iterator it;
+
+	bool good = false;
+	std::vector<Point*> points = this->calculatePoints();
+	for(it = points.begin();it != points.end();++it){
+		if(**it == p){
+			good = true;
+		}else{
+			continue;
+		}
+	}
+
+	for(it = points.begin();it != points.end();++it){
+		delete *it;
+	}
+
+	return good;
+}
+
+std::vector<Point*> Building::calculatePoints(){
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	int width = this->getSize().getWidth();
+	int height = this->getSize().getHeight();
+	Point location = this->getLocation();
+
+	std::vector<Point*> out;
+
+	for(int i = location.getX();i < location.getX() + width;i++){
+		for(int j = location.getY(); j != location.getY() - height;j--){
+			Point* p = new Point(i, j);
+			out.push_back(p);
+		}
+	}
+
+
+	ENSURE(out.size() > 0, "There are no points given as output");
+	return out;
+
+}
