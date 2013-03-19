@@ -56,6 +56,30 @@ TEST(testVehicles, getters) {
 	}
 }
 
+TEST(testVehicles, drive) {
+	const int nrTests = 10;
+	const int range = 100;
+	std::string carname = "bananacar";
+
+	for (int i=0; i < nrTests; i++) {
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point curPos(x0, y0));
+		Point curPos(x0, y0);
+
+		int x1 = std::rand() % range;
+		int y1 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point d(x1, y1));
+		Point d(x1, y1);
+
+		EXPECT_NO_FATAL_FAILURE(Vehicle car(carname, curPos, d));
+		Vehicle car(carname, curPos, d);
+
+		EXPECT_TRUE(car.isArrived() == false);	
+		EXPECT_TRUE(car.isOnWay() == true);	
+	}
+}
+
 TEST(testVehicles, setters) {
 	const int nrTests = 10;
 	const int range = 100;
