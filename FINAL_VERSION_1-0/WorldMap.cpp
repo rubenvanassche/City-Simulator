@@ -132,7 +132,7 @@ bool WorldMap::isCross(Point& curPos) {
 		}
 	}
 
-	if (!foundHorizontal) {
+	if (foundHorizontal) {
 		for (unsigned int index=0; index < WorldMap::fVerticals.size(); index++) {
 			if (WorldMap::fVerticals[index]->isElement(curPos) ) {
 				return true;
