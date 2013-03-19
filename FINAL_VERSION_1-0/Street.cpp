@@ -241,3 +241,34 @@ bool Street::isElement(Point& p) {
 	}
 	return false;
 }
+
+std::vector<Point*> Street::calculatePoints(){
+	REQUIRE(this->isInitialized(), "Street is initialized");
+
+	int x1 = this->getStartPoint().getX();
+	int y1 = this->getStartPoint().getY();
+	int x2 = this->getEndPoint().getX();
+	int y2 = this->getEndPoint().getY();
+
+	std::vector<Point*> out;
+
+	// Do we have an vertical or horizontal street?
+	if(x1 == x2){
+		// Vertical
+		for(int i = std::min(y1, y2);i < std::max(y1, y2);i++){
+			Point* p = new Point(x1, i);
+			out.push_back(p);
+		}
+	}else if(y1 == y2){
+		// Horizontal
+		for(int i = std::min(x1, x2);i < std::max(x1, x2);i++){
+			Point* p = new Point(i, y1);
+			out.push_back(p);
+		}
+	}else{
+		// Now we're having a serious issue
+	}
+
+	ENSURE(out.size() > 0, "There are no points given as output");
+	return out;
+}

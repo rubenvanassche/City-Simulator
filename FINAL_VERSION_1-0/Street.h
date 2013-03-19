@@ -14,6 +14,7 @@
 #include "DesignByContract.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 class Street {
 public:
@@ -98,6 +99,10 @@ public:
 	bool isElement(Point& p);
 	// REQUIRE(this->isInitialized(), "Street is initialized");
 	// REQUIRE(p.isInitialized(), "Point is initialized");
+
+	std::vector<Point*> calculatePoints();
+	// REQUIRE(this->isInitialized(), "Street is initialized");
+	// ENSURE(out.size() > 0, "There are no points given as output");
 
 private:
 	Point fStartPoint;

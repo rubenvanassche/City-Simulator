@@ -300,8 +300,10 @@ Point* WorldMap::closestCrossPoint(Street& curStr, Point& curPos) {
 		}
 
 		while (crosspoints.size() != 1) {
-			int delta0 = std::abs(crosspoints[0]->getY() - curPos.getY() );
-			int delta1 = std::abs(crosspoints[1]->getY() - curPos.getY() );
+			int delta0 = crosspoints[0]->getY() - curPos.getY();
+			delta0 = std::abs(delta0);
+			int delta1 = crosspoints[1]->getY() - curPos.getY();
+			delta1 = std::abs(delta1);
 
 			if (delta0 < delta1) {
 				crosspoints.erase(crosspoints.begin() + 1);
@@ -325,8 +327,10 @@ Point* WorldMap::closestCrossPoint(Street& curStr, Point& curPos) {
 		}
 
 		while (crosspoints.size() != 1) {
-			int delta0 = std::abs(crosspoints[0]->getX() - curPos.getX() );
-			int delta1 = std::abs(crosspoints[1]->getX() - curPos.getX() );
+			int delta0 = crosspoints[0]->getX() - curPos.getX();
+		 	delta0 = std::abs(delta0);
+		 	int delta1 = crosspoints[1]->getX() - curPos.getX();
+			delta1 = std::abs(delta1);
 
 			if (delta0 < delta1) {
 				crosspoints.erase(crosspoints.begin() + 1);

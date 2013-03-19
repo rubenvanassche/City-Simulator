@@ -13,6 +13,7 @@
 #include "DesignByContract.h"
 #include "Point.h"
 #include "Size.h"
+#include <vector>
 
 class Building {
 public:
@@ -50,6 +51,14 @@ public:
 
 	Size& getSize();
 	// REQUIRE(this->isInitialized(), "Building is initialized");
+
+	bool isElement(Point& p);
+	// REQUIRE(this->isInitialized(), "Street is initialized");
+	// REQUIRE(p.isInitialized(), "Point is initialized");
+
+	std::vector<Point*> calculatePoints();
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+	// ENSURE(out.size() > 0, "There are no points given as output");
 
 private:
 	Size fSize;
