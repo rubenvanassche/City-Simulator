@@ -107,9 +107,10 @@ unsigned int House::getHealth() {
 bool House::burningDown(int substracter) {
 	REQUIRE(this->isInitialized(), "House is initialized");
 	REQUIRE(substracter >= 0, "Substracter is positive");
-	REQUIRE(this->isBurning() == true, "House is burning");
 
-	House::fHealth -= substracter;
+	if(this->isBurning() == true){
+		House::fHealth -= substracter;
+	}
 
 	if (House::fHealth <= 0) {
 		House::fIsBurning = false;

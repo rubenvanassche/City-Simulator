@@ -88,9 +88,6 @@ TEST(testFireTruck, setters) {
 
 		EXPECT_NO_FATAL_FAILURE(f.setHouseOnFire(&h));
 		f.setHouseOnFire(&h);
-
-
-		//EXPECT_TRUE(f.getHouseOnFire() == &h);
 	}
 }
 

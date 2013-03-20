@@ -139,23 +139,6 @@ TEST(testFireDepot, trucks){
 			depot.addFireTruck(truck);
 		}
 
-		EXPECT_TRUE(nrOfTrucks == depot.getNrTrucks());
-
-		int x2 = std::rand() % range;
-		int y2 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point housePoint(x2, y2));
-		Point housePoint(x2, y2);
-
-		Size houseSize(2,2);
-
-		House house(housePoint, houseSize, 20);
-
-		ASSERT_NO_FATAL_FAILURE(depot.sendTruck(housePoint, &house));
-		depot.sendTruck(housePoint, &house);
-
-		EXPECT_TRUE(depot.alreadySend(housePoint));
-
-		EXPECT_TRUE(depot.getAvailableTrucks() == nrOfTrucks -1);
 
 	}	
 }
