@@ -64,7 +64,7 @@ TEST(testHouse, fires) {
 }
 
 
-TEST(testBuilding, copying) {
+TEST(testHouse, copying) {
 	const int nrTests = 10;
 	const int range = 100;
 
