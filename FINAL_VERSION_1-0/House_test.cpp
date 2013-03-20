@@ -83,9 +83,9 @@ TEST(testBuilding, copying) {
 		EXPECT_NO_FATAL_FAILURE(House copyhouse = h);
 		House copyhouse = h;
 		EXPECT_TRUE(copyhouse.getLocation() == h.getLocation());
-		EXPECT_TRUE(copycat.getSize() == h.getSize());
-		EXPECT_TRUE(copycat.isDead() == h.isDead());
-		EXPECT_TRUE(copycat.isBurning() == h.isBurning());
-		EXPECT_TRUE(copycat.getHealth() == h.getHealth());
+		EXPECT_TRUE(copyhouse.getSize() == h.getSize());
+		EXPECT_TRUE(copyhouse.isDead() == h.isDead());
+		EXPECT_TRUE(copyhouse.isBurning() == h.isBurning());
+		EXPECT_TRUE(copyhouse.getHealth() == h.getHealth());
 	}
 }
