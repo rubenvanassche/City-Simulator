@@ -126,22 +126,25 @@ TEST(testFireDepot, trucks){
 
 		Size size(4,4);
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot("Kazern", location, size, entrance));
-		FireDepot depot("Kazern", location, size, entrance);
+		std::string name = "Kazern";
+		std::string truckName = "Truck";
+
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
+		FireDepot depot(name, location, size, entrance);
 
 		int nrOfTrucks = std::rand() % range;
 		for(int j = 0;j < nrOfTrucks;j++){
-			FireTruck truck("Truck", entrance, entrance, "Kazern");
+			FireTruck truck(truckName, entrance, entrance, name);
 			ASSERT_NO_FATAL_FAILURE(depot.addFireTruck(truck));
 			depot.addFireTruck(truck);
 		}
 
 		EXPECT_TRUE(nrOfTrucks == depot.getNrTrucks());
 
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point housePoint(x0, y0));
-		Point housePoint(x0, y0);
+		int x2 = std::rand() % range;
+		int y2 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point housePoint(x2, y2));
+		Point housePoint(x2, y2);
 
 		Size houseSize(2,2);
 
@@ -174,8 +177,10 @@ TEST(testFireDepot, copying) {
 
 		Size size(4,4);
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot("Kazern", location, size, entrance));
-		FireDepot depot("Kazern", location, size, entrance);
+		std::string name = "Kazern";
+
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
+		FireDepot depot(name, location, size, entrance);
 
 		EXPECT_NO_FATAL_FAILURE(FireDepot copydepot = depot);
 		FireDepot copydepot = depot;
