@@ -11,6 +11,7 @@
 #include "CityParser.h"
 #include <sstream>
 #include "Simulator.h"
+#include "Output.h"
 
 int main(int argc, char* argv[]) {
 	if (argc != 3) {
@@ -26,12 +27,24 @@ int main(int argc, char* argv[]) {
 	tt << argv[2];
 	std::string outputname = tt.str();
 
-	City town = CityParser::parse(filename);
-	Simulator sim(&town, outputname);
-	while (!sim.endSimulation()	) {
-		sim.simulate();
-		sim.output();
+	City* town = CityParser::parse(filename);
+	Simulator sim(town);
+	Output out(town, outputname);
+
+	// use this for debugging:
+	for (unsigned int i=0; i < 50; i++) {
+		sim.simulate(out);
+		if (sim.endSimulation() ) {
+			break;
+		}
 	}
+	delete town;
+
+	// USE THIS CODE BELOW ONLY IF YOU ARE SURE THAT EVERYTHING IS WORKING AND NO MEMORY LEAKS APPEARS!!
+	//while (!sim.endSimulation() ) {
+	//	sim.simulate(out);
+	//}
+	//delete town;
 
 	return 0;
 }

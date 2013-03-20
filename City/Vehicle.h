@@ -12,6 +12,7 @@
 
 #include "DesignByContract.h"
 #include "Point.h"
+#include "WorldMap.h"
 
 class Vehicle {
 public:
@@ -61,6 +62,16 @@ public:
 
 	std::string& getName();
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	bool isArrived();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	bool isOnWay();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	bool drive(WorldMap& map);
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
 
 private:
 	Point fPosition;

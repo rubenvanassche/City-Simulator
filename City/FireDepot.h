@@ -15,6 +15,8 @@
 #include <vector>
 #include "FireTruck.h"
 #include <iostream>
+#include "House.h"
+#include "WorldMap.h"
 
 class FireDepot: public Building {
 public:
@@ -55,15 +57,6 @@ public:
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	// ENSURE(this->fTrucks.back()->getName() == f.getName(), "FireTruck is added");
 
-	FireTruck& getAvailableTruck();
-	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	bool popTruck();
-	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	unsigned int getNrTrucks();
-	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
 	std::string& getName();
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
@@ -83,6 +76,32 @@ public:
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	// ENSURE(this->fTrucks.empty(), "No trucks in depot")
 
+	unsigned int getNrTrucks();
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+
+	unsigned int getAvailableTrucks();
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+
+	bool sendTruck(Point& location, House* house);
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+	// REQUIRE(location.isInitialized(), "Point is initialized");
+
+	bool alreadySend(Point& location);
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+	// REQUIRE(location.isInitialized(), "Point is initialized");
+
+	bool updateDrivingTrucks(WorldMap& map);
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+	// REQUIRE(this->isInitialized(), "WorldMap is initialized");
+
+	std::vector<Point*> updateArrivedTrucks();
+	// REQUIRE(this->isInitialized(), "WorldMap is initialized");
+
+	bool statusTrucksOnWay(const char* fileName);
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+
+	bool statusAvailableTrucks(const char* fileName);
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
 private:
 	std::vector<FireTruck*> fTrucks;

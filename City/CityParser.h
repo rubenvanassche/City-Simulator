@@ -15,7 +15,7 @@
 
 namespace CityParser {
 
-City parse(std::string& filename);
+City* parse(std::string& filename);
 // Create a city based upon a XML-file
 
 

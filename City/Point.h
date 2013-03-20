@@ -18,7 +18,8 @@ public:
 	bool isInitialized();
 
 	friend std::ostream& operator<< (std::ostream& stream, Point& pointobject);
-	// REQUIRE(pointobject.isInitialized(), "Point object is initialized properly");
+	// REQUIRE(pointobject.isInitialized(), "Point object is initialized");
+
 
 	friend bool operator== (Point& p1, Point& p2);
 	//REQUIRE(p1.isInitialized(), "Point is initialized");
@@ -54,6 +55,7 @@ public:
 	bool operator= (Point& p);
 	// copy by assignment
 	// REQUIRE(p.isInitialized(), "Point is initialized");
+	// REQUIRE(this->isInitialized(), "Point is initialized");
 	// ENSURE(this->fX == p.fX, "X copied");
 	// ENSURE(this->fY == p.fY, "Y copied");
 

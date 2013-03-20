@@ -62,6 +62,7 @@ Size::Size(Size& s) {
 
 bool Size::operator= (Size& s) {
 	REQUIRE(s.isInitialized(), "Size is initialized");
+	REQUIRE(this->isInitialized(), "Size is initialized");
 
 	Size::fWidth = s.fWidth;
 	Size::fHeight = s.fHeight;

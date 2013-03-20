@@ -97,3 +97,19 @@ std::string& Vehicle::getName() {
 	REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	return Vehicle::fName;
 }
+
+bool Vehicle::isArrived() {
+	REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	return Vehicle::fPosition == Vehicle::fDestination;
+}
+
+bool Vehicle::isOnWay() {
+	REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	return Vehicle::fPosition != Vehicle::fDestination;
+}
+
+bool Vehicle::drive(WorldMap& map) {
+	return map.successor(Vehicle::fPosition, Vehicle::fDestination);
+}

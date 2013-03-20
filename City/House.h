@@ -65,10 +65,13 @@ public:
 	unsigned int getHealth();
 	// REQUIRE(this->isInitialized(), "House is initialized");
 
-	bool check(int substracter = 1);
+	bool burningDown(int substracter = 1);
 	// REQUIRE(this->isInitialized(), "House is initialized");
 	// REQUIRE(substracter >= 0, "Substracter is positive");
-	// REQUIRE(this->fHealth != 0, "Health is not 0");
+	// REQUIRE(this->isBurning() == true, "House is burning");
+
+	bool isDead();
+	// REQUIRE(this->isInitialized(), "House is initialized");
 
 private:
 	bool fIsBurning;

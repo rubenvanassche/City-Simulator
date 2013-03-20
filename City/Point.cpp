@@ -8,6 +8,7 @@
  */
 
 #include "Point.h"
+#include "DesignByContract.h"
 
 bool Point::isInitialized() {
 	return this == Point::fMyself;
@@ -89,6 +90,7 @@ Point::Point(Point& p) {
 
 bool Point::operator= (Point& p) {
 	REQUIRE(p.isInitialized(), "Point is initialized");
+	REQUIRE(this->isInitialized(), "Point is initialized");
 
 	Point::fX = p.fX;
 	Point::fY = p.fY;

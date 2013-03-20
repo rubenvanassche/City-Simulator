@@ -11,15 +11,13 @@
 #define CITY_H_
 
 #include <iostream>
-#include <vector>
 #include "DesignByContract.h"
 #include "FireDepot.h"
 #include "FireTruck.h"
 #include "Street.h"
 #include "House.h"
-#include "Size.h"
 #include <fstream>
-#include <algorithm> 
+#include "WorldMap.h"
 
 class City {
 public:
@@ -31,59 +29,60 @@ public:
 	// Constructor
 	// ENSURE(this->isInitialized(), "City is initialized");
 
-	City(const City& town);
+	City(City& town);
 	// REQUIRE(town.isInitialized(), "City is initialized");
 	// ENSURE(this->isInitialized(), "City is initialized");
 
-
 	bool addFireDepot(FireDepot& depot);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(depot.isInitialized(), "FireDepot is initialized");
+	// ENSURE(this->isInitialized(), "City is initialized");
+	// ENSURE(depot.isInitialized(), "FireDepot is initialized");
 
 	bool addFireTruck(FireTruck& truck);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(truck.isInitialized(), "FireTruck is initialized");
+	// ENSURE(this->isInitialized(), "City is initialized");
+	// ENSURE(truck.isInitialized(), "FireTruck is initialized");
 
 	bool addStreet(Street& street);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(street.isInitialized(), "Street is initialized");
+	// ENSURE(this->isInitialized(), "City is initialized");
+	// ENSURE(street.isInitialized(), "Street is initialized");
 
 	bool addHouse(House& house);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(house.isInitialized(), "House is initialized");
+	// ENSURE(this->isInitialized(), "City is initialized");
+	// ENSURE(house.isInitialized(), "House is initialized");
 
-	bool trucksOnWay();
-	// REQUIRE(this->isInitialized(), "City is initialized");
+	~City();
+	// IMPORTANT! BECAUSE WE HOLD A VECTOR OF POINTERS
+	// REQUIRE(this->isInitialized(), "City is initialized")
+	// ENSURE(this->fFireDepots.empty(), "FireDepots is empty'd")
+	// ENSURE(this->fHouses.empty(), "Houses is empty'd")
 
-	bool writeTrucksStatus(const char* filename);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	bool housesOnFire();
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	bool writeHousesStatus(const char* filename);
+	bool isDead();
+	// Checks whether there are no houses that is not fully burned down
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	bool writeDepotsStatus(const char* filename);
+	bool fireBreaksOut();
+	// REQUIRE( (this->fTown->isDead()) == false, "City is not dead");
+	// ENSURE(City::fHouses[index]->isBurning(), "House is not set on fire");
+
+	bool burningDown();
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	std::vector<Point*> calculatePoints(House& house);
+	bool driveTrucks();
 	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(house.isInitialized(), "House is initialized");
 
-	std::vector<Point*> calculatePoints(FireDepot& depot);
+	bool extinguish();
 	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(depot.isInitialized(), "Fire Depot is initialized");
 
-	std::vector<Point*> calculatePoints(int width, int height, Point& location);
+	bool statusBurningHouses(const char* fileName);
 	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(location.isInitialized(), "Location is initialized");
-	// ENSURE(out.size() > 0, "There are no points given as output");
 
-	std::vector<Point*> calculatePoints(Street& street);
+	bool statusTrucksOnWay(const char* fileName);
 	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(street.isInitialized(), "Street is initialized");
-	// ENSURE(out.size() > 0, "There are no points given as output");
+
+	bool statusAvailableTrucks(const char* fileName);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
+	bool allTrucksBack();
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	bool check(House& house);
 	// REQUIRE(this->isInitialized(), "City is initialized");
@@ -92,10 +91,6 @@ public:
 	bool check(FireDepot& depot);
 	// REQUIRE(this->isInitialized(), "City is initialized");
 	// REQUIRE(depot.isInitialized(), "Fire Depot is initialized");
-
-	bool check(int width, int height, Point &location);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(location.isInitialized(), "Location is initialized");
 
 	bool check(Street& street);
 	// REQUIRE(this->isInitialized(), "City is initialized");
@@ -113,6 +108,10 @@ public:
 	// REQUIRE(this->isInitialized(), "City is initialized");
 	// REQUIRE(p.isInitialized(), "Location is initialized");
 
+	bool checkPoint(Point& p, bool isStreet);
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(p.isInitialized(), "Location is initialized");
+
 	bool isOnFireDepot(Point &p);
 	// REQUIRE(this->isInitialized(), "City is initialized");
 	// REQUIRE(p.isInitialized(), "Location is initialized");
@@ -123,18 +122,13 @@ public:
 	int fFailure;
 	// Sets 0 when everything is ok, 1 when something went wrong(but program can still work) and 2 when total crash
 
-	~City();
-	// IMPORTANT! BECAUSE WE HOLD A VECTOR OF POINTERS
-	// REQUIRE(this->isInitialized(), "City is initialized")
-	// ENSURE(this->fFireDepots.empty(), "FireDepots is empty'd")
-	// ENSURE(this->fStreets.empty(), "Street is empty'd")
-	// ENSURE(this->fHouses.empty(), "Houses is empty'd")
+
 
 private:
 	std::vector<FireDepot*> fFireDepots;	// all firedepots (must be pointers, or won't work)
-	std::vector<Street*> fStreets;	// all streets (must be pointers, or won't work)
 	std::vector<House*> fHouses;	// all houses (must be pointers, or won't work)
-	std::vector<FireTruck*> fTrucks;	// all trucks (must be pointers, or won't work)
+	std::vector<Point*> fUsedPoints;	// all points that have been used (must be pointers, or won't work)
+	WorldMap fMap;
 
 	City* fMyself;	// a pointer to myself for initialize checking
 };

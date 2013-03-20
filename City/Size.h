@@ -40,8 +40,9 @@ public:
 
 	bool operator= (Size& s);
 	// REQUIRE(s.isInitialized(), "Size is initialized");
+	// REQUIRE(this->isInitialized(), "Size is initialized");
 	// ENSURE(this->fWidth == s.fWidth, "Width copied");
-	// ENSURE(this->fHeight == s.fHeight, "Heigt copied");
+	// ENSURE(this->fHeight == s.fHeight, "Height copied");
 
 	bool set(int width, int height);
 	// REQUIRE(this->isInitialized(), "Size is initialized");

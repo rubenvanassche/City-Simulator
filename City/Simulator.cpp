@@ -13,35 +13,14 @@ bool Simulator::isInitialized() {
 	return this == Simulator::fMyself;
 }
 
-Simulator::Simulator(City* town, std::string& outputfilename) {
+Simulator::Simulator(City* town) {
 	REQUIRE(town->isInitialized(), "City is initialized");
 
 	Simulator::fMyself = this;
 	Simulator::fTown = town;
 	Simulator::fEndSimulation = false;
-	Simulator::fFileName = outputfilename;
 
 	ENSURE(this->isInitialized(), "Simulator is initialized");
-}
-
-bool Simulator::output() {
-	REQUIRE(this->isInitialized(), "Simulator is initialized");
-
-	std::ofstream filestream;
-	const char* charInput = Simulator::fFileName.c_str();
-
-	Simulator::fTown->writeTrucksStatus(charInput);
-	Simulator::fTown->writeHousesStatus(charInput);
-	Simulator::fTown->writeDepotsStatus(charInput);
-
-	if ( (Simulator::fTown->trucksOnWay() ) || (Simulator::fTown->housesOnFire() )) {
-		Simulator::fEndSimulation = false;
-	}
-	else {
-		Simulator::fEndSimulation = true;
-	}
-
-	return true;
 }
 
 bool Simulator::endSimulation() {
@@ -50,10 +29,26 @@ bool Simulator::endSimulation() {
 }
 
 
-bool Simulator::simulate() {
+bool Simulator::simulate(Output& out) {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	// comming soon!
+	out.writeToFile();
+	out.writeToFile("\n");
+	Simulator::fTown->fireBreaksOut();
+	out.writeToFile();
+	out.writeToFile("\n");
+	Simulator::fTown->burningDown();
+	out.writeToFile();
+	out.writeToFile("\n");
+	Simulator::fTown->driveTrucks();
+	out.writeToFile();
+	out.writeToFile("\n");
+	Simulator::fTown->extinguish();
+	out.writeToFile();
+	out.writeToFile("\n");
 
+	if ( (Simulator::fTown->isDead()) && (Simulator::fTown->allTrucksBack() ) ) {
+		Simulator::fEndSimulation = true;
+	}
 	return true;
 }

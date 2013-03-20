@@ -12,28 +12,25 @@
 
 #include "City.h"
 #include "DesignByContract.h"
+#include "Output.h"
 
 class Simulator {
 public:
 	bool isInitialized();
 
-	Simulator(City* town, std::string& outputfilename);
+	Simulator(City* town);
 	// REQUIRE(town->isInitialized(), "City is initialized");
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
-
-	bool output();
-	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	bool endSimulation();
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	bool simulate();
+	bool simulate(Output& out);
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 private:
 	bool fEndSimulation;
 	City* fTown;
-	std::string fFileName;
 
 	Simulator* fMyself;
 };

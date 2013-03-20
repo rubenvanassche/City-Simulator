@@ -19,24 +19,24 @@
 
 namespace CityParser {
 
-City parse(std::string& filename) {
+City* parse(std::string& filename) {
 	const char* charInput = filename.c_str();
 	TiXmlDocument doc;
 	if(!doc.LoadFile(charInput) ) {
 		std::cerr << doc.ErrorDesc() << std::endl;
-		City emptyTown;
-		return emptyTown;
+		City* c = new City;
+		return c;
 	}
 
 	TiXmlElement* root = doc.FirstChildElement();
 	if (root == NULL) {
 		std::cerr << "Failed to load file: no root element" << std::endl;
-		City emptyTown;
+		City* c = new City;
 		doc.Clear();
-		return emptyTown;
+		return c;
 	}
 
-	City town;
+	City* town = new City;
 
 	for (TiXmlElement* node=root->FirstChildElement(); node != NULL; node = node->NextSiblingElement() ) {
 		std::string tag = node->Value();
@@ -110,10 +110,8 @@ City parse(std::string& filename) {
 			Size size(4);
 			FireDepot newDepot(name, location, size, entrance);
 
-			if (!town.addFireDepot(newDepot)) {
-				std::cerr << "Can not add FireDepot " << name << std::endl;
-				City emptyTown;
-				return emptyTown;
+			if (!town->addFireDepot(newDepot)) {
+				std::cout << "Can not add FireDepot " << name << std::endl;
 			}
 		}
 
@@ -142,10 +140,11 @@ City parse(std::string& filename) {
 			Point destination(0, 0);
 			FireTruck newTruck(name, curPos, destination, base);
 
-			if (!town.addFireTruck(newTruck)) {
+			if (!town->addFireTruck(newTruck)) {
+				delete town;
 				std::cerr << "Can not add FireTruck" << name << std::endl;
-				City emptyTown;
-				return emptyTown;
+				City* c = new City;
+				return c;
 			}
 		}
 
@@ -214,10 +213,8 @@ City parse(std::string& filename) {
 			Point endPoint(xEnd, yEnd);
 			Street newStreet(name, startPoint, endPoint);
 
-			if (!town.addStreet(newStreet)) {
-				std::cerr << "Can not add Street " << name << std::endl;
-				City emptyTown;
-				return emptyTown;
+			if (!town->addStreet(newStreet)) {
+				std::cout << "Can not add Street " << name << std::endl;
 			}
 		}
 
@@ -269,10 +266,8 @@ City parse(std::string& filename) {
 			Size size(2);
 			House newHouse(location, size, hPoints);
 
-			if (!town.addHouse(newHouse)) {
-				std::cerr << "Can not add House " << std::endl;
-				City emptyTown;
-				return emptyTown;
+			if (!town->addHouse(newHouse)) {
+				std::cout << "Can not add House " << std::endl;
 			}
 		}
 	}

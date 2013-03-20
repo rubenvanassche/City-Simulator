@@ -2,6 +2,6 @@
 
 A city simulator for project engineering at the university of Antwerp.
 
-## Style
+## Version 1.0
 
-To be defined!
+Can read a City.xml file and simulate a city into a result.txt file.

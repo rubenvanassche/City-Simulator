@@ -13,6 +13,7 @@
 #include "Vehicle.h"
 #include "DesignByContract.h"
 #include <iostream>
+#include "House.h"
 
 class FireTruck: public Vehicle {
 public:
@@ -53,8 +54,16 @@ public:
 	std::string& getBase();
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
+	bool setHouseOnFire(House* house);
+	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
+	// REQUIRE(house->isInitialized(), "House is initialized");
+
+	House& getHouseOnFire();
+	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
+
 private:
 	std::string fBaseName;
+	House* fHouseOnFire;
 
 	FireTruck* fMyself;
 };

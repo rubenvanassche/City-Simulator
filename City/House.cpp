@@ -15,6 +15,7 @@ bool House::isInitialized() {
 
 std::ostream& operator<< (std::ostream& stream, House& h) {
 	REQUIRE(h.isInitialized(), "House is initialized");
+
 	stream << "Huis op locatie " << h.getLocation();
 	return stream;
 }
@@ -71,7 +72,8 @@ bool House::isBurning() {
 
 bool House::setFire() {
 	REQUIRE(this->isInitialized(), "House is initialized");
-
+	REQUIRE(this->isBurning() == false, "House is not already on fire");
+	REQUIRE(this->isDead() == false, "House is not dead");
 	House::fIsBurning = true;
 
 	ENSURE(this->fIsBurning == true, "House is set on fire");
@@ -102,12 +104,25 @@ unsigned int House::getHealth() {
 	return House::fHealth;
 }
 
-bool House::check(int substracter) {
+bool House::burningDown(int substracter) {
 	REQUIRE(this->isInitialized(), "House is initialized");
 	REQUIRE(substracter >= 0, "Substracter is positive");
-	REQUIRE(this->fHealth != 0, "Health is not 0");
 
-	House::fHealth -= substracter;
+	if(this->isBurning() == true){
+		House::fHealth -= substracter;
+	}
+
+	if (House::fHealth <= 0) {
+		House::fIsBurning = false;
+	}
 
 	return true;
+}
+
+bool House::isDead() {
+	REQUIRE(this->isInitialized(), "House is initialized");
+	if (House::fHealth <= 0) {
+		return true;
+	}
+	return false;
 }
