@@ -111,10 +111,7 @@ City* parse(std::string& filename) {
 			FireDepot newDepot(name, location, size, entrance);
 
 			if (!town->addFireDepot(newDepot)) {
-				delete town;
-				std::cerr << "Can not add FireDepot " << name << std::endl;
-				City* c = new City;
-				return c;
+				std::cout << "Can not add FireDepot " << name << std::endl;
 			}
 		}
 
@@ -217,10 +214,7 @@ City* parse(std::string& filename) {
 			Street newStreet(name, startPoint, endPoint);
 
 			if (!town->addStreet(newStreet)) {
-				delete town;
-				std::cerr << "Can not add Street " << name << std::endl;
-				City* c = new City;
-				return c;
+				std::cout << "Can not add Street " << name << std::endl;
 			}
 		}
 
@@ -273,10 +267,7 @@ City* parse(std::string& filename) {
 			House newHouse(location, size, hPoints);
 
 			if (!town->addHouse(newHouse)) {
-				delete town;
-				std::cerr << "Can not add House " << std::endl;
-				City* c = new City;
-				return c;
+				std::cout << "Can not add House " << std::endl;
 			}
 		}
 	}
