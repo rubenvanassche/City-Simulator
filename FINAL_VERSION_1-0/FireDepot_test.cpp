@@ -172,10 +172,10 @@ TEST(testFireDepot, copying) {
 
 		EXPECT_NO_FATAL_FAILURE(FireDepot copydepot = depot);
 		FireDepot copydepot = depot;
-		EXPECT_TRUE(copycat.getLocation() == app.getLocation());
-		EXPECT_TRUE(copycat.getSize() == app.getSize());
-		EXPECT_TRUE(copycat.getEntrance() == app.getEntrance());
-		EXPECT_TRUE(copycat.getName() == app.getName());
+		EXPECT_TRUE(copydepot.getLocation() == app.getLocation());
+		EXPECT_TRUE(copydepot.getSize() == app.getSize());
+		EXPECT_TRUE(copydepot.getEntrance() == app.getEntrance());
+		EXPECT_TRUE(copydepot.getName() == app.getName());
 	}
 }
 
