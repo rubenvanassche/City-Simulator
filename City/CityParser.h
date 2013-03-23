@@ -10,15 +10,21 @@
 #ifndef CITYPARSER_H_
 #define CITYPARSER_H_
 
-#include "City.h"
-#include <iostream>
+#include "tinyxml.h"
 
-namespace CityParser {
+class CityParser {
+public:
+	CityParser(const char* filename);
 
-City* parse(std::string& filename);
-// Create a city based upon a XML-file
+	bool parseAll();
+	bool parseHouse(TiXmlElement* node);
+	bool parseStreet(TiXmlElement* node);
+	bool parseFireDepot(TiXmlElement* node);
+	bool parseFireTruck(TiXmlElement* node);
 
+private:
+	const char* fFileName;
 
-} /* namespace CityParser */
+};
 
 #endif /* CITYPARSER_H_ */
