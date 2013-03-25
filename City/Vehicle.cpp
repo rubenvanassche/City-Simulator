@@ -110,6 +110,30 @@ bool Vehicle::isOnWay() {
 	return Vehicle::fPosition != Vehicle::fDestination;
 }
 
-bool Vehicle::drive(WorldMap& map) {
-	return map.successor(Vehicle::fPosition, Vehicle::fDestination);
+bool Vehicle::goLeft() {
+	REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	Vehicle::fPosition.set( Vehicle::fPosition.getX() - 1, Vehicle::fPosition.getY() );
+	return true;
+}
+
+bool Vehicle::goRight() {
+	REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	Vehicle::fPosition.set( Vehicle::fPosition.getX() + 1, Vehicle::fPosition.getY() );
+	return true;
+}
+
+bool Vehicle::goUp() {
+	REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	Vehicle::fPosition.set( Vehicle::fPosition.getX(), Vehicle::fPosition.getY() + 1);
+	return true;
+}
+
+bool Vehicle::goDown() {
+	REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	Vehicle::fPosition.set( Vehicle::fPosition.getX(), Vehicle::fPosition.getY()  - 1);
+	return true;
 }

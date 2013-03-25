@@ -18,10 +18,7 @@ bool City::isInitialized() {
 
 City::City() {
 	City::fMyself = this;
-
-	WorldMap map;
-	City::fMap = map;
-	fFailure = 0;
+	City::fFailure = 0;
 
 	ENSURE(this->isInitialized(), "City is initialized");
 }
@@ -31,11 +28,9 @@ City::City(City& town) {
 
 	City::fMyself = this;
 
-	City::fMap = town.fMap;
-
-	for (unsigned int index=0; index < town.fHouses.size(); index++) {
-		House* h = new House( *(town.fHouses[index]) );
-		City::fHouses.push_back(h);
+	for (unsigned int index=0; index < town.fBuildings.size(); index++) {
+		Building* h = new Building( *(town.fBuildings[index]) );
+		City::fBuildings.push_back(h);
 	}
 
 	for (unsigned int index=0; index < town.fFireDepots.size(); index++) {
@@ -43,34 +38,40 @@ City::City(City& town) {
 		City::fFireDepots.push_back(f);
 	}
 
-	fFailure = 0;
+	City::fFailure = 0;
 
 	ENSURE(this->isInitialized(), "City is copied");
 }
 
-bool City::addFireDepot(FireDepot& depot) {
+bool City::add(FireDepot& depot) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(depot.isInitialized(), "FireDepot is initialized");
 
-	if(this->check(depot)){
+	if(this->check(depot)) {
 		FireDepot* d = new FireDepot(depot);
 		City::fFireDepots.push_back(d);
+		City::fBuildings.push_back(d);
 		return true;
-	}else{
+	}
+	else{
 		this->error(1);
 		return false;
 	}
 }
 
-bool City::addFireTruck(FireTruck& truck) {
+bool City::add(FireTruck& truck) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(truck.isInitialized(), "FireTruck is initialized");
 
 	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
 		if (City::fFireDepots[index]->getName() == truck.getBase()) {
+
 			truck.setPosition(City::fFireDepots[index]->getLocation());
 			truck.setDestination(City::fFireDepots[index]->getLocation());
-			City::fFireDepots[index]->addFireTruck(truck);
+			City::fFireDepots[index]->addFireTruck(truck);	// add it in the corresponding firedepot
+
+			FireTruck* f = new FireTruck(truck);
+			City::fVehicles.push_back(f);
 			return true;
 		}
 	}
@@ -79,29 +80,41 @@ bool City::addFireTruck(FireTruck& truck) {
 	return false;
 }
 
-bool City::addStreet(Street& street) {
+bool City::add(Street& street) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(street.isInitialized(), "Street is initialized");
 
 	if(this->check(street)){
-		City::fMap.addStreet(street);
-		return true;
-	}else{
+		if (street.isVertical() ) {
+			Street* s = new Street(street);
+			City::fVerticals.push_back(s);
+			return true;
+		}
+		else if (street.isHorizontal() ) {
+			Street* s = new Street(street);
+			City::fHorizontals.push_back(s);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else{
 		this->error(1);
 		return false;
 	}
 }
 
-bool City::addHouse(House& house) {
+bool City::add(House& house) {
 	ENSURE(this->isInitialized(), "City is initialized");
 	ENSURE(house.isInitialized(), "House is initialized");
 
 	if(this->check(house)){
 		House* h = new House(house);
-		City::fHouses.push_back(h);
+		City::fBuildings.push_back(h);
 		return true;
-
-	}else{
+	}
+	else{
 		this->error(1);
 		return false;
 	}
@@ -115,184 +128,31 @@ City::~City() {
 	}
 	City::fFireDepots.clear();
 
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		delete City::fHouses[index];
+	for (unsigned int index=0; index < City::fBuildings.size(); index++) {
+		delete City::fBuildings[index];
 	}
-	City::fHouses.clear();
+	City::fBuildings.clear();
+
+	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+		delete City::fHorizontals[index];
+	}
+	City::fHorizontals.clear();
+
+	for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+		delete City::fVerticals[index];
+	}
+	City::fVerticals.clear();
+
+	for (unsigned int index=0; index < City::fVehicles.size(); index++) {
+		delete City::fVehicles[index];
+	}
+	City::fVehicles.clear();
 
 	ENSURE(this->fFireDepots.empty() == true, "FireDepots is empty'd");
-	ENSURE(this->fHouses.empty() == true, "Houses is empty'd");
-}
-
-bool City::isDead() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		if (!City::fHouses[index]->isDead()) {
-			return false;
-		}
-	}
-	return true;
-}
-
-bool City::fireBreaksOut() {
-	// REQUIRE( this->isDead() == false, "City is not dead");
-
-	int index = std::rand() % City::fHouses.size();
-
-	if ( (City::fHouses[index]->isBurning() ) || (City::fHouses[index]->isDead()) ) {
-		return false;
-	}
-
-	City::fHouses[index]->setFire();
-
-	ENSURE(City::fHouses[index]->isBurning(), "House is not set on fire");
-	return true;
-}
-
-bool City::burningDown() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		if (City::fHouses[index]->isBurning()) {
-			City::fHouses[index]->burningDown(1);
-		}
-	}
-	return true;
-}
-
-bool City::driveTrucks() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		if (!City::fHouses[index]->isBurning()) {
-			continue;
-		}
-
-		bool alreadySend = false;
-		for (unsigned int i=0; i < City::fFireDepots.size(); i++) {
-			if (City::fFireDepots[i]->alreadySend(City::fHouses[index]->getLocation() ) ) {
-				alreadySend = true;
-				break;
-			}
-		}
-
-		if (alreadySend) {
-			continue;	// go to the next house, a firetruck is on the way
-		}
-
-		// else we will send a firetruck;
-		for (unsigned int i=0; i < City::fFireDepots.size(); i++) {
-			if (City::fFireDepots[i]->getAvailableTrucks() > 0) {
-				Point p = City::fHouses[index]->getLocation();
-				int originX = p.getX();
-				int originY = p.getY();
-
-				if ( !City::fMap.isInMap(p) ) {
-					int y = p.getY() + 1;
-					p.set(originX, y);
-				}
-				if ( !City::fMap.isInMap(p) ) {
-					int x = p.getX() - 1;
-					p.set(x, originY);
-				}
-				if ( !City::fMap.isInMap(p) ) {
-					int x =  originX + City::fHouses[index]->getSize().getWidth();
-					p.set(x, originY);
-				}
-				if ( !City::fMap.isInMap(p) ) {
-					int y = originY - City::fHouses[index]->getSize().getHeight();
-					p.set(originX, y);
-				}
-
-				City::fFireDepots[i]->sendTruck(p, City::fHouses[index]);
-				break;
-			}
-		}
-	}
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		City::fFireDepots[index]->updateDrivingTrucks(City::fMap);
-	}
-
-	return true;
-}
-
-bool City::extinguish() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<Point*> blushed;
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		blushed = City::fFireDepots[index]->updateArrivedTrucks();
-		for (unsigned int index=0; index < blushed.size(); index++) {
-			for (unsigned int i=0; i < City::fHouses.size(); i++) {
-				if (City::fHouses[i]->getLocation() == *(blushed[index]) ) {
-					City::fHouses[i]->stopFire();
-					break;
-				}
-			}
-		}
-
-		blushed.clear();
-	}
-	return true;
-}
-
-bool City::statusBurningHouses(const char* fileName) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::ofstream filestream;
-	filestream.open(fileName, std::ios_base::app);
-
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		if (City::fHouses[index]->isBurning() ) {
-			filestream << "\t" << *(City::fHouses[index]) << " staat in brand en heeft nog "
-					<< City::fHouses[index]->getHealth() << " health points." << std::endl;
-		}
-		else if (City::fHouses[index]->isDead() ) {
-			filestream << "\t" << *(City::fHouses[index]) << " is volledig afgebrand." << std::endl;
-		}
-	}
-
-	filestream.close();
-	return true;
-}
-
-bool City::statusTrucksOnWay(const char* fileName) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::ofstream filestream;
-	filestream.open(fileName, std::ios_base::app);
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		City::fFireDepots[index]->statusTrucksOnWay(fileName);
-	}
-	filestream.close();
-	return true;
-}
-
-bool City::statusAvailableTrucks(const char* fileName) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::ofstream filestream;
-	filestream.open(fileName, std::ios_base::app);
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		City::fFireDepots[index]->statusAvailableTrucks(fileName);
-	}
-	filestream.close();
-	return true;
-}
-
-bool City::allTrucksBack() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		if (City::fFireDepots[index]->getAvailableTrucks() != City::fFireDepots[index]->getNrTrucks() ) {
-			return false;
-		}
-	}
-	return true;
+	ENSURE(this->fBuildings.empty() == true, "Buildings is empty'd");
+	ENSURE(this->fHorizontals.empty() == true, "Horizontals is empty'd");
+	ENSURE(this->fVerticals.empty() == true, "Verticals is empty'd");
+	ENSURE(this->fVehicles.empty() == true, "Vehicles is empty'd");
 }
 
 bool City::check(House& house){
@@ -308,7 +168,8 @@ bool City::check(House& house){
 	for(std::vector<Point*>::iterator it = points.begin();it != points.end();++it){
 		if(this->checkPoint(**it) == true){
 			continue; // This point is checked so move to the next one
-		}else{
+		}
+		else{
 			checker =  false; // There is something at this point, we can't add something else
 			break;
 		}
@@ -335,7 +196,8 @@ bool City::check(FireDepot& depot){
 	for(std::vector<Point*>::iterator it = points.begin();it != points.end();++it){
 		if(this->checkPoint(**it) == true){
 			continue; // This point is checked so move to the next one
-		}else{
+		}
+		else{
 			checker =  false; // There is something at this point, we can't add something else
 			break;
 		}
@@ -373,7 +235,8 @@ bool City::check(Street& street){
 				break;
 			}
 		}
-	}else if(y1 == y2){
+	}
+	else if(y1 == y2){
 		// Horizontal
 		for(int i = std::min(x1, x2);i <= std::max(x1, x2);i++){
 			Point p(i, y1);
@@ -384,7 +247,8 @@ bool City::check(Street& street){
 				break;
 			}
 		}
-	}else{
+	}
+	else{
 		// Now we're having a serious issue
 	}
 
@@ -442,7 +306,6 @@ bool City::checkPoint(Point& p, bool isStreet){
 		return false;
 	}
 
-
 	return true;
 
 }
@@ -451,10 +314,10 @@ bool City::isOnHouse(Point &p){
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(p.isInitialized(), "Location is initialized");
 
-	std::vector<House*>::iterator it;
+	std::vector<Building*>::iterator it;
 	std::vector<Point*>::iterator it2;
 
-	for(it = fHouses.begin();it != fHouses.end();++it){
+	for(it = City::fBuildings.begin();it != City::fBuildings.end();++it){
 		// Get points for each house and compare!
 		std::vector<Point*> points = (**it).calculatePoints();
 		for(it2 = points.begin();it2 != points.end();++it2){
@@ -472,10 +335,21 @@ bool City::isOnStreet(Point &p){
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(p.isInitialized(), "Location is initialized");
 
-	std::vector<Street*>::iterator it;
-	std::vector<Point*>::iterator it2;
+	// let's first check if this is in the horizontals streets
+	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+		if (City::fHorizontals[index]->isElement(p) ) {
+			return true;
+		}
+	}
 
-	return this->fMap.isInMap(p);
+	// else, let's search in the vertical streets
+	for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+		if (City::fVerticals[index]->isElement(p) ) {
+			return true;
+		}
+	}
+
+	return false;	// point not found
 }
 
 bool City::isOnFireDepot(Point &p){
@@ -491,7 +365,8 @@ bool City::isOnFireDepot(Point &p){
 		for(it2 = points.begin();it2 != points.end();++it2){
 			if(**it2 == p){
 				return true;
-			}else{
+			}
+			else{
 				continue;
 			}
 		}
@@ -505,9 +380,135 @@ void City::error(int level){
 	if (level == 1){
 		fFailure = 1;
 		std::cout << "Something went wrong, but the program can still continue." << std::endl;
-	}else if(level == 2){
+	}
+	else if(level == 2){
 		fFailure = 2;
 		std::cout << "Something went wrong, and the program crashed." << std::endl;
 		ENSURE(false, "Hard crash!");
 	}
+}
+
+std::vector<Building*> City::getBuildings() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fBuildings;
+}
+
+std::vector<FireDepot*> City::getFireDepots() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fFireDepots;
+}
+
+std::vector<Vehicle*> City::getVehicles() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fVehicles;
+}
+
+std::vector<Street*> City::getHorizontals() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fHorizontals;
+}
+
+std::vector<Street*> City::getVerticals() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fVerticals;
+}
+
+Point* City::closestCrosspoint(Street& curStr, Point& curPos) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	if (curStr.isVertical() ) {
+		std::vector<Point*> crosspoints;
+		for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+			if ( isCrossing( *(City::fHorizontals[index]), curStr) ) {
+				Point* cp = findCrossPoint( *(City::fHorizontals[index]), curStr );
+				crosspoints.push_back(cp);
+			}
+		}
+
+		while (crosspoints.size() != 1) {
+			int delta0 = crosspoints[0]->getY() - curPos.getY();
+			delta0 = std::abs(delta0);
+			int delta1 = crosspoints[1]->getY() - curPos.getY();
+			delta1 = std::abs(delta1);
+
+			if (delta0 < delta1) {
+				crosspoints.erase(crosspoints.begin() + 1);
+			}
+			else {
+				crosspoints.erase(crosspoints.begin() );
+			}
+		}
+
+		Point* p = crosspoints[0];
+		return p;
+	}
+	else {
+		std::vector<Point*> crosspoints;
+		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+			if ( isCrossing( *(City::fVerticals[index]), curStr) ) {
+				Point* cp = findCrossPoint( *(City::fVerticals[index]), curStr );
+				crosspoints.push_back(cp);
+			}
+		}
+
+		while (crosspoints.size() != 1) {
+			int delta0 = crosspoints[0]->getX() - curPos.getX();
+		 	delta0 = std::abs(delta0);
+		 	int delta1 = crosspoints[1]->getX() - curPos.getX();
+			delta1 = std::abs(delta1);
+
+			if (delta0 < delta1) {
+				crosspoints.erase(crosspoints.begin() + 1);
+			}
+			else {
+				crosspoints.erase(crosspoints.begin() );
+			}
+		}
+
+		Point* p = crosspoints[0];
+		return p;
+	}
+}
+
+bool City::isCrosspoint(Point& p) {
+	bool foundHorizontal = false;
+	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+		if (City::fHorizontals[index]->isElement(p) ) {
+			foundHorizontal = true;
+			break;
+		}
+	}
+
+	if (foundHorizontal) {
+		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+			if (City::fVerticals[index]->isElement(p) ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool City::isInMap(Point& p) {
+
+	bool foundHorizontal = false;
+	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+		if (City::fHorizontals[index]->isElement(p) ) {
+			return true;
+		}
+	}
+
+	if (!foundHorizontal) {
+		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+			if (City::fVerticals[index]->isElement(p) ) {
+				return true;
+			}
+		}
+	}
+	return false;
 }

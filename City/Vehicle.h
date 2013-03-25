@@ -12,7 +12,6 @@
 
 #include "DesignByContract.h"
 #include "Point.h"
-#include "WorldMap.h"
 
 class Vehicle {
 public:
@@ -69,9 +68,17 @@ public:
 	bool isOnWay();
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
-	bool drive(WorldMap& map);
+	bool goLeft();
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
+	bool goRight();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	bool goUp();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	bool goDown();
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
 private:
 	Point fPosition;

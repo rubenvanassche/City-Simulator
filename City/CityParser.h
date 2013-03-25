@@ -16,7 +16,7 @@ class CityParser {
 public:
 	CityParser(const char* filename);
 
-	bool parseAll();
+	bool parseBuildings();
 	bool parseHouse(TiXmlElement* node);
 	bool parseStreet(TiXmlElement* node);
 	bool parseFireDepot(TiXmlElement* node);

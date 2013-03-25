@@ -12,7 +12,6 @@
 
 #include "City.h"
 #include "DesignByContract.h"
-#include "Output.h"
 
 class Simulator {
 public:
@@ -25,8 +24,22 @@ public:
 	bool endSimulation();
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	bool simulate(Output& out);
+	bool fireBreaksOut();
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+
+	bool burningDown(int factor=1);
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(factor > 0, "burning factor is greater than 0");
+
+	bool drive(int repeat=1);
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(repeat > 0, "repeat at least 1");
+
+	bool extinguish();
+
+	bool updateTrucks();
+
+	bool sendTrucks();
 
 private:
 	bool fEndSimulation;

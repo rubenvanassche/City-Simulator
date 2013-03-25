@@ -32,7 +32,7 @@ public:
 	// REQUIRE(str.isInitialized(), "Street is initialized");
 	// REQUIRE(astr.isInitialized(), "Street is initialized");
 
-	friend Point* crossPoint(Street& str, Street& astr);
+	friend Point* findCrossPoint(Street& str, Street& astr);
 	// REQUIRE(str.isInitialized(), "Street is initialized");
 	// REQUIRE(astr.isInitialized(), "Street is initialized");
 	// REQUIRE(isCrossing(str, astr), "Street are not crosssing");

@@ -44,7 +44,7 @@ bool isCrossing(Street& str, Street& astr) {
 	return false;
 }
 
-Point* crossPoint(Street& str, Street& astr) {
+Point* findCrossPoint(Street& str, Street& astr) {
 	REQUIRE(str.isInitialized(), "Street is initialized");
 	REQUIRE(astr.isInitialized(), "Street is initialized");
 

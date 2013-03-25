@@ -54,16 +54,16 @@ public:
 	std::string& getBase();
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
-	bool setHouseOnFire(House* house);
+	bool setBuildingToExtinguish(Building* house);
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	// REQUIRE(house->isInitialized(), "House is initialized");
 
-	House& getHouseOnFire();
+	Building* getHouseToExtinguish();
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
 private:
 	std::string fBaseName;
-	House* fHouseOnFire;
+	Building* fHouseToExtinguish;
 
 	FireTruck* fMyself;
 };

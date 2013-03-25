@@ -10,12 +10,16 @@
 #include "CityParser.h"
 #include <iostream>
 #include <sstream>
+#include "House.h"
+#include "FireTruck.h"
+#include "FireDepot.h"
+#include "Street.h"
 
 CityParser::CityParser(const char* filename) {
 	CityParser::fFileName = filename;
 }
 
-bool CityParser::parseAll() {
+bool CityParser::parseBuildings() {
 	TiXmlDocument doc;
 	if (!doc.LoadFile(CityParser::fFileName)) {
 		std::cerr << doc.ErrorDesc() << std::endl;

@@ -20,8 +20,9 @@ std::ostream& operator<< (std::ostream& stream, FireDepot& f) {
 	return stream;
 }
 
-FireDepot::FireDepot(std::string& name, Point& location, Size& size, Point& entrance)
-	: Building(location, size), fEntrance(entrance) {
+FireDepot::FireDepot(std::string& name, Point& location, Size& size, Point& entrance, double health)
+	: Building(location, size, health), fEntrance(entrance) {
+	REQUIRE(health >= 0, "Health is positive");
 	REQUIRE(location.isInitialized(), "Point is initialized");
 	REQUIRE(size.isInitialized(), "Size is initialized");
 	REQUIRE(entrance.isInitialized(), "Point is initialized");
@@ -38,7 +39,7 @@ FireDepot::FireDepot(std::string& name, Point& location, Size& size, Point& entr
 }
 
 FireDepot::FireDepot(FireDepot& f)
-	: Building(f.getLocation(), f.getSize() ), fEntrance(f.fEntrance) {
+	: Building(f.getLocation(), f.getSize(), f.getHealth() ), fEntrance(f.fEntrance) {
 	REQUIRE(f.isInitialized(), "FireDepot is initialized");
 
 	FireDepot::fMyself = this;
@@ -96,30 +97,10 @@ std::string& FireDepot::getName() {
 	return FireDepot::fName;
 }
 
-bool FireDepot::setName(std::string& name) {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	FireDepot::fName = name;
-
-	ENSURE(this->fName == name, "Name is set");
-	return true;
-}
-
 Point& FireDepot::getEntrance() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	return FireDepot::fEntrance;
 }
-
-bool FireDepot::setEntrance(Point& entrance) {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	REQUIRE(entrance.isInitialized(), "Point is initialized");
-
-	FireDepot::fEntrance = entrance;
-
-	ENSURE(this->fEntrance == entrance, "Entrance is set");
-	return true;
-}
-
 
 FireDepot::~FireDepot() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
@@ -150,7 +131,38 @@ unsigned int FireDepot::getAvailableTrucks() {
 	return count;
 }
 
-bool FireDepot::sendTruck(Point& location, House* house) {
+bool FireDepot::extinguish() {
+
+	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
+		if (!FireDepot::fTrucks[index]->isArrived()) {
+			continue;
+		}
+
+		if ( (FireDepot::fTrucks[index]->getPosition() != FireDepot::fEntrance)
+				&& (FireDepot::fTrucks[index]->getPosition() != this->getLocation() ) ) {
+			FireDepot::fTrucks[index]->getHouseToExtinguish()->stopFire();
+			FireDepot::fTrucks[index]->setDestination(FireDepot::fEntrance);
+		}
+	}
+	return true;
+}
+
+bool FireDepot::updateTrucks() {
+
+	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
+		if (!FireDepot::fTrucks[index]->isArrived()) {
+			continue;
+		}
+
+		if (FireDepot::fTrucks[index]->getPosition() == FireDepot::fEntrance) {
+			FireDepot::fTrucks[index]->setDestination(this->getLocation() );
+			FireDepot::fTrucks[index]->setPosition(this->getLocation() );
+		}
+	}
+	return true;
+}
+
+bool FireDepot::sendTruck(Point& location, Building* house) {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	REQUIRE(location.isInitialized(), "Point is initialized");
 	REQUIRE(this->getAvailableTrucks() > 0, "There is a truck available");
@@ -159,7 +171,7 @@ bool FireDepot::sendTruck(Point& location, House* house) {
 		if (FireDepot::fTrucks[index]->getPosition() == this->getLocation()) {
 			FireDepot::fTrucks[index]->setDestination(location);
 			FireDepot::fTrucks[index]->setPosition(FireDepot::fEntrance);
-			FireDepot::fTrucks[index]->setHouseOnFire(house);
+			FireDepot::fTrucks[index]->setBuildingToExtinguish(house);
 			return true;
 		}
 	}
@@ -177,7 +189,7 @@ bool FireDepot::alreadySend(Point& location) {
 	}
 	return false;
 }
-
+/*
 bool FireDepot::updateDrivingTrucks(WorldMap& map) {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	REQUIRE(this->isInitialized(), "WorldMap is initialized");
@@ -256,3 +268,4 @@ bool FireDepot::statusAvailableTrucks(const char* fileName) {
 
 	return true;
 }
+*/
