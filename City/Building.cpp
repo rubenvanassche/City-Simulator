@@ -26,21 +26,22 @@ Building::Building(Point& location, Size& size, double health)
 	ENSURE(this->isInitialized(), "Building is initialized");
 	ENSURE(this->fLocation == location, "Location is set");
 	ENSURE(this->fSize == size, "Size is set");
+	ENSURE(this->fIsBurning == false, "Building is initially not on fire");
 }
 
 Building::Building(Building& b)
 	: fSize(b.fSize), fLocation(b.fLocation) {
-	REQUIRE(b.isInitialized(), "Point is initialized");
+	REQUIRE(b.isInitialized(), "Building is initialized");
 
 	Building::fMyself = this;
 	Building::fHealth = b.fHealth;
 	Building::fIsBurning = b.fIsBurning;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
-	ENSURE(this->fLocation == b.fLocation, "Location is set");
-	ENSURE(this->fSize == b.fSize, "Size is set");
-	ENSURE(this->fHealth == b.fHealth, "Health is set");
-	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is set");
+	ENSURE(this->fLocation == b.fLocation, "Location is copied");
+	ENSURE(this->fSize == b.fSize, "Size is copied");
+	ENSURE(this->fHealth == b.fHealth, "Health is copied");
+	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
 }
 
 bool Building::operator= (Building& b) {
@@ -52,28 +53,10 @@ bool Building::operator= (Building& b) {
 	Building::fHealth = b.fHealth;
 	Building::fIsBurning = b.fIsBurning;
 
-	ENSURE(this->fLocation == b.fLocation, "Location is set");
-	ENSURE(this->fSize == b.fSize, "Size is set");
-	ENSURE(this->fHealth == b.fHealth, "Health is set");
-	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is set");
-	return true;
-}
-
-bool Building::setLocation(Point& location) {
-	REQUIRE(this->isInitialized(), "Building is initialized");
-
-	Building::fLocation = location;
-
-	ENSURE(this->fLocation == location, "Location is set");
-	return true;
-}
-
-bool Building::setSize(Size& size) {
-	REQUIRE(this->isInitialized(), "Building is initialized");
-
-	Building::fSize = size;
-
-	ENSURE(this->fSize == size, "Size is set");
+	ENSURE(this->fLocation == b.fLocation, "Location is copied");
+	ENSURE(this->fSize == b.fSize, "Size is copied");
+	ENSURE(this->fHealth == b.fHealth, "Health is copied");
+	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
 	return true;
 }
 
@@ -141,26 +124,12 @@ bool Building::isBurning() {
 
 bool Building::setFire() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(this->fHealth > 0, "Health point is positive");
 
 	Building::fIsBurning = true;
 
 	ENSURE(this->fIsBurning == true, "Building is set on fire");
 	return true;
-}
-
-bool Building::stopFire() {
-	REQUIRE(this->isInitialized(), "Building is initialized");
-
-	Building::fIsBurning = false;
-
-	ENSURE(this->fIsBurning == true, "Building is not on fire anymore");
-	return true;
-}
-
-double Building::getHealth() {
-	REQUIRE(this->isInitialized(), "Building is initialized");
-
-	return Building::fHealth;
 }
 
 bool Building::burningDown(int substracter) {
@@ -179,6 +148,21 @@ bool Building::burningDown(int substracter) {
 	return true;
 }
 
+bool Building::stopFire() {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	Building::fIsBurning = false;
+
+	ENSURE(this->fIsBurning == true, "Building is not on fire anymore");
+	return true;
+}
+
+double Building::getHealth() {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	return Building::fHealth;
+}
+
 bool Building::isDead() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
@@ -186,4 +170,34 @@ bool Building::isDead() {
 		return true;
 	}
 	return false;
+}
+
+bool Building::setSize(Size& s) {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(s.isInitialized(), "Size is initialized");
+
+	Building::fSize = s;
+
+	ENSURE(this->fSize == s, "Size is set");
+	return true;
+}
+
+bool Building::setLocation(Point& p) {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(p.isInitialized(), "Point is initialized");
+
+	Building::fLocation = p;
+
+	ENSURE(this->fLocation == p, "Location is set");
+	return true;
+}
+
+bool Building::setHealth(int h) {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(h >= 0, "Health is positive");
+
+	Building::fHealth = h;
+
+	ENSURE(this->fHealth == h, "Health is set");
+	return true;
 }

@@ -15,24 +15,24 @@ bool FireTruck::isInitialized() {
 
 std::ostream& operator<< (std::ostream& stream, FireTruck& f) {
 	REQUIRE(f.isInitialized(), "FireTruck is initialized");
-	stream << "Brandweerwagen " << f.getName() << " [basis: " << f.fBaseName << "]";
+	stream << "Brandweerwagen " << f.getName() << " [basis: " << f.fBase->getName() << "]";
 	return stream;
 }
 
-FireTruck::FireTruck(std::string& name, Point& curPos, Point& destination, std::string& basename)
-	: Vehicle(name, curPos, destination) {
-	REQUIRE(curPos.isInitialized(), "Point is initialized");
-	REQUIRE(destination.isInitialized(), "Point is initialized");
+FireTruck::FireTruck(std::string& name, FireDepot* base)
+	: Vehicle(name, base->getLocation(), base->getLocation()) {
+	REQUIRE(base->isInitialized(), "FireDepot is initialized");
 
 	FireTruck::fMyself = this;
-	FireTruck::fBaseName = basename;
-	FireTruck::fHouseToExtinguish = NULL;
+	FireTruck::fBase = base;
+	FireTruck::fBuilding = NULL;
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
-	ENSURE(this->getName() == name, "Name is initialized");
-	ENSURE(this->getPosition() == curPos, "Position is initialized");
-	ENSURE(this->getDestination() == destination, "Destination is initialized");
-	ENSURE(this->fBaseName == basename, "Base is initialized");
+	ENSURE(this->getName() == name, "Name is set");
+	ENSURE(this->getPosition() == base->getLocation(), "Position is set");
+	ENSURE(this->getDestination() == base->getLocation(), "Destination is set");
+	ENSURE(this->fBase == base, "Base is set");
+	ENSURE(this->fBuilding == NULL, "FireTruck has not a building to extinguish yet");
 }
 
 FireTruck::FireTruck(FireTruck& f)
@@ -40,14 +40,18 @@ FireTruck::FireTruck(FireTruck& f)
 	REQUIRE(f.isInitialized(), "FireTruck is initialized");
 
 	FireTruck::fMyself = this;
-	FireTruck::fBaseName = f.fBaseName;
-	FireTruck::fHouseToExtinguish = f.fHouseToExtinguish;
+	FireTruck::fBase = f.fBase;
+	FireTruck::fBuilding = f.fBuilding;
+	this->setName(f.getName());
+	this->setPosition(f.getPosition());
+	this->setDestination(f.getDestination());
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
-	ENSURE(this->getName() == f.getName(), "Name is initialized");
-	ENSURE(this->getPosition() == f.getPosition(), "Position is initialized");
-	ENSURE(this->getDestination() == f.getDestination(), "Destination is initialized");
-	ENSURE(this->fBaseName == f.fBaseName, "Base is initialized");
+	ENSURE(this->getName() == f.getName(), "Name is copied");
+	ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
+	ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
+	ENSURE(this->fBase == f.fBase, "Base is copied");
+	ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 }
 
 bool FireTruck::operator= (FireTruck& f) {
@@ -57,41 +61,72 @@ bool FireTruck::operator= (FireTruck& f) {
 	this->setName(f.getName());
 	this->setPosition(f.getPosition());
 	this->setDestination(f.getDestination());
-	FireTruck::fBaseName = f.fBaseName;
-	FireTruck::fHouseToExtinguish = f.fHouseToExtinguish;
+	FireTruck::fBase = f.fBase;
+	FireTruck::fBuilding = f.fBuilding;
 
-	ENSURE(this->getName() == f.getName(), "Name is initialized");
-	ENSURE(this->getPosition() == f.getPosition(), "Position is initialized");
-	ENSURE(this->getDestination() == f.getDestination(), "Destination is initialized");
-	ENSURE(this->fBaseName == f.fBaseName, "Base is initialized");
+	ENSURE(this->getName() == f.getName(), "Name is copied");
+	ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
+	ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
+	ENSURE(this->fBase == f.fBase, "Base is copied");
+	ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 	return true;
 }
 
-bool FireTruck::setBase(std::string& basename) {
+bool FireTruck::isAtEntranceDepot() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
-	FireTruck::fBaseName = basename;
+	return this->getPosition() == FireTruck::fBase->getEntrance();
+}
 
-	ENSURE(this->fBaseName == basename, "Basename is set");
+bool FireTruck::enterDepot() {
+	REQUIRE(this->isInitialized(), "FireTruck is initialized");
+	REQUIRE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at entrance");
+
+	this->setPosition(FireTruck::fBase->getLocation());
+	this->setDestination(FireTruck::fBase->getLocation());
+
+	ENSURE(this->getPosition() == this->fBase->getLocation(), "FireTruck is now in depot");
+	ENSURE(this->getDestination() == this->fBase->getLocation(), "FireTruck is now in depot");
 	return true;
 }
 
-std::string& FireTruck::getBase() {
+bool FireTruck::isInDepot() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
-	return FireTruck::fBaseName;
+
+	return this->getPosition() == FireTruck::fBase->getLocation();
 }
 
-bool FireTruck::setBuildingToExtinguish(Building* house) {
+FireDepot* FireTruck::getBase() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
-	REQUIRE(house->isInitialized(), "Building is initialized");
+	return FireTruck::fBase;
+}
 
-	FireTruck::fHouseToExtinguish = house;
+bool FireTruck::send(Building* building, Point& destination) {
+	REQUIRE(this->isInitialized(), "FireTruck is initialized");
+	REQUIRE(building->isInitialized(), "Building is initialized");
+	REQUIRE(destination.isInitialized(), "Point is initialized");
+
+	FireTruck::fBuilding = building;
+	this->setDestination(destination);
+
+	ENSURE(this->fBuilding == building, "Building is set");
+	ENSURE(this->getDestination() == destination, "Destination is set");
 	return true;
 }
 
-Building* FireTruck::getHouseToExtinguish() {
+Building* FireTruck::getBuilding() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
-	return FireTruck::fHouseToExtinguish;
+	return FireTruck::fBuilding;
 }
 
+bool FireTruck::sendBack() {
+	REQUIRE(this->isInitialized(), "FireTruck is initialized");
+
+	FireTruck::fBuilding = NULL;
+	this->setDestination(FireTruck::fBase->getEntrance());
+
+	ENSURE(this->fBuilding == NULL, "FireTruck has not a building to extinguish anymore");
+	ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to it's base");
+	return true;
+}

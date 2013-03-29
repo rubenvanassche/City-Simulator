@@ -22,6 +22,7 @@ Simulator::Simulator(City* town) {
 	Simulator::fEndSimulation = false;
 
 	ENSURE(this->isInitialized(), "Simulator is initialized");
+	ENSURE(this->fTown == town, "city is set");
 }
 
 bool Simulator::endSimulation() {
@@ -32,7 +33,7 @@ bool Simulator::endSimulation() {
 bool Simulator::fireBreaksOut() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	std::vector<Building*> buildings = Simulator::fTown->getBuildings();
+	std::vector<House*> buildings = Simulator::fTown->getHouses();
 
 	int index = std::rand() % buildings.size();
 
@@ -40,7 +41,9 @@ bool Simulator::fireBreaksOut() {
 		return false;	// building is already on fire
 	}
 
-	buildings[index]->setFire();
+	buildings[index]->setFire();	// BURN HOUSE, BURN!!
+
+	ENSURE(this->fTown->burningHouses() > 0, "At least 1 house is burning");
 	return true;
 }
 
@@ -48,7 +51,7 @@ bool Simulator::burningDown(int factor) {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 	REQUIRE(factor > 0, "burning factor is greater than 0");
 
-	std::vector<Building*> buildings = Simulator::fTown->getBuildings();
+	std::vector<House*> buildings = Simulator::fTown->getHouses();
 	for (unsigned int index=0; index < buildings.size(); index++) {
 		if (buildings[index]->isBurning() ) {
 			buildings[index]->burningDown(factor);
@@ -58,44 +61,35 @@ bool Simulator::burningDown(int factor) {
 	return true;
 }
 
+
 bool Simulator::drive(int repeat) {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 	REQUIRE(repeat > 0, "repeat at least 1");
 
 	for (int i=0; i < repeat; i++) {
-		std::vector<Vehicle*> vehicles = Simulator::fTown->getVehicles();
-		std::vector<Street*> verticals = Simulator::fTown->getVerticals();
-		std::vector<Street*> horizontals = Simulator::fTown->getHorizontals();
+		std::vector<FireTruck*> vehicles = Simulator::fTown->getTrucks();
 
 		for (unsigned int index=0; index < vehicles.size(); index++) {
 			if (vehicles[index]->isArrived() ) {
-				continue;
+				if (vehicles[index]->isAtEntranceDepot() ) {
+					vehicles[index]->enterDepot();	// trucks arrived at the depot
+				}
+				continue;	// ignore arrived trucks
 			}
 
 			Point destination = vehicles[index]->getDestination();
 			Point curPos = vehicles[index]->getPosition();
 
-			bool foundDestStr = false;
+			// first, find the destination street
+
 			Street* destStr;
-			for (unsigned int h=0; h < horizontals.size(); h++) {
-				if (horizontals[index]->isElement(destination) ) {
-					destStr = horizontals[index];
-					foundDestStr = true;
-					break;
-				}
+			destStr = Simulator::fTown->findHorizontalStreet(curPos);
+			if (destStr == NULL) {
+				destStr = Simulator::fTown->findVerticalStreet(curPos);
 			}
 
-			if (!foundDestStr) {
-				for (unsigned int index=0; index < verticals.size(); index++) {
-					if (verticals[index]->isElement(destination) ) {
-						destStr = verticals[index];
-						foundDestStr = true;
-						break;
-					}
-				}
-			}
-
-			if (destStr->isElement(curPos) ) {
+			// if we are on the right street already
+			if (destStr->isElement(curPos)) {
 				if (destStr->isHorizontal() ) {
 					if (curPos.getX() < destination.getX() ) {
 						vehicles[index]->goRight();
@@ -110,74 +104,57 @@ bool Simulator::drive(int repeat) {
 				}
 			}
 
+			// else, we have to find out on which street we are now
 			Street* curStr;
 			if (destStr->isHorizontal() ) {	// first search for a crossing street
-				bool foundCurStr = false;
-				for (unsigned int index=0; index < verticals.size(); index++) {
-					if (verticals[index]->isElement(curPos) ) {
-						curStr = verticals[index];
-						foundCurStr = true;
-						break;
-					}
+				curStr = Simulator::fTown->findVerticalStreet(curPos);
+				if (curStr == NULL) {
+					curStr = Simulator::fTown->findHorizontalStreet(curPos);
 				}
-
-				if (!foundCurStr) {
-					for (unsigned int index=0; index < horizontals.size(); index++) {
-						if (horizontals[index]->isElement(curPos) ) {
-							curStr = horizontals[index];
-							foundCurStr = true;
-							break;
-						}
-					}
+			}
+			else {
+				curStr = Simulator::fTown->findHorizontalStreet(curPos);
+				if (curStr == NULL) {
+					curStr = Simulator::fTown->findVerticalStreet(curPos);
 				}
 			}
 
+			Point* cross = Simulator::fTown->findCrosspoint(*destStr, *curStr, curPos);
 			if (isParallel(*curStr, *destStr) ) {
-				Point* cp = Simulator::fTown->closestCrosspoint(*curStr, curPos);
-				if (curStr->isVertical()) {
-					if (curPos.getY() < cp->getY() ) {
+				if (curStr->isVertical() ) {
+					if (curPos.getY() < cross->getY() ) {
 						vehicles[index]->goUp();
+						continue;
 					}
 					vehicles[index]->goDown();
+					continue;
 				}
 				else {	// cur str is horizontal
-					if (curPos.getX() < cp->getX() ) {
+					if (curPos.getX() < cross->getX() ) {
 						vehicles[index]->goRight();
+						continue;
 					}
 					vehicles[index]->goLeft();
+					continue;
 				}
 			}
 
-			if ( (Simulator::fTown->isCrosspoint(curPos) ) || (isCrossing(*curStr, *destStr) ) ) {
-				if (destStr->isHorizontal()) {
-					Point* cp = findCrossPoint(*curStr, *destStr);
-					if (curStr->isVertical()) {
-						if (curPos.getY() < cp->getY() ) {
-							vehicles[index]->goUp();
-						}
-						vehicles[index]->goDown();
+			if (isCrossing(*curStr, *destStr) ) {
+				if (curStr->isVertical() ) {
+					if (curPos.getY() < cross->getY() ) {
+						vehicles[index]->goUp();
+						continue;
 					}
-					else {	// cur str is horizontal
-						if (curPos.getX() < cp->getX() ) {
-							vehicles[index]->goRight();
-						}
-						vehicles[index]->goLeft();
-					}
+					vehicles[index]->goDown();
+					continue;
 				}
-				else {
-					Point* cp = findCrossPoint(*curStr, *destStr);
-					if (curStr->isVertical()) {
-						if (curPos.getY() < cp->getY() ) {
-							vehicles[index]->goUp();
-						}
-						vehicles[index]->goDown();
+				else {	// cur str is horizontal
+					if (curPos.getX() < cross->getX() ) {
+						vehicles[index]->goRight();
+						continue;
 					}
-					else {	// cur str is horizontal
-						if (curPos.getX() < cp->getX() ) {
-							vehicles[index]->goRight();
-						}
-						vehicles[index]->goLeft();
-					}
+					vehicles[index]->goLeft();
+					continue;
 				}
 			}
 		}
@@ -187,71 +164,60 @@ bool Simulator::drive(int repeat) {
 }
 
 bool Simulator::extinguish() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	std::vector<FireDepot*> depots = Simulator::fTown->getFireDepots();
-	for (unsigned int index=0; index < depots.size(); index++) {
-		depots[index]->extinguish();
-	}
-	return true;
-}
+	std::vector<FireTruck*> trucks = Simulator::fTown->getTrucks();
+	for (unsigned int index=0; index < trucks.size(); index++) {
+		if ( ( trucks[index]->isArrived() ) &&
+				( (!trucks[index]->isAtEntranceDepot() ) || (!trucks[index]->isInDepot() ) ) ) {
 
-bool Simulator::updateTrucks() {
-
-	std::vector<FireDepot*> depots = Simulator::fTown->getFireDepots();
-	for (unsigned int index=0; index < depots.size(); index++) {
-		depots[index]->updateTrucks();
+			trucks[index]->getBuilding()->stopFire();	// stop the fire
+			trucks[index]->sendBack();	// send the truck back to the depot
+		}
 	}
 	return true;
 }
 
 bool Simulator::sendTrucks() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	std::vector<Building*> buildings = Simulator::fTown->getBuildings();
-	std::vector<FireDepot*> depots = Simulator::fTown->getFireDepots();
+	std::vector<House*> houses = Simulator::fTown->getHouses();
+	std::vector<FireTruck*> trucks = Simulator::fTown->getTrucks();
 
-	for (unsigned int index=0; index < buildings.size(); index++) {
-		if (!buildings[index]->isBurning()) {
-			continue;
+	for (unsigned int index=0; index < houses.size(); index++) {
+		if (!houses[index]->isBurning() ) {
+			continue;	// ignore house that is not burning
 		}
 
-		bool alreadySend = false;
-		for (unsigned int i=0; i < depots.size(); i++) {
-			if (depots[i]->alreadySend( buildings[index]->getLocation() ) ) {
-				alreadySend = true;
-				break;
+		Point pos = houses[index]->getLocation();
+		int originX = pos.getX();
+		int originY = pos.getY();
+
+		if ( !Simulator::fTown->isInMap(pos) ) {
+			int y = pos.getY() + 1;
+			pos.set(originX, y);
+		}
+		if ( !Simulator::fTown->isInMap(pos) ) {
+			int x = pos.getX() - 1;
+			pos.set(x, originY);
+		}
+		if ( !Simulator::fTown->isInMap(pos) ) {
+			int x =  originX + houses[index]->getSize().getWidth();
+			pos.set(x, originY);
+		}
+		if ( !Simulator::fTown->isInMap(pos) ) {
+			int y = originY - houses[index]->getSize().getHeight();
+			pos.set(originX, y);
+		}
+
+		for (unsigned int i=0; i < trucks.size(); i++) {
+			if (trucks[i]->getBuilding()->getLocation() == houses[index]->getLocation() ) {
+				continue;	// ignore this house, a truck is on way
 			}
-		}
 
-		if (alreadySend) {
-			continue;	// go to the next house, a firetruck is on the way
-		}
-
-		// else we will send a firetruck;
-		for (unsigned int i=0; i < depots.size(); i++) {
-			if (depots[i]->getAvailableTrucks() > 0) {
-				Point p = buildings[index]->getLocation();
-				int originX = p.getX();
-				int originY = p.getY();
-
-				if ( !Simulator::fTown->isInMap(p) ) {
-					int y = p.getY() + 1;
-					p.set(originX, y);
-				}
-				if ( !Simulator::fTown->isInMap(p) ) {
-					int x = p.getX() - 1;
-					p.set(x, originY);
-				}
-				if ( !Simulator::fTown->isInMap(p) ) {
-					int x =  originX + buildings[index]->getSize().getWidth();
-					p.set(x, originY);
-				}
-				if ( !Simulator::fTown->isInMap(p) ) {
-					int y = originY - buildings[index]->getSize().getHeight();
-					p.set(originX, y);
-				}
-
-				depots[i]->sendTruck(p, buildings[index]);
-				break;
+			// else we will send a truck
+			if (trucks[i]->isInDepot() ) {
+				trucks[i]->send(houses[index], pos);
 			}
 		}
 	}

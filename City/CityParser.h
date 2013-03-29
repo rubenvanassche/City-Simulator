@@ -11,19 +11,29 @@
 #define CITYPARSER_H_
 
 #include "tinyxml.h"
+#include "City.h"
 
 class CityParser {
 public:
-	CityParser(const char* filename);
+	CityParser(City* town);
 
-	bool parseBuildings();
+	bool parseBuildings(const char* filename);
+	// parse buildings and streets
+
 	bool parseHouse(TiXmlElement* node);
+	// parse one house
+
 	bool parseStreet(TiXmlElement* node);
+	// parse one street
+
 	bool parseFireDepot(TiXmlElement* node);
+	// parse one firedepot
+
 	bool parseFireTruck(TiXmlElement* node);
+	// parse one truck
 
 private:
-	const char* fFileName;
+	City* fTown;
 
 };
 

@@ -15,13 +15,13 @@
 #include "FireDepot.h"
 #include "Street.h"
 
-CityParser::CityParser(const char* filename) {
-	CityParser::fFileName = filename;
+CityParser::CityParser(City* town) {
+	CityParser::fTown = town;
 }
 
-bool CityParser::parseBuildings() {
+bool CityParser::parseBuildings(const char* filename) {
 	TiXmlDocument doc;
-	if (!doc.LoadFile(CityParser::fFileName)) {
+	if (!doc.LoadFile(filename) ) {
 		std::cerr << doc.ErrorDesc() << std::endl;
 		return false;
 	}
@@ -142,9 +142,11 @@ bool CityParser::parseHouse(TiXmlElement* node) {
 		std::cout << "Invalid flammability." << std::endl;
 	}
 
-	std::cout << "House on (" << xLocation << ", " << yLocation << ") with flammability " << flammability << " created." << std::endl;
+	Point location(xLocation, yLocation);
+	Size size(2);
+	House newHouse(location, size, flammability);
 
-	return true;
+	return CityParser::fTown->add(newHouse);
 }
 
 bool CityParser::parseStreet(TiXmlElement* node) {
@@ -258,8 +260,10 @@ bool CityParser::parseStreet(TiXmlElement* node) {
 	}
 
 	std::cout << "Street " << name << " from (" << xFrom << ", " << yFrom << ") to (" << xTo << ", " << yTo << ") created." << std::endl;
-
-	return true;
+	Point start(xFrom, yFrom);
+	Point end(xTo, yTo);
+	Street newStreet(name, start, end);
+	return CityParser::fTown->add(newStreet);
 }
 
 bool CityParser::parseFireDepot(TiXmlElement* node) {
@@ -267,11 +271,13 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 	bool yLocFound = false;
 	bool xEntrFound = false;
 	bool yEntrFound = false;
+	bool flamFound = false;
 	int xLoc;
 	int yLoc;
 	int xEntr;
 	int yEntr;
 	std::string name = "";
+	int flammability;
 
 	for (TiXmlElement* subnode = node->FirstChildElement(); subnode != NULL; subnode = subnode->NextSiblingElement() ) {
 		std::string subtag = subnode->Value();
@@ -322,6 +328,13 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 		else if (subtag == "naam") {
 			name = subnode->GetText();
 		}
+		else if (subtag == "brandbaarheid") {
+			std::string fl = subnode->GetText();
+			std::stringstream ss;
+			ss << fl;
+			ss >> flammability;
+			flamFound = true;
+		}
 		else {
 			std::cout << "Unknown subtag " << subtag << " skipped." << std::endl;
 		}
@@ -352,6 +365,15 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 		return false;
 	}
 
+	if (!flamFound) {
+		std::cout << "Flammability missing." << std::endl;
+		return false;
+	}
+
+	if (flammability < 0) {
+		std::cout << "Invalid flammability." << std::endl;
+	}
+
 	if (xLoc < 0) {
 		std::cout << "Invalid x-coordinate (locatie)." << std::endl;
 		return false;
@@ -374,7 +396,12 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 
 	std::cout << "FireDepot " << name << " location (" << xLoc << ", " << yLoc << "), entrance (" << xEntr << ", " << yEntr << ") created." << std::endl;
 
-	return true;
+	Point location(xLoc, yLoc);
+	Point entrance(xEntr, yEntr);
+	Size size(4);
+
+	FireDepot newDepot(location, size, flammability, name, entrance);
+	return CityParser::fTown->add(newDepot);
 }
 
 bool CityParser::parseFireTruck(TiXmlElement* node) {
@@ -412,6 +439,12 @@ bool CityParser::parseFireTruck(TiXmlElement* node) {
 		return false;
 	}
 
-	std::cout << "FireTruck " << name << " with base " << base << " created." << std::endl;
+	FireDepot* depot = CityParser::fTown->findDepot(base);
+	if (depot == NULL) {
+		std::cout << "Base does not exist" << std::endl;
+		return false;
+	}
+
+	FireTruck newTruck(name, depot);
 	return true;
 }

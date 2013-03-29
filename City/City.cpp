@@ -24,13 +24,13 @@ City::City() {
 }
 
 City::City(City& town) {
-	//REQUIRE(town.isInitialized(), "City is initialized");
+	REQUIRE(town.isInitialized(), "City is initialized");
 
 	City::fMyself = this;
 
-	for (unsigned int index=0; index < town.fBuildings.size(); index++) {
-		Building* h = new Building( *(town.fBuildings[index]) );
-		City::fBuildings.push_back(h);
+	for (unsigned int index=0; index < town.fHouses.size(); index++) {
+		House* h = new House( *(town.fHouses[index]) );
+		City::fHouses.push_back(h);
 	}
 
 	for (unsigned int index=0; index < town.fFireDepots.size(); index++) {
@@ -38,9 +38,29 @@ City::City(City& town) {
 		City::fFireDepots.push_back(f);
 	}
 
+	for (unsigned int index=0; index < town.fFireTrucks.size(); index++) {
+		FireTruck* f = new FireTruck( *(town.fFireTrucks[index]) );
+		City::fFireTrucks.push_back(f);
+	}
+
+	for (unsigned int index=0; index < town.fHorizontals.size(); index++) {
+		Street* s = new Street( *(town.fHorizontals[index]) );
+		City::fHorizontals.push_back(s);
+	}
+
+	for (unsigned int index=0; index < town.fVerticals.size(); index++) {
+		Street* s = new Street( *(town.fVerticals[index]) );
+		City::fVerticals.push_back(s);
+	}
+
 	City::fFailure = 0;
 
-	ENSURE(this->isInitialized(), "City is copied");
+	ENSURE(this->isInitialized(), "City is initialized");
+	ENSURE(this->fFireDepots.size() == town.fFireDepots.size(), "FireDepots copied");
+	ENSURE(this->fFireTrucks.size() == town.fFireTrucks.size(), "FireTrucks copied");
+	ENSURE(this->fHouses.size() == town.fHouses.size(), "Houses copied");
+	ENSURE(this->fVerticals.size() == town.fVerticals.size(), "Verticals copied");
+	ENSURE(this->fHorizontals.size() == town.fHorizontals.size(), "Horizontals copied");
 }
 
 bool City::add(FireDepot& depot) {
@@ -50,7 +70,6 @@ bool City::add(FireDepot& depot) {
 	if(this->check(depot)) {
 		FireDepot* d = new FireDepot(depot);
 		City::fFireDepots.push_back(d);
-		City::fBuildings.push_back(d);
 		return true;
 	}
 	else{
@@ -64,14 +83,12 @@ bool City::add(FireTruck& truck) {
 	ENSURE(truck.isInitialized(), "FireTruck is initialized");
 
 	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		if (City::fFireDepots[index]->getName() == truck.getBase()) {
-
-			truck.setPosition(City::fFireDepots[index]->getLocation());
-			truck.setDestination(City::fFireDepots[index]->getLocation());
-			City::fFireDepots[index]->addFireTruck(truck);	// add it in the corresponding firedepot
+		if (City::fFireDepots[index]->getName() == truck.getBase()->getName() ) {
 
 			FireTruck* f = new FireTruck(truck);
-			City::fVehicles.push_back(f);
+
+			City::fFireDepots[index]->addFireTruck(f);	// add it in the corresponding firedepot
+			City::fFireTrucks.push_back(f);
 			return true;
 		}
 	}
@@ -111,7 +128,7 @@ bool City::add(House& house) {
 
 	if(this->check(house)){
 		House* h = new House(house);
-		City::fBuildings.push_back(h);
+		City::fHouses.push_back(h);
 		return true;
 	}
 	else{
@@ -128,11 +145,6 @@ City::~City() {
 	}
 	City::fFireDepots.clear();
 
-	for (unsigned int index=0; index < City::fBuildings.size(); index++) {
-		delete City::fBuildings[index];
-	}
-	City::fBuildings.clear();
-
 	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
 		delete City::fHorizontals[index];
 	}
@@ -143,16 +155,135 @@ City::~City() {
 	}
 	City::fVerticals.clear();
 
-	for (unsigned int index=0; index < City::fVehicles.size(); index++) {
-		delete City::fVehicles[index];
+	for (unsigned int index=0; index < City::fFireTrucks.size(); index++) {
+		delete City::fFireTrucks[index];
 	}
-	City::fVehicles.clear();
+	City::fFireTrucks.clear();
+
+	for (unsigned int index=0; index < City::fHouses.size(); index++) {
+		delete City::fHouses[index];
+	}
+	City::fHouses.clear();
 
 	ENSURE(this->fFireDepots.empty() == true, "FireDepots is empty'd");
-	ENSURE(this->fBuildings.empty() == true, "Buildings is empty'd");
+	ENSURE(this->fHouses.empty() == true, "Buildings is empty'd");
 	ENSURE(this->fHorizontals.empty() == true, "Horizontals is empty'd");
 	ENSURE(this->fVerticals.empty() == true, "Verticals is empty'd");
-	ENSURE(this->fVehicles.empty() == true, "Vehicles is empty'd");
+	ENSURE(this->fFireTrucks.empty() == true, "FireTrucks is empty'd");
+}
+
+bool City::isInMap(Point& p) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(p.isInitialized(), "Point is initialized");
+
+	bool foundHorizontal = false;
+	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+		if (City::fHorizontals[index]->isElement(p) ) {
+			return true;
+		}
+	}
+
+	if (!foundHorizontal) {
+		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+			if (City::fVerticals[index]->isElement(p) ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+std::vector<House*> City::getHouses() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fHouses;
+}
+
+std::vector<FireTruck*> City::getTrucks() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	return City::fFireTrucks;
+}
+
+Street* City::findVerticalStreet(Point& p) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(p.isInitialized(), "Point is initialized");
+
+	for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+		if (City::fVerticals[index]->isElement(p)) {
+			return City::fVerticals[index];
+		}
+	}
+
+	return NULL;
+}
+
+Street* City::findHorizontalStreet(Point& p) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(p.isInitialized(), "Point is initialized");
+
+	for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+		if (City::fVerticals[index]->isElement(p)) {
+			return City::fVerticals[index];
+		}
+	}
+
+	return NULL;
+}
+
+Point* City::findCrosspoint(Street& destStr, Street& curStr, Point& curPos) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(destStr.isInitialized(), "Street is initialized");
+	REQUIRE(curStr.isInitialized(), "Street is initialized");
+	REQUIRE(curPos.isInitialized(), "Point is initialized");
+
+	if (isCrossing(curStr, destStr) ) {
+		return getCrosspoint(destStr, curStr);
+	}
+
+	if (isParallel(curStr, destStr) ) {
+		std::vector<Point*> crosspoints;
+
+		if (curStr.isVertical() ) {	// if the current street is vertical
+
+			// then find a horizontal street that is crossing the current street
+
+			for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
+				if ( isCrossing( *(City::fHorizontals[index]), curStr) ) {
+					Point* cp = getCrosspoint( *(City::fHorizontals[index]), curStr);
+					crosspoints.push_back(cp);
+				}
+			}
+		}
+		else {	// cur street is horizontal
+
+			for (unsigned int index=0; index < City::fVerticals.size(); index++) {
+				if ( isCrossing( *(City::fVerticals[index]), curStr) ) {
+					Point* cp = getCrosspoint( *(City::fVerticals[index]), curStr);
+					crosspoints.push_back(cp);
+				}
+			}
+		}
+
+		// then calculate the how far the curPos is from the crosspoint, we take the closest
+		while (crosspoints.size() != 1) {
+			int delta0 = crosspoints[0]->getY() - curPos.getY();
+			delta0 = std::abs(delta0);
+			int delta1 = crosspoints[1]->getY() - curPos.getY();
+			delta1 = std::abs(delta1);
+
+			if (delta0 < delta1) {
+				crosspoints.erase(crosspoints.begin() + 1);
+			}
+			else {
+				crosspoints.erase(crosspoints.begin() );
+			}
+		}
+		Point* p = crosspoints[0];
+		return p;
+	}
+
+	return NULL;
 }
 
 bool City::check(House& house){
@@ -183,6 +314,19 @@ bool City::check(House& house){
 	return checker;
 }
 
+unsigned int City::burningHouses() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	unsigned int count = 0;
+	for (unsigned int index=0; index < City::fHouses.size(); index++) {
+		if (City::fHouses[index]->isBurning() ) {
+			count++;
+		}
+	}
+
+	return count;
+}
+
 bool City::check(FireDepot& depot){
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(depot.isInitialized(), "Fire Depot is initialized");
@@ -211,6 +355,16 @@ bool City::check(FireDepot& depot){
 	return checker;
 }
 
+FireDepot* City::findDepot(std::string& name) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
+		if (City::fFireDepots[index]->getName() == name) {
+			return City::fFireDepots[index];
+		}
+	}
+	return NULL;
+}
 
 bool City::check(Street& street){
 	REQUIRE(this->isInitialized(), "City is initialized");
@@ -314,10 +468,10 @@ bool City::isOnHouse(Point &p){
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(p.isInitialized(), "Location is initialized");
 
-	std::vector<Building*>::iterator it;
+	std::vector<House*>::iterator it;
 	std::vector<Point*>::iterator it2;
 
-	for(it = City::fBuildings.begin();it != City::fBuildings.end();++it){
+	for(it = City::fHouses.begin();it != City::fHouses.end();++it){
 		// Get points for each house and compare!
 		std::vector<Point*> points = (**it).calculatePoints();
 		for(it2 = points.begin();it2 != points.end();++it2){
@@ -386,129 +540,4 @@ void City::error(int level){
 		std::cout << "Something went wrong, and the program crashed." << std::endl;
 		ENSURE(false, "Hard crash!");
 	}
-}
-
-std::vector<Building*> City::getBuildings() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	return City::fBuildings;
-}
-
-std::vector<FireDepot*> City::getFireDepots() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	return City::fFireDepots;
-}
-
-std::vector<Vehicle*> City::getVehicles() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	return City::fVehicles;
-}
-
-std::vector<Street*> City::getHorizontals() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	return City::fHorizontals;
-}
-
-std::vector<Street*> City::getVerticals() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	return City::fVerticals;
-}
-
-Point* City::closestCrosspoint(Street& curStr, Point& curPos) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	if (curStr.isVertical() ) {
-		std::vector<Point*> crosspoints;
-		for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
-			if ( isCrossing( *(City::fHorizontals[index]), curStr) ) {
-				Point* cp = findCrossPoint( *(City::fHorizontals[index]), curStr );
-				crosspoints.push_back(cp);
-			}
-		}
-
-		while (crosspoints.size() != 1) {
-			int delta0 = crosspoints[0]->getY() - curPos.getY();
-			delta0 = std::abs(delta0);
-			int delta1 = crosspoints[1]->getY() - curPos.getY();
-			delta1 = std::abs(delta1);
-
-			if (delta0 < delta1) {
-				crosspoints.erase(crosspoints.begin() + 1);
-			}
-			else {
-				crosspoints.erase(crosspoints.begin() );
-			}
-		}
-
-		Point* p = crosspoints[0];
-		return p;
-	}
-	else {
-		std::vector<Point*> crosspoints;
-		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
-			if ( isCrossing( *(City::fVerticals[index]), curStr) ) {
-				Point* cp = findCrossPoint( *(City::fVerticals[index]), curStr );
-				crosspoints.push_back(cp);
-			}
-		}
-
-		while (crosspoints.size() != 1) {
-			int delta0 = crosspoints[0]->getX() - curPos.getX();
-		 	delta0 = std::abs(delta0);
-		 	int delta1 = crosspoints[1]->getX() - curPos.getX();
-			delta1 = std::abs(delta1);
-
-			if (delta0 < delta1) {
-				crosspoints.erase(crosspoints.begin() + 1);
-			}
-			else {
-				crosspoints.erase(crosspoints.begin() );
-			}
-		}
-
-		Point* p = crosspoints[0];
-		return p;
-	}
-}
-
-bool City::isCrosspoint(Point& p) {
-	bool foundHorizontal = false;
-	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
-		if (City::fHorizontals[index]->isElement(p) ) {
-			foundHorizontal = true;
-			break;
-		}
-	}
-
-	if (foundHorizontal) {
-		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
-			if (City::fVerticals[index]->isElement(p) ) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-bool City::isInMap(Point& p) {
-
-	bool foundHorizontal = false;
-	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
-		if (City::fHorizontals[index]->isElement(p) ) {
-			return true;
-		}
-	}
-
-	if (!foundHorizontal) {
-		for (unsigned int index=0; index < City::fVerticals.size(); index++) {
-			if (City::fVerticals[index]->isElement(p) ) {
-				return true;
-			}
-		}
-	}
-	return false;
 }

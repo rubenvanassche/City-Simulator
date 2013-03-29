@@ -16,11 +16,12 @@ bool FireDepot::isInitialized() {
 
 std::ostream& operator<< (std::ostream& stream, FireDepot& f) {
 	REQUIRE(f.isInitialized(), "FireDepot is initialized");
+
 	stream << "Brandweerkazerne " << f.fName;
 	return stream;
 }
 
-FireDepot::FireDepot(std::string& name, Point& location, Size& size, Point& entrance, double health)
+FireDepot::FireDepot(Point& location, Size& size, double health, std::string& name, Point& entrance)
 	: Building(location, size, health), fEntrance(entrance) {
 	REQUIRE(health >= 0, "Health is positive");
 	REQUIRE(location.isInitialized(), "Point is initialized");
@@ -32,10 +33,11 @@ FireDepot::FireDepot(std::string& name, Point& location, Size& size, Point& entr
 	FireDepot::fEntrance = entrance;
 
 	ENSURE(this->isInitialized(), "FireDepot is initialized");
-	ENSURE(this->fName == name, "Name is initialized");
-	ENSURE(this->getLocation() == location, "Location is initialized");
-	ENSURE(this->getSize() == size, "Size is initialized");
-	ENSURE(this->fEntrance == entrance, "Entrance is initialized");
+	ENSURE(this->fName == name, "Name is set");
+	ENSURE(this->getLocation() == location, "Location is set");
+	ENSURE(this->getSize() == size, "Size is set");
+	ENSURE(this->fEntrance == entrance, "Entrance is set");
+	ENSURE(this->getHealth() == health, "Health is set");
 }
 
 FireDepot::FireDepot(FireDepot& f)
@@ -45,21 +47,18 @@ FireDepot::FireDepot(FireDepot& f)
 	FireDepot::fMyself = this;
 	FireDepot::fName = f.fName;
 	FireDepot::fEntrance = f.fEntrance;
-
-	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
-		FireTruck* pt = new FireTruck( *(f.fTrucks[index]) );
-		FireDepot::fTrucks.push_back(pt);
-	}
+	FireDepot::fTrucks = f.fTrucks;
+	this->setLocation(f.getLocation());
+	this->setHealth(f.getHealth());
+	this->setSize(f.getSize());
 
 	ENSURE(this->isInitialized(), "FireDepot is initialized");
-	ENSURE(this->fName == f.fName, "Name is initialized");
+	ENSURE(this->fName == f.fName, "Name is copied");
 	ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
 	ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
-
-	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
-		ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
-	}
+	ENSURE(this->fTrucks.size() == f.fTrucks.size(), "Trucks copied");
+	ENSURE(this->getHealth() == f.getHealth(), "Health is copied");
 }
 
 bool FireDepot::operator= (FireDepot& f) {
@@ -68,6 +67,7 @@ bool FireDepot::operator= (FireDepot& f) {
 
 	this->setLocation(f.getLocation());
 	this->setSize(f.getSize());
+	this->setHealth(f.getHealth());
 	FireDepot::fName = f.fName;
 	FireDepot::fEntrance = f.fEntrance;
 	FireDepot::fTrucks = f.fTrucks;
@@ -76,41 +76,18 @@ bool FireDepot::operator= (FireDepot& f) {
 	ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
 	ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
-	for (unsigned int index=0; index < f.fTrucks.size(); index++) {
-		ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
-	}
+	ENSURE(this->fTrucks.size() == f.fTrucks.size(), "Trucks copied");
+	ENSURE(this->getHealth() == f.getHealth(), "Health is copied");
 	return true;
 }
 
-bool FireDepot::addFireTruck(FireTruck& f) {
+bool FireDepot::addFireTruck(FireTruck* f) {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
-	FireTruck* p = new FireTruck(f);
-	FireDepot::fTrucks.push_back(p);
+	FireDepot::fTrucks.push_back(f);
 
-	ENSURE(this->fTrucks.back()->getName() == f.getName(), "FireTruck is added");
+	ENSURE(this->fTrucks.back()->getName() == f->getName(), "FireTruck is added");
 	return true;
-}
-
-std::string& FireDepot::getName() {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	return FireDepot::fName;
-}
-
-Point& FireDepot::getEntrance() {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	return FireDepot::fEntrance;
-}
-
-FireDepot::~FireDepot() {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		delete FireDepot::fTrucks[index];
-	}
-	FireDepot::fTrucks.clear();
-
-	ENSURE(this->fTrucks.empty() == true, "No trucks in depot");
 }
 
 unsigned int FireDepot::getNrTrucks() {
@@ -131,141 +108,12 @@ unsigned int FireDepot::getAvailableTrucks() {
 	return count;
 }
 
-bool FireDepot::extinguish() {
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (!FireDepot::fTrucks[index]->isArrived()) {
-			continue;
-		}
-
-		if ( (FireDepot::fTrucks[index]->getPosition() != FireDepot::fEntrance)
-				&& (FireDepot::fTrucks[index]->getPosition() != this->getLocation() ) ) {
-			FireDepot::fTrucks[index]->getHouseToExtinguish()->stopFire();
-			FireDepot::fTrucks[index]->setDestination(FireDepot::fEntrance);
-		}
-	}
-	return true;
-}
-
-bool FireDepot::updateTrucks() {
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (!FireDepot::fTrucks[index]->isArrived()) {
-			continue;
-		}
-
-		if (FireDepot::fTrucks[index]->getPosition() == FireDepot::fEntrance) {
-			FireDepot::fTrucks[index]->setDestination(this->getLocation() );
-			FireDepot::fTrucks[index]->setPosition(this->getLocation() );
-		}
-	}
-	return true;
-}
-
-bool FireDepot::sendTruck(Point& location, Building* house) {
+std::string& FireDepot::getName() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	REQUIRE(location.isInitialized(), "Point is initialized");
-	REQUIRE(this->getAvailableTrucks() > 0, "There is a truck available");
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (FireDepot::fTrucks[index]->getPosition() == this->getLocation()) {
-			FireDepot::fTrucks[index]->setDestination(location);
-			FireDepot::fTrucks[index]->setPosition(FireDepot::fEntrance);
-			FireDepot::fTrucks[index]->setBuildingToExtinguish(house);
-			return true;
-		}
-	}
-	return false;
+	return FireDepot::fName;
 }
 
-bool FireDepot::alreadySend(Point& location) {
+Point& FireDepot::getEntrance() {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	REQUIRE(location.isInitialized(), "Point is initialized");
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (FireDepot::fTrucks[index]->getDestination() == location) {
-			return true;
-		}
-	}
-	return false;
+	return FireDepot::fEntrance;
 }
-/*
-bool FireDepot::updateDrivingTrucks(WorldMap& map) {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	REQUIRE(this->isInitialized(), "WorldMap is initialized");
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (FireDepot::fTrucks[index]->isOnWay() ) {
-			FireDepot::fTrucks[index]->drive(map);
-		}
-	}
-	return true;
-}
-
-std::vector<Point*> FireDepot::updateArrivedTrucks() {
-	REQUIRE(this->isInitialized(), "WorldMap is initialized");
-
-	std::vector<Point*> blushed;
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (FireDepot::fTrucks[index]->isArrived() ) {
-			if (FireDepot::fTrucks[index]->getPosition() == FireDepot::fEntrance) {
-				FireDepot::fTrucks[index]->setPosition(this->getLocation() );
-				FireDepot::fTrucks[index]->setDestination(this->getLocation() );
-			}
-			else {
-				Point* p = & (FireDepot::fTrucks[index]->getDestination() );
-				blushed.push_back(p);
-				FireDepot::fTrucks[index]->setDestination(FireDepot::fEntrance);
-			}
-		}
-	}
-	return blushed;
-}
-
-bool FireDepot::statusTrucksOnWay(const char* fileName) {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	std::ofstream filestream;
-	filestream.open(fileName, std::ios_base::app);
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (FireDepot::fTrucks[index]->isOnWay()) {
-			if (FireDepot::fTrucks[index]->getDestination() != this->getEntrance()) {
-				filestream << "\t" << *(FireDepot::fTrucks[index]) << " op weg naar locatie "
-						<< FireDepot::fTrucks[index]->getDestination()
-						<< " [huidige positie: " << FireDepot::fTrucks[index]->getPosition()
-						<< "]" << std::endl;
-			}
-			else {
-				filestream << "\t" << *(FireDepot::fTrucks[index]) << " keert terug naar "
-						<< FireDepot::fName << std::endl;
-			}
-		}
-		else if ( FireDepot::fTrucks[index]->isArrived() ) {
-			if (FireDepot::fTrucks[index]->getPosition() != this->getLocation() ) {
-				filestream << "\t" << *(FireDepot::fTrucks[index]) << " blust de brand op "
-						<< FireDepot::fTrucks[index]->getHouseOnFire() << std::endl;
-			}
-		}
-	}
-	filestream.close();
-	return true;
-}
-
-bool FireDepot::statusAvailableTrucks(const char* fileName) {
-	REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	std::ofstream filestream;
-	filestream.open(fileName, std::ios_base::app);
-	filestream << "\t" << *this << " heeft de volgende trucks ter beschikking: " << std::endl;
-
-	for (unsigned int index=0; index < FireDepot::fTrucks.size(); index++) {
-		if (FireDepot::fTrucks[index]->getPosition() == this->getLocation() ) {
-			filestream << "\t\t" << *(FireDepot::fTrucks[index]) << std::endl;
-		}
-	}
-	filestream.close();
-
-	return true;
-}
-*/

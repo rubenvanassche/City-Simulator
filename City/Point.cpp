@@ -15,7 +15,7 @@ bool Point::isInitialized() {
 }
 
 std::ostream& operator<< (std::ostream& stream, Point& pointobject) {
-	REQUIRE(pointobject.isInitialized(), "Point object is initialized properly");
+	REQUIRE(pointobject.isInitialized(), "Point is initialized");
 
 	stream << "(" << pointobject.fX << ", " << pointobject.fY << ")";
 	return stream;
@@ -41,28 +41,6 @@ bool operator!= (Point& p1, Point& p2) {
 	return true;
 }
 
-Point operator+ (Point& p1, Point& p2) {
-	REQUIRE(p1.isInitialized(), "Point is initialized");
-	REQUIRE(p2.isInitialized(), "Point is initialized");
-
-	int x = p1.fX + p2.fX;
-	int y = p1.fY + p2.fY;
-
-	Point p(x, y);
-	return p;
-}
-
-Point operator- (Point& p1, Point& p2) {
-	REQUIRE(p1.isInitialized(), "Point is initialized");
-	REQUIRE(p2.isInitialized(), "Point is initialized");
-
-	int x = p1.fX - p2.fX;
-	int y = p1.fY - p2.fY;
-
-	Point p(x, y);
-	return p;
-}
-
 Point::Point(int x, int y) {
 	REQUIRE(x >= 0, "x >= 0");
 	REQUIRE(y >= 0, "y >= 0");
@@ -71,8 +49,8 @@ Point::Point(int x, int y) {
 	Point::fX = x;
 	Point::fY = y;
 
-	ENSURE(this->fX == x, "X is initizialized");
-	ENSURE(this->fY == y, "Y is initialized");
+	ENSURE(this->fX == x, "X is set");
+	ENSURE(this->fY == y, "Y is set");
 	ENSURE(this->isInitialized(), "Point is initialized");
 }
 

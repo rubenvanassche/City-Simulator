@@ -31,8 +31,8 @@ Size::Size(int value) {
 	Size::fHeight = value;
 
 	ENSURE(this->isInitialized(), "Size is initialized");
-	ENSURE(this->fWidth == value, "Width is initialized");
-	ENSURE(this->fHeight == value, "Height is initialized");
+	ENSURE(this->fWidth == value, "Width is set");
+	ENSURE(this->fHeight == value, "Height is set");
 }
 
 Size::Size(int width, int height) {
@@ -44,8 +44,8 @@ Size::Size(int width, int height) {
 	Size::fHeight = height;
 
 	ENSURE(this->isInitialized(), "Size is initialized");
-	ENSURE(this->fWidth == width, "Width is initialized");
-	ENSURE(this->fHeight == height, "Height is initialized");
+	ENSURE(this->fWidth == width, "Width is set");
+	ENSURE(this->fHeight == height, "Height is set");
 }
 
 Size::Size(Size& s) {
@@ -55,8 +55,8 @@ Size::Size(Size& s) {
 	Size::fWidth = s.fWidth;
 	Size::fHeight = s.fHeight;
 
-	ENSURE(this->fWidth == s.fWidth, "Width is initialized");
-	ENSURE(this->fHeight == s.fHeight, "Height is initialized");
+	ENSURE(this->fWidth == s.fWidth, "Width is copied");
+	ENSURE(this->fHeight == s.fHeight, "Height is copied");
 	ENSURE(this->isInitialized(), "Size is initialized");
 }
 
@@ -68,7 +68,7 @@ bool Size::operator= (Size& s) {
 	Size::fHeight = s.fHeight;
 
 	ENSURE(this->fWidth == s.fWidth, "Width copied");
-	ENSURE(this->fHeight == s.fHeight, "Heigt copied");
+	ENSURE(this->fHeight == s.fHeight, "Height copied");
 	return true;
 }
 

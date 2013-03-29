@@ -44,20 +44,6 @@ bool isCrossing(Street& str, Street& astr) {
 	return false;
 }
 
-Point* findCrossPoint(Street& str, Street& astr) {
-	REQUIRE(str.isInitialized(), "Street is initialized");
-	REQUIRE(astr.isInitialized(), "Street is initialized");
-
-	for (unsigned int indexStr=0; indexStr < str.fPoints.size(); indexStr++) {
-		for (unsigned int indexAstr=0; indexAstr < astr.fPoints.size(); indexAstr++) {
-			if ( *str.fPoints[indexStr] == *astr.fPoints[indexAstr] ) {
-				return str.fPoints[indexStr];
-			}
-		}
-	}
-	return NULL;
-}
-
 bool isParallel(Street& str, Street& astr) {
 	REQUIRE(str.isInitialized(), "Street is initialized");
 	REQUIRE(astr.isInitialized(), "Street is initialized");
@@ -71,6 +57,24 @@ bool isParallel(Street& str, Street& astr) {
 	else {
 		return false;
 	}
+}
+
+Point* getCrosspoint(Street& destStr, Street& curStr) {
+	REQUIRE(destStr.isInitialized(), "Street is initialized");
+	REQUIRE(curStr.isInitialized(), "Street is initialized");
+
+	if (isCrossing(curStr, destStr) ) {	// streets are crossing
+		// then find the crosspoint
+		for (unsigned int indexStr=0; indexStr < curStr.fPoints.size(); indexStr++) {
+			for (unsigned int indexAstr=0; indexAstr < destStr.fPoints.size(); indexAstr++) {
+				if ( *(curStr.fPoints[indexStr]) == *(destStr.fPoints[indexAstr]) ) {
+					return curStr.fPoints[indexStr];
+				}
+			}
+		}
+	}
+
+	return NULL;
 }
 
 Street::Street(std::string& name, Point& start, Point& end)
@@ -143,9 +147,10 @@ Street::Street(Street& s)
 	}
 
 	ENSURE(this->isInitialized(), "Street is initialized");
-	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is set");
-	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is set");
-	ENSURE(this->fName == s.fName, "Name is set");
+	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
+	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
+	ENSURE(this->fName == s.fName, "Name is copied");
+	ENSURE(this->fPoints.size() == s.fPoints.size(), "Points is copied");
 }
 
 bool Street::operator= (Street& s) {
@@ -162,38 +167,10 @@ bool Street::operator= (Street& s) {
 		Street::fPoints[index] = p;
 	}
 
-	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is set");
-	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is set");
-	ENSURE(this->fName == s.fName, "Name is set");
-	return true;
-}
-
-bool Street::setStartPoint(Point& start) {
-	REQUIRE(start.isInitialized(), "Point is initialized");
-
-	Street::fStartPoint = start;
-
-	REQUIRE(this->isInitialized(), "Street is initialized");
-	ENSURE(this->fStartPoint == start, "Startpoint is set");
-	return true;
-}
-
-bool Street::setEndPoint(Point& end) {
-	REQUIRE(end.isInitialized(), "Point is initialized");
-	REQUIRE(this->isInitialized(), "Street is initialized");
-
-	Street::fEndPoint = end;
-
-	ENSURE(this->fEndPoint == end, "Endpoint is set");
-	return true;
-}
-
-bool Street::setName(std::string& name) {
-	REQUIRE(this->isInitialized(), "Street is initialized");
-
-	Street::fName = name;
-
-	ENSURE(this->fName == name, "Name is set");
+	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
+	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
+	ENSURE(this->fName == s.fName, "Name is copied");
+	ENSURE(this->fPoints.size() == s.fPoints.size(), "Points is copied");
 	return true;
 }
 

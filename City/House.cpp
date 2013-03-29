@@ -38,11 +38,21 @@ House::House(House& h)
 	House::fMyself = this;
 
 	ENSURE(this->isInitialized(), "House is initialized");
+	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
+	ENSURE(this->getSize() == h.getSize(), "Size is copied");
+	ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
 }
 
 bool House::operator= (House& h) {
 	REQUIRE(h.isInitialized(), "House is initialized");
 	REQUIRE(this->isInitialized(), "House is initialized");
 
+	this->setLocation(h.getLocation());
+	this->setSize(h.getSize());
+	this->setHealth(h.getHealth());
+
+	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
+	ENSURE(this->getSize() == h.getSize(), "Size is copied");
+	ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
 	return true;
 }

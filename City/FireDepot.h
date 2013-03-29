@@ -15,76 +15,73 @@
 #include <vector>
 #include "FireTruck.h"
 #include <iostream>
-#include "House.h"
+
+class FireTruck;
 
 class FireDepot: public Building {
 public:
 	bool isInitialized();
+	// checks whether the object is initialized properly
 
 	friend std::ostream& operator<< (std::ostream& stream, FireDepot& f);
+	// output operator overloading
 	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
 
-	FireDepot(std::string& name, Point& location, Size& size, Point& entrance, double health);
+	FireDepot(Point& location, Size& size, double health, std::string& name, Point& entrance);
+	// constructor
+	// REQUIRE(health >= 0, "Health is positive");
 	// REQUIRE(location.isInitialized(), "Point is initialized");
 	// REQUIRE(size.isInitialized(), "Size is initialized");
 	// REQUIRE(entrance.isInitialized(), "Point is initialized");
-	// REQUIRE(health >= 0, "Health is positive");
 	// ENSURE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fName == name, "Name is initialized");
-	// ENSURE(this->getLocation() == location, "Location is initialized");
-	// ENSURE(this->getSize() == size, "Size is initialized");
-	// ENSURE(this->fEntrance == entrance, "Entrance is initialized");
+	// ENSURE(this->fName == name, "Name is set");
+	// ENSURE(this->getLocation() == location, "Location is set");
+	// ENSURE(this->getSize() == size, "Size is set");
+	// ENSURE(this->fEntrance == entrance, "Entrance is set");
+	// ENSURE(this->getHealth() == health, "Health is set");
 
 	FireDepot(FireDepot& f);
+	// copy constructor
 	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
 	// ENSURE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fName == f.fName, "Name is initialized");
-	// ENSURE(this->getLocation() == f.getLocation, "Location is copied");
+	// ENSURE(this->fName == f.fName, "Name is copied");
+	// ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
 	// ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	// ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
-	// ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
+	// ENSURE(this->fTrucks.size() == f.fTrucks.size(), "Trucks copied");
+	// ENSURE(this->getHealth() == f.getHealth(), "Health is copied");
 
 	bool operator= (FireDepot& f);
+	// copy by assignment operator overloading
 	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 	// ENSURE(this->fName == f.fName, "Name is initialized");
-	// ENSURE(this->getLocation() == f.getLocation, "Location is copied");
+	// ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
 	// ENSURE(this->getSize() == f.getSize(), "Size is copied");
 	// ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
-	// ENSURE(this->fTrucks[index]->getName() == f.fTrucks[index]->getName(), "Vector is copied");
+	// ENSURE(this->fTrucks.size() == f.fTrucks.size(), "Trucks copied");
+	// ENSURE(this->getHealth() == f.getHealth(), "Health is copied");
 
-	bool addFireTruck(FireTruck& f);
+	bool addFireTruck(FireTruck* f);
+	// add a firetruck
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fTrucks.back()->getName() == f.getName(), "FireTruck is added");
-
-	std::string& getName();
-	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	Point& getEntrance();
-	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-
-	~FireDepot();
-	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fTrucks.empty(), "No trucks in depot")
+	// ENSURE(this->fTrucks.back()->getName() == f->getName(), "FireTruck is added");
 
 	unsigned int getNrTrucks();
+	// gets the total amount of trucks with this depot as base
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
 	unsigned int getAvailableTrucks();
+	// get the amount of trucks available in the depot
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
-	bool extinguish();
-
-	bool updateTrucks();
-
-
-	bool sendTruck(Point& location, Building* house);
+	std::string& getName();
+	// gets the name of the depot
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	// REQUIRE(location.isInitialized(), "Point is initialized");
 
-	bool alreadySend(Point& location);
+	Point& getEntrance();
+	// get the entrance of the firedepot
 	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
-	// REQUIRE(location.isInitialized(), "Point is initialized");
 
 private:
 	std::vector<FireTruck*> fTrucks;
