@@ -25,17 +25,11 @@ TEST(testFireDepot, Constructs) {
 		int y0 = std::rand() % range;
 		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
 		Point location(x0, y0);
-
-		int x1 = std::rand() % range + 1;
-		int y1 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Point entrance(x1, y1));
-		Point entrance(x1, y1);
-
 		Size size(4,4);
-
 		std::string name = "Kazern";
+		int health = std::rand() % range + 1;
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
 	}
 }
 
@@ -48,64 +42,17 @@ TEST(testFireDepot, getters) {
 		int y0 = std::rand() % range;
 		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
 		Point location(x0, y0);
-
-		int x1 = std::rand() % range + 1;
-		int y1 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Point entrance(x1, y1));
-		Point entrance(x1, y1);
-
 		Size size(4,4);
-
 		std::string name = "Kazern";
+		int health = std::rand() % range + 1;
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
-		FireDepot depot(name, location, size, entrance);
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
+		FireDepot depot(location, size, health, name, location);
+
 		EXPECT_TRUE(location == depot.getLocation());
 		EXPECT_TRUE(size == depot.getSize());
-		EXPECT_TRUE(entrance == depot.getEntrance());
+		EXPECT_TRUE(location == depot.getEntrance());
 		EXPECT_TRUE(name == depot.getName());
-	}
-}
-
-TEST(testFireDepot, setters) {
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
-		Point location(x0, y0);
-
-		int x1 = std::rand() % range + 1;
-		int y1 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Point entrance(x1, y1));
-		Point entrance(x1, y1);
-
-		Size size(4,4);
-
-		std::string name = "Kazern";
-
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
-		FireDepot depot(name, location, size, entrance);
-
-		int newX0 = std::rand() % range;
-		int newY0 = std::rand() % range;
-		int newX1 = std::rand() % range + 1;
-		int newY1 = std::rand() % range + 1;
-
-		ASSERT_NO_FATAL_FAILURE(Point newLocation(newX0, newY0) );
-		Point newLocation(newX0, newY0);
-		ASSERT_NO_FATAL_FAILURE(Point newEntrance(newX1, newY1) );
-		Point newEntrance(newX1, newY1);
-
-		EXPECT_NO_FATAL_FAILURE(depot.setLocation(newLocation));
-		depot.setLocation(newLocation);
-		EXPECT_TRUE(newLocation == depot.getLocation());
-
-		EXPECT_NO_FATAL_FAILURE(depot.setEntrance(newEntrance));
-		depot.setEntrance(newEntrance);
-		EXPECT_TRUE(newEntrance == depot.getEntrance());
 	}
 }
 
@@ -118,29 +65,25 @@ TEST(testFireDepot, trucks){
 		int y0 = std::rand() % range;
 		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
 		Point location(x0, y0);
-
-		int x1 = std::rand() % range + 1;
-		int y1 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Point entrance(x1, y1));
-		Point entrance(x1, y1);
-
 		Size size(4,4);
-
 		std::string name = "Kazern";
 		std::string truckName = "Truck";
+		int health = std::rand() % range + 1;
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
-		FireDepot depot(name, location, size, entrance);
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
+		FireDepot depot(location, size, health, name, location);
 
-		int nrOfTrucks = std::rand() % range;
-		for(int j = 0;j < nrOfTrucks;j++){
-			FireTruck truck(truckName, entrance, entrance, name);
-			ASSERT_NO_FATAL_FAILURE(depot.addFireTruck(truck));
-			depot.addFireTruck(truck);
-		}
+		ASSERT_NO_FATAL_FAILURE(FireTruck truck(truckName, &depot));
+		FireTruck truck(truckName, &depot);
 
+		EXPECT_NO_FATAL_FAILURE(depot.addFireTruck(&truck) );
+		EXPECT_EQ(1, depot.getNrTrucks());
+		EXPECT_EQ(1, depot.getAvailableTrucks());
 
-	}	
+		truck.goUp();
+		EXPECT_EQ(1, depot.getNrTrucks());
+		EXPECT_EQ(0, depot.getAvailableTrucks());
+	}
 }
 
 TEST(testFireDepot, copying) {
@@ -157,13 +100,12 @@ TEST(testFireDepot, copying) {
 		int y1 = std::rand() % range + 1;
 		ASSERT_NO_FATAL_FAILURE(Point entrance(x1, y1));
 		Point entrance(x1, y1);
-
 		Size size(4,4);
-
 		std::string name = "Kazern";
+		int health = std::rand() % range + 1;
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot(name, location, size, entrance));
-		FireDepot depot(name, location, size, entrance);
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
+		FireDepot depot(location, size, health, name, location);
 
 		EXPECT_NO_FATAL_FAILURE(FireDepot copydepot = depot);
 		FireDepot copydepot = depot;
@@ -173,5 +115,3 @@ TEST(testFireDepot, copying) {
 		EXPECT_TRUE(copydepot.getName() == depot.getName());
 	}
 }
-
-

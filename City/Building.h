@@ -84,7 +84,7 @@ public:
 	bool stopFire();
 	// stop the fire
 	// REQUIRE(this->isInitialized(), "Building is initialized");
-	// ENSURE(this->fIsBurning == true, "Building is not on fire anymore");
+	// ENSURE(this->fIsBurning == false, "Building is not on fire anymore");
 
 	double getHealth();
 	// get the health points

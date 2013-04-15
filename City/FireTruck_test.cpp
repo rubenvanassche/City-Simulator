@@ -20,75 +20,69 @@ TEST(testFireTruck, constructs) {
 	const int range = 100;
 
 	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point Pos(x0, y0));
-		Point Pos(x0, y0);
-
-			std::string name = "Wagen";
-			std::string baseName = "Base1";
-
-		EXPECT_NO_FATAL_FAILURE(FireTruck f(name ,Pos, Pos,baseName) );
-	}
-}
-
-TEST(testFireTruck, getters) {
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point Pos(x0, y0));
-		Point Pos(x0, y0);
-
 		std::string name = "Wagen";
-		std::string baseName = "Base1";
 
-		EXPECT_NO_FATAL_FAILURE(FireTruck f(name ,Pos, Pos, baseName) );
-		FireTruck f(name ,Pos, Pos, baseName);
-
-		EXPECT_TRUE(f.getBase() == baseName);
-	}
-}
-
-TEST(testFireTruck, setters) {
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
 		int x0 = std::rand() % range;
 		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point Pos(x0, y0));
-		Point Pos(x0, y0);
-
-		std::string name = "Wagen";
-		std::string baseName = "Base1";
-
-		EXPECT_NO_FATAL_FAILURE(FireTruck f(name,Pos, Pos, baseName) );
-		FireTruck f(name ,Pos, Pos, baseName);
-
-		std::string baseName2 = "Base2";
-
-		EXPECT_TRUE(f.setBase(baseName2));
-		f.setBase(baseName2);
-
-		EXPECT_TRUE(f.getBase() == baseName2);
-
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point Posh(x1, y1));
-		Point Posh(x1, y1);
-
+		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
+		Point location(x0, y0);
+		Size size(4,4);
+		std::string basename = "Kazern";
 		int health = std::rand() % range + 1;
-		Size s(2, 2);
 
-		EXPECT_NO_FATAL_FAILURE(House h(Posh, s, health));
-		House h(Posh, s, health);
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
+		FireDepot depot(location, size, health, basename, location);
 
-		EXPECT_NO_FATAL_FAILURE(f.setHouseOnFire(&h));
-		f.setHouseOnFire(&h);
+		EXPECT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
 	}
+}
+
+TEST(testFireTruck, sending) {
+	const int nrTests = 10;
+	const int range = 100;
+
+	for (int i=0; i < nrTests; i++) {
+		std::string name = "Wagen";
+
+		int x0 = std::rand() % range;
+		int y0 = std::rand() % range;
+		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
+		Point location(x0, y0);
+		Size size(4,4);
+		std::string basename = "Kazern";
+		int health = std::rand() % range + 1;
+		Point entrance(x0 +1, y0 + 1);
+
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, entrance));
+		FireDepot depot(location, size, health, basename, entrance);
+
+		ASSERT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
+		FireTruck f(name, & depot);
+
+		EXPECT_TRUE(f.isInDepot() == true);
+		ASSERT_NO_FATAL_FAILURE(Point p(y0 + 5, x0 + 5));
+		Point p(y0 + 5, x0+5);
+		Size s(2);
+		ASSERT_NO_FATAL_FAILURE(Building b(p, s, 10) );
+		Building b(p, s, 10);
+
+		f.send(&b, p);
+		EXPECT_TRUE(f.getPosition() == entrance);
+		EXPECT_TRUE(f.isInDepot() == false);
+		EXPECT_TRUE(f.isAtEntranceDepot() == true);
+		EXPECT_TRUE(f.getDestination() == p);
+
+		f.sendBack();
+		EXPECT_TRUE(f.isInDepot() == false);
+		EXPECT_TRUE(f.getDestination() == depot.getEntrance());
+		EXPECT_TRUE(f.isAtEntranceDepot() == true);
+		EXPECT_TRUE(f.isArrived() == true);
+
+		f.enterDepot();
+		EXPECT_TRUE(f.isInDepot() == true);
+		EXPECT_TRUE(f.getPosition() == depot.getLocation());
+	}
+
 }
 
 TEST(testFireTruck, copying) {
@@ -96,20 +90,25 @@ TEST(testFireTruck, copying) {
 	const int range = 100;
 
 	for (int i=0; i < nrTests; i++) {
+		std::string name = "Wagen";
+
 		int x0 = std::rand() % range;
 		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point Pos(x0, y0));
-		Point Pos(x0, y0);
+		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
+		Point location(x0, y0);
+		Size size(4,4);
+		std::string basename = "Kazern";
+		int health = std::rand() % range + 1;
+		Point entrance(x0 +1, y0 + 1);
 
-		std::string name = "Wagen";
-		std::string baseName = "Base1";
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, entrance));
+		FireDepot depot(location, size, health, basename, entrance);
 
-		EXPECT_NO_FATAL_FAILURE(FireTruck f(name ,Pos, Pos, baseName) );
-		FireTruck f(name ,Pos, Pos, baseName);
+		ASSERT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
+		FireTruck f(name, & depot);
 
 		EXPECT_NO_FATAL_FAILURE(FireTruck copytruck = f);
 		FireTruck copytruck = f;
 		EXPECT_TRUE(copytruck.getBase() == f.getBase());
 	}
 }
-

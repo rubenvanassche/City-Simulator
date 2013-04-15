@@ -22,7 +22,7 @@ TEST(testSize, validConstructs) {
 		EXPECT_NO_FATAL_FAILURE(Size s(w, h));
 	}
 }
-
+/*
 TEST(testSize, invalidConstructs) {
 	const int nrTests = 10;
 	const int range = 100;
@@ -45,7 +45,7 @@ TEST(testSize, invalidConstructs) {
 		EXPECT_DEATH(Size s(w, h), "\\w");
 	}
 }
-
+*/
 TEST(testSize, getters) {
 	const int nrTests = 10;
 	const int range = 100;
@@ -79,7 +79,7 @@ TEST(testSize, validSetters) {
 		EXPECT_EQ(newH, s.getHeight() );
 	}
 }
-
+/*
 TEST(testSize, invalidSetters) {
 	const int nrTests = 10;
 	const int range = 100;
@@ -96,7 +96,7 @@ TEST(testSize, invalidSetters) {
 		EXPECT_DEATH(p.set(newX, newY), "\\w");
 	}
 }
-
+*/
 TEST(testSize, copying) {
 	const int nrTests = 10;
 	const int range = 100;

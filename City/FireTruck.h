@@ -82,6 +82,7 @@ public:
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
 	// ENSURE(this->fBuilding == building, "Building is set");
 	// ENSURE(this->getDestination() == destination, "Destination is set");
+	// ENSURE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at the entrance");
 
 	Building* getBuilding();
 	// get the building that the firetruck has to extinguish

@@ -153,7 +153,7 @@ bool Building::stopFire() {
 
 	Building::fIsBurning = false;
 
-	ENSURE(this->fIsBurning == true, "Building is not on fire anymore");
+	ENSURE(this->fIsBurning == false, "Building is not on fire anymore");
 	return true;
 }
 

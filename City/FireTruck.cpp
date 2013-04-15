@@ -108,9 +108,11 @@ bool FireTruck::send(Building* building, Point& destination) {
 
 	FireTruck::fBuilding = building;
 	this->setDestination(destination);
+	this->setPosition(FireTruck::fBase->getEntrance());
 
 	ENSURE(this->fBuilding == building, "Building is set");
 	ENSURE(this->getDestination() == destination, "Destination is set");
+	ENSURE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at the entrance");
 	return true;
 }
 

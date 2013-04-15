@@ -161,10 +161,14 @@ bool Street::operator= (Street& s) {
 	Street::fEndPoint = s.fEndPoint;
 	Street::fName = s.fName;
 
-	for (unsigned int index=0; index < s.fPoints.size(); index++) {
+	for (unsigned int index=0; index < Street::fPoints.size(); index++) {
 		delete Street::fPoints[index];
+	}
+	Street::fPoints.clear();
+
+	for (unsigned int index=0; index < s.fPoints.size(); index++) {
 		Point* p = new Point( *(s.fPoints[index]) );
-		Street::fPoints[index] = p;
+		Street::fPoints.push_back(p);
 	}
 
 	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");

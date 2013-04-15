@@ -18,13 +18,13 @@ TEST(testVehicles, constructs) {
 	std::string carname = "bananacar";
 
 	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
+		int x0 = std::rand() % range + 1;
+		int y0 = std::rand() % range + 1;
 		ASSERT_NO_FATAL_FAILURE(Point curPos(x0, y0));
 		Point curPos(x0, y0);
 
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
+		int x1 = std::rand() % range + 1;
+		int y1 = std::rand() % range + 1;
 		ASSERT_NO_FATAL_FAILURE(Point d(x1, y1));
 		Point d(x1, y1);
 
@@ -38,13 +38,13 @@ TEST(testVehicles, getters) {
 	std::string carname = "fancy-car";
 
 	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
+		int x0 = std::rand() % range + 1;
+		int y0 = std::rand() % range + 1;
 		ASSERT_NO_FATAL_FAILURE(Point curPos(x0, y0));
 		Point curPos(x0, y0);
 
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
+		int x1 = std::rand() % range + 1;
+		int y1 = std::rand() % range + 1;
 		ASSERT_NO_FATAL_FAILURE(Point d(x1, y1));
 		Point d(x1, y1);
 
@@ -62,21 +62,39 @@ TEST(testVehicles, drive) {
 	std::string carname = "bananacar";
 
 	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
+		int x0 = std::rand() % range + 1;
+		int y0 = std::rand() % range + 1;
 		ASSERT_NO_FATAL_FAILURE(Point curPos(x0, y0));
 		Point curPos(x0, y0);
 
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point d(x1, y1));
-		Point d(x1, y1);
+		EXPECT_NO_FATAL_FAILURE(Vehicle car(carname, curPos, curPos));
+		Vehicle car(carname, curPos, curPos);
+		EXPECT_TRUE(car.isArrived() == true);
+		EXPECT_TRUE(car.isOnWay() == false);
 
-		EXPECT_NO_FATAL_FAILURE(Vehicle car(carname, curPos, d));
-		Vehicle car(carname, curPos, d);
+		car.goLeft();
+		EXPECT_EQ(x0 - 1, car.getPosition().getX() );
+		EXPECT_EQ(y0, car.getPosition().getY() );
+		EXPECT_TRUE(car.isArrived() == false);
+		EXPECT_TRUE(car.isOnWay() == true);
 
-		EXPECT_TRUE(car.isArrived() == false);	
-		EXPECT_TRUE(car.isOnWay() == true);	
+		car.goUp();
+		EXPECT_EQ(x0 - 1, car.getPosition().getX() );
+		EXPECT_EQ(y0 + 1, car.getPosition().getY() );
+		EXPECT_TRUE(car.isArrived() == false);
+		EXPECT_TRUE(car.isOnWay() == true);
+
+		car.goRight();
+		EXPECT_EQ(x0, car.getPosition().getX() );
+		EXPECT_EQ(y0 + 1, car.getPosition().getY() );
+		EXPECT_TRUE(car.isArrived() == false);
+		EXPECT_TRUE(car.isOnWay() == true);
+
+		car.goDown();
+		EXPECT_EQ(x0, car.getPosition().getX() );
+		EXPECT_EQ(y0, car.getPosition().getY() );
+		EXPECT_TRUE(car.isArrived() == true);
+		EXPECT_TRUE(car.isOnWay() == false);
 	}
 }
 
