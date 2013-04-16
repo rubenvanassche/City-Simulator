@@ -8,7 +8,6 @@
 #ifndef CHECK_H_
 #define CHECK_H_
 
-#include "City.h"
 #include "House.h"
 #include "Street.h"
 #include "FireDepot.h"
