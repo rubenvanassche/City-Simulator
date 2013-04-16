@@ -30,11 +30,11 @@ bool Output::writeToFile() {
 	std::ofstream filestream;
 	filestream.open(Output::fFileName, std::ios_base::app);
 	filestream << "Brandende huizen: " << std::endl;
-	Output::fTown->statusBurningHouses(Output::fFileName);
+	//Output::fTown->statusBurningHouses(Output::fFileName);
 	filestream << "Brandweerwagens onderweg: " << std::endl;
-	Output::fTown->statusTrucksOnWay(Output::fFileName);
+	//Output::fTown->statusTrucksOnWay(Output::fFileName);
 	filestream << "Beschikbare brandweerwagens: " << std::endl;
-	Output::fTown->statusAvailableTrucks(Output::fFileName);
+	//Output::fTown->statusAvailableTrucks(Output::fFileName);
 	filestream.close();
 
 	return true;

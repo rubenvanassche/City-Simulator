@@ -14,11 +14,12 @@
 TEST(testOut, file1) {
 	std::string file = "test.txt";
 	Out output(file);
-	Point p(2,2);
-	output << "test";
-	output << "Test" << "\n" << p << "\n" << 21;
-	output.indent();
-	output << p;
+	//Point p(2,2);
+	//output << "test";
+	//output << "Test" << "\n" << p << "\n" << 21;
+	//output.indent();
+	//output << p;
+
 }
 
 

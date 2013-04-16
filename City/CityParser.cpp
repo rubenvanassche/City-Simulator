@@ -400,7 +400,7 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 	Point entrance(xEntr, yEntr);
 	Size size(4);
 
-	FireDepot newDepot(location, size, flammability, name, entrance);
+	FireDepot newDepot(location, entrance, size, name, flammability);
 	return CityParser::fTown->add(newDepot);
 }
 

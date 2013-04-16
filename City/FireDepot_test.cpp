@@ -29,7 +29,7 @@ TEST(testFireDepot, Constructs) {
 		std::string name = "Kazern";
 		int health = std::rand() % range + 1;
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
 	}
 }
 
@@ -46,8 +46,8 @@ TEST(testFireDepot, getters) {
 		std::string name = "Kazern";
 		int health = std::rand() % range + 1;
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
-		FireDepot depot(location, size, health, name, location);
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
+		FireDepot depot(location, location, size, name, health);
 
 		EXPECT_TRUE(location == depot.getLocation());
 		EXPECT_TRUE(size == depot.getSize());
@@ -70,19 +70,19 @@ TEST(testFireDepot, trucks){
 		std::string truckName = "Truck";
 		int health = std::rand() % range + 1;
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
-		FireDepot depot(location, size, health, name, location);
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
+		FireDepot depot(location, location, size, name, health);
 
 		ASSERT_NO_FATAL_FAILURE(FireTruck truck(truckName, &depot));
 		FireTruck truck(truckName, &depot);
 
-		EXPECT_NO_FATAL_FAILURE(depot.addFireTruck(&truck) );
-		EXPECT_EQ(1, depot.getNrTrucks());
-		EXPECT_EQ(1, depot.getAvailableTrucks());
+		EXPECT_NO_FATAL_FAILURE(depot.addVehicle(&truck) );
+		EXPECT_EQ(1, depot.getNrVehicles());
+		EXPECT_EQ(1, depot.getAvailableVehicles());
 
 		truck.goUp();
-		EXPECT_EQ(1, depot.getNrTrucks());
-		EXPECT_EQ(0, depot.getAvailableTrucks());
+		EXPECT_EQ(1, depot.getNrVehicles());
+		EXPECT_EQ(0, depot.getAvailableVehicles());
 	}
 }
 
@@ -104,8 +104,8 @@ TEST(testFireDepot, copying) {
 		std::string name = "Kazern";
 		int health = std::rand() % range + 1;
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
-		FireDepot depot(location, size, health, name, location);
+		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
+		FireDepot depot(location, location, size, name, health);
 
 		EXPECT_NO_FATAL_FAILURE(FireDepot copydepot = depot);
 		FireDepot copydepot = depot;

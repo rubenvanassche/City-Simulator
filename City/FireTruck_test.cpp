@@ -30,8 +30,8 @@ TEST(testFireTruck, constructs) {
 		std::string basename = "Kazern";
 		int health = std::rand() % range + 1;
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, location));
-		FireDepot depot(location, size, health, basename, location);
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, basename, health));
+		FireDepot depot(location, location, size, basename, health);
 
 		EXPECT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
 	}
@@ -53,8 +53,8 @@ TEST(testFireTruck, sending) {
 		int health = std::rand() % range + 1;
 		Point entrance(x0 +1, y0 + 1);
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, entrance));
-		FireDepot depot(location, size, health, basename, entrance);
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, basename, health));
+		FireDepot depot(location, location, size, basename, health);
 
 		ASSERT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
 		FireTruck f(name, & depot);
@@ -101,8 +101,8 @@ TEST(testFireTruck, copying) {
 		int health = std::rand() % range + 1;
 		Point entrance(x0 +1, y0 + 1);
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, size, health, name, entrance));
-		FireDepot depot(location, size, health, basename, entrance);
+		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, basename, health));
+		FireDepot depot(location, location, size, basename, health);
 
 		ASSERT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
 		FireTruck f(name, & depot);

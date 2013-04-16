@@ -83,7 +83,7 @@ bool City::add(FireTruck& truck) {
 
 			FireTruck* f = new FireTruck(truck);
 
-			City::fFireDepots[index]->addFireTruck(f);	// add it in the corresponding firedepot
+			City::fFireDepots[index]->addVehicle(f);	// add it in the corresponding firedepot
 			City::fFireTrucks.push_back(f);
 			return true;
 		}
