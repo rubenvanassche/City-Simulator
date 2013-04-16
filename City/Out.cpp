@@ -31,10 +31,15 @@
     	Out::filestream << v;
         return *this;
     }
-    Out& Out::operator<<(std::string& v){
+    Out& Out::operator<<(const char v[]){
     	this->indentHere();
     	Out::filestream << v;
         return *this;
+    }
+    Out& Out::operator<<(Point& p) {
+    	this->indentHere();
+    	Out::filestream << p;
+    	return *this;
     }
     std::string Out::endl(){
     	return "\n";

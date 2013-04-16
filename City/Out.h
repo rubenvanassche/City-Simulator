@@ -15,6 +15,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "Point.h"
 
 class Out{
 public:
@@ -26,7 +27,8 @@ public:
     Out &operator<<(T &v);
     Out &operator<<(const int &v);
     Out &operator<<(const double &v);
-    Out &operator<<(std::string &v);
+    Out &operator<<(const char v[]);
+    Out &operator<<(Point& p);
     std::string endl();
 
     void error(std::string failure, std::string location, int line);
