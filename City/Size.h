@@ -15,44 +15,38 @@
 class Size {
 public:
 	bool isInitialized();
-	// checks whether the object is initialized properly
 
 	friend bool operator== (Size& s1, Size& s2);
-	// is equal operator overloading
-	// REQUIRE(s1.isInitialized(), "Size is initialized");
-	// REQUIRE(s2.isInitialized(), "Size is initialized");
+
+	Size();
 
 	Size(int value);
-	// constructor, construct size with width == height == value
+	// constructor
 	// REQUIRE(value > 0, "Positive value");
 	// ENSURE(this->isInitialized(), "Size is initialized");
-	// ENSURE(this->fWidth == value, "Width is set");
-	// ENSURE(this->fHeight == value, "Height is set");
+	// ENSURE(this->fWidth == value, "Width is initialized");
+	// ENSURE(this->fHeight == value, "Height is initialized");
 
 	Size(int width, int height);
-	// constructor
 	// REQUIRE(width > 0, "Positive width");
 	// REQUIRE(height > 0, "Positive height");
 	// ENSURE(this->isInitialized(), "Size is initialized");
-	// ENSURE(this->fWidth == width, "Width is set");
-	// ENSURE(this->fHeight == height, "Height is set");
+	// ENSURE(this->fWidth == width, "Width is initialized");
+	// ENSURE(this->fHeight == height, "Height is initialized");
 
 	Size(Size& s);
-	// copy constructor
 	// REQUIRE(s.isInitialized(), "Size is initialized");
-	// ENSURE(this->fWidth == s.fWidth, "Width is copied");
-	// ENSURE(this->fHeight == s.fHeight, "Height is copied");
+	// ENSURE(this->fWidth == s.fWidth, "Width is initialized");
+	// ENSURE(this->fHeight == s.fHeight, "Height is initialized");
 	// ENSURE(this->isInitialized(), "Size is initialized");
 
 	bool operator= (Size& s);
-	// copy by assignment overloading
 	// REQUIRE(s.isInitialized(), "Size is initialized");
 	// REQUIRE(this->isInitialized(), "Size is initialized");
 	// ENSURE(this->fWidth == s.fWidth, "Width copied");
 	// ENSURE(this->fHeight == s.fHeight, "Height copied");
 
 	bool set(int width, int height);
-	// change the size
 	// REQUIRE(this->isInitialized(), "Size is initialized");
 	// REQUIRE(width > 0, "Positive width");
 	// REQUIRE(height > 0, "Positive height");
@@ -60,12 +54,11 @@ public:
 	// ENSURE(this->fHeight == height, "Height is set");
 
 	unsigned int getWidth();
-	// get the width
-	// REQUIRE(this->isInitialized(), "Size is initialized");
+	// 	REQUIRE(this->isInitialized(), "Size is initialized");
 
 	unsigned int getHeight();
-	// get the height
-	// REQUIRE(this->isInitialized(), "Size is initialized");
+	// 	REQUIRE(this->isInitialized(), "Size is initialized");
+
 
 private:
 	unsigned int fWidth;

@@ -16,6 +16,7 @@
 #include "FireTruck.h"
 #include "Street.h"
 #include "House.h"
+#include "Check.h"
 #include <fstream>
 
 class City {
@@ -103,43 +104,6 @@ public:
 	// find the depot
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	bool check(House& house);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(house.isInitialized(), "House is initialized");
-
-	bool check(FireDepot& depot);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(depot.isInitialized(), "Fire Depot is initialized");
-
-	bool check(Street& street);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(street.isInitialized(), "Street is initialized");
-
-	bool checkPoint(Point& p);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Location is initialized");
-
-	bool isOnHouse(Point &p);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Location is initialized");
-
-	bool isOnStreet(Point &p);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Location is initialized");
-
-	bool checkPoint(Point& p, bool isStreet);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Location is initialized");
-
-	bool isOnFireDepot(Point &p);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Location is initialized");
-
-	void error(int level);
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	int fFailure;
-	// Sets 0 when everything is ok, 1 when something went wrong(but program can still work) and 2 when total crash
 
 private:
 	std::vector<House*> fHouses;	// all Houses
@@ -148,7 +112,7 @@ private:
 	std::vector<Street*> fHorizontals;	// all horizontal streets
 	std::vector<Street*> fVerticals;	// all vertical streets
 
-	std::vector<Point*> fUsedPoints;	// all points that have been used (must be pointers, or won't work)
+	Check checker;
 
 	City* fMyself;	// a pointer to myself for initialize checking
 };
