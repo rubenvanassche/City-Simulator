@@ -66,9 +66,9 @@ TEST_F(CheckTest, OnTopHouse){
 
 TEST_F(CheckTest, RegularFireDepot){
 	std::string name = "Station";
-	FireDepot f1(name, l5, sizeF, l5);
-	FireDepot f2(name, l1, sizeF, l1);
-	FireDepot f3(name, l4, sizeF, l4);
+	FireDepot f1(l5, sizeF, 20, name, l5);
+	FireDepot f2(l1, sizeF, 20, name, l1);
+	FireDepot f3(l4, sizeF, 20, name, l4);
 
 	EXPECT_TRUE(newCheck.go(f1));
 	EXPECT_TRUE(newCheck.go(f2));
@@ -77,8 +77,8 @@ TEST_F(CheckTest, RegularFireDepot){
 
 TEST_F(CheckTest, OnTopFireDepot){
 	std::string name = "Station";
-	FireDepot f1(name, l5, sizeF, l5);
-	FireDepot f2(name, l5, sizeF, l5);
+	FireDepot f1(l5, sizeF, 20, name, l5);
+	FireDepot f2(l5, sizeF, 20, name, l5);
 
 	EXPECT_TRUE(newCheck.go(f1));
 	EXPECT_FALSE(newCheck.go(f2));
