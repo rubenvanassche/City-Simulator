@@ -38,7 +38,7 @@ TEST(testFireTruck, constructs) {
 }
 
 TEST(testFireTruck, sending) {
-	const int nrTests = 10;
+	const int nrTests = 1;
 	const int range = 100;
 
 	for (int i=0; i < nrTests; i++) {
@@ -54,7 +54,7 @@ TEST(testFireTruck, sending) {
 		Point entrance(x0 +1, y0 + 1);
 
 		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, basename, health));
-		FireDepot depot(location, location, size, basename, health);
+		FireDepot depot(location, entrance, size, basename, health);
 
 		ASSERT_NO_FATAL_FAILURE(FireTruck f(name, &depot) );
 		FireTruck f(name, & depot);

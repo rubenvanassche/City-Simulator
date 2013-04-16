@@ -13,7 +13,7 @@
 #include "Size.h"
 #include "DesignByContract.h"
 #include "Vehicle.h"
-#include <String>
+#include <string>
 
 class Depot : public Building {
 public:
