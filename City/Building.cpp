@@ -21,6 +21,7 @@ Building::Building(Point& location, Size& size, double health)
 
 	Building::fMyself = this;
 	Building::fHealth = health;
+	Building::fHealthNormal = health;
 	Building::fIsBurning = false;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
@@ -35,6 +36,7 @@ Building::Building(Building& b)
 
 	Building::fMyself = this;
 	Building::fHealth = b.fHealth;
+	Building::fHealthNormal = b.fHealth;
 	Building::fIsBurning = b.fIsBurning;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
@@ -51,6 +53,7 @@ bool Building::operator= (Building& b) {
 	Building::fLocation = b.fLocation;
 	Building::fSize = b.fSize;
 	Building::fHealth = b.fHealth;
+	Building::fHealthNormal = b.fHealth;
 	Building::fIsBurning = b.fIsBurning;
 
 	ENSURE(this->fLocation == b.fLocation, "Location is copied");
@@ -171,6 +174,23 @@ bool Building::isDead() {
 	}
 	return false;
 }
+
+bool Building::repair(){
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	if(this->isBurning() == true){
+		return false;
+	}
+
+	if(Building::fHealth != Building::fHealthNormal){
+		Building::fHealth += 0.5;
+		return true;
+	}
+
+	return false;
+
+}
+
 
 bool Building::setSize(Size& s) {
 	REQUIRE(this->isInitialized(), "Building is initialized");

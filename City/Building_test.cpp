@@ -180,3 +180,44 @@ TEST(testBuilding, firetests) {
 //		EXPECT_DEATH(app.burningDown(), "\\w");
 	}
 }
+
+TEST(testBuilding, repair){
+	const int range = 100;
+
+	int x0 = std::rand() % range;
+	int y0 = std::rand() % range;
+	int health = 20;
+	ASSERT_NO_FATAL_FAILURE(Point Pos(x0, y0));
+	Point Pos(x0, y0);
+
+	int x1 = std::rand() % range + 1;
+	int y1 = std::rand() % range + 1;
+	ASSERT_NO_FATAL_FAILURE(Size s(x1, y1));
+	Size s(x1, y1);
+
+	EXPECT_NO_FATAL_FAILURE(Building build(Pos, s, health) );
+	Building build(Pos, s, health);
+
+	build.setFire();
+	build.burningDown();
+	build.burningDown();
+	build.burningDown();
+	EXPECT_TRUE(17 == build.getHealth());
+	EXPECT_FALSE(build.repair());
+	build.stopFire();
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(17.5 == build.getHealth());
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(20 == build.getHealth());
+	EXPECT_FALSE(build.repair());
+	build.setFire();
+	build.burningDown();
+	EXPECT_TRUE(19 == build.getHealth());
+	build.stopFire();
+	EXPECT_TRUE(build.repair());
+	EXPECT_TRUE(19.5 == build.getHealth());
+}

@@ -94,6 +94,10 @@ public:
 	// if health points <= 0
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 
+	bool repair();
+	// raises the health level with 0.5
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+
 	bool setSize(Size& s);
 	// set the size
 	// REQUIRE(this->isInitialized(), "Building is initialized");
@@ -117,6 +121,7 @@ private:
 	Point fLocation;
 	bool fIsBurning;
 	double fHealth;
+	double fHealthNormal;
 
 	Building* fMyself;
 };
