@@ -19,8 +19,7 @@ class Check {
 public:
 	Check();
 	bool isInitialized();
-	bool go(House& house);
-	bool go(FireDepot& fireDepot);
+	bool go(Building& building);
 	bool go(Street& street);
 
 	~Check();

@@ -15,32 +15,42 @@ bool Check::isInitialized() {
 	return this == Check::fMyself;
 }
 
-bool Check::go(House& house){
-	std::vector<Point*> newPoints = house.calculatePoints();
+bool Check::go(Building& building){
+	std::vector<Point*> newPoints = building.calculatePoints();
+	std::vector<Point*>::iterator it;
+
+	bool checked = true;
+
 	if(this->checkPoints(newPoints)){
 		this->addPoints(newPoints, 'b');
-		return true;
 	}else{
-		return false;
+		checked = false;
 	}
-}
-bool Check::go(FireDepot& fireDepot){
-	std::vector<Point*> newPoints = fireDepot.calculatePoints();
-	if(this->checkPoints(newPoints)){
-		this->addPoints(newPoints, 'b');
-		return true;
-	}else{
-		return false;
+
+	for(it = newPoints.begin();it != newPoints.end();it++){
+		//delete *it;
 	}
+
+
+	return checked;
 }
 bool Check::go(Street& street){
 	std::vector<Point*> newPoints = street.calculatePoints();
+	std::vector<Point*>::iterator it;
+
+	bool checked = true;
+
 	if(this->checkStreetPoints(newPoints)){
 		this->addPoints(newPoints, 's');
-		return true;
 	}else{
-		return false;
+		checked = false;
 	}
+
+	for(it = newPoints.begin();it != newPoints.end();it++){
+		//delete *it;
+	}
+
+	return checked;
 }
 
 
