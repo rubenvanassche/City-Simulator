@@ -10,18 +10,18 @@
 #include "Point.h"
 #include "DesignByContract.h"
 
-bool Point::isInitialized() {
+bool Point::isInitialized() const {
 	return this == Point::fMyself;
 }
 
-std::ostream& operator<< (std::ostream& stream, Point& pointobject) {
+std::ostream& operator<< (std::ostream& stream, const Point& pointobject) {
 	REQUIRE(pointobject.isInitialized(), "Point object is initialized properly");
 
 	stream << "(" << pointobject.fX << ", " << pointobject.fY << ")";
 	return stream;
 }
 
-bool operator== (Point& p1, Point& p2) {
+bool operator== (const Point& p1, const Point& p2) {
 	REQUIRE(p1.isInitialized(), "Point is initialized");
 	REQUIRE(p2.isInitialized(), "Point is initialized");
 
@@ -31,7 +31,7 @@ bool operator== (Point& p1, Point& p2) {
 	return false;
 }
 
-bool operator!= (Point& p1, Point& p2) {
+bool operator!= (const Point& p1, const Point& p2) {
 	REQUIRE(p1.isInitialized(), "Point is initialized");
 	REQUIRE(p2.isInitialized(), "Point is initialized");
 
@@ -41,92 +41,73 @@ bool operator!= (Point& p1, Point& p2) {
 	return true;
 }
 
-Point operator+ (Point& p1, Point& p2) {
-	REQUIRE(p1.isInitialized(), "Point is initialized");
-	REQUIRE(p2.isInitialized(), "Point is initialized");
-
-	int x = p1.fX + p2.fX;
-	int y = p1.fY + p2.fY;
-
-	Point p(x, y);
-	return p;
-}
-
-Point operator- (Point& p1, Point& p2) {
-	REQUIRE(p1.isInitialized(), "Point is initialized");
-	REQUIRE(p2.isInitialized(), "Point is initialized");
-
-	int x = p1.fX - p2.fX;
-	int y = p1.fY - p2.fY;
-
-	Point p(x, y);
-	return p;
-}
-
 Point::Point() {
-	Point::fMyself = this;
-	Point::fX = 0;
-	Point::fY = 0;
+
+	fMyself = this;
+	fX = 0;
+	fY = 0;
 
 	ENSURE(this->isInitialized(), "Point is initialized");
+	ENSURE(this->fX == 0, "Default x is 0");
+	ENSURE(this->fY == 0, "Default y is 0");
 }
 
-Point::Point(int x, int y) {
+Point::Point(const int& x, const int& y) {
 	REQUIRE(x >= 0, "x >= 0");
 	REQUIRE(y >= 0, "y >= 0");
 
-	Point::fMyself = this;
-	Point::fX = x;
-	Point::fY = y;
+	fMyself = this;
+	fX = x;
+	fY = y;
 
 	ENSURE(this->fX == x, "X is initizialized");
 	ENSURE(this->fY == y, "Y is initialized");
 	ENSURE(this->isInitialized(), "Point is initialized");
 }
 
-Point::Point(Point& p) {
+Point::Point(const Point& p) {
 	REQUIRE(p.isInitialized(), "Point is initialized");
 
-	Point::fMyself = this;
-	Point::fX = p.fX;
-	Point::fY = p.fY;
+	fMyself = this;
+	fX = p.fX;
+	fY = p.fY;
 
 	ENSURE(this->fX == p.fX, "X copied");
 	ENSURE(this->fY == p.fY, "Y copied");
 	ENSURE(this->isInitialized(), "Point is initialized");
 }
 
-bool Point::operator= (Point& p) {
+bool Point::operator= (const Point& p) {
 	REQUIRE(p.isInitialized(), "Point is initialized");
 	REQUIRE(this->isInitialized(), "Point is initialized");
 
-	Point::fX = p.fX;
-	Point::fY = p.fY;
+	fX = p.fX;
+	fY = p.fY;
 
 	ENSURE(this->fX == p.fX, "X copied");
 	ENSURE(this->fY == p.fY, "Y copied");
 	return true;
 }
 
-bool Point::set(int x, int y) {
+bool Point::set(const int& x, const int& y) {
 	REQUIRE(this->isInitialized(), "Point is initialized");
 	REQUIRE(x >= 0, "x >= 0");
 	REQUIRE(y >= 0, "y >= 0");
 
-	Point::fX = x;
-	Point::fY = y;
+	fX = x;
+	fY = y;
 
 	ENSURE(this->fX == x, "X is set");
 	ENSURE(this->fY == y, "Y is set");
 	return true;
 }
 
-unsigned int Point::getX() {
+unsigned int Point::getX() const {
 	REQUIRE(this->isInitialized(), "Point is initialized");
-	return Point::fX;
+	return fX;
 }
 
-unsigned int Point::getY() {
+unsigned int Point::getY() const {
 	REQUIRE(this->isInitialized(), "Point is initialized");
-	return Point::fY;
+	return fY;
 }

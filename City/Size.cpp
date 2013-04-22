@@ -9,11 +9,11 @@
 
 #include "Size.h"
 
-bool Size::isInitialized() {
-	return this == Size::fMyself;
+bool Size::isInitialized() const {
+	return this == fMyself;
 }
 
-bool operator== (Size& s1, Size& s2) {
+bool operator== (const Size& s1, const Size& s2) {
 	REQUIRE(s1.isInitialized(), "Size is initialized");
 	REQUIRE(s2.isInitialized(), "Size is initialized");
 
@@ -24,81 +24,83 @@ bool operator== (Size& s1, Size& s2) {
 }
 
 Size::Size() {
-	Size::fMyself = this;
-	Size::fWidth = 0;
-	Size::fHeight = 0;
+	fMyself = this;
+	fWidth = 1;
+	fHeight = 1;
 
 	ENSURE(this->isInitialized(), "Size is initialized");
+	ENSURE(this->fWidth == 1, "Default width is 1");
+	ENSURE(this->fHeight == 1, "Default height is 1");
 }
 
-Size::Size(int value) {
+Size::Size(const int& value) {
 	REQUIRE(value > 0, "Positive value");
 
-	Size::fMyself = this;
-	Size::fWidth = value;
-	Size::fHeight = value;
+	fMyself = this;
+	fWidth = value;
+	fHeight = value;
 
 	ENSURE(this->isInitialized(), "Size is initialized");
 	ENSURE(this->fWidth == value, "Width is initialized");
 	ENSURE(this->fHeight == value, "Height is initialized");
 }
 
-Size::Size(int width, int height) {
+Size::Size(const int& width, const int& height) {
 	REQUIRE(width > 0, "Positive width");
 	REQUIRE(height > 0, "Positive height");
 
-	Size::fMyself = this;
-	Size::fWidth = width;
-	Size::fHeight = height;
+	fMyself = this;
+	fWidth = width;
+	fHeight = height;
 
 	ENSURE(this->isInitialized(), "Size is initialized");
 	ENSURE(this->fWidth == width, "Width is initialized");
 	ENSURE(this->fHeight == height, "Height is initialized");
 }
 
-Size::Size(Size& s) {
+Size::Size(const Size& s) {
 	REQUIRE(s.isInitialized(), "Size is initialized");
 
-	Size::fMyself = this;
-	Size::fWidth = s.fWidth;
-	Size::fHeight = s.fHeight;
+	fMyself = this;
+	fWidth = s.fWidth;
+	fHeight = s.fHeight;
 
 	ENSURE(this->fWidth == s.fWidth, "Width is initialized");
 	ENSURE(this->fHeight == s.fHeight, "Height is initialized");
 	ENSURE(this->isInitialized(), "Size is initialized");
 }
 
-bool Size::operator= (Size& s) {
+bool Size::operator= (const Size& s) {
 	REQUIRE(s.isInitialized(), "Size is initialized");
 	REQUIRE(this->isInitialized(), "Size is initialized");
 
-	Size::fWidth = s.fWidth;
-	Size::fHeight = s.fHeight;
+	fWidth = s.fWidth;
+	fHeight = s.fHeight;
 
 	ENSURE(this->fWidth == s.fWidth, "Width copied");
 	ENSURE(this->fHeight == s.fHeight, "Heigt copied");
 	return true;
 }
 
-bool Size::set(int width, int height) {
+bool Size::set(const int& width, const int& height) {
 	REQUIRE(this->isInitialized(), "Size is initialized");
 	REQUIRE(width > 0, "Positive width");
 	REQUIRE(height > 0, "Positive height");
 
-	Size::fWidth = width;
-	Size::fHeight = height;
+	fWidth = width;
+	fHeight = height;
 
 	ENSURE(this->fWidth == width, "Width is set");
 	ENSURE(this->fHeight == height, "Height is set");
 	return true;
 }
 
-unsigned int Size::getWidth() {
+unsigned int Size::getWidth() const {
 	REQUIRE(this->isInitialized(), "Size is initialized");
-	return Size::fWidth;
+	return fWidth;
 }
 
-unsigned int Size::getHeight() {
+unsigned int Size::getHeight() const {
 	REQUIRE(this->isInitialized(), "Size is initialized");
-	return Size::fHeight;
+	return fHeight;
 }

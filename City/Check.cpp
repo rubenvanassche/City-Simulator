@@ -28,9 +28,8 @@ bool Check::go(Building& building){
 	}
 
 	for(it = newPoints.begin();it != newPoints.end();it++){
-		//delete *it;
+		delete *it;
 	}
-
 
 	return checked;
 }
@@ -47,7 +46,7 @@ bool Check::go(Street& street){
 	}
 
 	for(it = newPoints.begin();it != newPoints.end();it++){
-		//delete *it;
+		delete *it;
 	}
 
 	return checked;

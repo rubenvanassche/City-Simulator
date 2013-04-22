@@ -12,114 +12,93 @@
 #include "gtest/gtest.h"
 #include "Street.h"
 #include "Point.h"
-#include <cstdlib>
 
-TEST(testStreets, constructs) {
-	const int nrTests = 10;
-	const int range = 100;
-	std::string streetname = "HelloWorld";
+TEST(Street, constructs) {
+	EXPECT_NO_FATAL_FAILURE(Street horizontal("Horizontal", Point(0, 5), Point(10, 5)));
+	EXPECT_NO_FATAL_FAILURE(Street vertical("Vertical", Point(1, 3), Point(1, 7)));
+	EXPECT_NO_FATAL_FAILURE(Street irregular("Irregular", Point(0, 0), Point(10, 10)));
 
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
+	//EXPECT_DEATH(Street magic("magic", Point(-5, 0), Point(-3, 5)), "\\w");
 
-		ASSERT_NO_FATAL_FAILURE(Point p(x0, y0));
-		Point p(x0, y0);
-		ASSERT_NO_FATAL_FAILURE(Point q(x1, y0));
-		Point q(x1, y0);
-		ASSERT_NO_FATAL_FAILURE(Point p(x0, y1));
-		Point r(x0, y1);
-		ASSERT_NO_FATAL_FAILURE(Point q(x1, y1));
-		Point s(x1, y1);
-
-		EXPECT_NO_FATAL_FAILURE(Street strasse(streetname, p, q));
-		Street strasse(streetname, p, q);
-		EXPECT_TRUE(strasse.isHorizontal() == true);
-
-		EXPECT_NO_FATAL_FAILURE(Street str(streetname, p, r));
-		Street str(streetname, p, r);
-		EXPECT_TRUE(str.isVertical() == true);
-	}
+	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
+	EXPECT_NO_FATAL_FAILURE(Street copy = horizontal);
 }
 
-TEST(testStreets, getters) {
-	const int nrTests = 10;
-	const int range = 100;
-	std::string streetname = "HelloWorld";
+TEST(Street, getters) {
+	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
+	Street vertical("Vertical", Point(1, 3), Point(1, 7));
+	Street irregular("Irregular", Point(0, 0), Point(5, 10));
 
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
-
-		ASSERT_NO_FATAL_FAILURE(Point p(x0, y0));
-		Point p(x0, y0);
-		ASSERT_NO_FATAL_FAILURE(Point q(x1, y0));
-		Point q(x1, y0);
-		ASSERT_NO_FATAL_FAILURE(Point p(x0, y1));
-		Point r(x0, y1);
-		ASSERT_NO_FATAL_FAILURE(Point q(x1, y1));
-		Point s(x1, y1);
-
-		ASSERT_NO_FATAL_FAILURE(Street str(streetname, p, q));
-		Street str(streetname, p, q);
-		EXPECT_TRUE(p == str.getStartPoint());
-		EXPECT_TRUE(q == str.getEndPoint() );
-		EXPECT_TRUE(streetname == str.getName());
-	}
+	EXPECT_EQ(Point(0, 5), horizontal.getStartPoint());
+	EXPECT_EQ(Point(10, 5), horizontal.getEndPoint());
+	EXPECT_EQ("Horizontal", horizontal.getName());
+	EXPECT_EQ(Point(1, 3), vertical.getStartPoint());
+	EXPECT_EQ(Point(1, 7), vertical.getEndPoint());
+	EXPECT_EQ("Vertical", vertical.getName());
+	EXPECT_EQ(Point(0, 0), irregular.getStartPoint());
+	EXPECT_EQ(Point(5, 10), irregular.getEndPoint());
+	EXPECT_EQ("Irregular", irregular.getName());
 }
 
-TEST(testStreets, copying) {
-	const int nrTests = 10;
-	const int range = 100;
-	std::string streetname = "HelloWorld";
-	std::string newName = "Cstreet";
 
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		int x1 = std::rand() % range;
-		int y1 = std::rand() % range;
+TEST(Street, vertical_horizontal) {
+	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
+	Street vertical("Vertical", Point(1, 3), Point(1, 7));
+	Street irregular("Irregular", Point(0, 0), Point(5, 10));
 
-		ASSERT_NO_FATAL_FAILURE(Point p(x0, y0));
-		Point p(x0, y0);
-		ASSERT_NO_FATAL_FAILURE(Point q(x1, y0));
-		Point q(x1, y0);
-		ASSERT_NO_FATAL_FAILURE(Point p(x0, y1));
-		Point r(x0, y1);
-		ASSERT_NO_FATAL_FAILURE(Point q(x1, y1));
-		Point s(x1, y1);
+	EXPECT_TRUE(horizontal.isHorizontal());
+	EXPECT_FALSE(horizontal.isVertical());
+	EXPECT_TRUE(vertical.isVertical());
+	EXPECT_FALSE(vertical.isHorizontal());
+	EXPECT_FALSE(irregular.isHorizontal());
+	EXPECT_FALSE(irregular.isVertical());
+}
 
-		ASSERT_NO_FATAL_FAILURE(Street str(streetname, p, q));
-		Street str(streetname, p, q);
+TEST(Street, element) {
+	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
+	Street vertical("Vertical", Point(1, 3), Point(1, 7));
+	Street irregular("Irregular", Point(0, 0), Point(5, 10));
 
-		EXPECT_NO_FATAL_FAILURE(Street copycat = str);
-		Street copycat = str;
-		EXPECT_TRUE(copycat.getStartPoint() == str.getStartPoint());
-		EXPECT_TRUE(copycat.getEndPoint() == str.getEndPoint());
-		EXPECT_TRUE(copycat.getName() == str.getName());
+	EXPECT_TRUE(horizontal.isElement(Point(3, 5)));
+	EXPECT_FALSE(horizontal.isElement(Point(1, 2)));
+	EXPECT_FALSE(vertical.isElement(Point(3, 5)));
+	EXPECT_TRUE(vertical.isElement(Point(1, 3)));
 
-		int newX0 = std::rand() % range;
-		int newY0 = std::rand() % range;
-		int newX1 = std::rand() % range;
-		int newY1 = std::rand() % range;
+	//EXPECT_DEATH(irregular.isElement(Point(3, 5)), "\\w");
+	//EXPECT_DEATH(irregular.isElement(Point(1, 2)), "\\w");
+}
 
-		ASSERT_NO_FATAL_FAILURE(Point newP(newX0, newY0) );
-		Point newP(newX0, newY0);
-		ASSERT_NO_FATAL_FAILURE(Point newQ(newX1, newY0) );
-		Point newQ(newX1, newY0);
+TEST(Street, crossing_parallel) {
+	Street horizontal0("Horizontal0", Point(0, 3), Point(5, 3));
+	Street horizontal1("Horizontal1", Point(5, 2), Point(10, 2));
+	Street vertical0("Vertical0", Point(0, 0), Point(0, 5));
+	Street vertical1("Vertical1", Point(5, 0), Point(5, 5));
 
-		ASSERT_NO_FATAL_FAILURE(Street cStr(newName, newP, newQ) );
-		Street cStr(newName, newP, newQ);
+	EXPECT_TRUE(horizontal0.isParallel(horizontal1));
+	EXPECT_FALSE(horizontal0.isParallel(vertical0));
+	EXPECT_FALSE(horizontal0.isParallel(vertical1));
 
-		EXPECT_NO_FATAL_FAILURE(str = cStr);
-		str = cStr;
+	EXPECT_TRUE(horizontal1.isParallel(horizontal0));
+	EXPECT_FALSE(horizontal1.isParallel(vertical0));
+	EXPECT_FALSE(horizontal1.isParallel(vertical1));
 
-		EXPECT_TRUE(cStr.getStartPoint() == str.getStartPoint());
-		EXPECT_TRUE(cStr.getEndPoint() == str.getEndPoint());
-		EXPECT_TRUE(cStr.getName() == str.getName());
-	}
+	EXPECT_FALSE(vertical0.isParallel(horizontal1));
+	EXPECT_FALSE(vertical0.isParallel(horizontal0));
+	EXPECT_TRUE(vertical0.isParallel(vertical1));
+
+	EXPECT_FALSE(vertical1.isParallel(horizontal1));
+	EXPECT_FALSE(vertical1.isParallel(horizontal0));
+	EXPECT_TRUE(vertical1.isParallel(vertical0));
+
+	EXPECT_EQ(0, vertical0.getCrosspoint(horizontal0)->getX());
+	EXPECT_EQ(3, vertical0.getCrosspoint(horizontal0)->getY());
+	EXPECT_EQ(0, horizontal0.getCrosspoint(vertical0)->getX());
+	EXPECT_EQ(3, horizontal0.getCrosspoint(vertical0)->getY());
+	EXPECT_EQ(NULL, vertical0.getCrosspoint(vertical1));
+
+	EXPECT_EQ(5, vertical1.getCrosspoint(horizontal0)->getX());
+	EXPECT_EQ(3, vertical1.getCrosspoint(horizontal0)->getY());
+	EXPECT_EQ(5, vertical1.getCrosspoint(horizontal1)->getX());
+	EXPECT_EQ(2, vertical1.getCrosspoint(horizontal1)->getY());
+	EXPECT_EQ(NULL, vertical1.getCrosspoint(vertical0));
 }

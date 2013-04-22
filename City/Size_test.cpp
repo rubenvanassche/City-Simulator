@@ -10,114 +10,50 @@
 
 #include "gtest/gtest.h"
 #include "Size.h"
-#include <cstdlib>
 
-TEST(testSize, validConstructs) {
-	const int nrTests = 10;
-	const int range = 100;
+TEST(Size, constructs) {
+	EXPECT_NO_FATAL_FAILURE(Size Default);
+	EXPECT_NO_FATAL_FAILURE(Size ones(1, 1));
+	EXPECT_NO_FATAL_FAILURE(Size positive(5, 2));
 
-	for (int i=0; i < nrTests; i++) {
-		int w = std::rand() % range + 1;
-		int h = std::rand() % range + 1;
-		EXPECT_NO_FATAL_FAILURE(Size s(w, h));
-	}
-}
-/*
-TEST(testSize, invalidConstructs) {
-	const int nrTests = 10;
-	const int range = 100;
+	//EXPECT_DEATH(Size zero(0, 0), "\\w");
+	//EXPECT_DEATH(Size negative(-1, -3), "\\w");
+	//EXPECT_DEATH(Size wNegative(-1, 3), "\\w");
+	//EXPECT_DEATH(Size hNegative(1, -3), "\\w");
 
-	for (int i=0; i < nrTests; i++) {
-		int w = std::rand() % range + 1;
-		int h = -1 * (std::rand() % range + 1);
-		EXPECT_DEATH(Size s(w, h), "\\w");
-	}
-
-	for (int i=0; i < nrTests; i++) {
-		int w = -1 * (std::rand() % range + 1);
-		int h = -1 * (std::rand() % range + 1);
-		EXPECT_DEATH(Size s(w, h), "\\w");
-	}
-
-	for (int i=0; i < nrTests; i++) {
-		int w = -1 * (std::rand() % range + 1);
-		int h = std::rand() % range + 1;
-		EXPECT_DEATH(Size s(w, h), "\\w");
-	}
-}
-*/
-TEST(testSize, getters) {
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int w = std::rand() % range + 1;
-		int h = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Size s(w, h));
-		Size s(w, h);
-
-		EXPECT_EQ(w, s.getWidth());
-		EXPECT_EQ(h, s.getHeight());
-	}
+	Size positive(5, 2);
+	EXPECT_NO_FATAL_FAILURE(Size copy = positive);
 }
 
-TEST(testSize, validSetters) {
-	const int nrTests = 10;
-	const int range = 100;
+TEST(Size, setters_getters) {
+	Size Default;
+	Size positive0(1, 3);
+	Size positive1(5, 2);
 
-	for (int i=0; i < nrTests; i++) {
-		int w = std::rand() % range + 1;
-		int h = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Size s(w, h));
-		Size s(w, h);
+	EXPECT_EQ(1, Default.getWidth());
+	EXPECT_EQ(1, Default.getHeight());
+	EXPECT_EQ(1, positive0.getWidth());
+	EXPECT_EQ(3, positive0.getHeight());
+	EXPECT_EQ(5, positive1.getWidth());
+	EXPECT_EQ(2, positive1.getHeight());
 
-		int newW = std::rand() % range + 1;
-		int newH = std::rand() % range + 1;
+	EXPECT_NO_FATAL_FAILURE(Default.set(5, 3));
+	EXPECT_EQ(5, Default.getWidth());
+	EXPECT_EQ(3, Default.getHeight());
 
-		EXPECT_NO_FATAL_FAILURE(s.set(newW, newH) );
-		EXPECT_EQ(newW, s.getWidth() );
-		EXPECT_EQ(newH, s.getHeight() );
-	}
+	//EXPECT_DEATH(Default.set(-5, -3), "\\w");
+	//EXPECT_DEATH(Default.set(-5, 3), "\\w");
+	//EXPECT_DEATH(Default.set(5, -3), "\\w");
 }
-/*
-TEST(testSize, invalidSetters) {
-	const int nrTests = 10;
-	const int range = 100;
 
-	for (int i=0; i < nrTests; i++) {
-		int x = std::rand() % range + 1;
-		int y = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Size p(x, y));
-		Size p(x, y);
+TEST(Size, operators) {
+	Size Default;
+	Size ones(1, 1);
+	Size positive0(3, 2);
+	Size positive1(5, 1);
 
-		int newX = -1 * (std::rand() % range + 1);
-		int newY = -1 * (std::rand() % range + 1);
-
-		EXPECT_DEATH(p.set(newX, newY), "\\w");
-	}
-}
-*/
-TEST(testSize, copying) {
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range + 1;
-		int y0 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Size p(x0, y0));
-		Size p(x0, y0);
-
-		EXPECT_NO_FATAL_FAILURE(Size q = p);
-		Size q = p;
-
-		EXPECT_TRUE(q == p);
-
-		int x1 = std::rand() % range + 1;
-		int y1 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Size r(x1, y1) );
-		Size r(x1, y1);
-
-		EXPECT_NO_FATAL_FAILURE(r = p);
-		EXPECT_TRUE(r == p);
-	}
+	EXPECT_TRUE(Default == ones);
+	EXPECT_FALSE(positive0 == positive1);
+	EXPECT_NO_FATAL_FAILURE(positive0 = positive1);
+	EXPECT_TRUE(positive0 == positive1);
 }

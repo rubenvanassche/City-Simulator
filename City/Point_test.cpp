@@ -9,93 +9,53 @@
 
 #include "gtest/gtest.h"
 #include "Point.h"
-#include <sstream>
-#include <cstdlib>
 
-TEST(testPoint, validConstructs){
-	const int nrTests = 10;
-	const int range = 100;
+TEST(Point, construct){
+	EXPECT_NO_FATAL_FAILURE(Point Default);
+	EXPECT_NO_FATAL_FAILURE(Point zero(0, 0));
+	EXPECT_NO_FATAL_FAILURE(Point positive(1, 3));
 
-	for (int i=0; i < nrTests; i++) {
-		int x = std::rand() % range;
-		int y = std::rand() % range;
-		EXPECT_NO_FATAL_FAILURE(Point p(x, y));
-	}
-}
-/*
-TEST(testPoint, invalidConstructs) {
-	const int nrTests = 10;
-	const int range = 100;
+	//EXPECT_DEATH(Point negative(-1, -3), "\\w");
+	//EXPECT_DEATH(Point xNegative(-1, 3), "\\w");
+	//EXPECT_DEATH(Point yNegative(1, -3), "\\w");
 
-	for (int i=0; i < nrTests; i++) {
-		int x = std::rand() % range;
-		int y = -1 * (std::rand() % range);
-		EXPECT_DEATH(Point p(x, y), "\\w");
-	}
-
-	for (int i=0; i < nrTests; i++) {
-		int x = -1 * (std::rand() % range);
-		int y = -1 * (std::rand() % range);
-		EXPECT_DEATH(Point p(x, y), "\\w");
-	}
-
-	for (int i=0; i < nrTests; i++) {
-		int x = -1 * (std::rand() % range);
-		int y = std::rand() % range;
-		EXPECT_DEATH(Point p(x, y), "\\w");
-	}
-}
-*/
-
-TEST(testPoint, getters){
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int x = std::rand() % range;
-		int y = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point p(x, y));
-		Point p(x, y);
-
-		EXPECT_EQ(x, p.getX());
-		EXPECT_EQ(y, p.getY());
-	}
+	Point positive(1, 3);
+	EXPECT_NO_FATAL_FAILURE(Point copy = positive);
 }
 
+TEST(Point, setters_getters) {
+	Point Default;
+	Point zero(0, 0);
+	Point positive0(1, 3);
+	Point positive1(5, 2);
 
-TEST(testPoint, validSetters){
-	const int nrTests = 10;
-	const int range = 100;
+	EXPECT_EQ(0, Default.getX());
+	EXPECT_EQ(0, Default.getY());
+	EXPECT_EQ(0, zero.getX());
+	EXPECT_EQ(0, zero.getY());
+	EXPECT_EQ(1, positive0.getX());
+	EXPECT_EQ(3, positive0.getY());
+	EXPECT_EQ(5, positive1.getX());
+	EXPECT_EQ(2, positive1.getY());
 
-	for (int i=0; i < nrTests; i++) {
-		int x = std::rand() % range;
-		int y = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point p(x, y));
-		Point p(x, y);
+	EXPECT_NO_FATAL_FAILURE(Default.set(5, 3));
+	EXPECT_EQ(5, Default.getX());
+	EXPECT_EQ(3, Default.getY());
 
-		int newX = std::rand() % range;
-		int newY = std::rand() % range;
-
-		EXPECT_NO_FATAL_FAILURE(p.set(newX, newY) );
-		EXPECT_EQ(newX, p.getX() );
-		EXPECT_EQ(newY, p.getY() );
-	}
+	//EXPECT_DEATH(Default.set(-5, 3), "\\w");
+	//EXPECT_DEATH(Default.set(5, -3), "\\w");
+	//EXPECT_DEATH(Default.set(-5, -3), "\\w");
 }
-/*
-TEST(testPoint, invalidSetters) {
-	const int nrTests = 10;
-	const int range = 100;
 
-	for (int i=0; i < nrTests; i++) {
-		int x = std::rand() % range;
-		int y = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point p(x, y));
-		Point p(x, y);
+TEST(Point, operators) {
+	Point pointDefault;
+	Point pointZero(0, 0);
+	Point pointPos0(1, 3);
+	Point pointPos1(5, 2);
 
-		int newX = -1 * (std::rand() % range);
-		int newY = -1 * (std::rand() % range);
-
-		EXPECT_DEATH(p.set(newX, newY), "\\w");
-	}
+	EXPECT_TRUE(pointDefault == pointZero);
+	EXPECT_FALSE(pointPos0 == pointPos1);
+	EXPECT_TRUE(pointPos0 != pointPos1);
+	EXPECT_NO_FATAL_FAILURE(pointPos0 = pointPos1);
+	EXPECT_TRUE(pointPos0 == pointPos1);
 }
-*/

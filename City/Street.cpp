@@ -9,11 +9,11 @@
 
 #include "Street.h"
 
-bool Street::isInitialized() {
-	return Street::fMyself == this;
+bool Street::isInitialized() const {
+	return fMyself == this;
 }
 
-bool operator== (Street& s, Street& p) {
+bool operator== (const Street& s, const Street& p) {
 	REQUIRE(s.isInitialized(), "Street is initialized");
 	REQUIRE(p.isInitialized(), "Street is initialized");
 
@@ -23,79 +23,33 @@ bool operator== (Street& s, Street& p) {
 	return false;
 }
 
-std::ostream& operator<< (std::ostream& stream, Street& s) {
+std::ostream& operator<< (std::ostream& stream, const Street& s) {
 	REQUIRE(s.isInitialized(), "Street is initialized");
 
 	stream << s.fName << " [van " << s.fStartPoint << " naar " <<  s.fEndPoint << "]";
 	return stream;
 }
 
-bool isCrossing(Street& str, Street& astr) {
-	REQUIRE(str.isInitialized(), "Street is initialized");
-	REQUIRE(astr.isInitialized(), "Street is initialized");
-
-	for (unsigned int indexStr=0; indexStr < str.fPoints.size(); indexStr++) {
-		for (unsigned int indexAstr=0; indexAstr < astr.fPoints.size(); indexAstr++) {
-			if ( *str.fPoints[indexStr] == *astr.fPoints[indexAstr] ) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-bool isParallel(Street& str, Street& astr) {
-	REQUIRE(str.isInitialized(), "Street is initialized");
-	REQUIRE(astr.isInitialized(), "Street is initialized");
-
-	if (str.isVertical() && astr.isVertical() ) {
-		return true;
-	}
-	else if (str.isHorizontal() && astr.isHorizontal() ) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-Point* getCrosspoint(Street& destStr, Street& curStr) {
-	REQUIRE(destStr.isInitialized(), "Street is initialized");
-	REQUIRE(curStr.isInitialized(), "Street is initialized");
-
-	if (isCrossing(curStr, destStr) ) {	// streets are crossing
-		// then find the crosspoint
-		for (unsigned int indexStr=0; indexStr < curStr.fPoints.size(); indexStr++) {
-			for (unsigned int indexAstr=0; indexAstr < destStr.fPoints.size(); indexAstr++) {
-				if ( *(curStr.fPoints[indexStr]) == *(destStr.fPoints[indexAstr]) ) {
-					return curStr.fPoints[indexStr];
-				}
-			}
-		}
-	}
-
-	return NULL;
-}
-
-Street::Street(std::string& name, Point& start, Point& end)
-	: fStartPoint(start), fEndPoint(end) {
+Street::Street(const std::string& name, const Point& start, const Point& end) {
 	REQUIRE(start.isInitialized(), "Startpoint is initialized");
 	REQUIRE(end.isInitialized(), "Endpoint is initialized");
 
-	Street::fMyself = this;
-	Street::fName = name;
+	fStartPoint = start;
+	fEndPoint = end;
+	fMyself = this;
+	fName = name;
 
 	if (start.getX() == end.getX() ) {
 		if (start.getY() < end.getY() ) {
 			for (unsigned int y=start.getY(); y <= end.getY(); y++) {
 				Point* p = new Point(start.getX(), y);
-				Street::fPoints.push_back(p);
+				fPoints.push_back(p);
 			}
 		}
 		else {
 			for (unsigned int y=end.getY(); y <= start.getY(); y++) {
 				Point* p = new Point(start.getX(), y);
-				Street::fPoints.push_back(p);
+				fPoints.push_back(p);
 			}
 		}
 	}
@@ -103,13 +57,13 @@ Street::Street(std::string& name, Point& start, Point& end)
 		if (start.getX() < end.getX() ) {
 			for (unsigned int x=start.getX(); x <= end.getX(); x++) {
 				Point* p = new Point(x, start.getY());
-				Street::fPoints.push_back(p);
+				fPoints.push_back(p);
 			}
 		}
 		else {
 			for (unsigned int x=end.getX(); x <= start.getX(); x++) {
 				Point* p = new Point(x, start.getY() );
-				Street::fPoints.push_back(p);
+				fPoints.push_back(p);
 			}
 		}
 	}
@@ -126,24 +80,25 @@ Street::Street(std::string& name, Point& start, Point& end)
 Street::~Street() {
 	REQUIRE(this->isInitialized(), "Street is initialized");
 
-	for (unsigned int index=0; index < Street::fPoints.size(); index++) {
-		delete Street::fPoints[index];
+	for (unsigned int index=0; index < fPoints.size(); index++) {
+		delete fPoints[index];
 	}
-	Street::fPoints.clear();
+	fPoints.clear();
 
 	ENSURE(this->fPoints.empty(), "Points are empty'd");
 }
 
-Street::Street(Street& s)
-	: fStartPoint(s.fStartPoint), fEndPoint(s.fEndPoint) {
+Street::Street(const Street& s) {
 	REQUIRE(s.isInitialized(), "Street is initialized");
 
-	Street::fMyself = this;
-	Street::fName = s.fName;
+	fStartPoint = s.fStartPoint;
+	fEndPoint = s.fEndPoint;
+	fMyself = this;
+	fName = s.fName;
 
 	for (unsigned int index=0; index < s.fPoints.size(); index++) {
 		Point* p = new Point( *(s.fPoints[index]) );
-		Street::fPoints.push_back(p);
+		fPoints.push_back(p);
 	}
 
 	ENSURE(this->isInitialized(), "Street is initialized");
@@ -153,22 +108,22 @@ Street::Street(Street& s)
 	ENSURE(this->fPoints.size() == s.fPoints.size(), "Points is copied");
 }
 
-bool Street::operator= (Street& s) {
+bool Street::operator= (const Street& s) {
 	REQUIRE(s.isInitialized(), "Street is initialized");
 	REQUIRE(this->isInitialized(), "Street is initialized");
 
-	Street::fStartPoint = s.fStartPoint;
-	Street::fEndPoint = s.fEndPoint;
-	Street::fName = s.fName;
+	fStartPoint = s.fStartPoint;
+	fEndPoint = s.fEndPoint;
+	fName = s.fName;
 
 	for (unsigned int index=0; index < Street::fPoints.size(); index++) {
-		delete Street::fPoints[index];
+		delete fPoints[index];
 	}
-	Street::fPoints.clear();
+	fPoints.clear();
 
 	for (unsigned int index=0; index < s.fPoints.size(); index++) {
 		Point* p = new Point( *(s.fPoints[index]) );
-		Street::fPoints.push_back(p);
+		fPoints.push_back(p);
 	}
 
 	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
@@ -178,49 +133,109 @@ bool Street::operator= (Street& s) {
 	return true;
 }
 
-Point& Street::getStartPoint() {
+Point Street::getStartPoint() const {
 	REQUIRE(this->isInitialized(), "Street is initialized");
-	return Street::fStartPoint;
+	return fStartPoint;
 }
 
-Point& Street::getEndPoint() {
+Point Street::getEndPoint() const {
 	REQUIRE(this->isInitialized(), "Street is initialized");
-	return Street::fEndPoint;
+	return fEndPoint;
 }
 
-std::string& Street::getName() {
+std::string Street::getName() const {
 	REQUIRE(this->isInitialized(), "Street is initialized");
-	return Street::fName;
+	return fName;
 }
 
-bool Street::isVertical() {
+bool Street::isVertical() const {
 	REQUIRE(this->isInitialized(), "Street is initialized");
 
-	if (Street::fStartPoint.getX() == Street::fEndPoint.getX() ) {
+	if (fStartPoint.getX() == fEndPoint.getX() ) {
 		return true;
 	}
 	return false;
 }
 
-bool Street::isHorizontal() {
+bool Street::isHorizontal() const {
 	REQUIRE(this->isInitialized(), "Street is initialized");
 
-	if (Street::fStartPoint.getY() == Street::fEndPoint.getY() ) {
+	if (fStartPoint.getY() == fEndPoint.getY() ) {
 		return true;
 	}
 	return false;
 }
 
-bool Street::isElement(Point& p) {
+bool Street::isElement(const Point& p) {
 	REQUIRE(this->isInitialized(), "Street is initialized");
 	REQUIRE(p.isInitialized(), "Point is initialized");
+	REQUIRE((this->isVertical()) || (this->isHorizontal()), "Street is horizontal or vertical");
 
-	for (unsigned int index=0; index < Street::fPoints.size(); index++) {
-		if ( *(Street::fPoints[index]) == p ) {
+	for (unsigned int index=0; index < fPoints.size(); index++) {
+		if ( *(fPoints[index]) == p ) {
 			return true;
 		}
 	}
 	return false;
+}
+
+bool Street::isCrossing(Street& str) {
+	REQUIRE(str.isInitialized(), "Street is initialized");
+
+	if (str.isVertical()) {
+		if (this->isVertical()) {
+			return false;	// parallel
+		}
+		else {
+			for (unsigned int index = 0; index < fPoints.size(); index++) {
+				if (str.isElement(Point( *(fPoints[index]) ) ) ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
+	else {
+		if (this->isHorizontal()) {
+			return false;	// parallel
+		}
+		else {
+			for (unsigned int index = 0; index < fPoints.size(); index++) {
+				if (str.isElement(Point( *(fPoints[index]) ) ) ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
+}
+
+bool Street::isParallel(const Street& str) {
+	REQUIRE(str.isInitialized(), "Street is initialized");
+
+	if (str.isVertical() && this->isVertical() ) {
+		return true;
+	}
+	else if (str.isHorizontal() && this->isHorizontal() ) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+Point* Street::getCrosspoint(Street& str) {
+	REQUIRE(str.isInitialized(), "Street is initialized");
+
+	for (unsigned int index = 0; index < fPoints.size(); index++) {
+		if (str.isElement(Point( *(fPoints[index]) ) ) ) {
+			return fPoints[index];
+		}
+	}
+
+	return NULL;
 }
 
 std::vector<Point*> Street::calculatePoints(){

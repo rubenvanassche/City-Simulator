@@ -9,8 +9,8 @@
 
 #include "House.h"
 
-bool House::isInitialized() {
-	return House::fMyself == this;
+bool House::isInitialized() const {
+	return fMyself == this;
 }
 
 std::ostream& operator<< (std::ostream& stream, House& h) {
@@ -20,22 +20,21 @@ std::ostream& operator<< (std::ostream& stream, House& h) {
 	return stream;
 }
 
-House::House(Point& location, Size& size, double health)
-	: Building(location, size, health) {
+House::House(const Point& location, const double& health)
+	: Building(location, 2, health) {
 	REQUIRE(location.isInitialized(), "Location is initialized");
-	REQUIRE(size.isInitialized(), "Size is initialized");
 	REQUIRE(health >= 0, "Positive healthpoints");
 
-	House::fMyself = this;
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "House is initialized");
 }
 
-House::House(House& h)
-	: Building(h.getLocation(), h.getSize(), h.getHealth() ) {
+House::House(const House& h)
+	: Building(h.getLocation(), 2, h.getHealth() ) {
 	REQUIRE(h.isInitialized(), "House is initialized");
 
-	House::fMyself = this;
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "House is initialized");
 	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
@@ -43,13 +42,13 @@ House::House(House& h)
 	ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
 }
 
-bool House::operator= (House& h) {
+bool House::operator= (const House& h) {
 	REQUIRE(h.isInitialized(), "House is initialized");
 	REQUIRE(this->isInitialized(), "House is initialized");
 
-	this->setLocation(h.getLocation());
-	this->setSize(h.getSize());
-	this->setHealth(h.getHealth());
+	fLocation = h.getLocation();
+	fSize = h.fSize;
+	fHealth = h.getHealth();
 
 	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
 	ENSURE(this->getSize() == h.getSize(), "Size is copied");

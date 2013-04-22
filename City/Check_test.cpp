@@ -12,7 +12,7 @@
 #include "Check.h"
 #include "Street.h"
 #include <string>
-
+/*
 class CheckTest : public ::testing::Test {
  protected:
 	Check newCheck;
@@ -46,7 +46,23 @@ class CheckTest : public ::testing::Test {
 		l9.set(7,1);
 	}
 };
+*/
+TEST(Check_test, RegularHouse) {
+	Point l1(5, 5);
+	Point l2(1, 1);
+	Point l3(7, 5);
+	Size sizeH(2, 2);
 
+	House h1(l1, sizeH, 20);
+	House h2(l2, sizeH, 20);
+	House h3(l3, sizeH, 20);
+
+	Check newCheck;
+	EXPECT_TRUE(newCheck.go(h1));
+	EXPECT_TRUE(newCheck.go(h2));
+	EXPECT_TRUE(newCheck.go(h3));
+}
+/*
 TEST_F(CheckTest, RegularHouse){
 	House h1(l1, sizeH, 20);
 	House h2(l2, sizeH, 20);
@@ -55,7 +71,8 @@ TEST_F(CheckTest, RegularHouse){
 	EXPECT_TRUE(newCheck.go(h2));
 	EXPECT_TRUE(newCheck.go(h3));
 }
-
+*/
+/*
 TEST_F(CheckTest, OnTopHouse){
 	House h1(l1, sizeH, 20);
 	House h2(l1, sizeH, 20);
@@ -115,3 +132,4 @@ TEST_F(CheckTest, MultiStreets){
 
 
 
+*/

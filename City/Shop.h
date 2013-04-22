@@ -15,14 +15,14 @@
 
 class Shop: public Building {
 public:
-	bool isInitialized();
+	bool isInitialized() const;
 	// checks whether the object is initialized properly
 
 	friend std::ostream& operator<< (std::ostream& stream, Shop& s);
 	// output operator overloading
 	// REQUIRE(s.isInitialized(), "Shop is initialized");
 
-	Shop(Point& location, Size& size, double health, int security);
+	Shop(const Point& location, const Size& size, const double& health, const int& security);
 	// constructor
 	// REQUIRE(location.isInitialized(), "Location is initialized");
 	// REQUIRE(size.isInitialized(), "Size is initialized");
@@ -30,7 +30,7 @@ public:
 	// REQUIRE(security >= 0, "Positive Security");
 	// ENSURE(this->isInitialized(), "Shop is initialized");
 
-	Shop(Shop& s);
+	Shop(const Shop& s);
 	// copy constructor
 	// REQUIRE(h.isInitialized(), "Shop is initialized");
 	// ENSURE(this->isInitialized(), "Shop is initialized");
@@ -39,7 +39,7 @@ public:
 	// ENSURE(this->getSize() == s.getSize(), "Size is copied");
 	// ENSURE(this->getLocation() == s.getLocation(), "Location is copied");
 
-	bool operator= (Shop& s);
+	bool operator= (const Shop& s);
 	// copy by assignment operator overloading
 	// REQUIRE(h.isInitialized(), "Shop is initialized");
 	// REQUIRE(this->isInitialized(), "Shop is initialized");
@@ -48,11 +48,11 @@ public:
 	// ENSURE(this->getSize() == s.getSize(), "Size is copied");
 	// ENSURE(this->getLocation() == s.getLocation(), "Location is copied");
 
-	int getSecurity();
+	int getSecurity() const;
 	// Returns the securitylevel of a shop
 	// REQUIRE(this->isInitialized(), "Shop is initialized");
 
-	bool isRobbing();
+	bool isRobbing() const;
 	// checks whether the shop is being robbed
 	// REQUIRE(this->isInitialized(), "Shop is initialized");
 
