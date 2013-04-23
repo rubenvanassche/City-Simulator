@@ -48,5 +48,41 @@ TEST(Shop, robbing) {
 	EXPECT_TRUE(appleStore.isRobbing());
 	EXPECT_NO_FATAL_FAILURE(appleStore.rob(4));
 	EXPECT_EQ(0, appleStore.getSecurity());
+}
 
+TEST(Shop, getters) {
+	Shop shop(Point(0, 0), Size(5), 100, 10);
+
+	EXPECT_EQ(Point(0, 0), shop.getLocation());
+	EXPECT_EQ(Size(5), shop.getSize());
+	EXPECT_EQ(100, shop.getHealth());
+	EXPECT_EQ(10, shop.getSecurity());
+}
+
+TEST(Shop, fire) {
+	Shop homemadecookies(Point(0, 0), Size(2), 2, 12);
+
+	EXPECT_FALSE(homemadecookies.isBurning());
+	EXPECT_FALSE(homemadecookies.isDead());
+	EXPECT_EQ(2, homemadecookies.getHealth());
+
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.setFire());
+	EXPECT_TRUE(homemadecookies.isBurning());
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.burningDown());
+	EXPECT_EQ(1, homemadecookies.getHealth());
+	EXPECT_FALSE(homemadecookies.isDead());
+
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.stopFire());
+	EXPECT_FALSE(homemadecookies.isBurning());
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.repair());
+	EXPECT_EQ(1.5, homemadecookies.getHealth());
+	EXPECT_FALSE(homemadecookies.isDead());
+
+	//EXPECT_DEATH(homemadecookies.burningDown(), "\\w");
+
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.setFire());
+	EXPECT_TRUE(homemadecookies.isBurning());
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.burningDown(2));
+	EXPECT_EQ(-0.5, homemadecookies.getHealth());
+	EXPECT_TRUE(homemadecookies.isDead());
 }

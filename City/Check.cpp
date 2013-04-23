@@ -7,113 +7,175 @@
 
 #include "Check.h"
 
-Check::Check(){
-	Check::fMyself = this;
+bool Check::isInitialized() const {
+	return this == fMyself;
 }
 
-bool Check::isInitialized() {
-	return this == Check::fMyself;
+Check::Check() : fMyself(this), fHasWidth(false), fHasHeight(false), fWidth(0), fHeight(0) {
+	ENSURE(this->isInitialized(), "Check is initialized");
+	ENSURE(this->fHasHeight == false, "Check has not a width yet");
+	ENSURE(this->fHasWidth == false, "Check has not a height yet");
+	ENSURE(this->fWidth == 0, "Width is currently 0");
+	ENSURE(this->fHeight == 0, "Height is currently 0");
 }
 
-bool Check::go(Building& building){
-	std::vector<Point*> newPoints = building.calculatePoints();
-	std::vector<Point*>::iterator it;
+EState Check::checkPoint(const Point& p, const EType& type) {
+	REQUIRE(this->isInitialized(), "Check is initialized");
+	REQUIRE(p.isInitialized(), "Check is initialized");
 
-	bool checked = true;
-
-	if(this->checkPoints(newPoints)){
-		this->addPoints(newPoints, 'b');
-	}else{
-		checked = false;
-	}
-
-	for(it = newPoints.begin();it != newPoints.end();it++){
-		delete *it;
-	}
-
-	return checked;
-}
-bool Check::go(Street& street){
-	std::vector<Point*> newPoints = street.calculatePoints();
-	std::vector<Point*>::iterator it;
-
-	bool checked = true;
-
-	if(this->checkStreetPoints(newPoints)){
-		this->addPoints(newPoints, 's');
-	}else{
-		checked = false;
-	}
-
-	for(it = newPoints.begin();it != newPoints.end();it++){
-		delete *it;
-	}
-
-	return checked;
-}
-
-
-bool Check::checkPoints(std::vector<Point*> newPoints){
-	std::vector<Point*>::iterator it;
-
-	for(it = newPoints.begin();it != newPoints.end();++it){
-		if(this->checkPoint(**it) == false){
-			return false;
-		}
-	}
-
-	return true;
-}
-
-bool Check::checkPoint(Point& p){
-	std::vector<Point*>::iterator it;
-
-	for(it = fUsedPoints.begin();it != fUsedPoints.end();++it){
-		if(p == **it){
-			return false;
-		}
-	}
-
-	return true;
-}
-
-bool Check::checkStreetPoints(std::vector<Point*> newPoints){
-	std::vector<Point*>::iterator it;
-
-	for(it = newPoints.begin();it != newPoints.end();++it){
-		if(this->checkStreetPoint(**it) == false){
-			return false;
-		}
-	}
-
-	return true;
-}
-
-bool Check::checkStreetPoint(Point& p){
-	for(unsigned int i = 0;i < fUsedPoints.size();i++){
-		if(p == *(fUsedPoints.at(i))){
-			if(fUsedPointTypes.at(i) != 's'){
-				return false;
+	// iterate over used points
+	for (std::vector<Tupple>::iterator it = fUsedPoints.begin(); it != fUsedPoints.end(); it++) {
+		// if you can find a point that is equal to the given one,
+		if (it->first == p) {
+			if (type == kSTREET) {	// if the point you want to check is a street
+				if (it->second == kBUILDING) {	// but there's already a building on it
+					return kOCCUPPIED;	// so return true, it's occupied
+				}
+				continue; //otherwise
+			}
+			else {	// the point is a building
+				// whether the point found is a street or building, this place is occupied
+				return kOCCUPPIED;
 			}
 		}
 	}
 
+	// if not any point is found, then you got the freedom
+	return kFREE;
+}
+
+bool Check::fit(const Building& building) {
+	REQUIRE(this->isInitialized(), "Check is initialized");
+	REQUIRE(building.isInitialized(), "Building is initialized");
+
+	unsigned int width = building.getSize().getWidth();
+	unsigned int height = building.getSize().getHeight();
+
+	for (unsigned int h = 0; h <= height; h++) {
+		for (unsigned int w = 0; w <= width; w++) {
+			int x = building.getLocation().getX() + w;
+			int y = building.getLocation().getY() - h;
+
+			if ( (x < 0) || (y < 0)) {
+				// x || y is negative, so the building "felt" of the border
+				return false;
+			}
+		}
+	}
 	return true;
 }
 
+bool Check::fit(const Street& street) {
+	REQUIRE(this->isInitialized(), "Check is initialized");
+	REQUIRE(street.isInitialized(), "Street is initialized");
 
-void Check::addPoints(std::vector<Point*> newPoints, char type){
-	std::vector<Point*>::iterator it;
+	Point start = street.getStartPoint();
+	Point end = street.getEndPoint();
 
-	for(it = newPoints.begin();it != newPoints.end();++it){
-		fUsedPoints.push_back(*it);
-		fUsedPointTypes.push_back(type);
+	if (street.isVertical()) {
+		unsigned int yMin = std::min(start.getY(), end.getY());
+		unsigned int yMax = std::max(start.getY(), end.getY());
+
+		if (fHasHeight) {
+			return fHeight == (yMax - yMin);
+		}
+		else {
+			// it's the first time you add a vertical street, so it's always ok
+			fHeight = (yMax - yMin);
+			fHasHeight = true;
+			return true;
+		}
+	}
+	else if (street.isHorizontal()) {
+		unsigned int xMin = std::min(start.getX(), end.getX());
+		unsigned int xMax = std::max(start.getX(), end.getX());
+
+		if (fHasWidth) {
+			return fWidth == (xMax - xMin);
+		}
+		else {
+			fWidth = (xMax - xMin);
+			fHasWidth = true;
+			return true;
+		}
+	}
+	else {
+		return false;	// diagonal street never fits
+	}
+}
+
+bool Check::go(const Building& building) {
+	REQUIRE(this->isInitialized(), "Check is initialized");
+	REQUIRE(building.isInitialized(), "Building is initialized");
+
+	if (!this->fit(building)) {
+		return false;
 	}
 
+	unsigned int width = building.getSize().getWidth();
+	unsigned int height = building.getSize().getHeight();
+	std::vector<Tupple> vecTupple;
+
+	for (unsigned int h = 0; h <= height; h++) {
+		for (unsigned int w = 0; w <= width; w++) {
+			int x = building.getLocation().getX() + w;
+			int y = building.getLocation().getY() - h;
+
+			Point p(x, y);
+
+			if (Check::checkPoint(p, kBUILDING) == kOCCUPPIED) {
+				return false;
+			}
+
+			// otherwise, this point is not occupied, so you may add it
+			vecTupple.push_back(Tupple(p, kBUILDING));
+			continue;
+		}
+	}
+
+	// if you've reached here, then there's no problem at all
+	for (unsigned int index = 0; index < vecTupple.size(); index++) {
+		fUsedPoints.push_back(vecTupple[index]);
+	}
+	return true;
 }
 
-Check::~Check() {
-	fUsedPoints.clear();
-	fUsedPointTypes.clear();
-}
+bool Check::go(const Street& street) {
+	REQUIRE(this->isInitialized(), "Check is initialized");
+	REQUIRE(street.isInitialized(), "Building is initialized");
 
+	if (!this->fit(street)) {
+		return false;
+	}
+
+	Point start = street.getStartPoint();
+	Point end = street.getEndPoint();
+
+	unsigned int xMin = std::min(start.getX(), end.getX());
+	unsigned int xMax = std::max(start.getX(), end.getX());
+	unsigned int yMin = std::min(start.getY(), end.getY());
+	unsigned int yMax = std::max(start.getY(), end.getY());
+
+	std::vector<Tupple> vecTupple;
+
+	for (unsigned int x = xMin; x <= xMax; x++) {
+		for (unsigned int y = yMin; y <= yMax; y++) {
+
+			Point p(x, y);
+
+			if (Check::checkPoint(p, kSTREET) == kOCCUPPIED) {
+				return false;
+			}
+
+			// otherwise, this point is free, so you may add
+			vecTupple.push_back(Tupple(p, kSTREET));
+			continue;
+		}
+	}
+
+	// if you've reached here, then there's no problem at all
+	for (unsigned int index = 0; index < vecTupple.size(); index++) {
+		fUsedPoints.push_back(vecTupple[index]);
+	}
+	return true;
+}

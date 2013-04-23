@@ -18,13 +18,12 @@ public:
 	bool isInitialized() const;
 	// checks whether the object is initialized properly
 
-	Vehicle(const std::string& name, const Point& curPos, const Point& destination);
+	Vehicle(const std::string& name, const Point& curPos);
 	// constructor
 	// REQUIRE(curPos.isInitialized(), "Point is initialized");
-	// REQUIRE(destination.isInitialized(), "Point is initialized");
 	// ENSURE(this->isInitialized(), "Vehicle is initialized");
 	// ENSURE(this->fName == name, "Name is set");
-	// ENSURE(this->fDestination == destination, "Destination is set");
+	// ENSURE(this->fDestination == curPos, "Destination is set");
 	// ENSURE(this->fPosition == curPos, "Position is set");
 
 	Vehicle(const Vehicle& v);
@@ -35,7 +34,7 @@ public:
 	// ENSURE(this->fDestination == v.fDestination, "Destination is copied");
 	// ENSURE(this->fPosition == v.fPosition, "Position is copied");
 
-	bool operator= (const Vehicle& v);
+	void operator= (const Vehicle& v);
 	// copy assignment operator overloading
 	// REQUIRE(v.isInitialized(), "Vehicle is initialized");
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
@@ -47,12 +46,6 @@ public:
 	// get the current position of the vehicle
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
-	bool setDestination(const Point& destination);
-	// change the destination of the vehicle
-	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
-	// REQUIRE(destination.isInitialized(), "Point is initialized");
-	// ENSURE(this->fDestination == destination, "Destination is set");
-
 	Point getDestination() const;
 	// get the destination of the vehicle
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
@@ -61,36 +54,46 @@ public:
 	// get the name of the vehicle
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
-	bool setName(const std::string& name);
-	// change the name
+	void setDestination(const Point& destination);
+	// change the destination of the vehicle
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
-	// ENSURE(this->fName == name, "Name is set");
+	// REQUIRE(destination.isInitialized(), "Point is initialized");
+	// ENSURE(this->fDestination == destination, "Destination is set");
 
-	bool isArrived() const;
-	// checks whether the vehicle is arrived
-	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	void setPosition(const Point& pos);
+	//REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	//REQUIRE(pos.isInitialized(), "Point is initialized");
+	//ENSURE(this->fPosition == pos, "Position is set");
 
 	bool isOnWay() const;
 	// checks whether it's on way
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
-	bool goLeft();
+	void goLeft(const int& units = 1);
 	// go left
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// REQUIRE(units > 0, "Positive units");
 	// REQUIRE(this->fPosition.getX() != 0, "You can not fall of");
 
-	bool goRight();
+	void goRight(const int& units = 1);
 	// go right
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// REQUIRE(units > 0, "Positive units");
 
-	bool goUp();
+	void goUp(const int& units = 1);
 	// go up
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+	// REQUIRE(units > 0, "Positive units");
 
-	bool goDown();
+	void goDown(const int& units = 1);
 	// go down
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
-	//REQUIRE(this->fPosition.getY() != 0, "You can not fall of");
+	// REQUIRE(units > 0, "Positive units");
+	// REQUIRE(this->fPosition.getY() != 0, "You can not fall of");
+
+	bool isArrived() const;
+	// checks whether the vehicle is arrived
+	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
 private:
 	Point fPosition;

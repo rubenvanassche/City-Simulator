@@ -70,7 +70,7 @@ Size::Size(const Size& s) {
 	ENSURE(this->isInitialized(), "Size is initialized");
 }
 
-bool Size::operator= (const Size& s) {
+void Size::operator= (const Size& s) {
 	REQUIRE(s.isInitialized(), "Size is initialized");
 	REQUIRE(this->isInitialized(), "Size is initialized");
 
@@ -79,20 +79,7 @@ bool Size::operator= (const Size& s) {
 
 	ENSURE(this->fWidth == s.fWidth, "Width copied");
 	ENSURE(this->fHeight == s.fHeight, "Heigt copied");
-	return true;
-}
-
-bool Size::set(const int& width, const int& height) {
-	REQUIRE(this->isInitialized(), "Size is initialized");
-	REQUIRE(width > 0, "Positive width");
-	REQUIRE(height > 0, "Positive height");
-
-	fWidth = width;
-	fHeight = height;
-
-	ENSURE(this->fWidth == width, "Width is set");
-	ENSURE(this->fHeight == height, "Height is set");
-	return true;
+	return;
 }
 
 unsigned int Size::getWidth() const {

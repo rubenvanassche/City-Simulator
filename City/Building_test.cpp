@@ -32,7 +32,7 @@ TEST(Building, getters) {
 	EXPECT_EQ(100, app.getHealth());
 }
 
-TEST(Builing, fire) {
+TEST(Building, fire) {
 	Building house(Point(0, 0), Size(2), 2);
 
 	EXPECT_FALSE(house.isBurning());

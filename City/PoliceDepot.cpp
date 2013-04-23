@@ -7,8 +7,8 @@
 
 #include "PoliceDepot.h"
 
-bool PoliceDepot::isInitialized(){
-	return this == PoliceDepot::fMyself;
+bool PoliceDepot::isInitialized() const {
+	return this == fMyself;
 }
 
 
@@ -20,32 +20,30 @@ std::ostream& operator<< (std::ostream& stream, PoliceDepot& p){
 }
 
 
-PoliceDepot::PoliceDepot(Point& location, Point& entrance, Size& size, std::string name, double health)
+PoliceDepot::PoliceDepot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health)
 : Depot(location, entrance, size, name, health){
 
-	PoliceDepot::fMyself = this;
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "PoliceDepot is initialized");
-	ENSURE(this->getName() == name, "Name is set");
-	ENSURE(this->getLocation() == location, "Location is set");
-	ENSURE(this->getSize() == size, "Size is set");
-	ENSURE(this->getEntrance() == entrance, "Entrance is set");
-	ENSURE(this->getHealth() == health, "Health is set");
 }
 
 
-PoliceDepot::PoliceDepot(PoliceDepot& p)
+PoliceDepot::PoliceDepot(const PoliceDepot& p)
 : Depot(p){
 	REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
 
-	PoliceDepot::fMyself = this;
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "PoliceDepot is initialized");
-	ENSURE(this->getName() == p.getName(), "Name is copied");
-	ENSURE(this->getLocation() == p.getLocation(), "Location is copied");
-	ENSURE(this->getSize() == p.getSize(), "Size is copied");
-	ENSURE(this->getEntrance() == p.getEntrance(), "Entrance is copied");
-	ENSURE(this->getNrVehicles() == p.getNrVehicles(), "Trucks copied");
-	ENSURE(this->getHealth() == p.getHealth(), "Health is copied");
 }
 
+void PoliceDepot::operator= (const PoliceDepot& p) {
+	REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
+	REQUIRE(this->isInitialized(), "PoliceDepot is initialized");
+
+	// nothing to do here
+
+	ENSURE(this->isInitialized(), "PoliceDepot is initialized");
+	return;
+}

@@ -7,129 +7,70 @@
 
 #include "gtest/gtest.h"
 #include "House.h"
+#include "FireDepot.h"
 #include "Point.h"
 #include "Size.h"
 #include "Check.h"
 #include "Street.h"
 #include <string>
-/*
-class CheckTest : public ::testing::Test {
- protected:
-	Check newCheck;
 
-	// Start House
-	Size sizeH;
-	Size sizeF;
-	Point l1;
-	Point l2;
-	Point l3;
-	Point l4;
-	Point l5;
-	Point l6;
-	Point l7;
-	Point l8;
-	Point l9;
-	Point l10;
+TEST(Check, streets) {
+	Street horizontal0("Horizontal0", Point(0, 5), Point(5, 5));
+	Street horizontal1("Horizontal1", Point(0, 0), Point(5, 0));
+	Street vertical0("Vertical0", Point(0, 0), Point(0, 5));
+	Street vertical1("Vertical1", Point(5, 0), Point(5, 5));
 
-	virtual void SetUp() {
-		sizeH.set(2,2);
-		sizeF.set(4,4);
+	Street horizontalShort("short horizontal", Point(1, 1), Point(4, 1));
+	Street verticalShort("short vertical", Point(1, 1), Point(1, 4));
+	Street horizontalLong("Long horizontal", Point(0, 3), Point(10, 3));
+	Street verticalLong("Long vertical", Point(3, 0), Point(3, 12));
+	Street irregular("irregular", Point(0, 0), Point(5, 5));
+	Check check;
 
-		l1.set(5,5);
-		l2.set(1,1);
-		l3.set(7,5);
-		l4.set(9,5);
-		l5.set(20,20);
-		l6.set(1,10);
-		l7.set(10,1);
-		l8.set(7,10);
-		l9.set(7,1);
-	}
-};
-*/
-TEST(Check_test, RegularHouse) {
-	Point l1(5, 5);
-	Point l2(1, 1);
-	Point l3(7, 5);
-	Size sizeH(2, 2);
+	EXPECT_TRUE(check.go(horizontal0));
+	EXPECT_TRUE(check.go(horizontal1));
+	EXPECT_TRUE(check.go(vertical0));
+	EXPECT_TRUE(check.go(vertical1));
 
-	House h1(l1, sizeH, 20);
-	House h2(l2, sizeH, 20);
-	House h3(l3, sizeH, 20);
-
-	Check newCheck;
-	EXPECT_TRUE(newCheck.go(h1));
-	EXPECT_TRUE(newCheck.go(h2));
-	EXPECT_TRUE(newCheck.go(h3));
+	EXPECT_FALSE(check.go(horizontalShort));
+	EXPECT_FALSE(check.go(verticalShort));
+	EXPECT_FALSE(check.go(horizontalLong));
+	EXPECT_FALSE(check.go(verticalLong));
+	EXPECT_FALSE(check.go(irregular));
 }
 /*
-TEST_F(CheckTest, RegularHouse){
-	House h1(l1, sizeH, 20);
-	House h2(l2, sizeH, 20);
-	House h3(l3, sizeH, 20);
-	EXPECT_TRUE(newCheck.go(h1));
-	EXPECT_TRUE(newCheck.go(h2));
-	EXPECT_TRUE(newCheck.go(h3));
-}
-*/
-/*
-TEST_F(CheckTest, OnTopHouse){
-	House h1(l1, sizeH, 20);
-	House h2(l1, sizeH, 20);
+TEST(Check, building) {
+	House home(Point(0, 2), 10);
+	FireDepot firedepot(Point(5, 5), Point(3, 3), "firedepot", 10);
+	House irregular(Point(0, 0), 10);
+	Check check;
 
-	EXPECT_TRUE(newCheck.go(h1));
-	EXPECT_FALSE(newCheck.go(h2));
+	EXPECT_TRUE(check.go(home));
+	EXPECT_TRUE(check.go(firedepot));
+	EXPECT_FALSE(check.go(irregular));
 }
 
-TEST_F(CheckTest, RegularFireDepot){
-	std::string name = "Station";
-	FireDepot f1(l5, l5, sizeF, name, 20);
-	FireDepot f2(l1, l1, sizeF, name, 20);
-	FireDepot f3(l4, l4, sizeF, name, 20);
+TEST(Check, mix) {
+	Street horizontal0("Horizontal0", Point(0, 5), Point(5, 5));
+	Street horizontal1("Horizontal1", Point(0, 0), Point(5, 0));
+	Street vertical0("Vertical0", Point(0, 0), Point(0, 5));
+	Street vertical1("Vertical1", Point(5, 0), Point(5, 5));
 
-	EXPECT_TRUE(newCheck.go(f1));
-	EXPECT_TRUE(newCheck.go(f2));
-	EXPECT_TRUE(newCheck.go(f3));
+	House homeOnStreet(Point(0, 2), 10);
+	House home(Point(1, 2), 10);
+
+	Check check;
+
+	EXPECT_TRUE(check.go(horizontal0));
+	EXPECT_FALSE(check.go(horizontal0));
+	EXPECT_TRUE(check.go(horizontal1));
+	EXPECT_FALSE(check.go(horizontal1));
+	EXPECT_TRUE(check.go(vertical0));
+	EXPECT_FALSE(check.go(vertical0));
+	EXPECT_TRUE(check.go(vertical1));
+	EXPECT_FALSE(check.go(vertical1));
+	EXPECT_TRUE(check.go(home));
+	EXPECT_FALSE(check.go(homeOnStreet));
 }
-
-TEST_F(CheckTest, OnTopFireDepot){
-	std::string name = "Station";
-	FireDepot f1(l5, l5, sizeF, name, 20);
-	FireDepot f2(l5, l5, sizeF, name, 20);
-
-	EXPECT_TRUE(newCheck.go(f1));
-	EXPECT_FALSE(newCheck.go(f2));
-}
-
-TEST_F(CheckTest, RegularStreet){
-	std::string name = "Street";
-	Street s1(name, l3, l4);
-	Street s2(name, l2, l6);
-
-	EXPECT_TRUE(newCheck.go(s1));
-	EXPECT_TRUE(newCheck.go(s2));
-}
-
-TEST_F(CheckTest, Crossroads){
-	std::string name = "Street";
-	Street s1(name, l3, l4);
-	Street s2(name, l8, l9);
-	Street s3(name, l2, l6);
-
-	EXPECT_TRUE(newCheck.go(s1));
-	EXPECT_TRUE(newCheck.go(s2));
-	EXPECT_TRUE(newCheck.go(s3));
-}
-
-TEST_F(CheckTest, MultiStreets){
-	std::string name = "Street";
-	Street f1(name, l2, l6);
-	Street f2(name, l2, l7);
-
-	EXPECT_TRUE(newCheck.go(f1));
-	EXPECT_TRUE(newCheck.go(f2));
-}
-
-
 
 */

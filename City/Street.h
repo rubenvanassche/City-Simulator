@@ -39,11 +39,6 @@ public:
 	// ENSURE(this->fEndPoint == end, "Endpoint is set");
 	// ENSURE(this->fName == name, "Name is set");
 
-	~Street();
-	// destructor
-	// REQUIRE(this->isInitialized(), "Street is initialized");
-	// ENSURE(this->fPoints.empty(), "Points are empty'd");
-
 	Street(const Street& s);
 	// copy constructor
 	// REQUIRE(s.isInitialized(), "Street is initialized");
@@ -51,16 +46,14 @@ public:
 	// ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
 	// ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
 	// ENSURE(this->fName == s.fName, "Name is copied");
-	// ENSURE(this->fPoints.size() == s.fPoints.size(), "Points is copied");
 
-	bool operator= (const Street& s);
+	void operator= (const Street& s);
 	// copy by assignment
 	// REQUIRE(s.isInitialized(), "Street is initialized");
 	// REQUIRE(this->isInitialized(), "Street is initialized");
 	// ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
 	// ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
 	// ENSURE(this->fName == s.fName, "Name is copied");
-	// ENSURE(this->fPoints.size() == s.fPoints.size(), "Points is copied");
 
 	Point getStartPoint() const;
 	// get the startpoint of the street
@@ -91,24 +84,22 @@ public:
 	bool isCrossing(Street& str);
 	// checks whether the streets are crossing
 	// REQUIRE(str.isInitialized(), "Street is initialized");
+	// REQUIRE((this->isVertical()) || (this->isHorizontal()), "Street is horizontal or vertical");
+	// REQUIRE((str.isVertical()) || (str.isHorizontal()), "Street is horizontal or vertical");
 
 	bool isParallel(const Street& str);
 	// checks whether the streets are parallel
 	// REQUIRE(str.isInitialized(), "Street is initialized");
 
-	Point* getCrosspoint(Street& str);
+	Point getCrosspoint(Street& str);
 	// find the crosspoint of the given street
 	// REQUIRE(str.isInitialized(), "Street is initialized");
-
-	std::vector<Point*> calculatePoints();
-	// REQUIRE(this->isInitialized(), "Street is initialized");
-	// ENSURE(out.size() > 0, "There are no points given as output");
+	// REQUIRE(this->isCrossing(str), "Streets are crossing);
 
 private:
 	Point fStartPoint;
 	Point fEndPoint;
 	std::string fName;
-	std::vector<Point*> fPoints;
 
 	Street* fMyself;
 };

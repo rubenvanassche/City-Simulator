@@ -10,108 +10,30 @@
 
 #include "gtest/gtest.h"
 #include "FireDepot.h"
-#include "FireTruck.h"
-#include "House.h"
-#include "Point.h"
-#include <string>
-#include <cstdlib>
 
-TEST(testFireDepot, Constructs) {
-	const int nrTests = 10;
-	const int range = 100;
+TEST(FireDepot, constructs) {
+	EXPECT_NO_FATAL_FAILURE(FireDepot depot(Point(0, 0), Point(0, 0), "depot", 10));
+	EXPECT_NO_FATAL_FAILURE(FireDepot depot(Point(0, 0), Point(2, 3), "depot", 5));
 
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
-		Point location(x0, y0);
-		Size size(4,4);
-		std::string name = "Kazern";
-		int health = std::rand() % range + 1;
+	//EXPECT_DEATH(FireDepot magic(Point(-3, 2), Point(0, 0), Size(5, 1), "magic", 3), "\\w");
+	//EXPECT_DEATH(FireDepot magic(Point(3, 2), Point(0, 0), Size(0), "magic", 3), "\\w");
+	//EXPECT_DEATH(FireDepot magic(Point(3, 2), Point(0, 0), Size(5, 1), "magic", -3), "\\w");
 
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
-	}
+	FireDepot depot(Point(0, 0), Point(0, 0), "depot", 10);
+	EXPECT_NO_FATAL_FAILURE(FireDepot copy = depot);
 }
 
-TEST(testFireDepot, getters) {
-	const int nrTests = 10;
-	const int range = 100;
+TEST(FireDepot, vehicles) {
+	FireDepot kazern(Point(0, 0), Point(1, 1), "kazern", 5);
+	Vehicle car0("car0", Point(0, 0));
+	Vehicle car1("car1", Point(1, 1));
 
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
-		Point location(x0, y0);
-		Size size(4,4);
-		std::string name = "Kazern";
-		int health = std::rand() % range + 1;
+	EXPECT_NO_FATAL_FAILURE(kazern.addVehicle(&car0));
+	EXPECT_NO_FATAL_FAILURE(kazern.addVehicle(&car1));
+	EXPECT_EQ(2, kazern.getNrVehicles());
+	EXPECT_EQ(1, kazern.getAvailableVehicles());
 
-		ASSERT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
-		FireDepot depot(location, location, size, name, health);
-
-		EXPECT_TRUE(location == depot.getLocation());
-		EXPECT_TRUE(size == depot.getSize());
-		EXPECT_TRUE(location == depot.getEntrance());
-		EXPECT_TRUE(name == depot.getName());
-	}
-}
-
-TEST(testFireDepot, trucks){
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
-		Point location(x0, y0);
-		Size size(4,4);
-		std::string name = "Kazern";
-		std::string truckName = "Truck";
-		int health = std::rand() % range + 1;
-
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
-		FireDepot depot(location, location, size, name, health);
-
-		ASSERT_NO_FATAL_FAILURE(FireTruck truck(truckName, &depot));
-		FireTruck truck(truckName, &depot);
-
-		EXPECT_NO_FATAL_FAILURE(depot.addVehicle(&truck) );
-		EXPECT_EQ(1, depot.getNrVehicles());
-		EXPECT_EQ(1, depot.getAvailableVehicles());
-
-		truck.goUp();
-		EXPECT_EQ(1, depot.getNrVehicles());
-		EXPECT_EQ(0, depot.getAvailableVehicles());
-	}
-}
-
-TEST(testFireDepot, copying) {
-	const int nrTests = 10;
-	const int range = 100;
-
-	for (int i=0; i < nrTests; i++) {
-		int x0 = std::rand() % range;
-		int y0 = std::rand() % range;
-		ASSERT_NO_FATAL_FAILURE(Point location(x0, y0));
-		Point location(x0, y0);
-
-		int x1 = std::rand() % range + 1;
-		int y1 = std::rand() % range + 1;
-		ASSERT_NO_FATAL_FAILURE(Point entrance(x1, y1));
-		Point entrance(x1, y1);
-		Size size(4,4);
-		std::string name = "Kazern";
-		int health = std::rand() % range + 1;
-
-		EXPECT_NO_FATAL_FAILURE(FireDepot depot(location, location, size, name, health));
-		FireDepot depot(location, location, size, name, health);
-
-		EXPECT_NO_FATAL_FAILURE(FireDepot copydepot = depot);
-		FireDepot copydepot = depot;
-		EXPECT_TRUE(copydepot.getLocation() == depot.getLocation());
-		EXPECT_TRUE(copydepot.getSize() == depot.getSize());
-		EXPECT_TRUE(copydepot.getEntrance() == depot.getEntrance());
-		EXPECT_TRUE(copydepot.getName() == depot.getName());
-	}
+	car1.goDown();
+	car1.goLeft();
+	EXPECT_EQ(2, kazern.getAvailableVehicles());
 }

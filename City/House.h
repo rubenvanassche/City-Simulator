@@ -25,24 +25,18 @@ public:
 
 	House(const Point& location, const double& health);
 	// constructor
-	// REQUIRE(location.isInitialized(), "Location is initialized");
-	// REQUIRE(health >= 0, "Positive healthpoints");
 	// ENSURE(this->isInitialized(), "House is initialized");
 
 	House(const House& h);
 	// copy constructor
 	// REQUIRE(h.isInitialized(), "House is initialized");
 	// ENSURE(this->isInitialized(), "House is initialized");
-	// ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
-	// ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
 
-	bool operator= (const House& h);
-	// copy by assignment operator overloading
+	void operator= (const House& h);
+	// copy by assignment
 	// REQUIRE(h.isInitialized(), "House is initialized");
 	// REQUIRE(this->isInitialized(), "House is initialized");
-	// ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
-	// ENSURE(this->getSize() == h.getSize(), "Size is copied");
-	// ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
+	// ENSURE(this->isInitialized(), "House is initialized");
 
 private:
 	House* fMyself;

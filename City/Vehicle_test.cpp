@@ -12,24 +12,22 @@
 #include "Point.h"
 
 TEST(Vehicles, constructs) {
-	EXPECT_NO_FATAL_FAILURE(Vehicle car("car", Point(0, 0), Point(0, 0)));
-	EXPECT_NO_FATAL_FAILURE(Vehicle car("car", Point(0, 0), Point(1, 2)));
+	EXPECT_NO_FATAL_FAILURE(Vehicle car("car", Point(0, 0)));
+	EXPECT_NO_FATAL_FAILURE(Vehicle car("car", Point(0, 0)));
 
 	//EXPECT_DEATH(Vehicle magic("magic", Point(-5, 2), Point(-3, 2)), "\\w");
 
-	Vehicle car("car", Point(0, 0), Point(1, 2));
+	Vehicle car("car", Point(0, 0));
 	EXPECT_NO_FATAL_FAILURE(Vehicle copy = car);
 }
 
 TEST(Vehicles, getters_setters) {
-	Vehicle car("car", Point(1, 2), Point(3, 4)	);
+	Vehicle car("car", Point(1, 2));
 
 	EXPECT_EQ(Point(1, 2), car.getPosition());
-	EXPECT_EQ(Point(3, 4), car.getDestination());
+	EXPECT_EQ(Point(1, 2), car.getDestination());
 	EXPECT_EQ("car", car.getName());
 
-	EXPECT_NO_FATAL_FAILURE(car.setName("fancy car"));
-	EXPECT_EQ("fancy car", car.getName());
 	EXPECT_NO_FATAL_FAILURE(car.setDestination(Point(0, 0)));
 	EXPECT_EQ(Point(0, 0), car.getDestination());
 
@@ -37,7 +35,7 @@ TEST(Vehicles, getters_setters) {
 }
 
 TEST(Vehicles, driving) {
-	Vehicle car("car", Point(1, 1), Point(1, 1));
+	Vehicle car("car", Point(1, 1));
 
 	EXPECT_TRUE(car.isArrived());
 	EXPECT_FALSE(car.isOnWay());

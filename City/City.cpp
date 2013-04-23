@@ -9,129 +9,161 @@
 
 #include "City.h"
 #include <iostream>
-#include <cstdlib>
-#include <fstream>
 
-bool City::isInitialized() {
-	return this == City::fMyself;
+bool City::isInitialized() const {
+	return fMyself == this;
 }
 
 City::City() {
-	City::fMyself = this;
+
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "City is initialized");
 }
 
-City::City(City& town) {
-	REQUIRE(town.isInitialized(), "City is initialized");
+City::~City() {
+	REQUIRE(this->isInitialized(), "City is initialized");
 
-	City::fMyself = this;
-
-	for (unsigned int index=0; index < town.fHouses.size(); index++) {
-		House* h = new House( *(town.fHouses[index]) );
-		City::fHouses.push_back(h);
+	for (unsigned int index = 0; index < fVerticals.size(); index++) {
+		delete fVerticals[index];
 	}
+	fVerticals.clear();
 
-	for (unsigned int index=0; index < town.fFireDepots.size(); index++) {
-		FireDepot* f = new FireDepot( *(town.fFireDepots[index]) );
-		City::fFireDepots.push_back(f);
+	for (unsigned int index = 0; index < fHorizontals.size(); index++) {
+		delete fHorizontals[index];
 	}
+	fHorizontals.clear();
 
-	for (unsigned int index=0; index < town.fFireTrucks.size(); index++) {
-		FireTruck* f = new FireTruck( *(town.fFireTrucks[index]) );
-		City::fFireTrucks.push_back(f);
+	for (unsigned int index = 0; index < fBuildings.size(); index++) {
+		delete fBuildings[index].first;
 	}
+	fBuildings.clear();
+	fFireDepots.clear();	// because they were also in the buildings, so no leaks will apear
+	fPoliceDepots.clear();
+	fHospitals.clear();
+	fShops.clear();
 
-	for (unsigned int index=0; index < town.fHorizontals.size(); index++) {
-		Street* s = new Street( *(town.fHorizontals[index]) );
-		City::fHorizontals.push_back(s);
+	for (unsigned int index = 0; index < fVehicles.size(); index++) {
+		delete fVehicles[index];
 	}
+	fVehicles.clear();
 
-	for (unsigned int index=0; index < town.fVerticals.size(); index++) {
-		Street* s = new Street( *(town.fVerticals[index]) );
-		City::fVerticals.push_back(s);
-	}
-
-	ENSURE(this->isInitialized(), "City is initialized");
-	ENSURE(this->fFireDepots.size() == town.fFireDepots.size(), "FireDepots copied");
-	ENSURE(this->fFireTrucks.size() == town.fFireTrucks.size(), "FireTrucks copied");
-	ENSURE(this->fHouses.size() == town.fHouses.size(), "Houses copied");
-	ENSURE(this->fVerticals.size() == town.fVerticals.size(), "Verticals copied");
-	ENSURE(this->fHorizontals.size() == town.fHorizontals.size(), "Horizontals copied");
+	ENSURE(this->fBuildings.empty(), "Buildings empty'd");
+	ENSURE(this->fFireDepots.empty(), "FireDepots empty'd");
+	ENSURE(this->fPoliceDepots.empty(), "Policedepots empty'd");
+	ENSURE(this->fHospitals.empty(), "Hospitals empty'd");
+	ENSURE(this->fHorizontals.empty(), "Horizontals empty'd");
+	ENSURE(this->fVerticals.empty(), "Verticals empty'd");
+	ENSURE(this->fShops.empty(), "Shops empty'd");
 }
 
-bool City::add(FireDepot& depot) {
-	ENSURE(this->isInitialized(), "City is initialized");
-	ENSURE(depot.isInitialized(), "FireDepot is initialized");
+bool City::add(const Street& str) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(str.isInitialized(), "Street is initialized");
 
-	if(this->checker.go(depot)) {
-		FireDepot* d = new FireDepot(depot);
-		City::fFireDepots.push_back(d);
+	if (!fChecker.go(str) ) {
+		return false;
+	}
+
+	if (str.isVertical()) {
+		Street* ptrStreet = new Street(str);
+		fVerticals.push_back(ptrStreet);
 		return true;
 	}
-	else{
-		return false;
-	}
-}
-
-bool City::add(FireTruck& truck) {
-	ENSURE(this->isInitialized(), "City is initialized");
-	ENSURE(truck.isInitialized(), "FireTruck is initialized");
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		if (City::fFireDepots[index]->getName() == truck.getBase()->getName() ) {
-
-			FireTruck* f = new FireTruck(truck);
-
-			City::fFireDepots[index]->addVehicle(f);	// add it in the corresponding firedepot
-			City::fFireTrucks.push_back(f);
-			return true;
-		}
-	}
-
-	std::cout << "FireTruck " << truck.getName() << " has unknown base." << std::endl;
-	return false;
-}
-
-bool City::add(Street& street) {
-	ENSURE(this->isInitialized(), "City is initialized");
-	ENSURE(street.isInitialized(), "Street is initialized");
-
-	if(this->checker.go(street)){
-		if (street.isVertical() ) {
-			Street* s = new Street(street);
-			City::fVerticals.push_back(s);
-			return true;
-		}
-		else if (street.isHorizontal() ) {
-			Street* s = new Street(street);
-			City::fHorizontals.push_back(s);
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	else{
-		return false;
-	}
-}
-
-bool City::add(House& house) {
-	ENSURE(this->isInitialized(), "City is initialized");
-	ENSURE(house.isInitialized(), "House is initialized");
-
-	if(this->checker.go(house)){
-		House* h = new House(house);
-		City::fHouses.push_back(h);
+	else if (str.isHorizontal()) {
+		Street* ptrStreet = new Street(str);
+		fHorizontals.push_back(ptrStreet);
 		return true;
 	}
-	else{
+	else {
 		return false;
 	}
 }
 
+bool City::add(const EmergencyCar& car) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(car.isInitialized(), "EmergencyCar is initialized");
 
+	EmergencyCar* ptrCar = new EmergencyCar(car);
+	fVehicles.push_back(ptrCar);
+	return true;
+}
+
+bool City::add(const FireDepot& depot) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(depot.isInitialized(), "FireDepot is initialized");
+
+	if (!fChecker.go(depot)) {
+		return false;
+	}
+
+	FireDepot* ptrDepot = new FireDepot(depot);
+	std::pair<Building*, EBuilding> tupple(ptrDepot, kFIREDEPOT);
+	fBuildings.push_back(tupple);
+	fFireDepots.push_back(ptrDepot);
+	return true;
+}
+
+bool City::add(const PoliceDepot& depot) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(depot.isInitialized(), "PoliceDepot is initialized");
+
+	if (!fChecker.go(depot)) {
+		return false;
+	}
+
+	PoliceDepot* ptrDepot = new PoliceDepot(depot);
+	std::pair<Building*, EBuilding> tupple(ptrDepot, kPOLICEDEPOT);
+	fBuildings.push_back(tupple);
+	fPoliceDepots.push_back(ptrDepot);
+	return true;
+}
+
+bool City::add(const Hospital& depot) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(depot.isInitialized(), "Hospital is initialized");
+
+	if (!fChecker.go(depot)) {
+		return false;
+	}
+
+	Hospital* ptrDepot = new Hospital(depot);
+	std::pair<Building*, EBuilding> tupple(ptrDepot, kHOSPITAL);
+	fBuildings.push_back(tupple);
+	fHospitals.push_back(ptrDepot);
+	return true;
+}
+
+bool City::add(const House& house) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(house.isInitialized(), "House is initialized");
+
+	if (!fChecker.go(house)) {
+		return false;
+	}
+
+	House* ptrHouse = new House(house);
+	std::pair<Building*, EBuilding> tupple(ptrHouse, kHOUSE);
+	fBuildings.push_back(tupple);
+	return true;
+}
+
+bool City::add(const Shop& shop) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(shop.isInitialized(), "Shop is initialized");
+
+	if (!fChecker.go(shop)) {
+		return false;
+	}
+
+	Shop* ptrShop = new Shop(shop);
+	std::pair<Building*, EBuilding> tupple(ptrShop, kSHOP);
+	fBuildings.push_back(tupple);
+	fShops.push_back(ptrShop);
+	return true;
+}
+
+/* DO NOT DELETE THIS, this may be usefull
 bool City::isInMap(Point& p) {
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(p.isInitialized(), "Point is initialized");
@@ -307,4 +339,4 @@ City::~City() {
 	ENSURE(this->fVerticals.empty() == true, "Verticals is empty'd");
 	ENSURE(this->fFireTrucks.empty() == true, "FireTrucks is empty'd");
 }
-
+*/

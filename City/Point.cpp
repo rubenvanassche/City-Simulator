@@ -77,7 +77,7 @@ Point::Point(const Point& p) {
 	ENSURE(this->isInitialized(), "Point is initialized");
 }
 
-bool Point::operator= (const Point& p) {
+void Point::operator= (const Point& p) {
 	REQUIRE(p.isInitialized(), "Point is initialized");
 	REQUIRE(this->isInitialized(), "Point is initialized");
 
@@ -86,10 +86,30 @@ bool Point::operator= (const Point& p) {
 
 	ENSURE(this->fX == p.fX, "X copied");
 	ENSURE(this->fY == p.fY, "Y copied");
-	return true;
+	return;
 }
 
-bool Point::set(const int& x, const int& y) {
+
+void Point::setX(const int& x) {
+	REQUIRE(this->isInitialized(), "Point is initialized");
+	REQUIRE(x >= 0, "x >= 0");
+
+	fX = x;
+
+	ENSURE(this->fX == x, "X is set");
+	return;
+}
+
+void Point::setY(const int& y) {
+	REQUIRE(this->isInitialized(), "Point is initialized");
+	REQUIRE(y >= 0, "y >= 0");
+
+	fY = y;
+
+	ENSURE(this->fY == y, "Y is set");
+}
+
+void Point::set(const int& x, const int& y) {
 	REQUIRE(this->isInitialized(), "Point is initialized");
 	REQUIRE(x >= 0, "x >= 0");
 	REQUIRE(y >= 0, "y >= 0");
@@ -99,7 +119,7 @@ bool Point::set(const int& x, const int& y) {
 
 	ENSURE(this->fX == x, "X is set");
 	ENSURE(this->fY == y, "Y is set");
-	return true;
+	return;
 }
 
 unsigned int Point::getX() const {

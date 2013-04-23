@@ -12,60 +12,71 @@
 
 #include <iostream>
 #include "DesignByContract.h"
-#include "FireDepot.h"
-#include "FireTruck.h"
-#include "Street.h"
-#include "House.h"
-#include "Check.h"
 #include <fstream>
+#include "Street.h"
+#include <vector>
+#include "Check.h"
+
+#include "FireDepot.h"
+#include "PoliceDepot.h"
+#include "Hospital.h"
+#include "Shop.h"
+#include "House.h"
+
+#include "EmergencyCar.h"
+#include "Ambulance.h"
+#include "PoliceCar.h"
+#include "FireTruck.h"
+
+enum EBuilding {kFIREDEPOT, kPOLICEDEPOT, kHOSPITAL, kHOUSE, kSHOP};
 
 class City {
 public:
-	bool isInitialized();
+	bool isInitialized() const;
 
 	City();
 	// Constructor
 	// ENSURE(this->isInitialized(), "City is initialized");
 
-	City(City& town);
-	// copy constructor
-	// REQUIRE(town.isInitialized(), "City is initialized");
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(this->fFireDepots.size() == town.fFireDepots.size(), "FireDepots copied");
-	// ENSURE(this->fFireTrucks.size() == town.fFireTrucks.size(), "FireTrucks copied");
-	// ENSURE(this->fHouses.size() == town.fHouses.size(), "Houses copied");
-	// ENSURE(this->fVerticals.size() == town.fVerticals.size(), "Verticals copied");
-	// ENSURE(this->fHorizontals.size() == town.fHorizontals.size(), "Horizontals copied");
-
-	bool add(FireDepot& depot);
-	// add a firedepot
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(depot.isInitialized(), "FireDepot is initialized");
-
-	bool add(FireTruck& truck);
-	// add a firetruck
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(truck.isInitialized(), "FireTruck is initialized");
-
-	bool add(Street& street);
-	// add a street
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(street.isInitialized(), "Street is initialized");
-
-	bool add(House& house);
-	// add a house
-	// ENSURE(this->isInitialized(), "City is initialized");
-	// ENSURE(house.isInitialized(), "House is initialized");
-
 	~City();
 	// destructor
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// ENSURE(this->fFireDepots.empty() == true, "FireDepots is empty'd");
-	// ENSURE(this->fHouses.empty() == true, "Buildings is empty'd");
-	// ENSURE(this->fHorizontals.empty() == true, "Horizontals is empty'd");
-	// ENSURE(this->fVerticals.empty() == true, "Verticals is empty'd");
-	// ENSURE(this->fFireTrucks.empty() == true, "FireTrucks is empty'd");
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//ENSURE(this->fBuildings.empty(), "Buildings empty'd");
+	//ENSURE(this->fFireDepots.empty(), "FireDepots empty'd");
+	//ENSURE(this->fPoliceDepots.empty(), "Policedepots empty'd");
+	//ENSURE(this->fHospitals.empty(), "Hospitals empty'd");
+	//ENSURE(this->fHorizontals.empty(), "Horizontals empty'd");
+	//ENSURE(this->fVerticals.empty(), "Verticals empty'd");
 
+	bool add(const Street& str);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(str.isInitialized(), "Street is initialized");
+
+	bool add(const EmergencyCar& car);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(car.isInitialized(), "EmergencyCar is initialized");
+
+	bool add(const FireDepot& depot);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(depot.isInitialized(), "FireDepot is initialized");
+
+	bool add(const PoliceDepot& depot);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(depot.isInitialized(), "PoliceDepot is initialized");
+
+	bool add(const Hospital& depot);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(depot.isInitialized(), "Hospital is initialized");
+
+	bool add(const House& house);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(house.isInitialized(), "House is initialized");
+
+	bool add(const Shop& shop);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(shop.isInitialized(), "Shop is initialized");
+
+/*
 	bool isInMap(Point& p);
 	// checks whether a point is in the streets
 	// REQUIRE(this->isInitialized(), "City is initialized");
@@ -103,16 +114,20 @@ public:
 	FireDepot* findDepot(std::string& name);
 	// find the depot
 	// REQUIRE(this->isInitialized(), "City is initialized");
-
+*/
 
 private:
-	std::vector<House*> fHouses;	// all Houses
-	std::vector<FireDepot*> fFireDepots;	// all FireDepots
-	std::vector<FireTruck*> fFireTrucks;	// all firetrucks
-	std::vector<Street*> fHorizontals;	// all horizontal streets
-	std::vector<Street*> fVerticals;	// all vertical streets
+	Check fChecker;
+	std::vector<Street*> fVerticals;
+	std::vector<Street*> fHorizontals;
 
-	Check checker;
+	std::vector<std::pair<Building*, EBuilding> > fBuildings;
+	std::vector<FireDepot*> fFireDepots;
+	std::vector<PoliceDepot*> fPoliceDepots;
+	std::vector<Hospital*> fHospitals;
+	std::vector<Shop*> fShops;
+
+	std::vector<EmergencyCar*> fVehicles;
 
 	City* fMyself;	// a pointer to myself for initialize checking
 };

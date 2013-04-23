@@ -29,6 +29,8 @@ Building::Building(const Point& location, const Size& size, const double& health
 	ENSURE(this->fLocation == location, "Location is set");
 	ENSURE(this->fSize == size, "Size is set");
 	ENSURE(this->fIsBurning == false, "Building is initially not on fire");
+	ENSURE(this->fHealthNormal == health, "HealthNormal is set");
+	ENSURE(this->fHealth == health, "Health is set");
 }
 
 Building::Building(const Building& b) {
@@ -46,9 +48,10 @@ Building::Building(const Building& b) {
 	ENSURE(this->fSize == b.fSize, "Size is copied");
 	ENSURE(this->fHealth == b.fHealth, "Health is copied");
 	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
+	ENSURE(this->fHealthNormal == b.fHealthNormal, "HealthNormal is copied");
 }
 
-bool Building::operator= (const Building& b) {
+void Building::operator= (const Building& b) {
 	REQUIRE(b.isInitialized(), "Building is initialized");
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
@@ -62,7 +65,8 @@ bool Building::operator= (const Building& b) {
 	ENSURE(this->fSize == b.fSize, "Size is copied");
 	ENSURE(this->fHealth == b.fHealth, "Health is copied");
 	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
-	return true;
+	ENSURE(this->fHealthNormal == b.fHealthNormal, "HealthNormal is copied");
+	return;
 }
 
 Point Building::getLocation() const {
@@ -75,51 +79,20 @@ Size Building::getSize() const {
 	return fSize;
 }
 
-bool Building::isElement(const Point& p) {
+double Building::getHealth() const {
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(p.isInitialized(), "Point is initialized");
-
-	std::vector<Point*>::iterator it;
-
-	bool good = false;
-	std::vector<Point*> points = this->calculatePoints();
-	for(it = points.begin();it != points.end();++it){
-		if(**it == p){
-			good = true;
-		}else{
-			continue;
-		}
-	}
-
-	for(it = points.begin();it != points.end();++it){
-		delete *it;
-	}
-
-	return good;
+	return fHealth;
 }
 
-std::vector<Point*> Building::calculatePoints(){
+void Building::setFire() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(this->fHealth > 0, "Health point is positive");
 
-	int width = this->getSize().getWidth();
-	int height = this->getSize().getHeight();
-	Point location = this->getLocation();
+	fIsBurning = true;
 
-	std::vector<Point*> out;
-
-	for(int i = location.getX();i < location.getX() + width;i++){
-		for(int j = location.getY(); j != location.getY() - height;j--){
-			Point* p = new Point(i, j);
-			out.push_back(p);
-		}
-	}
-
-
-	ENSURE(out.size() > 0, "There are no points given as output");
-	return out;
-
+	ENSURE(this->fIsBurning == true, "Building is set on fire");
+	return;
 }
-
 
 bool Building::isBurning() const {
 	REQUIRE(this->isInitialized(), "Building is initialized");
@@ -127,17 +100,7 @@ bool Building::isBurning() const {
 	return fIsBurning;
 }
 
-bool Building::setFire() {
-	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(this->fHealth > 0, "Health point is positive");
-
-	fIsBurning = true;
-
-	ENSURE(this->fIsBurning == true, "Building is set on fire");
-	return true;
-}
-
-bool Building::burningDown(const int& substracter) {
+void Building::burningDown(const int& substracter) {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 	REQUIRE(substracter >= 0, "Substracter is positive");
 	REQUIRE(this->fIsBurning, "Building is on fire");
@@ -150,45 +113,33 @@ bool Building::burningDown(const int& substracter) {
 		fIsBurning = false;
 	}
 
-	return true;
+	return;
 }
 
-bool Building::stopFire() {
+void Building::stopFire() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
 	fIsBurning = false;
 
 	ENSURE(this->fIsBurning == false, "Building is not on fire anymore");
-	return true;
-}
-
-double Building::getHealth() const {
-	REQUIRE(this->isInitialized(), "Building is initialized");
-
-	return fHealth;
+	return;
 }
 
 bool Building::isDead() const {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
-	if (fHealth <= 0) {
-		return true;
-	}
-	return false;
+	return fHealth <= 0;
 }
 
-bool Building::repair(){
+void Building::repair(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
-
-	if(this->isBurning() == true){
-		return false;
-	}
+	REQUIRE(this->fIsBurning == false, "The building is not on fire");
 
 	if(fHealth != fHealthNormal){
 		fHealth += 0.5;
-		return true;
+		return;
 	}
 
-	return false;
+	return;
 
 }

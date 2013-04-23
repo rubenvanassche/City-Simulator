@@ -8,34 +8,63 @@
 #ifndef CHECK_H_
 #define CHECK_H_
 
-#include "House.h"
-#include "Street.h"
-#include "FireDepot.h"
+#include "Building.h"
 #include "Point.h"
 #include <vector>
-#include <iostream>
+#include "Street.h"
+
+enum EType {kBUILDING, kSTREET};
+enum EState {kOCCUPPIED, kFREE};
+
+typedef std::pair<Point, EType> Tupple;
 
 class Check {
 public:
+	bool isInitialized() const;
+	// check whether the check object is initialized properly
+
 	Check();
-	bool isInitialized();
-	bool go(Building& building);
-	bool go(Street& street);
+	//ENSURE(this->isInitialized(), "Check is initialized");
+	//ENSURE(this->fHasHeight == false, "Check has not a width yet");
+	//ENSURE(this->fHasWidth == false, "Check has not a height yet");
+	//ENSURE(this->fWidth == 0, "Width is currently 0");
+	//ENSURE(this->fHeight == 0, "Height is currently 0");
 
-	~Check();
+	bool go(const Building& building);
+	// check whether you may add the building
+	//REQUIRE(this->isInitialized(), "Check is initialized");
+	//REQUIRE(building.isInitialized(), "Building is initialized");
+
+	bool go(const Street& street);
+	// check whether you may add the street
+	//REQUIRE(this->isInitialized(), "Check is initialized");
+	//REQUIRE(street.isInitialized(), "Building is initialized");
+
 private:
-	bool checkPoints(std::vector<Point*> newPoints);
-	bool checkPoint(Point& p);
-	/* For buildings if there is a building or a street then return false */
-	bool checkStreetPoints(std::vector<Point*> newPoints);
-	bool checkStreetPoint(Point& p);
-	/* Only for streets, if there is a building, return false but if there is a street return true */
+	EState checkPoint(const Point& p, const EType& type);
+	// check this point whether there is a building/street
+	//REQUIRE(this->isInitialized(), "Check is initialized");
+	//REQUIRE(p.isInitialized(), "Point is initialized");
 
-	void addPoints(std::vector<Point*>, char type);
+	bool fit(const Building& building);
+	// check whether the building 'fits'
+	//REQUIRE(this->isInitialized(), "Check is initialized");
+	//REQUIRE(building.isInitialized(), "Check is initialized");
 
-	std::vector<Point*> fUsedPoints; // All Points used at the moment
-	std::vector<char> fUsedPointTypes; // The type of the points in the dUsedPointsvector
-	Check* fMyself; // I
+	bool fit(const Street& street);
+	// check whether the street 'fits'
+	//REQUIRE(this->isInitialized(), "Check is initialized");
+	//REQUIRE(street.isInitialized(), "Street is initialized");
+
+private:
+	Check* fMyself;
+	std::vector<Tupple> fUsedPoints;	// All points used at the moment
+
+	bool fHasWidth;
+	bool fHasHeight;
+
+	int fWidth;	// length and height of the roadmap
+	int fHeight;
 };
 
 #endif /* CHECK_H_ */

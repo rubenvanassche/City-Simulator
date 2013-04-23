@@ -1,27 +1,26 @@
 /*
- * FireTruck_test.cpp
+ * PoliceCar_test.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	
+ * @date:		
  * 
  */
 
-
 #include "gtest/gtest.h"
-#include "FireTruck.h"
-#include "FireDepot.h"
+#include "PoliceCar.h"
+#include "PoliceDepot.h"
 #include "House.h"
 
-TEST(FireTruck, constructs) {
-	FireDepot base(Point(0, 0), Point(1, 1), "firedepot", 10);
+TEST(PoliceCar, constructs) {
+	PoliceDepot base(Point(0, 0), Point(1, 1), Size(2), "policeDepot", 10);
 
-	EXPECT_NO_FATAL_FAILURE(FireTruck truck("truck", &base));
+	EXPECT_NO_FATAL_FAILURE(PoliceCar truck("truck", &base));
 }
 
-TEST(FireTruck, sending) {
-	FireDepot base(Point(0, 0), Point(1, 1), "firedepot", 10);
-	FireTruck truck("truck", &base);
+TEST(PoliceCar, sending) {
+	PoliceDepot base(Point(0, 0), Point(1, 1), Size(4), "policedepot", 10);
+	PoliceCar truck("truck", &base);
 
 	House houseOnFire(Point(3, 3), 3);
 
@@ -54,3 +53,4 @@ TEST(FireTruck, sending) {
 	EXPECT_FALSE(truck.isOnWay());
 	EXPECT_TRUE(truck.isInDepot());
 }
+

@@ -1,27 +1,26 @@
 /*
- * FireTruck_test.cpp
+ * Ambulance_test.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	
+ * @date:		
  * 
  */
 
-
 #include "gtest/gtest.h"
-#include "FireTruck.h"
-#include "FireDepot.h"
+#include "Ambulance.h"
+#include "Hospital.h"
 #include "House.h"
 
-TEST(FireTruck, constructs) {
-	FireDepot base(Point(0, 0), Point(1, 1), "firedepot", 10);
+TEST(Ambulance, constructs) {
+	Hospital base(Point(0, 0), Point(1, 1), Size(10), "hospital", 10);
 
-	EXPECT_NO_FATAL_FAILURE(FireTruck truck("truck", &base));
+	EXPECT_NO_FATAL_FAILURE(Ambulance truck("truck", &base));
 }
 
-TEST(FireTruck, sending) {
-	FireDepot base(Point(0, 0), Point(1, 1), "firedepot", 10);
-	FireTruck truck("truck", &base);
+TEST(Ambulance, sending) {
+	Hospital base(Point(0, 0), Point(1, 1), Size(10, 5), "Hospital", 10);
+	Ambulance truck("ambuce", &base);
 
 	House houseOnFire(Point(3, 3), 3);
 

@@ -37,21 +37,14 @@ House::House(const House& h)
 	fMyself = this;
 
 	ENSURE(this->isInitialized(), "House is initialized");
-	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
-	ENSURE(this->getSize() == h.getSize(), "Size is copied");
-	ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
 }
 
-bool House::operator= (const House& h) {
+void House::operator= (const House& h) {
 	REQUIRE(h.isInitialized(), "House is initialized");
 	REQUIRE(this->isInitialized(), "House is initialized");
 
-	fLocation = h.getLocation();
-	fSize = h.fSize;
-	fHealth = h.getHealth();
+	// nothing to do here
 
-	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
-	ENSURE(this->getSize() == h.getSize(), "Size is copied");
-	ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
-	return true;
+	ENSURE(this->isInitialized(), "House is initialized");
+	return;
 }

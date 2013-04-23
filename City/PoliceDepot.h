@@ -15,36 +15,27 @@
 
 class PoliceDepot: public Depot {
 public:
-	bool isInitialized();
+	bool isInitialized() const;
 	// checks whether the object is initialized properly
 
 	friend std::ostream& operator<< (std::ostream& stream, PoliceDepot& p);
 	// output operator overloading
 	// REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
 
-	PoliceDepot(Point& location, Point& entrance, Size& size, std::string name, double health);
+	PoliceDepot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health);
 	// constructor
-	// REQUIRE(health >= 0, "Health is positive");
-	// REQUIRE(location.isInitialized(), "Point is initialized");
-	// REQUIRE(size.isInitialized(), "Size is initialized");
-	// REQUIRE(entrance.isInitialized(), "Point is initialized");
 	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
-	// ENSURE(this->fName == name, "Name is set");
-	// ENSURE(this->getLocation() == location, "Location is set");
-	// ENSURE(this->getSize() == size, "Size is set");
-	// ENSURE(this->fEntrance == entrance, "Entrance is set");
-	// ENSURE(this->getHealth() == health, "Health is set");
 
-	PoliceDepot(PoliceDepot& p);
+	PoliceDepot(const PoliceDepot& p);
 	// copy constructor
 	// REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
 	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
-	// ENSURE(this->fName == f.fName, "Name is copied");
-	// ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
-	// ENSURE(this->getSize() == f.getSize(), "Size is copied");
-	// ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
-	// ENSURE(this->fTrucks.size() == f.fTrucks.size(), "Trucks copied");
-	// ENSURE(this->getHealth() == f.getHealth(), "Health is copied");
+
+	void operator= (const PoliceDepot& p);
+	// copy by assignment
+	// REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
+	// REQUIRE(this->isInitialized(), "PoliceDepot is initialized");
+	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
 
 private:
 	PoliceDepot* fMyself;

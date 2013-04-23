@@ -25,7 +25,7 @@ TEST(Size, constructs) {
 	EXPECT_NO_FATAL_FAILURE(Size copy = positive);
 }
 
-TEST(Size, setters_getters) {
+TEST(Size, getters) {
 	Size Default;
 	Size positive0(1, 3);
 	Size positive1(5, 2);
@@ -36,14 +36,6 @@ TEST(Size, setters_getters) {
 	EXPECT_EQ(3, positive0.getHeight());
 	EXPECT_EQ(5, positive1.getWidth());
 	EXPECT_EQ(2, positive1.getHeight());
-
-	EXPECT_NO_FATAL_FAILURE(Default.set(5, 3));
-	EXPECT_EQ(5, Default.getWidth());
-	EXPECT_EQ(3, Default.getHeight());
-
-	//EXPECT_DEATH(Default.set(-5, -3), "\\w");
-	//EXPECT_DEATH(Default.set(-5, 3), "\\w");
-	//EXPECT_DEATH(Default.set(5, -3), "\\w");
 }
 
 TEST(Size, operators) {

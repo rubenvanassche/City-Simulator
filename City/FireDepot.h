@@ -12,44 +12,31 @@
 
 #include "Depot.h"
 #include "DesignByContract.h"
-#include <vector>
-#include "FireTruck.h"
 #include <iostream>
 
 
 class FireDepot: public Depot {
 public:
-	bool isInitialized();
+	bool isInitialized() const;
 	// checks whether the object is initialized properly
 
 	friend std::ostream& operator<< (std::ostream& stream, FireDepot& f);
 	// output operator overloading
 	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
 
-	FireDepot(Point& location, Point& entrance, Size& size, std::string name, double health);
+	FireDepot(const Point& location, const Point& entrance, const std::string& name, const double& health);
 	// constructor
-	// REQUIRE(health >= 0, "Health is positive");
-	// REQUIRE(location.isInitialized(), "Point is initialized");
-	// REQUIRE(size.isInitialized(), "Size is initialized");
-	// REQUIRE(entrance.isInitialized(), "Point is initialized");
 	// ENSURE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fName == name, "Name is set");
-	// ENSURE(this->getLocation() == location, "Location is set");
-	// ENSURE(this->getSize() == size, "Size is set");
-	// ENSURE(this->fEntrance == entrance, "Entrance is set");
-	// ENSURE(this->getHealth() == health, "Health is set");
 
-	FireDepot(FireDepot& f);
+	FireDepot(const FireDepot& f);
 	// copy constructor
 	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
 	// ENSURE(this->isInitialized(), "FireDepot is initialized");
-	// ENSURE(this->fName == f.fName, "Name is copied");
-	// ENSURE(this->getLocation() == f.getLocation(), "Location is copied");
-	// ENSURE(this->getSize() == f.getSize(), "Size is copied");
-	// ENSURE(this->fEntrance == f.fEntrance, "Entrance is copied");
-	// ENSURE(this->fTrucks.size() == f.fTrucks.size(), "Trucks copied");
-	// ENSURE(this->getHealth() == f.getHealth(), "Health is copied");
 
+	void operator= (const FireDepot& f);
+	// REQUIRE(f.isInitialized(), "FireDepot is initialized");
+	// REQUIRE(this->isInitialized(), "FireDepot is initialized");
+	// ENSURE(this->isInitialized(), "FireDepot is initialized");
 
 private:
 	FireDepot* fMyself;

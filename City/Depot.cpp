@@ -8,103 +8,86 @@
 #include "Depot.h"
 #include <fstream>
 
-bool Depot::isInitialized() {
-	return this == Depot::fMyself;
+bool Depot::isInitialized() const {
+	return this == fMyself;
 }
 
-Depot::Depot(Point& location, Point& entrance, Size& size, std::string name, double health)
-	: Building(location, size, health), fEntrance(entrance), fName(name) {
-	REQUIRE(health >= 0, "Health is positive");
-	REQUIRE(location.isInitialized(), "Point is initialized");
-	REQUIRE(size.isInitialized(), "Size is initialized");
+Depot::Depot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health)
+	: Building(location, size, health) {
 	REQUIRE(entrance.isInitialized(), "Point is initialized");
 
-	Depot::fMyself = this;
-	Depot::fName = name;
-	Depot::fEntrance = entrance;
+	fEntrance = entrance;
+	fName = name;
+	fMyself = this;
+	fName = name;
 
 	ENSURE(this->isInitialized(), "Depot is initialized");
 	ENSURE(this->fName == name, "Name is set");
-	ENSURE(this->getLocation() == location, "Location is set");
-	ENSURE(this->getSize() == size, "Size is set");
 	ENSURE(this->fEntrance == entrance, "Entrance is set");
-	ENSURE(this->getHealth() == health, "Health is set");
 }
 
-Depot::Depot(Depot& d)
+Depot::Depot(const Depot& d)
 	: Building(d.getLocation(), d.getSize(), d.getHealth() ), fEntrance(d.getEntrance()) {
 	REQUIRE(d.isInitialized(), "Depot is initialized");
 
-	Depot::fMyself = this;
-	Depot::fName = d.fName;
-	Depot::fEntrance = d.fEntrance;
-	Depot::fVehicles = d.fVehicles;
-	this->setLocation(d.getLocation());
-	this->setHealth(d.getHealth());
-	this->setSize(d.getSize());
+	fMyself = this;
+	fName = d.fName;
+	fEntrance = d.fEntrance;
+	fVehicles = d.fVehicles;
 
 	ENSURE(this->isInitialized(), "Depot is initialized");
 	ENSURE(this->fName == d.fName, "Name is copied");
-	ENSURE(this->getLocation() == d.getLocation(), "Location is copied");
-	ENSURE(this->getSize() == d.getSize(), "Size is copied");
 	ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
 	ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
-	ENSURE(this->getHealth() == d.getHealth(), "Health is copied");
 }
 
-bool Depot::operator= (Depot& d) {
+void Depot::operator= (const Depot& d) {
 	REQUIRE(d.isInitialized(), "Depot is initialized");
 	REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	this->setLocation(d.getLocation());
-	this->setSize(d.getSize());
-	this->setHealth(d.getHealth());
-	Depot::fName = d.fName;
-	Depot::fEntrance = d.fEntrance;
-	Depot::fVehicles = d.fVehicles;
+	fName = d.fName;
+	fEntrance = d.fEntrance;
+	fVehicles = d.fVehicles;
 
 	ENSURE(this->fName == d.fName, "Name is initialized");
-	ENSURE(this->getLocation() == d.getLocation(), "Location is copied");
-	ENSURE(this->getSize() == d.getSize(), "Size is copied");
 	ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
 	ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
-	ENSURE(this->getHealth() == d.getHealth(), "Health is copied");
-	return true;
+	return;
 }
 
-bool Depot::addVehicle(Vehicle* v) {
+void Depot::addVehicle(Vehicle* v) {
 	REQUIRE(this->isInitialized(), "FireDepot is initialized");
 
-	Depot::fVehicles.push_back(v);
+	fVehicles.push_back(v);
 
 	ENSURE(this->fVehicles.back()->getName() == v->getName(), "Vehicle is added");
-	return true;
+	return;
 }
 
-unsigned int Depot::getNrVehicles() {
+unsigned int Depot::getNrVehicles() const {
 	REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	return Depot::fVehicles.size();
+	return fVehicles.size();
 }
 
-unsigned int Depot::getAvailableVehicles() {
+unsigned int Depot::getAvailableVehicles() const {
 	REQUIRE(this->isInitialized(), "Depot is initialized");
 
 	unsigned int count = 0;
-	for (unsigned int index=0; index < Depot::fVehicles.size(); index++) {
-		if (Depot::fVehicles[index]->getPosition() == this->getLocation()) {
+	for (unsigned int index=0; index < fVehicles.size(); index++) {
+		if (fVehicles[index]->getPosition() == this->getLocation()) {
 			count++;
 		}
 	}
 	return count;
 }
 
-std::string& Depot::getName() {
+std::string Depot::getName() const {
 	REQUIRE(this->isInitialized(), "Depot is initialized");
-	return Depot::fName;
+	return fName;
 }
 
-Point& Depot::getEntrance() {
+Point Depot::getEntrance() const {
 	REQUIRE(this->isInitialized(), "Depot is initialized");
-	return Depot::fEntrance;
+	return fEntrance;
 }

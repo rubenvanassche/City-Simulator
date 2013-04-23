@@ -19,9 +19,9 @@
 
 class Out{
 public:
-    Out(std::string &filename);
+    Out(const std::string &filename);
 
-    bool isInitialized();
+    bool isInitialized() const;
 
     template <class T>
     Out &operator<<(T &v);
@@ -31,11 +31,11 @@ public:
     Out &operator<<(Point& p);
     std::string endl();
 
-    void error(std::string failure, std::string location, int line);
+    void error(const std::string& failure, const std::string& location, const int& line);
 
 
     bool indent();
-    bool indent(bool yes);
+    bool indent(const bool& yes);
     bool isIndenting();
 
     void writeFile();

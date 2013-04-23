@@ -9,43 +9,57 @@
 #define DEPOT_H_
 
 #include "Building.h"
-#include "Point.h"
-#include "Size.h"
 #include "DesignByContract.h"
 #include "Vehicle.h"
 #include <string>
+#include <vector>
 
 class Depot : public Building {
 public:
-	Depot(Point& location, Point& entrance, Size& size, std::string name, double health);
-
-	Depot(Depot& d);
-
-	bool operator= (Depot& d);
-
-	bool isInitialized();
+	bool isInitialized() const;
 	// checks whether the object is initialized properly
 
-	bool addVehicle(Vehicle* v);
+	Depot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health);
+	//REQUIRE(entrance.isInitialized(), "Point is initialized");
+	//ENSURE(this->isInitialized(), "Depot is initialized");
+	//ENSURE(this->fName == name, "Name is set");
+	//ENSURE(this->fEntrance == entrance, "Entrance is set");
+
+	Depot(const Depot& d);
+	//REQUIRE(d.isInitialized(), "Depot is initialized");
+	//ENSURE(this->isInitialized(), "Depot is initialized");
+	//ENSURE(this->fName == d.fName, "Name is copied");
+	//ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
+	//ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+
+	void operator= (const Depot& d);
+	//REQUIRE(d.isInitialized(), "Depot is initialized");
+	//REQUIRE(this->isInitialized(), "Depot is initialized");
+	//ENSURE(this->fName == d.fName, "Name is copied");
+	//ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
+	//ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+
+	void addVehicle(Vehicle* v);
 	// add a vehicle
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
-	// ENSURE(this->fTrucks.back()->getName() == f->getName(), "FireTruck is added");
+	// ENSURE(this->fVehicles.back()->getName() == v->getName(), "Vehicle is added");
 
-	unsigned int getNrVehicles();
+	unsigned int getNrVehicles() const;
 	// gets the total amount of vehicles with this depot as base
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	unsigned int getAvailableVehicles();
+	unsigned int getAvailableVehicles() const;
 	// get the amount of vehicles available in the depot
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	std::string& getName();
+	std::string getName() const;
 	// gets the name of the depot
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	Point& getEntrance();
+	Point getEntrance() const;
 	// get the entrance of the depot
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
+
 private:
 	std::vector<Vehicle*> fVehicles;
 	std::string fName;

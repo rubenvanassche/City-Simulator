@@ -18,12 +18,8 @@ std::ostream& operator<< (std::ostream& stream, Shop& s){
 	return stream;
 }
 
-
 Shop::Shop(const Point& location, const Size& size, const double& health, const int& security)
-: Building(location, size, health) {
-	REQUIRE(location.isInitialized(), "Location is initialized");
-	REQUIRE(size.isInitialized(), "Size is initialized");
-	REQUIRE(health >= 0, "Positive healthpoints");
+		: Building(location, size, health) {
 	REQUIRE(security >= 0, "Positive Security");
 
 	fMyself = this;
@@ -31,9 +27,9 @@ Shop::Shop(const Point& location, const Size& size, const double& health, const 
 	fIsRobbing = false;
 
 	ENSURE(this->isInitialized(), "Shop is initialized");
+	ENSURE(this->fSecurityLevel == security, "SecurityLevel is set");
+	ENSURE(this->fIsRobbing == false, "Shop is not being robbed (yet)");
 }
-
-
 
 Shop::Shop(const Shop& s)
 : Building(s.getLocation(), s.getSize(), s.getHealth() ) {
@@ -41,37 +37,30 @@ Shop::Shop(const Shop& s)
 
 	fMyself = this;
 	fSecurityLevel = s.getSecurity();
-	fIsRobbing = false;
+	fIsRobbing = s.isRobbing();
 
 	ENSURE(this->isInitialized(), "Shop is initialized");
-	ENSURE(this->getHealth() == s.getHealth(), "Health is copied");
-	ENSURE(this->getSecurity() == s.getSecurity(), "Security is copied");
-	ENSURE(this->getSize() == s.getSize(), "Size is copied");
-	ENSURE(this->getLocation() == s.getLocation(), "Location is copied");
+	ENSURE(this->fSecurityLevel == s.getSecurity(), "Security is copied");
+	ENSURE(this->fIsRobbing == s.isRobbing(), "Robbing is copied");
 }
 
-
-
-bool Shop::operator= (const Shop& s){
+void Shop::operator= (const Shop& s){
 	REQUIRE(s.isInitialized(), "Shop is initialized");
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 
-	fLocation = s.getLocation();
-	fSize = s.getSize();
-	fHealth = s.getHealth();
 	fSecurityLevel = s.getSecurity();
+	fIsRobbing = s.isRobbing();
 
-	ENSURE(this->getHealth() == s.getHealth(), "Health is copied");
-	ENSURE(this->getSecurity() == s.getSecurity(), "Security is copied");
-	ENSURE(this->getSize() == s.getSize(), "Size is copied");
-	ENSURE(this->getLocation() == s.getLocation(), "Location is copied");
-	return true;
+	ENSURE(this->isInitialized(), "Shop is initialized");
+	ENSURE(this->fSecurityLevel == s.fSecurityLevel, "Security is copied");
+	ENSURE(this->fIsRobbing == s.fIsRobbing, "Robbing is copied");
+	return;
 }
 
 int Shop::getSecurity() const{
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 
-	return this->fSecurityLevel;
+	return fSecurityLevel;
 }
 
 bool Shop::isRobbing() const {
@@ -81,18 +70,18 @@ bool Shop::isRobbing() const {
 }
 
 
-bool Shop::StartRobbing(){
+void Shop::StartRobbing(){
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 	REQUIRE(this->getSecurity() > 0, "Security Level is positive");
 
 	fIsRobbing = true;
 
 	ENSURE(this->fIsRobbing == true, "Robbery started");
-	return true;
+	return;
 }
 
 
-bool Shop::rob(int substracter){
+void Shop::rob(int substracter){
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 	REQUIRE(substracter >= 0, "Substracter is positive");
 	REQUIRE(this->fIsRobbing, "Robbery is going on");
@@ -105,17 +94,17 @@ bool Shop::rob(int substracter){
 		fIsRobbing = false;
 	}
 
-	return true;
+	return;
 
 }
 
 
-bool Shop::StopRobbing(){
+void Shop::StopRobbing(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
 	fIsRobbing = false;
 
 	ENSURE(this->fIsRobbing == false, "The building is not being robbed anymore");
 
-	return true;
+	return;
 }

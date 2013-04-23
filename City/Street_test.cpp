@@ -90,15 +90,11 @@ TEST(Street, crossing_parallel) {
 	EXPECT_FALSE(vertical1.isParallel(horizontal0));
 	EXPECT_TRUE(vertical1.isParallel(vertical0));
 
-	EXPECT_EQ(0, vertical0.getCrosspoint(horizontal0)->getX());
-	EXPECT_EQ(3, vertical0.getCrosspoint(horizontal0)->getY());
-	EXPECT_EQ(0, horizontal0.getCrosspoint(vertical0)->getX());
-	EXPECT_EQ(3, horizontal0.getCrosspoint(vertical0)->getY());
-	EXPECT_EQ(NULL, vertical0.getCrosspoint(vertical1));
+	EXPECT_EQ(Point(0, 3), vertical0.getCrosspoint(horizontal0));
+	EXPECT_EQ(Point(0, 3), horizontal0.getCrosspoint(vertical0));
+//	EXPECT_DEATH(vertical0.getCrosspoint(vertical1), "\\w");
 
-	EXPECT_EQ(5, vertical1.getCrosspoint(horizontal0)->getX());
-	EXPECT_EQ(3, vertical1.getCrosspoint(horizontal0)->getY());
-	EXPECT_EQ(5, vertical1.getCrosspoint(horizontal1)->getX());
-	EXPECT_EQ(2, vertical1.getCrosspoint(horizontal1)->getY());
-	EXPECT_EQ(NULL, vertical1.getCrosspoint(vertical0));
+	EXPECT_EQ(Point(5, 3), vertical1.getCrosspoint(horizontal0));
+	EXPECT_EQ(Point(5, 2), vertical1.getCrosspoint(horizontal1));
+//	EXPECT_DEATH(vertical1.getCrosspoint(vertical0), "\\w");
 }

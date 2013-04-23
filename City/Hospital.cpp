@@ -7,8 +7,8 @@
 
 #include "Hospital.h"
 
-bool Hospital::isInitialized(){
-	return this == Hospital::fMyself;
+bool Hospital::isInitialized() const {
+	return this == fMyself;
 }
 
 
@@ -20,31 +20,30 @@ std::ostream& operator<< (std::ostream& stream, Hospital& h){
 }
 
 
-Hospital::Hospital(Point& location, Point& entrance, Size& size, std::string name, double health)
+Hospital::Hospital(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health)
 : Depot(location, entrance, size, name, health){
 
-	Hospital::fMyself = this;
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "Hospital is initialized");
-	ENSURE(this->getName() == name, "Name is set");
-	ENSURE(this->getLocation() == location, "Location is set");
-	ENSURE(this->getSize() == size, "Size is set");
-	ENSURE(this->getEntrance() == entrance, "Entrance is set");
-	ENSURE(this->getHealth() == health, "Health is set");
 }
 
 
-Hospital::Hospital(Hospital& h)
+Hospital::Hospital(const Hospital& h)
 : Depot(h){
 	REQUIRE(h.isInitialized(), "Hospital is initialized");
 
-	Hospital::fMyself = this;
+	fMyself = this;
 
 	ENSURE(this->isInitialized(), "Hospital is initialized");
-	ENSURE(this->getName() == h.getName(), "Name is copied");
-	ENSURE(this->getLocation() == h.getLocation(), "Location is copied");
-	ENSURE(this->getSize() == h.getSize(), "Size is copied");
-	ENSURE(this->getEntrance() == h.getEntrance(), "Entrance is copied");
-	ENSURE(this->getNrVehicles() == h.getNrVehicles(), "Trucks copied");
-	ENSURE(this->getHealth() == h.getHealth(), "Health is copied");
+}
+
+void Hospital::operator= (const Hospital& h) {
+	REQUIRE(h.isInitialized(), "Hospital is initialized");
+	REQUIRE(this->isInitialized(), "Hospital is initialized");
+
+	// nothing to do here
+
+	ENSURE(this->isInitialized(), "Hospital is initialized");
+	return;
 }

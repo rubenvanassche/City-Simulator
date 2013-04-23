@@ -1,6 +1,6 @@
 #include "Out.h"
 
-    Out::Out(std::string &filename){
+    Out::Out(const std::string &filename){
     	Out::fMyself = this;
     	Out::fFileName = filename.c_str();
     	Out::fIndent = false;
@@ -11,7 +11,7 @@
     	Out::filestream.open(Out::fFileName, std::ios_base::app);
     }
 
-    bool Out::isInitialized() {
+    bool Out::isInitialized() const {
     	return this == Out::fMyself;
     }
 
@@ -45,7 +45,7 @@
     	return "\n";
     }
 
-    void Out::error(std::string failure, std::string location, int line){
+    void Out::error(const std::string& failure, const std::string& location, const int& line){
     	std::cout << "ERROR" << std::endl;
     	std::cout << failure << std::endl;
     	std::cout << "At " << location << " line: " << line << std::endl << std::endl;
@@ -62,7 +62,7 @@
     	return fIndent;
     }
 
-    bool Out::indent(bool yes){
+    bool Out::indent(const bool& yes){
     	if(yes == true){
     		fIndent = true;
     	}else{
