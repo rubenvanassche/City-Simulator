@@ -39,6 +39,9 @@ public:
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	// ENSURE(this->isInitialized(), "FireTruck is initialized");
 
+	char getSymbol();
+	/* Returns the symbol of this instance in the city to be used with the graphical impression */
+
 private:
 	FireTruck* fMyself;
 };

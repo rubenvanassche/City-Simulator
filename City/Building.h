@@ -13,6 +13,7 @@
 #include "DesignByContract.h"
 #include "Point.h"
 #include "Size.h"
+#include <vector>
 
 class Building {
 public:
@@ -92,6 +93,10 @@ public:
 	// raises the health level with 0.5
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 	// REQUIRE(this->fIsBurning == false, "The building is not on fire");
+
+	std::vector<Point> calculatePoints();
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+	// ENSURE(out.size() > 0, "There are no points given as output");
 
 private:
 	Size fSize;

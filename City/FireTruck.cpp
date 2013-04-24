@@ -46,3 +46,7 @@ void FireTruck::operator= (const FireTruck& f) {
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
 	return;
 }
+
+char FireTruck::getSymbol(){
+	return '*';
+}

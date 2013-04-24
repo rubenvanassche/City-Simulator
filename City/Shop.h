@@ -68,6 +68,9 @@ public:
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 	// ENSURE(this->fIsRobbing == false, "The building is not being robbed anymore");
 
+	char getSymbol();
+	/* Returns the symbol of this instance in the city to be used with the graphical impression */
+
 private:
 	Shop* fMyself;
 

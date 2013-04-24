@@ -141,5 +141,25 @@ void Building::repair(){
 	}
 
 	return;
+}
 
+std::vector<Point> Building::calculatePoints(){
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	int width = this->getSize().getWidth();
+	int height = this->getSize().getHeight();
+	Point location = this->getLocation();
+
+	std::vector<Point> out;
+
+	for(int i = location.getX();i < location.getX() + width;i++){
+		for(int j = location.getY(); j != location.getY() - height;j--){
+			Point p(i, j);
+			out.push_back(p);
+		}
+	}
+
+
+	ENSURE(out.size() > 0, "There are no points given as output");
+	return out;
 }

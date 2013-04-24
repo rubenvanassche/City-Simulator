@@ -47,3 +47,7 @@ void PoliceCar::operator= (const PoliceCar& f) {
 	return;
 }
 
+char PoliceCar::getSymbol(){
+	return '%';
+}
+

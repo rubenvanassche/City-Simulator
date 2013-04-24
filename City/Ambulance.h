@@ -38,6 +38,8 @@ public:
 	// REQUIRE(this->isInitialized(), "Ambulance is initialized");
 	// ENSURE(this->isInitialized(), "Ambulance is initialized");
 
+	char getSymbol();
+
 private:
 	Ambulance* fMyself;
 };

@@ -36,6 +36,9 @@ public:
 	// REQUIRE(this->isInitialized(), "Hospital is initialized");
 	// ENSURE(this->isInitialized(), "Hospital is initialized");
 
+	char getSymbol();
+	/* Returns the symbol of this instance in the city to be used with the graphical impression */
+
 private:
 	Hospital* fMyself;
 };

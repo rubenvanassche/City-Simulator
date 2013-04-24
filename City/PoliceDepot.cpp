@@ -47,3 +47,11 @@ void PoliceDepot::operator= (const PoliceDepot& p) {
 	ENSURE(this->isInitialized(), "PoliceDepot is initialized");
 	return;
 }
+
+char PoliceDepot::getSymbol(){
+	if(this->isBurning()){
+		return '#';
+	}else{
+		return 'P';
+	}
+}
