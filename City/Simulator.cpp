@@ -10,57 +10,75 @@
 #include "Simulator.h"
 #include <cstdlib>
 
-bool Simulator::isInitialized() {
+bool Simulator::isInitialized() const {
 	return this == Simulator::fMyself;
 }
 
 Simulator::Simulator(City* town) {
 	REQUIRE(town->isInitialized(), "City is initialized");
 
-	Simulator::fMyself = this;
-	Simulator::fTown = town;
-	Simulator::fEndSimulation = false;
+	fMyself = this;
+	fTown = town;
+	fEndSimulation = false;
 
 	ENSURE(this->isInitialized(), "Simulator is initialized");
 	ENSURE(this->fTown == town, "city is set");
 }
 
-bool Simulator::endSimulation() {
+bool Simulator::endSimulation() const {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
-	return Simulator::fEndSimulation;
+
+	return fEndSimulation;
 }
 
-bool Simulator::fireBreaksOut() {
+void Simulator::fireBreaksOut() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	std::vector<House*> buildings = Simulator::fTown->getHouses();
-
-	int index = std::rand() % buildings.size();
-
-	if ( (buildings[index]->isBurning() ) || (buildings[index]->isDead() ) ) {
-		return false;	// building is already on fire
-	}
-
-	buildings[index]->setFire();	// BURN HOUSE, BURN!!
-
-	ENSURE(this->fTown->burningHouses() > 0, "At least 1 house is burning");
-	return true;
+	Building* ptrBuild = fTown->randBuilding();
+	ptrBuild->setFire();
+	return;
 }
 
-bool Simulator::burningDown(int factor) {
-	REQUIRE(this->isInitialized(), "Simulator is initialized");
-	REQUIRE(factor > 0, "burning factor is greater than 0");
+void Simulator::burningDown() {
 
-	std::vector<House*> buildings = Simulator::fTown->getHouses();
-	for (unsigned int index=0; index < buildings.size(); index++) {
-		if (buildings[index]->isBurning() ) {
-			buildings[index]->burningDown(factor);
+	std::vector< std::pair<Building*, EBuilding> > vecBuilding = fTown->getBuildingsOnFire();
+
+	for (unsigned int index = 0; index < vecBuilding.size(); index++) {
+		if (vecBuilding[index].second == kHOUSE) {
+			vecBuilding[index].first->burningDown(1); // substract 1
+		}
+		else if (vecBuilding[index].second == kFIREDEPOT) {
+			vecBuilding[index].first->burningDown(2);
+		}
+		else if (vecBuilding[index].second == kSHOP) {
+			vecBuilding[index].first->burningDown(2);
+		}
+		else {
+			// you've forgotten the case of hospitals/policedepot in Spec2.0
+			vecBuilding[index].first->burningDown(3);	// let's explode them out of city :--p
 		}
 	}
 
-	return true;
+	return;
 }
 
+void Simulator::commitRob() {
+	Shop* ptrShop = fTown->randShop();
+	ptrShop->StartRobbing();
+	return;
+}
+
+void Simulator::robbing() {
+	std::vector<Shop*> robbedShops = fTown->getRobbingShop();
+
+	for (unsigned int index = 0; index < robbedShops.size(); index++) {
+		robbedShops[index]->rob();
+	}
+	return;
+}
+
+
+/*
 
 bool Simulator::drive(int repeat) {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
@@ -224,3 +242,4 @@ bool Simulator::sendTrucks() {
 
 	return true;
 }
+*/

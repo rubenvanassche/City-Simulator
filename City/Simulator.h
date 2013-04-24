@@ -15,40 +15,51 @@
 
 class Simulator {
 public:
-	bool isInitialized();
+	bool isInitialized() const;
 
 	Simulator(City* town);
 	// constructor
 	// REQUIRE(town->isInitialized(), "City is initialized");
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
 
-	bool endSimulation();
+	bool endSimulation() const;
 	// checks whether it's the end of the simulation
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	bool fireBreaksOut();
+	void fireBreaksOut();
 	// set a random chosen house on fire
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
-	// ENSURE(this->fTown->burningHouses() > 0, "At least 1 house is burning");
 
-	bool burningDown(int factor=1);
+	void burningDown();
+	// let the city burn
+
+	void commitRob();
+	// let go rob a random shop
+
+	void robbing();
+	// substracting robbing points
+
+	void drive();
+
+/*
+	void burningDown(int factor=1);
 	// BURN CITY BURN!!
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 	// REQUIRE(factor > 0, "burning factor is greater than 0");
 
-	bool drive(int repeat=1);
+	void drive(int repeat=1);
 	// let all the vehicles drive around
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 	// REQUIRE(repeat > 0, "repeat at least 1");
 
-	bool extinguish();
+	void extinguish();
 	// extinguish the fire (if a firetruck is arrived)
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	bool sendTrucks();
+	void sendTrucks();
 	// send a trucks for houses on fire
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
-
+*/
 private:
 	bool fEndSimulation;
 	City* fTown;

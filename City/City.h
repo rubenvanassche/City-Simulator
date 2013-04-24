@@ -29,6 +29,7 @@
 #include "FireTruck.h"
 
 enum EBuilding {kFIREDEPOT, kPOLICEDEPOT, kHOSPITAL, kHOUSE, kSHOP};
+enum EDirection {kHORIZONTAL, kVERTICAL};
 
 class City {
 public:
@@ -75,6 +76,20 @@ public:
 	bool add(const Shop& shop);
 	//REQUIRE(this->isInitialized(), "City is initialized");
 	//REQUIRE(shop.isInitialized(), "Shop is initialized");
+
+	FireDepot* findFireDepot(const std::string& name);
+	Hospital* findHospital(const std::string& name);
+	PoliceDepot* findPoliceDepot(const std::string& name);
+
+	Building* randBuilding(const bool& onFire = false);
+	std::vector< std::pair<Building*, EBuilding> > getBuildingsOnFire();
+
+	Shop* randShop(const bool& isRobbing=false);
+	std::vector<Shop*> getRobbingShop();
+
+	Street* findStreet(const Point& position, const EDirection& dir);
+
+	Point nextStep(const Point& curPos, const Point& destination);
 
 /*
 	bool isInMap(Point& p);

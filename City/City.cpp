@@ -9,6 +9,7 @@
 
 #include "City.h"
 #include <iostream>
+#include <cstdlib>
 
 bool City::isInitialized() const {
 	return fMyself == this;
@@ -163,6 +164,169 @@ bool City::add(const Shop& shop) {
 	return true;
 }
 
+FireDepot* City::findFireDepot(const std::string& name) {
+	for (unsigned int index = 0; index < fFireDepots.size(); index++) {
+		if (fFireDepots[index]->getName() == name) {
+			return fFireDepots[index];
+		}
+	}
+
+	return NULL;
+}
+
+Hospital* City::findHospital(const std::string& name) {
+	for (unsigned int index = 0; index < fHospitals.size(); index++) {
+		if (fHospitals[index]->getName() == name) {
+			return fHospitals[index];
+		}
+	}
+
+	return NULL;
+}
+
+PoliceDepot* City::findPoliceDepot(const std::string& name) {
+	for (unsigned int index = 0; index < fPoliceDepots.size(); index++) {
+		if (fPoliceDepots[index]->getName() == name) {
+			return fPoliceDepots[index];
+		}
+	}
+
+	return NULL;
+}
+
+Building* City::randBuilding(const bool& onFire) {
+	int index = std::rand() % fBuildings.size();
+
+	if (!onFire) {
+		if (!fBuildings[index].first->isBurning()) {
+			return fBuildings[index].first;
+		}
+		else {// then try again
+			return this->randBuilding(onFire);
+		}
+	}
+	else {
+		return fBuildings[index].first;
+	}
+}
+
+std::vector< std::pair<Building*, EBuilding> > City::getBuildingsOnFire() {
+	std::vector< std::pair<Building*, EBuilding> > vecBuilding;
+
+	for (unsigned int index = 0; index < fBuildings.size(); index++) {
+		if (fBuildings[index].first->isBurning()) {
+			vecBuilding.push_back(fBuildings[index]);
+		}
+	}
+
+	return vecBuilding;
+}
+
+Shop* City::randShop(const bool& isRobbing=false) {
+	int index = std::rand() % fShops.size();
+
+	return fShops[index];
+}
+
+std::vector<Shop*> City::getRobbingShop() {
+	std::vector<Shop*> shops;
+
+	for (unsigned int index = 0; index < fShops.size(); index++) {
+		if (fShops[index]->isRobbing()) {
+			shops.push_back(fShops[index]);
+		}
+	}
+
+	return shops;
+}
+
+Street* City::findStreet(const Point& position, const EDirection& dir) {
+	if (dir == kHORIZONTAL) {
+		for (unsigned int index = 0; index < fHorizontals.size(); index++) {
+			if (fHorizontals[index]->isElement(position)) {
+				return fHorizontals[index];
+			}
+		}
+
+		return NULL;
+	}
+	else if (dir == kVERTICAL) {
+		for (unsigned int index = 0; index < fVerticals.size(); index++) {
+			if (fVerticals[index]->isElement(position)) {
+				return fVerticals[index];
+			}
+		}
+		return NULL;
+	}
+	return NULL;
+}
+
+Point City::nextStep(const Point& curPos, const Point& destination) {
+	Street* destStr, curStr;
+
+	destStr = this->findStreet(destination, kHORIZONTAL);
+	if (destStr == NULL) {
+		destStr = this->findStreet(destination, kVERTICAL);
+	}
+
+	if (destStr->isElement(curPos)) {
+		if (destStr->isVertical()) {
+			if (destination.getY() > curPos.getY()) {
+				return Point(curPos.getX(), curPos.getY() + 1);
+			}
+			else {
+				return Point(curPos.getX(), curPos.getY() - 1);
+			}
+		}
+		else {
+			if (destination.getX() > curPos.getX()) {
+				return Point(curPos.getX() + 1, curPos.getY() );
+			}
+			else {
+				return Point(curPos.getX() - 1, curPos.getY() );
+			}
+		}
+	}
+
+	if (destStr->isVertical()) {
+		curStr = this->findStreet(curPos, kHORIZONTAL);
+		if (curStr == NULL) {
+			curStr = this->findStreet(curPos, kVERTICAL);
+		}
+	}
+	else {
+		curStr = this->findStreet(curPos, kVERTICAL);
+		if (curStr == NULL) {
+			curStr = this->findStreet(curPos, kHORIZONTAL);
+		}
+	}
+
+	Street str = *curStr;
+	if (destStr->isParallel( str ) ) {
+		// do somehting here
+	}
+	else if (destStr->isCrossing(str)) {
+		Point cross = destStr->getCrosspoint(str);
+		if (curStr.isVertical()) {
+			if (destination.getY() > curPos.getY()) {
+				return Point(curPos.getX(), curPos.getY() + 1);
+			}
+			else {
+				return Point(curPos.getX(), curPos.getY() - 1);
+			}
+		}
+		else {
+			if (destination.getX() > curPos.getX()) {
+				return Point(curPos.getX() + 1, curPos.getY() );
+			}
+			else {
+				return Point(curPos.getX() - 1, curPos.getY() );
+			}
+		}
+	}
+
+}
+
 /* DO NOT DELETE THIS, this may be usefull
 bool City::isInMap(Point& p) {
 	REQUIRE(this->isInitialized(), "City is initialized");
@@ -279,64 +443,4 @@ Point* City::findCrosspoint(Street& destStr, Street& curStr, Point& curPos) {
 }
 
 
-unsigned int City::burningHouses() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	unsigned int count = 0;
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		if (City::fHouses[index]->isBurning() ) {
-			count++;
-		}
-	}
-
-	return count;
-}
-
-
-FireDepot* City::findDepot(std::string& name) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index++) {
-		if (City::fFireDepots[index]->getName() == name) {
-			return City::fFireDepots[index];
-		}
-	}
-	return NULL;
-}
-
-
-City::~City() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	for (unsigned int index=0; index < City::fFireDepots.size(); index--) {
-		delete City::fFireDepots[index];
-	}
-	City::fFireDepots.clear();
-
-	for (unsigned int index=0; index < City::fHorizontals.size(); index++) {
-		delete City::fHorizontals[index];
-	}
-	City::fHorizontals.clear();
-
-	for (unsigned int index=0; index < City::fVerticals.size(); index++) {
-		delete City::fVerticals[index];
-	}
-	City::fVerticals.clear();
-
-	for (unsigned int index=0; index < City::fFireTrucks.size(); index++) {
-		delete City::fFireTrucks[index];
-	}
-	City::fFireTrucks.clear();
-
-	for (unsigned int index=0; index < City::fHouses.size(); index++) {
-		delete City::fHouses[index];
-	}
-	City::fHouses.clear();
-
-	ENSURE(this->fFireDepots.empty() == true, "FireDepots is empty'd");
-	ENSURE(this->fHouses.empty() == true, "Buildings is empty'd");
-	ENSURE(this->fHorizontals.empty() == true, "Horizontals is empty'd");
-	ENSURE(this->fVerticals.empty() == true, "Verticals is empty'd");
-	ENSURE(this->fFireTrucks.empty() == true, "FireTrucks is empty'd");
-}
 */
