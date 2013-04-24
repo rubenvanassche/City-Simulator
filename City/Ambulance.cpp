@@ -46,3 +46,7 @@ void Ambulance::operator= (const Ambulance& f) {
 	ENSURE(this->isInitialized(), "Ambulance is initialized");
 	return;
 }
+
+char Ambulance::getSymbol(){
+	return '=';
+}

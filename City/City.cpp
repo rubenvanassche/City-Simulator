@@ -15,6 +15,14 @@ bool City::isInitialized() const {
 	return fMyself == this;
 }
 
+std::ostream& operator<< (std::ostream& stream, City& c) {
+	REQUIRE(c.isInitialized(), "City is initialized");
+
+	stream << c.print();
+	return stream;
+}
+
+
 City::City() {
 
 	fMyself = this;
@@ -222,7 +230,7 @@ std::vector< std::pair<Building*, EBuilding> > City::getBuildingsOnFire() {
 	return vecBuilding;
 }
 
-Shop* City::randShop(const bool& isRobbing=false) {
+Shop* City::randShop(const bool& isRobbing) {
 	int index = std::rand() % fShops.size();
 
 	return fShops[index];
@@ -262,7 +270,8 @@ Street* City::findStreet(const Point& position, const EDirection& dir) {
 }
 
 Point City::nextStep(const Point& curPos, const Point& destination) {
-	Street* destStr, curStr;
+	Street* destStr;
+	Street* curStr;
 
 	destStr = this->findStreet(destination, kHORIZONTAL);
 	if (destStr == NULL) {
@@ -307,7 +316,7 @@ Point City::nextStep(const Point& curPos, const Point& destination) {
 	}
 	else if (destStr->isCrossing(str)) {
 		Point cross = destStr->getCrosspoint(str);
-		if (curStr.isVertical()) {
+		if (curStr->isVertical()) {
 			if (destination.getY() > curPos.getY()) {
 				return Point(curPos.getX(), curPos.getY() + 1);
 			}
@@ -325,6 +334,21 @@ Point City::nextStep(const Point& curPos, const Point& destination) {
 		}
 	}
 
+}
+
+std::ostream City::print(){
+	  std::filebuf fb; // No idea why this stands here but it's the only way to make it work
+	  std::ostream stream(&fb);
+
+
+	  // FireDepots
+	  for(int i = 0;i < this->fFireDepots.size();i++){
+		  this->fFireDepots.at(i);
+	  }
+
+	  stream << "leeg";
+
+	  return stream;
 }
 
 /* DO NOT DELETE THIS, this may be usefull

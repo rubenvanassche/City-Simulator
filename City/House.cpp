@@ -48,3 +48,11 @@ void House::operator= (const House& h) {
 	ENSURE(this->isInitialized(), "House is initialized");
 	return;
 }
+
+char House::getSymbol(){
+	if(this->isBurning()){
+		return '#';
+	}else{
+		return 'H';
+	}
+}

@@ -108,3 +108,11 @@ void Shop::StopRobbing(){
 
 	return;
 }
+
+char Shop::getSymbol(){
+	if(this->isBurning()){
+		return '#';
+	}else{
+		return 'W';
+	}
+}

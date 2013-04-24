@@ -47,3 +47,11 @@ void Hospital::operator= (const Hospital& h) {
 	ENSURE(this->isInitialized(), "Hospital is initialized");
 	return;
 }
+
+char Hospital::getSymbol(){
+	if(this->isBurning()){
+		return '#';
+	}else{
+		return 'Z';
+	}
+}

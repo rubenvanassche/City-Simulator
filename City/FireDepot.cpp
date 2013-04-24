@@ -46,3 +46,11 @@ void FireDepot::operator= (const FireDepot& f) {
 
 	ENSURE(this->isInitialized(), "FireDepot is initialized");
 }
+
+char FireDepot::getSymbol(){
+	if(this->isBurning()){
+		return '#';
+	}else{
+		return 'K';
+	}
+}

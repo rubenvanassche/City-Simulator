@@ -35,6 +35,10 @@ class City {
 public:
 	bool isInitialized() const;
 
+	friend std::ostream& operator<< (std::ostream& stream, City& c);
+	// output operator overloading
+	// REQUIRE(c.isInitialized(), "City is initialized");
+
 	City();
 	// Constructor
 	// ENSURE(this->isInitialized(), "City is initialized");
@@ -90,6 +94,8 @@ public:
 	Street* findStreet(const Point& position, const EDirection& dir);
 
 	Point nextStep(const Point& curPos, const Point& destination);
+
+	std::ostream print();
 
 /*
 	bool isInMap(Point& p);
