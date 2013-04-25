@@ -28,7 +28,6 @@ Hospital::Hospital(const Point& location, const Point& entrance, const Size& siz
 	ENSURE(this->isInitialized(), "Hospital is initialized");
 }
 
-
 Hospital::Hospital(const Hospital& h)
 : Depot(h){
 	REQUIRE(h.isInitialized(), "Hospital is initialized");
@@ -48,10 +47,13 @@ void Hospital::operator= (const Hospital& h) {
 	return;
 }
 
-char Hospital::getSymbol(){
-	if(this->isBurning()){
+char Hospital::getSymbol() const {
+	REQUIRE(this->isInitialized(), "Hospital is initialized");
+
+	if (this->isBurning() ){
 		return '#';
-	}else{
+	}
+	else{
 		return 'Z';
 	}
 }

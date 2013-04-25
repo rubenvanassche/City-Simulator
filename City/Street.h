@@ -96,10 +96,14 @@ public:
 	// REQUIRE(str.isInitialized(), "Street is initialized");
 	// REQUIRE(this->isCrossing(str), "Streets are crossing);
 
-	char getSymbol();
-	/* Returns the symbol of this instance in the city to be used with the graphical impression */
+	char getSymbol() const;
+	// Returns the symbol of this instance in the city to be used with the graphical impression
+	// REQUIRE(this->isInitialized(), "Street is initialized");
 
 	std::vector<Point> calculatePoints();
+	// todo: what is this?
+	// 	REQUIRE(this->isInitialized(), "Street is initialized");
+	// ENSURE(out.size() > 0, "There are no points given as output");
 
 private:
 	Point fStartPoint;

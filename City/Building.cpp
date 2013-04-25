@@ -13,7 +13,7 @@ bool Building::isInitialized() const {
 	return fMyself == this;
 }
 
-Building::Building(const Point& location, const Size& size, const double& health, double reducer) {
+Building::Building(const Point& location, const Size& size, const double& health, const double& reducer) {
 	REQUIRE(location.isInitialized(), "Point is initialized");
 	REQUIRE(size.isInitialized(), "Size is initialized");
 	REQUIRE(health >= 0, "Health point is positive");
@@ -36,7 +36,7 @@ Building::Building(const Point& location, const Size& size, const double& health
 	ENSURE(this->fHealthNormal == health, "HealthNormal is set");
 	ENSURE(this->fHealth == health, "Health is set");
 	ENSURE(this->fReducer ==  reducer, "reducer is set");
-	ENSURE(this->fFireTruckAssigned ==  false, "FireTruckAssigned is set");
+	ENSURE(this->fFireTruckAssigned == false, "There is no FireTruck assigned");
 }
 
 Building::Building(const Building& b) {
@@ -138,32 +138,29 @@ void Building::stopFire() {
 	return;
 }
 
-bool Building::startSpreadingFire(){
-	if(this->isBurning() == false or this->isDead()){
-		return false;
-	}
-
-	if(fHealthNormal - fHealth >= 3){
-		return true;
-	}else{
-		return false;
-	}
-}
-
 bool Building::isDead() const {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
 	return fHealth <= 0;
 }
 
+bool Building::startSpreadingFire() const {
+	// if the building is not on fire, then the fire cannnot spread
+	if( (!fIsBurning) || (this->isDead()) ) {
+		return false;
+	}
+
+	if ( (fHealthNormal - fHealth) >= 3){
+		return true;
+	}
+	return false;
+}
+
 void Building::repair(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
-	if(this->fIsBurning == false){
-		return;
-	}
-
-	if(this->isDead()){
+	// you cannot repair a building that is not on fire (anymore)
+	if( (!fIsBurning) || (this->isDead()) ) {
 		return;
 	}
 
@@ -173,6 +170,31 @@ void Building::repair(){
 	}
 
 	return;
+}
+
+bool Building::isFireTruckAssigned() const {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	return fFireTruckAssigned;
+}
+
+void Building::assignFireTruck() {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(this->isBurning(), "The building is on fire");
+
+	fFireTruckAssigned = true;
+
+	ENSURE(this->fFireTruckAssigned == true, "A firetruck is assigned to the house");
+	return;
+}
+
+void Building::withdrawFireTruckAssignment(){
+	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(this->isBurning() == false, "The Building is not on fire anymore");
+
+	fFireTruckAssigned = false;
+
+	ENSURE(this->fFireTruckAssigned == false, "A firetruck is withdrawed from the house");
 }
 
 std::vector<Point> Building::calculatePoints(){
@@ -197,6 +219,8 @@ std::vector<Point> Building::calculatePoints(){
 }
 
 std::vector<Point> Building::calculateSurroundingPoints(){
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
 	std::vector<Point> points;
 
 	for(int i = 0;i < this->fSize.getWidth();i++){
@@ -246,18 +270,4 @@ std::vector<Point> Building::calculateSurroundingPoints(){
 	}
 
 	return points;
-}
-
-bool Building::isFireTruckAssigned(){
-	return fFireTruckAssigned;
-}
-
-void Building::assignFireTruck(){
-	// to do:
-	// check if building is on fire
-	fFireTruckAssigned = true;
-}
-
-void Building::withdrawFireTruckAssignment(){
-	fFireTruckAssigned = false;
 }

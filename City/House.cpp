@@ -49,10 +49,13 @@ void House::operator= (const House& h) {
 	return;
 }
 
-char House::getSymbol(){
-	if(this->isBurning()){
+char House::getSymbol() const {
+	REQUIRE(this->isInitialized(), "House is initialized");
+
+	if (this->isBurning()){
 		return '#';
-	}else{
+	}
+	else{
 		return 'H';
 	}
 }

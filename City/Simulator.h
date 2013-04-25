@@ -32,7 +32,7 @@ public:
 
 	void fireTruckControl();
 	// checks the vector of burning houses and sends a firetruck to those who are burning
-
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void burningDown();
 	// let the city burn

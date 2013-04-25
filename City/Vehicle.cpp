@@ -100,7 +100,7 @@ void Vehicle::goLeft(const int& units) {
 	REQUIRE(this->fPosition.getX() != 0, "You can not fall of");
 	REQUIRE(units > 0, "Positive units");
 
-	fPosition.set( fPosition.getX() - units, fPosition.getY() );
+	fPosition.setX( fPosition.getX() - units);
 	return;
 }
 
@@ -108,7 +108,7 @@ void Vehicle::goRight(const int& units) {
 	REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	REQUIRE(units > 0, "Positive units");
 
-	fPosition.set( fPosition.getX() + units, fPosition.getY() );
+	fPosition.setX(fPosition.getX() - units);
 	return;
 }
 
@@ -116,7 +116,7 @@ void Vehicle::goUp(const int& units) {
 	REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	REQUIRE(units > 0, "Positive units");
 
-	fPosition.set( fPosition.getX(), fPosition.getY() + units);
+	fPosition.setY(fPosition.getY() + units);
 	return;
 }
 
@@ -125,7 +125,7 @@ void Vehicle::goDown(const int& units) {
 	REQUIRE(this->fPosition.getY() != 0, "You can not fall of");
 	REQUIRE(units > 0, "Positive units");
 
-	fPosition.set( fPosition.getX(), fPosition.getY()  - units);
+	fPosition.setY(fPosition.getY()  - units);
 	return;
 }
 

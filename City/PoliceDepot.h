@@ -37,8 +37,9 @@ public:
 	// REQUIRE(this->isInitialized(), "PoliceDepot is initialized");
 	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
 
-	char getSymbol();
-	/* Returns the symbol of this instance in the city to be used with the graphical impression */
+	char getSymbol() const;
+	// Returns the symbol of this instance in the city to be used with the graphical impression
+	// REQUIRE(this->isInitialized(), "PoliceDepot is initialized");
 
 private:
 	PoliceDepot* fMyself;

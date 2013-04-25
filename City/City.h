@@ -23,9 +23,8 @@
 #include "Shop.h"
 #include "House.h"
 
-#include "EmergencyCar.h"
 #include "Ambulance.h"
-#include "PoliceCar.h"
+#include "PoliceTruck.h"
 #include "FireTruck.h"
 
 enum EDirection {kHORIZONTAL, kVERTICAL};
@@ -45,12 +44,16 @@ public:
 	~City();
 	// destructor
 	//REQUIRE(this->isInitialized(), "City is initialized");
-	//ENSURE(this->fBuildings.empty(), "Buildings empty'd");
 	//ENSURE(this->fFireDepots.empty(), "FireDepots empty'd");
 	//ENSURE(this->fPoliceDepots.empty(), "Policedepots empty'd");
 	//ENSURE(this->fHospitals.empty(), "Hospitals empty'd");
+	//ENSURE(this->fShops.empty(), "Shops empty'd");
+	//ENSURE(this->fHouses.empty(), "Houses empty'd");
 	//ENSURE(this->fHorizontals.empty(), "Horizontals empty'd");
 	//ENSURE(this->fVerticals.empty(), "Verticals empty'd");
+	//ENSURE(this->fFireTrucks.empty(), "FireTrucks empty'd");
+	//ENSURE(this->fPoliceTrucks.empty(), "PoliceTrucks empty'd);
+	//ENSURE(this->fAmbulance.empty(), "Ambulance empty'd");
 
 	bool add(const Street& str);
 	//REQUIRE(this->isInitialized(), "City is initialized");
@@ -60,7 +63,7 @@ public:
 	//REQUIRE(this->isInitialized(), "City is initialized");
 	//REQUIRE(truck.isInitialized(), "Truck is initialized");
 
-	bool add(const PoliceCar& car);
+	bool add(const PoliceTruck& car);
 	//REQUIRE(this->isInitialized(), "City is initialized");
 	//REQUIRE(car.isInitialized(), "EmergencyCar is initialized");
 
@@ -89,76 +92,111 @@ public:
 	//REQUIRE(shop.isInitialized(), "Shop is initialized");
 
 	FireDepot* findFireDepot(const std::string& name);
+	// find a firedepot with the given name
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
 	Hospital* findHospital(const std::string& name);
+	// find a hospital with the given name
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
 	PoliceDepot* findPoliceDepot(const std::string& name);
+	// find a policedepot with the given name
+	//REQUIRE(this->isInitialized(), "City is initialized");
 
 	std::vector<Building*> getBuildingsOnFire();
-	std::vector<Shop*> getRobbingShop();
+	// get all the buildings that is on fire
+	//REQUIRE(this->isInitialized(), "City is initialized");
 
-	House* randHouse(const bool& onFire = false);
-	Shop* randShop(const bool& onFire = false);
-	FireDepot* randFireDepot(const bool& onFire = false);
-	PoliceDepot* randPoliceDepot(const bool& onFire = false);
-	Hospital* randHospital(const bool& onFire = false);
+	std::vector<Shop*> getRobbingShops();
+	// get all the shops that is being robbed
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	House* randHouse();
+	// get a random house (that you want to set on fire)
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	Shop* randShop(const bool& fire, const bool& rob);
+	// get a random shop (that you want to set on fire or rob)
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	FireDepot* randFireDepot();
+	// get a random FireDepot (that you want to set on fire)
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	PoliceDepot* randPoliceDepot();
+	// get a random policeDepot (that you want to set on fire)
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	Hospital* randHospital();
+	// get a random house (that you want to set on fire)
+	//REQUIRE(this->isInitialized(), "City is initialized");
 
 	std::vector<House*> getHouses();
 	std::vector<FireDepot*> getFireDepots();
 	std::vector<PoliceDepot*> getPoliceDepots();
 	std::vector<Hospital*> getHospitals();
 	std::vector<Shop*> getShops();
+	// todo: do we really need this?
 
-	std::vector<FireTruck*> getFireTrucks();
-	std::vector<PoliceCar*> getPoliceCars();
-	std::vector<Ambulance*> getAmbulances();
+	std::vector<FireTruck*> getFireTrucksInDepot();
+	// get all the firetrucks that is in the depot
+	//REQUIRE(this->isInitialized(), "City is initialized");
 
+	std::vector<PoliceTruck*> getPoliceTrucksInDepot();
+	// get all the police trucks that is in the depot
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<Ambulance*> getAmbulancesInDepot();
+	// get all the ambulances that is in the depot
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<FireTruck*> getFireTrucksOnWay();
+	// get all the firetrucks on way
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<PoliceTruck*> getPoliceTrucksOnWay();
+	// get all the police trucks on way
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<Ambulance*> getAmbulancesOnWay();
+	// get all the ambulances on way
+	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<FireTruck*> getFireTrucksArrived();
+	// get all the firetrucks that is arrived
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<PoliceTruck*> getPoliceTrucksArrived();
+	// get all the police trucks that is arrived
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<Ambulance*> getAmbulancesArrived();
+	// get all the ambulances that is arrived
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	Street* findStreet(const Point& position, const EDirection& dir);
-	// what's this?
+	// find a street with the given position and desired direction (if not found, try the other direction)
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(position.isInitialized(), "Point is initialized");
+
+	Point findClosestCrosspoint(const Point& position);
+	// find the closest crosspoint;
+	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(position.isInitialized(), "Point is initialized");
 
 	Point nextStep(const Point& curPos, const Point& destination);
-	// what's this?
-
-	std::ostream print();
-
-/*
-	bool isInMap(Point& p);
-	// checks whether a point is in the streets
+	// find the next step the driver has to take to go 1 step closer to the destination given
 	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Point is initialized");
-
-	std::vector<House*> getHouses();
-	// get all the houses
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<FireTruck*> getTrucks();
-	// get all the trucks
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	Street* findVerticalStreet(Point& p);
-	// find a vertical street
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Point is initialized");
-
-	Street* findHorizontalStreet(Point& p);
-	// find a horizontal street
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(p.isInitialized(), "Point is initialized");
-
-	Point* findCrosspoint(Street& destStr, Street& curStr, Point& curPos);
-	// find the (closest) crosspoint
-	// REQUIRE(this->isInitialized(), "City is initialized");
-	// REQUIRE(destStr.isInitialized(), "Street is initialized");
-	// REQUIRE(curStr.isInitialized(), "Street is initialized");
 	// REQUIRE(curPos.isInitialized(), "Point is initialized");
+	// REQUIRE(destination.isInitialized(), "Point is initialized");
 
-	unsigned int burningHouses();
-	// counts the amount of houses on fire
+	bool isInMap(const Point& p);
+	// checks whether a given point is on a street (so you can drive there)
 	// REQUIRE(this->isInitialized(), "City is initialized");
+	// REQUIRE(p.isInitialized(), "City is initialized");
 
-	FireDepot* findDepot(std::string& name);
-	// find the depot
-	// REQUIRE(this->isInitialized(), "City is initialized");
-*/
+	std::ostream& print();
+	// todo: what is this?
 
 private:
 	Check fChecker;
@@ -172,7 +210,7 @@ private:
 	std::vector<House*> fHouses;
 
 	std::vector<FireTruck*> fFireTrucks;
-	std::vector<PoliceCar*> fPoliceCars;
+	std::vector<PoliceTruck*> fPoliceTrucks;
 	std::vector<Ambulance*> fAmbulances;
 
 	City* fMyself;	// a pointer to myself for initialize checking

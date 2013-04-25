@@ -65,17 +65,28 @@ public:
 
 	void StopRobbing();
 	// stop the robbery
-	// REQUIRE(this->isInitialized(), "Building is initialized");
-	// ENSURE(this->fIsRobbing == false, "The building is not being robbed anymore");
+	// REQUIRE(this->isInitialized(), "Shop is initialized");
+	// ENSURE(this->fIsRobbing == false, "The shop is not being robbed anymore");
 
-	char getSymbol();
-	/* Returns the symbol of this instance in the city to be used with the graphical impression */
-
-	bool isPoliceTruckAssigned();
+	bool isPoliceTruckAssigned() const;
+	// checks whether a police truck is assigned to this shop
+	// REQUIRE(this->isInitialized(), "Shop is initialized");
 
 	void assignPoliceTruck();
+	// assign a police truck to the shop
+	// REQUIRE(this->isInitialized(), "Shop is initialized");
+	// REQUIRE(this->fIsRobbing == true, "The shop is being robbed");
+	// ENSURE(this->fPoliceTruckAssigned == true, "A police truck is assigned");
 
 	void withdrawPoliceTruckAssignment();
+	// send the police truck back to his depot
+	// REQUIRE(this->isInitialized(), "Shop is initialized");
+	// REQUIRE(this->fIsRobbing == false, "The shop is not being robbed anymore");
+	// ENSURE(this->fPoliceTruckAssigned == false, "A police truck is withdrawed");
+
+	char getSymbol() const;
+	// Returns the symbol of this instance in the city to be used with the graphical impression
+	// REQUIRE(this->isInitialized(), "Shop is initialized");
 
 private:
 	Shop* fMyself;

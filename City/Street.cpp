@@ -197,7 +197,7 @@ Point Street::getCrosspoint(Street& str) {
 	return Point();
 }
 
-char Street::getSymbol(){
+char Street::getSymbol() const {
 	return ' ';
 }
 

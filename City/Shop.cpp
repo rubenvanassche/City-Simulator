@@ -45,7 +45,7 @@ Shop::Shop(const Shop& s)
 	ENSURE(this->isInitialized(), "Shop is initialized");
 	ENSURE(this->fSecurityLevel == s.getSecurity(), "Security is copied");
 	ENSURE(this->fIsRobbing == s.isRobbing(), "Robbing is copied");
-	ENSURE(this->fPoliceTruckAssigned == s.fPoliceTruckAssigned(), "PoliceTruckAssigned is copied");
+	ENSURE(this->fPoliceTruckAssigned == s.fPoliceTruckAssigned, "PoliceTruckAssigned is copied");
 }
 
 void Shop::operator= (const Shop& s){
@@ -59,7 +59,7 @@ void Shop::operator= (const Shop& s){
 	ENSURE(this->isInitialized(), "Shop is initialized");
 	ENSURE(this->fSecurityLevel == s.fSecurityLevel, "Security is copied");
 	ENSURE(this->fIsRobbing == s.fIsRobbing, "Robbing is copied");
-	ENSURE(this->fPoliceTruckAssigned == s.fPoliceTruckAssigned(), "PoliceTruckAssigned is copied");
+	ENSURE(this->fPoliceTruckAssigned == s.fPoliceTruckAssigned, "PoliceTruckAssigned is copied");
 	return;
 }
 
@@ -115,24 +115,37 @@ void Shop::StopRobbing(){
 	return;
 }
 
-bool Shop::isPoliceTruckAssigned(){
+bool Shop::isPoliceTruckAssigned() const{
+	REQUIRE(this->isInitialized(), "Shop is initialized");
+
 	return fPoliceTruckAssigned;
 }
 
 void Shop::assignPoliceTruck(){
-	// to do:
-	// check if shop is being robbed
+	REQUIRE(this->isInitialized(), "Shop is initialized");
+	REQUIRE(this->fIsRobbing == true, "The shop is being robbed");
+
 	fPoliceTruckAssigned = true;
+
+	ENSURE(this->fPoliceTruckAssigned == true, "A police truck is assigned");
+	return;
 }
 
 void Shop::withdrawPoliceTruckAssignment(){
+	REQUIRE(this->isInitialized(), "Shop is initialized");
+	REQUIRE(this->fIsRobbing == false, "The shop is not being robbed anymore");
+
 	fPoliceTruckAssigned = false;
+
+	ENSURE(this->fPoliceTruckAssigned == false, "A police truck is withdrawed");
+	return;
 }
 
-char Shop::getSymbol(){
-	if(this->isBurning()){
+char Shop::getSymbol() const {
+	if (this->isBurning()){
 		return '#';
-	}else{
+	}
+	else{
 		return 'W';
 	}
 }

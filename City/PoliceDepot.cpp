@@ -48,10 +48,13 @@ void PoliceDepot::operator= (const PoliceDepot& p) {
 	return;
 }
 
-char PoliceDepot::getSymbol(){
+char PoliceDepot::getSymbol() const {
+	REQUIRE(this->isInitialized(), "PoliceDepot is initialized");
+
 	if(this->isBurning()){
 		return '#';
-	}else{
+	}
+	else{
 		return 'P';
 	}
 }
