@@ -101,6 +101,17 @@ public:
 	PoliceDepot* randPoliceDepot(const bool& onFire = false);
 	Hospital* randHospital(const bool& onFire = false);
 
+	std::vector<House*> getHouses();
+	std::vector<FireDepot*> getFireDepots();
+	std::vector<PoliceDepot*> getPoliceDepots();
+	std::vector<Hospital*> getHospitals();
+	std::vector<Shop*> getShops();
+
+	std::vector<FireTruck*> getFireTrucks();
+	std::vector<PoliceCar*> getPoliceCars();
+	std::vector<Ambulance*> getAmbulances();
+
+
 	Street* findStreet(const Point& position, const EDirection& dir);
 	// what's this?
 

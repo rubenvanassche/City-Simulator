@@ -196,8 +196,56 @@ std::vector<Point> Building::calculatePoints(){
 	return out;
 }
 
-std::vector<Point> calculateSurroundingPoints(){
-	// use the size the generate a vector of points surrounding this building
+std::vector<Point> Building::calculateSurroundingPoints(){
+	std::vector<Point> points;
+
+	for(int i = 0;i < this->fSize.getWidth();i++){
+		for(int j = 0;j < this->fSize.getHeight();j++){
+			int x = 0;
+			int y = 0;
+
+			if(i == 0 and j == 0){
+				continue;
+			}
+
+			if(i == 0 and j == this->fSize.getHeight()){
+				continue;
+			}
+
+			if(i == this->fSize.getWidth() and j == 0){
+				continue;
+			}
+
+			if(i == this->fSize.getWidth() and j == this->fSize.getHeight()){
+				continue;
+			}
+
+			if(i == 0){
+				x = this->fLocation.getX() -1 ;
+				y = this->fLocation.getY() - j;
+			}
+
+			if(i == this->fSize.getWidth()){
+				x = this->fLocation.getX() + 1;
+				y = this->fLocation.getY() - j;
+			}
+
+			if(j == 0){
+				x = this->fLocation.getX() + i;
+				y = this->fLocation.getY() + 1;
+			}
+
+			if(j == this->fSize.getHeight()){
+				x = this->fLocation.getX() + i;
+				y = this->fLocation.getY() + 1;
+			}
+
+			Point newPoint(x, y);
+			points.push_back(newPoint);
+		}
+	}
+
+	return points;
 }
 
 bool Building::isFireTruckAssigned(){

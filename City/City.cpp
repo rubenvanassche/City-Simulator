@@ -273,6 +273,38 @@ Shop* City::randShop(const bool& isRobbing) {
 	return fShops[index];
 }
 
+std::vector<House*> City::getHouses(){
+	return this->fHouses;
+}
+
+std::vector<FireDepot*> City::getFireDepots(){
+	return this->fFireDepots;
+}
+
+std::vector<PoliceDepot*> City::getPoliceDepots(){
+	return this->fPoliceDepots;
+}
+
+std::vector<Hospital*> City::getHospitals(){
+	return this->fHospitals;
+}
+
+std::vector<Shop*> City::getShops(){
+	return this->fShops;
+}
+
+std::vector<FireTruck*> City::getFireTrucks(){
+	return this->fFireTrucks;
+}
+
+std::vector<PoliceCar*> City::getPoliceCars(){
+	return this->fPoliceCars;
+}
+
+std::vector<Ambulance*> City::getAmbulances(){
+	return this->fAmbulances;
+}
+
 std::vector<Shop*> City::getRobbingShop() {
 	std::vector<Shop*> shops;
 
