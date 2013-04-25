@@ -21,7 +21,7 @@ std::ostream& operator<< (std::ostream& stream, House& h) {
 }
 
 House::House(const Point& location, const double& health)
-	: Building(location, 2, health) {
+	: Building(location, 2, health, 1) {
 	REQUIRE(location.isInitialized(), "Location is initialized");
 	REQUIRE(health >= 0, "Positive healthpoints");
 
@@ -31,7 +31,7 @@ House::House(const Point& location, const double& health)
 }
 
 House::House(const House& h)
-	: Building(h.getLocation(), 2, h.getHealth() ) {
+	: Building(h.getLocation(), 2, h.getHealth() , 1) {
 	REQUIRE(h.isInitialized(), "House is initialized");
 
 	fMyself = this;

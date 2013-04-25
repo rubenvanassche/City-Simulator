@@ -13,19 +13,19 @@
 #include "Size.h"
 
 TEST(Building, constructs) {
-	EXPECT_NO_FATAL_FAILURE(Building building(Point(0, 0), Size(2), 0));
-	EXPECT_NO_FATAL_FAILURE(Building building(Point(0, 0), Size(4), 5));
+	EXPECT_NO_FATAL_FAILURE(Building building(Point(0, 0), Size(2), 0, 1));
+	EXPECT_NO_FATAL_FAILURE(Building building(Point(0, 0), Size(4), 5, 1));
 
 //	EXPECT_DEATH(Building magic(Point(-3, 2), Size(1), 0), "\\w");
 //	EXPECT_DEATH(Building magic(Point(1, 1), Size(0), 5), "\\w");
 //	EXPECT_DEATH(Building magic(Point(1, 1), Size(1), -1), "\\w");
 
-	Building app(Point(0, 0), Size(5), 100);
+	Building app(Point(0, 0), Size(5), 100, 1);
 	EXPECT_NO_FATAL_FAILURE(Building copy = app);
 }
 
 TEST(Building, getters) {
-	Building app(Point(0, 0), Size(5), 100);
+	Building app(Point(0, 0), Size(5), 100, 1);
 
 	EXPECT_EQ(Point(0, 0), app.getLocation());
 	EXPECT_EQ(Size(5), app.getSize());
@@ -33,7 +33,7 @@ TEST(Building, getters) {
 }
 
 TEST(Building, fire) {
-	Building house(Point(0, 0), Size(2), 2);
+	Building house(Point(0, 0), Size(2), 2, 1);
 
 	EXPECT_FALSE(house.isBurning());
 	EXPECT_FALSE(house.isDead());
@@ -55,7 +55,7 @@ TEST(Building, fire) {
 
 	EXPECT_NO_FATAL_FAILURE(house.setFire());
 	EXPECT_TRUE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.burningDown(2));
+	EXPECT_NO_FATAL_FAILURE(house.burningDown());
 	EXPECT_EQ(-0.5, house.getHealth());
 	EXPECT_TRUE(house.isDead());
 }

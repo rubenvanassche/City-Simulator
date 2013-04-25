@@ -82,7 +82,7 @@ TEST(Shop, fire) {
 
 	EXPECT_NO_FATAL_FAILURE(homemadecookies.setFire());
 	EXPECT_TRUE(homemadecookies.isBurning());
-	EXPECT_NO_FATAL_FAILURE(homemadecookies.burningDown(2));
+	EXPECT_NO_FATAL_FAILURE(homemadecookies.burningDown());
 	EXPECT_EQ(-0.5, homemadecookies.getHealth());
 	EXPECT_TRUE(homemadecookies.isDead());
 }

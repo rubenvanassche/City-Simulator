@@ -20,17 +20,19 @@ public:
 	bool isInitialized() const;
 	// check whether the object is initialized properly
 
-	Building(const Point& location, const Size& size, const double& health);
+	Building(const Point& location, const Size& size, const double& health, double reducer);
 	// constructor
 	// REQUIRE(location.isInitialized(), "Point is initialized");
 	// REQUIRE(size.isInitialized(), "Size is initialized");
 	// REQUIRE(health >= 0, "Health point is positive");
+	// REQUIRE(reducer >= 0, "reducer point is positive");
 	// ENSURE(this->isInitialized(), "Building is initialized");
 	// ENSURE(this->fLocation == location, "Location is set");
 	// ENSURE(this->fSize == size, "Size is set");
 	// ENSURE(this->fIsBurning == false, "Building is initially not on fire");
 	// ENSURE(this->fHealthNormal == health, "HealthNormal is set");
 	// ENSURE(this->fHealth == health, "Health is set");
+	// ENSURE(this->fReducer ==  reducer, "reducer is set");
 
 	Building(const Building& b);
 	// copy constructor
@@ -74,16 +76,17 @@ public:
 	// checks whether the building is burning
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 
-	void burningDown(const int& substracter=1);
+	void burningDown();
 	// substract the house its health by a given value
 	// REQUIRE(this->isInitialized(), "Building is initialized");
-	// REQUIRE(substracter >= 0, "Substracter is positive");
 	// REQUIRE(this->fIsBurning, "Building is on fire");
 
 	void stopFire();
 	// stop the fire
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 	// ENSURE(this->fIsBurning == false, "Building is not on fire anymore");
+
+	bool startSpreadingFire();
 
 	bool isDead() const;
 	// if health points <= 0
@@ -92,11 +95,19 @@ public:
 	void repair();
 	// raises the health level with 0.5
 	// REQUIRE(this->isInitialized(), "Building is initialized");
-	// REQUIRE(this->fIsBurning == false, "The building is not on fire");
 
 	std::vector<Point> calculatePoints();
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 	// ENSURE(out.size() > 0, "There are no points given as output");
+
+	std::vector<Point> calculateSurroundingPoints();
+
+	bool isFireTruckAssigned();
+
+	void assignFireTruck();
+
+	void withdrawFireTruckAssignment();
+
 
 private:
 	Size fSize;
@@ -104,6 +115,8 @@ private:
 	bool fIsBurning;
 	double fHealth;
 	double fHealthNormal;
+	double fReducer;
+	bool fFireTruckAssigned;
 
 	Building* fMyself;
 };

@@ -42,22 +42,23 @@ City::~City() {
 		delete fHorizontals[index];
 	}
 	fHorizontals.clear();
+	// to do:
+	// MEMORY LEAK HERE : remove each pointer from the building vectors
 
-	for (unsigned int index = 0; index < fBuildings.size(); index++) {
-		delete fBuildings[index].first;
-	}
-	fBuildings.clear();
+	fHouses.clear();
 	fFireDepots.clear();	// because they were also in the buildings, so no leaks will apear
 	fPoliceDepots.clear();
 	fHospitals.clear();
 	fShops.clear();
 
-	for (unsigned int index = 0; index < fVehicles.size(); index++) {
-		delete fVehicles[index];
-	}
-	fVehicles.clear();
+	// to do:
+	// MEMORY LEAK HERE : remove each pointer from the vehcile vectors
 
-	ENSURE(this->fBuildings.empty(), "Buildings empty'd");
+	fFireTrucks.clear();
+	fPoliceCars.clear();
+	fAmbulances.clear();
+
+	ENSURE(this->fHouses.empty(), "Houses empty'd");
 	ENSURE(this->fFireDepots.empty(), "FireDepots empty'd");
 	ENSURE(this->fPoliceDepots.empty(), "Policedepots empty'd");
 	ENSURE(this->fHospitals.empty(), "Hospitals empty'd");
@@ -89,12 +90,32 @@ bool City::add(const Street& str) {
 	}
 }
 
-bool City::add(const EmergencyCar& car) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-	REQUIRE(car.isInitialized(), "EmergencyCar is initialized");
 
-	EmergencyCar* ptrCar = new EmergencyCar(car);
-	fVehicles.push_back(ptrCar);
+bool City::add(const FireTruck& truck){
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(truck.isInitialized(), "Truck is initialized");
+
+	FireTruck* ptrTruck = new FireTruck(truck);
+	fFireTrucks.push_back(ptrTruck);
+	return true;
+}
+
+
+bool City::add(const PoliceCar& car){
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(car.isInitialized(), "PoliceCar is initialized");
+
+	PoliceCar* ptrCar = new PoliceCar(car);
+	fPoliceCars.push_back(ptrCar);
+	return true;
+}
+
+bool City::add(const Ambulance& ambulance){
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(ambulance.isInitialized(), "Ambulance is initialized");
+
+	Ambulance* ptrAmbulance = new Ambulance(ambulance);
+	fAmbulances.push_back(ptrAmbulance);
 	return true;
 }
 
@@ -107,8 +128,6 @@ bool City::add(const FireDepot& depot) {
 	}
 
 	FireDepot* ptrDepot = new FireDepot(depot);
-	std::pair<Building*, EBuilding> tupple(ptrDepot, kFIREDEPOT);
-	fBuildings.push_back(tupple);
 	fFireDepots.push_back(ptrDepot);
 	return true;
 }
@@ -122,8 +141,6 @@ bool City::add(const PoliceDepot& depot) {
 	}
 
 	PoliceDepot* ptrDepot = new PoliceDepot(depot);
-	std::pair<Building*, EBuilding> tupple(ptrDepot, kPOLICEDEPOT);
-	fBuildings.push_back(tupple);
 	fPoliceDepots.push_back(ptrDepot);
 	return true;
 }
@@ -137,8 +154,6 @@ bool City::add(const Hospital& depot) {
 	}
 
 	Hospital* ptrDepot = new Hospital(depot);
-	std::pair<Building*, EBuilding> tupple(ptrDepot, kHOSPITAL);
-	fBuildings.push_back(tupple);
 	fHospitals.push_back(ptrDepot);
 	return true;
 }
@@ -152,8 +167,7 @@ bool City::add(const House& house) {
 	}
 
 	House* ptrHouse = new House(house);
-	std::pair<Building*, EBuilding> tupple(ptrHouse, kHOUSE);
-	fBuildings.push_back(tupple);
+	fHouses.push_back(ptrHouse);
 	return true;
 }
 
@@ -166,8 +180,6 @@ bool City::add(const Shop& shop) {
 	}
 
 	Shop* ptrShop = new Shop(shop);
-	std::pair<Building*, EBuilding> tupple(ptrShop, kSHOP);
-	fBuildings.push_back(tupple);
 	fShops.push_back(ptrShop);
 	return true;
 }
@@ -202,7 +214,31 @@ PoliceDepot* City::findPoliceDepot(const std::string& name) {
 	return NULL;
 }
 
-Building* City::randBuilding(const bool& onFire) {
+
+std::vector<Building*> City::getBuildingsOnFire() {
+	std::vector<Building*> vecBuilding;
+
+	//to do:
+	// iterate over each vector and select burning buildings and put them in a vector
+
+	/*
+	for (unsigned int index = 0; index < fBuildings.size(); index++) {
+		if (fBuildings[index].first->isBurning()) {
+			vecBuilding.push_back(fBuildings[index]);
+		}
+	}
+	*/
+
+	return vecBuilding;
+}
+
+House* City::randHouse(const bool& onFire = false){
+	// to do:
+	// First -> random number between 1 and 6 to select type of vector
+	// Second -> random number between 0 and vector.size()
+	// Third -> burn that thing down!
+
+	/*
 	int index = std::rand() % fBuildings.size();
 
 	if (!onFire) {
@@ -216,18 +252,19 @@ Building* City::randBuilding(const bool& onFire) {
 	else {
 		return fBuildings[index].first;
 	}
+	*/
 }
+Shop* City::randShop(const bool& onFire = false){
 
-std::vector< std::pair<Building*, EBuilding> > City::getBuildingsOnFire() {
-	std::vector< std::pair<Building*, EBuilding> > vecBuilding;
+}
+FireDepot* City::randFireDepot(const bool& onFire = false){
 
-	for (unsigned int index = 0; index < fBuildings.size(); index++) {
-		if (fBuildings[index].first->isBurning()) {
-			vecBuilding.push_back(fBuildings[index]);
-		}
-	}
+}
+PoliceDepot* City::randPoliceDepot(const bool& onFire = false){
 
-	return vecBuilding;
+}
+Hospital* City::randHospital(const bool& onFire = false){
+
 }
 
 Shop* City::randShop(const bool& isRobbing) {
@@ -337,7 +374,7 @@ Point City::nextStep(const Point& curPos, const Point& destination) {
 }
 
 std::ostream City::print(){
-	  std::filebuf fb; // No idea why this stands here but it's the only way to make it work
+	  /*std::filebuf fb; // No idea why this stands here but it's the only way to make it work
 	  std::ostream stream(&fb);
 
 
@@ -349,6 +386,7 @@ std::ostream City::print(){
 	  stream << "leeg";
 
 	  return stream;
+	  */
 }
 
 /* DO NOT DELETE THIS, this may be usefull

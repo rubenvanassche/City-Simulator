@@ -13,10 +13,12 @@ bool Building::isInitialized() const {
 	return fMyself == this;
 }
 
-Building::Building(const Point& location, const Size& size, const double& health) {
+Building::Building(const Point& location, const Size& size, const double& health, double reducer) {
 	REQUIRE(location.isInitialized(), "Point is initialized");
 	REQUIRE(size.isInitialized(), "Size is initialized");
 	REQUIRE(health >= 0, "Health point is positive");
+	REQUIRE(reducer >= 0, "reducer point is positive");
+
 
 	fSize = size;
 	fLocation = location;
@@ -24,6 +26,8 @@ Building::Building(const Point& location, const Size& size, const double& health
 	fHealth = health;
 	fHealthNormal = health;
 	fIsBurning = false;
+	fReducer = reducer;
+	fFireTruckAssigned = false;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
 	ENSURE(this->fLocation == location, "Location is set");
@@ -31,6 +35,8 @@ Building::Building(const Point& location, const Size& size, const double& health
 	ENSURE(this->fIsBurning == false, "Building is initially not on fire");
 	ENSURE(this->fHealthNormal == health, "HealthNormal is set");
 	ENSURE(this->fHealth == health, "Health is set");
+	ENSURE(this->fReducer ==  reducer, "reducer is set");
+	ENSURE(this->fFireTruckAssigned ==  false, "FireTruckAssigned is set");
 }
 
 Building::Building(const Building& b) {
@@ -42,6 +48,8 @@ Building::Building(const Building& b) {
 	fHealth = b.fHealth;
 	fHealthNormal = b.fHealth;
 	fIsBurning = b.fIsBurning;
+	fReducer = b.fReducer;
+	fFireTruckAssigned = b.fFireTruckAssigned;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
 	ENSURE(this->fLocation == b.fLocation, "Location is copied");
@@ -49,6 +57,8 @@ Building::Building(const Building& b) {
 	ENSURE(this->fHealth == b.fHealth, "Health is copied");
 	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
 	ENSURE(this->fHealthNormal == b.fHealthNormal, "HealthNormal is copied");
+	ENSURE(this->fReducer == b.fReducer, "Reducer is copied");
+	ENSURE(this->fFireTruckAssigned ==  b.fFireTruckAssigned, "FireTruckAssigned is copied");
 }
 
 void Building::operator= (const Building& b) {
@@ -60,12 +70,16 @@ void Building::operator= (const Building& b) {
 	fHealth = b.fHealth;
 	fHealthNormal = b.fHealth;
 	fIsBurning = b.fIsBurning;
+	fReducer = b.fReducer;
+	fFireTruckAssigned = b.fFireTruckAssigned;
 
 	ENSURE(this->fLocation == b.fLocation, "Location is copied");
 	ENSURE(this->fSize == b.fSize, "Size is copied");
 	ENSURE(this->fHealth == b.fHealth, "Health is copied");
 	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
 	ENSURE(this->fHealthNormal == b.fHealthNormal, "HealthNormal is copied");
+	ENSURE(this->fReducer == b.fReducer, "Reducer is copied");
+	ENSURE(this->fFireTruckAssigned ==  b.fFireTruckAssigned, "FireTruckAssigned is copied");
 	return;
 }
 
@@ -100,13 +114,12 @@ bool Building::isBurning() const {
 	return fIsBurning;
 }
 
-void Building::burningDown(const int& substracter) {
+void Building::burningDown() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(substracter >= 0, "Substracter is positive");
 	REQUIRE(this->fIsBurning, "Building is on fire");
 
 	if(this->isBurning() == true){
-		fHealth -= substracter;
+		fHealth -= this->fReducer;
 	}
 
 	if (fHealth <= 0) {
@@ -125,6 +138,18 @@ void Building::stopFire() {
 	return;
 }
 
+bool Building::startSpreadingFire(){
+	if(this->isBurning() == false or this->isDead()){
+		return false;
+	}
+
+	if(fHealthNormal - fHealth >= 3){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 bool Building::isDead() const {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 
@@ -133,7 +158,14 @@ bool Building::isDead() const {
 
 void Building::repair(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(this->fIsBurning == false, "The building is not on fire");
+
+	if(this->fIsBurning == false){
+		return;
+	}
+
+	if(this->isDead()){
+		return;
+	}
 
 	if(fHealth != fHealthNormal){
 		fHealth += 0.5;
@@ -162,4 +194,22 @@ std::vector<Point> Building::calculatePoints(){
 
 	ENSURE(out.size() > 0, "There are no points given as output");
 	return out;
+}
+
+std::vector<Point> calculateSurroundingPoints(){
+	// use the size the generate a vector of points surrounding this building
+}
+
+bool Building::isFireTruckAssigned(){
+	return fFireTruckAssigned;
+}
+
+void Building::assignFireTruck(){
+	// to do:
+	// check if building is on fire
+	fFireTruckAssigned = true;
+}
+
+void Building::withdrawFireTruckAssignment(){
+	fFireTruckAssigned = false;
 }

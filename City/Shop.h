@@ -71,11 +71,18 @@ public:
 	char getSymbol();
 	/* Returns the symbol of this instance in the city to be used with the graphical impression */
 
+	bool isPoliceTruckAssigned();
+
+	void assignPoliceTruck();
+
+	void withdrawPoliceTruckAssignment();
+
 private:
 	Shop* fMyself;
 
 	bool fIsRobbing;
 	int fSecurityLevel;
+	bool fPoliceTruckAssigned;
 };
 
 #endif /* SHOP_H_ */

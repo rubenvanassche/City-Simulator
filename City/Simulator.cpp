@@ -34,30 +34,54 @@ bool Simulator::endSimulation() const {
 void Simulator::fireBreaksOut() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	Building* ptrBuild = fTown->randBuilding();
-	ptrBuild->setFire();
+	// to do:
+	// select first a random type of building
+	// then select in the vector of that building type a single building
+	// if the type of building is a firedepot, then check if there are firetrucks avaible in this depot and if so stop the fire, DO NOT SET THE FIRETRUCKSSIGNED BOOL TO TRUE
+	// if an other type, set that thing on fire
+
+	//ptrBuild->setFire();
 	return;
+}
+
+void fireTruckControl(){
+	// to do:
+	// check vector with burning buildings
+	// check for each building if the firetruckassigned bool is true/false
+	// if true go to the next building in the vector
+	// if false check if there is a fire truck avaible and send that one and don't forget to update the firetruck assigned bool
+
+	// + check if a firetruck is at his destination
+	// if so stop fire and send back to the firedepot
+	// if not  continue driving(so nothing todo here)
 }
 
 void Simulator::burningDown() {
 
+	// to do:
+	// everything!
+	// for all buildings except for a fireDepot, check if the FireTruckAssigned bool is true if so : just use the burningdown() function
+	// if not : check if there is a firetrcuk avaible and send it + set the FireTruckAssigned bool to true
+
+	/*
 	std::vector< std::pair<Building*, EBuilding> > vecBuilding = fTown->getBuildingsOnFire();
 
 	for (unsigned int index = 0; index < vecBuilding.size(); index++) {
 		if (vecBuilding[index].second == kHOUSE) {
-			vecBuilding[index].first->burningDown(1); // substract 1
+			vecBuilding[index].first->burningDown(); // substract 1
 		}
 		else if (vecBuilding[index].second == kFIREDEPOT) {
-			vecBuilding[index].first->burningDown(2);
+			vecBuilding[index].first->burningDown();
 		}
 		else if (vecBuilding[index].second == kSHOP) {
-			vecBuilding[index].first->burningDown(2);
+			vecBuilding[index].first->burningDown();
 		}
 		else {
 			// you've forgotten the case of hospitals/policedepot in Spec2.0
-			vecBuilding[index].first->burningDown(3);	// let's explode them out of city :--p
+			vecBuilding[index].first->burningDown();	// let's explode them out of city :--p
 		}
 	}
+	*/
 
 	return;
 }
@@ -65,6 +89,7 @@ void Simulator::burningDown() {
 void Simulator::commitRob() {
 	Shop* ptrShop = fTown->randShop();
 	ptrShop->StartRobbing();
+
 	return;
 }
 
@@ -75,6 +100,43 @@ void Simulator::robbing() {
 		robbedShops[index]->rob();
 	}
 	return;
+}
+
+void policeTruckControl(){
+	// check the vector of shops being robbed
+	// check for each shop if there is a Police Car assigned
+	// if not check if there are avaible and send one
+	// if assigned, go to the next shop
+
+	// + check if a polcietruck is at his destination
+	// if so stop robbing and send back to the policeDepot
+	// if not continue driving(so nothing todo here)
+}
+
+void repairBuildings(){
+	// iterate over each building(so over each building type vector)
+	// and use the repair() function
+}
+
+void spreadFire(){
+	// iterate over each house that is burning and check if spreadfire() is true
+	// if so use the calculateSurroundingPoints() function
+	// then make a vector with all the points of houses by using calculatepoints() (this must be done only once)
+	// then check if there are equivalent points between those two vetcors and put these points in yet another vector!
+	// Then select a random house from this vector and set it on fire
+
+	// Do the same with shops
+	// use the pregenerated points of houses vector generated some lines above
+	// check again for equivalent points and set 2 houses on fire
+}
+
+void Simulator::step(){
+	this->burningDown();
+	this->robbing();
+	this->drive();
+	this->fireTruckControl();
+	this->policeTruckControl();
+	this->spreadFire();
 }
 
 

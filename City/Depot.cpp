@@ -13,7 +13,7 @@ bool Depot::isInitialized() const {
 }
 
 Depot::Depot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health)
-	: Building(location, size, health) {
+	: Building(location, size, health, 2) {
 	REQUIRE(entrance.isInitialized(), "Point is initialized");
 
 	fEntrance = entrance;
@@ -27,7 +27,7 @@ Depot::Depot(const Point& location, const Point& entrance, const Size& size, con
 }
 
 Depot::Depot(const Depot& d)
-	: Building(d.getLocation(), d.getSize(), d.getHealth() ), fEntrance(d.getEntrance()) {
+	: Building(d.getLocation(), d.getSize(), d.getHealth(), 2 ), fEntrance(d.getEntrance()) {
 	REQUIRE(d.isInitialized(), "Depot is initialized");
 
 	fMyself = this;

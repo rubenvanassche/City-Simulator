@@ -30,6 +30,10 @@ public:
 	// set a random chosen house on fire
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
+	void fireTruckControl();
+	// checks the vector of burning houses and sends a firetruck to those who are burning
+
+
 	void burningDown();
 	// let the city burn
 
@@ -39,7 +43,17 @@ public:
 	void robbing();
 	// substracting robbing points
 
+	void policeTruckControl();
+	// checks the vector of robbing shops ands sends a police truck to those who are being robbed
+
 	void drive();
+
+	void repairBuildings();
+
+	void spreadFire();
+
+	void step();
+	// one step in the simulation
 
 /*
 	void burningDown(int factor=1);

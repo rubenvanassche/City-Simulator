@@ -50,7 +50,7 @@ TEST(House, fire) {
 
 	EXPECT_NO_FATAL_FAILURE(house.setFire());
 	EXPECT_TRUE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.burningDown(2));
+	EXPECT_NO_FATAL_FAILURE(house.burningDown());
 	EXPECT_EQ(-0.5, house.getHealth());
 	EXPECT_TRUE(house.isDead());
 }

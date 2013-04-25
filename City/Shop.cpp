@@ -19,29 +19,33 @@ std::ostream& operator<< (std::ostream& stream, Shop& s){
 }
 
 Shop::Shop(const Point& location, const Size& size, const double& health, const int& security)
-		: Building(location, size, health) {
+		: Building(location, size, health, 2) {
 	REQUIRE(security >= 0, "Positive Security");
 
 	fMyself = this;
 	fSecurityLevel = security;
 	fIsRobbing = false;
+	fPoliceTruckAssigned = false;
 
 	ENSURE(this->isInitialized(), "Shop is initialized");
 	ENSURE(this->fSecurityLevel == security, "SecurityLevel is set");
 	ENSURE(this->fIsRobbing == false, "Shop is not being robbed (yet)");
+	ENSURE(this->fPoliceTruckAssigned == false, "There is no PoliceTruck assigned to the shop");
 }
 
 Shop::Shop(const Shop& s)
-: Building(s.getLocation(), s.getSize(), s.getHealth() ) {
+: Building(s.getLocation(), s.getSize(), s.getHealth(), 2) {
 	REQUIRE(s.isInitialized(), "Shop is initialized");
 
 	fMyself = this;
 	fSecurityLevel = s.getSecurity();
 	fIsRobbing = s.isRobbing();
+	fPoliceTruckAssigned = s.fPoliceTruckAssigned;
 
 	ENSURE(this->isInitialized(), "Shop is initialized");
 	ENSURE(this->fSecurityLevel == s.getSecurity(), "Security is copied");
 	ENSURE(this->fIsRobbing == s.isRobbing(), "Robbing is copied");
+	ENSURE(this->fPoliceTruckAssigned == s.fPoliceTruckAssigned(), "PoliceTruckAssigned is copied");
 }
 
 void Shop::operator= (const Shop& s){
@@ -50,10 +54,12 @@ void Shop::operator= (const Shop& s){
 
 	fSecurityLevel = s.getSecurity();
 	fIsRobbing = s.isRobbing();
+	fPoliceTruckAssigned = s.fPoliceTruckAssigned;
 
 	ENSURE(this->isInitialized(), "Shop is initialized");
 	ENSURE(this->fSecurityLevel == s.fSecurityLevel, "Security is copied");
 	ENSURE(this->fIsRobbing == s.fIsRobbing, "Robbing is copied");
+	ENSURE(this->fPoliceTruckAssigned == s.fPoliceTruckAssigned(), "PoliceTruckAssigned is copied");
 	return;
 }
 
@@ -107,6 +113,20 @@ void Shop::StopRobbing(){
 	ENSURE(this->fIsRobbing == false, "The building is not being robbed anymore");
 
 	return;
+}
+
+bool Shop::isPoliceTruckAssigned(){
+	return fPoliceTruckAssigned;
+}
+
+void Shop::assignPoliceTruck(){
+	// to do:
+	// check if shop is being robbed
+	fPoliceTruckAssigned = true;
+}
+
+void Shop::withdrawPoliceTruckAssignment(){
+	fPoliceTruckAssigned = false;
 }
 
 char Shop::getSymbol(){

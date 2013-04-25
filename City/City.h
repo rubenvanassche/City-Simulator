@@ -28,7 +28,6 @@
 #include "PoliceCar.h"
 #include "FireTruck.h"
 
-enum EBuilding {kFIREDEPOT, kPOLICEDEPOT, kHOSPITAL, kHOUSE, kSHOP};
 enum EDirection {kHORIZONTAL, kVERTICAL};
 
 class City {
@@ -57,9 +56,17 @@ public:
 	//REQUIRE(this->isInitialized(), "City is initialized");
 	//REQUIRE(str.isInitialized(), "Street is initialized");
 
-	bool add(const EmergencyCar& car);
+	bool add(const FireTruck& truck);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(truck.isInitialized(), "Truck is initialized");
+
+	bool add(const PoliceCar& car);
 	//REQUIRE(this->isInitialized(), "City is initialized");
 	//REQUIRE(car.isInitialized(), "EmergencyCar is initialized");
+
+	bool add(const Ambulance& ambulance);
+	//REQUIRE(this->isInitialized(), "City is initialized");
+	//REQUIRE(ambulance.isInitialized(), "Ambulance is initialized");
 
 	bool add(const FireDepot& depot);
 	//REQUIRE(this->isInitialized(), "City is initialized");
@@ -85,15 +92,20 @@ public:
 	Hospital* findHospital(const std::string& name);
 	PoliceDepot* findPoliceDepot(const std::string& name);
 
-	Building* randBuilding(const bool& onFire = false);
-	std::vector< std::pair<Building*, EBuilding> > getBuildingsOnFire();
-
-	Shop* randShop(const bool& isRobbing=false);
+	std::vector<Building*> getBuildingsOnFire();
 	std::vector<Shop*> getRobbingShop();
 
+	House* randHouse(const bool& onFire = false);
+	Shop* randShop(const bool& onFire = false);
+	FireDepot* randFireDepot(const bool& onFire = false);
+	PoliceDepot* randPoliceDepot(const bool& onFire = false);
+	Hospital* randHospital(const bool& onFire = false);
+
 	Street* findStreet(const Point& position, const EDirection& dir);
+	// what's this?
 
 	Point nextStep(const Point& curPos, const Point& destination);
+	// what's this?
 
 	std::ostream print();
 
@@ -142,13 +154,15 @@ private:
 	std::vector<Street*> fVerticals;
 	std::vector<Street*> fHorizontals;
 
-	std::vector<std::pair<Building*, EBuilding> > fBuildings;
 	std::vector<FireDepot*> fFireDepots;
 	std::vector<PoliceDepot*> fPoliceDepots;
 	std::vector<Hospital*> fHospitals;
 	std::vector<Shop*> fShops;
+	std::vector<House*> fHouses;
 
-	std::vector<EmergencyCar*> fVehicles;
+	std::vector<FireTruck*> fFireTrucks;
+	std::vector<PoliceCar*> fPoliceCars;
+	std::vector<Ambulance*> fAmbulances;
 
 	City* fMyself;	// a pointer to myself for initialize checking
 };
