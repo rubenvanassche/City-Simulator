@@ -82,6 +82,18 @@ void Size::operator= (const Size& s) {
 	return;
 }
 
+void Size::set(const int& width, const int& height) {
+	REQUIRE(width > 0, "Positive width");
+	REQUIRE(height > 0, "Positive height");
+	REQUIRE(this->isInitialized(), "Size is initialized");
+
+	fWidth = width;
+	fHeight = height;
+
+	ENSURE(this->fWidth == width, "Width is initialized");
+	ENSURE(this->fHeight == height, "Height is initialized");
+}
+
 unsigned int Size::getWidth() const {
 	REQUIRE(this->isInitialized(), "Size is initialized");
 	return fWidth;

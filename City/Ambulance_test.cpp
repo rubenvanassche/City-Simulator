@@ -2,8 +2,8 @@
  * Ambulance_test.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	
- * @date:		
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -12,12 +12,49 @@
 #include "Hospital.h"
 #include "House.h"
 
-TEST(Ambulance, constructs) {
-	Hospital base(Point(0, 0), Point(1, 1), Size(10), "hospital", 10);
+class AmbulanceTest : public testing::Test {
+protected:
 
-	EXPECT_NO_FATAL_FAILURE(Ambulance truck("truck", &base));
+	Point loc;
+	Point entr;
+	Size size;
+	std::string basename;
+	int health;
+
+	std::string carname;
+	Hospital* ptrBase;
+
+	House* ptrHouse;
+
+	virtual void SetUp() {
+		loc.set(2, 2);
+		entr.set(0, 0);
+		size.set(3, 3);
+		basename = "Hospital";
+		health = 10;
+
+		carname = "Ambulance";
+		ptrBase = new Hospital(loc, entr, size, basename, health);
+
+		ptrHouse()
+	}
+
+	virtual void TearDown() {
+		delete ptrBase;
+		delete ptrHouse;
+	}
+
+};
+
+TEST_F(AmbulanceTest, constructs) {
+	EXPECT_NO_FATAL_FAILURE(Ambulance ambuce(carname, ptrBase));
 }
 
+TEST_F(AmbulanceTest, sending) {
+
+}
+
+/*
 TEST(Ambulance, sending) {
 	Hospital base(Point(0, 0), Point(1, 1), Size(10, 5), "Hospital", 10);
 	Ambulance truck("ambuce", &base);
@@ -53,3 +90,4 @@ TEST(Ambulance, sending) {
 	EXPECT_FALSE(truck.isOnWay());
 	EXPECT_TRUE(truck.isInDepot());
 }
+*/

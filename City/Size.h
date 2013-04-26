@@ -58,6 +58,14 @@ public:
 	// ENSURE(this->fWidth == s.fWidth, "Width copied");
 	// ENSURE(this->fHeight == s.fHeight, "Height copied");
 
+	void set(const int& width, const int& height);
+	// REQUIRE(width > 0, "Positive width");
+	// REQUIRE(height > 0, "Positive height");
+	// REQUIRE(this->isInitialized(), "Size is initialized");
+
+	// ENSURE(this->fWidth == width, "Width is initialized");
+	// ENSURE(this->fHeight == height, "Height is initialized");
+
 	unsigned int getWidth() const;
 	// 	REQUIRE(this->isInitialized(), "Size is initialized");
 

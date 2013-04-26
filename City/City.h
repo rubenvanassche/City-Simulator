@@ -118,26 +118,6 @@ public:
 	// find a policedepot with the given name, NULL if not in city
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	std::vector<Building*> getBuildingsNotOnFire();
-	// get all the buildings that is not on fire (for fire breaks out)
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<Building*> getBuildingsOnFire();
-	// get all the buildings that is on fire (except fireDepot)
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<FireDepot*> getFireDepotsOnFire();
-	// get all the FireDepots that is on fire
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<Building*> getBuildingsToRepair();
-	// get all the building that you may repair
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<Shop*> getRobbingShops();
-	// get all the shops that is being robbed
-	//REQUIRE(this->isInitialized(), "City is initialized");
-
 	Shop* randShop();
 	// get a random shop (that you want to set on fire or rob)
 	// REQUIRE(this->isInitialized(), "City is initialized");
@@ -148,46 +128,24 @@ public:
 	// ENSURE(fShops[index]->isEmpty() == false, "There are stuffs in the shop");
 
 	std::vector<House*> getHouses() const;
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
 	std::vector<FireDepot*> getFireDepots() const;
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
 	std::vector<PoliceDepot*> getPoliceDepots() const;
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
 	std::vector<Hospital*> getHospitals() const;
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
 	std::vector<Shop*> getShops() const;
-	// look at all those ridiculous getters!!!
-
-	std::vector<FireTruck*> getFireTrucksInDepot();
-	// get all the firetrucks that is in the depot (that is not burnt down)
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	std::vector<PoliceTruck*> getPoliceTrucksInDepot();
-	// get all the police trucks that is in the depot
+	std::vector<FireTruck*> getFireTrucks() const;
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	std::vector<Ambulance*> getAmbulancesInDepot();
-	// get all the ambulances that is in the depot
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<FireTruck*> getFireTrucksOnWay();
-	// get all the firetrucks on way
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<PoliceTruck*> getPoliceTrucksOnWay();
-	// get all the police trucks on way
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<Ambulance*> getAmbulancesOnWay();
-	// get all the ambulances on way
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<FireTruck*> getFireTrucksArrived();
-	// get all the firetrucks that is arrived
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<PoliceTruck*> getPoliceTrucksArrived();
-	// get all the police trucks that is arrived
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	std::vector<Ambulance*> getAmbulancesArrived();
-	// get all the ambulances that is arrived
+	std::vector<PoliceTruck*> getPoliceTrucks() const;
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	bool isInMap(const Point& p);
