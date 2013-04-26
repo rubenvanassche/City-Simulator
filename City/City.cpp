@@ -321,6 +321,22 @@ PoliceDepot* City::findPoliceDepot(const std::string& name) {
 	return NULL;
 }
 
+std::vector<House*> City::getHouses() const {
+	return fHouses;
+}
+std::vector<FireDepot*> City::getFireDepots() const{
+	return fFireDepots;
+}
+std::vector<PoliceDepot*> City::getPoliceDepots() const{
+	return fPoliceDepots;
+}
+std::vector<Hospital*> City::getHospitals() const {
+	return fHospitals;
+}
+std::vector<Shop*> City::getShops() const {
+	return fShops;
+}
+
 std::vector<Building*> City::getBuildingsNotOnFire() {
 	REQUIRE(this->isInitialized(), "City is initialized");
 
@@ -689,8 +705,8 @@ Point City::findClosestCrosspoint(const Point& position) {
 		// then compare it with the current position
 		Point crosspoint = vecPoints[0];
 		for (unsigned int index = 0; index < vecPoints.size(); index++) {
-			int delta0 = std::abs(crosspoint.getY() - position.getY());
-			int delta1 = std::abs(vecPoints[index].getY() - position.getY() );
+			int delta0 = abs(crosspoint.getY() - position.getY());
+			int delta1 = abs(vecPoints[index].getY() - position.getY() );
 
 			if (delta1 < delta0) {
 				// then change the crosspoint

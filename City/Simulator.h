@@ -53,8 +53,12 @@ public:
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void drive();
+	// drive all the vehicles around
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void repairBuildings();
+	// repair all the buildings
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void spreadFire();
 

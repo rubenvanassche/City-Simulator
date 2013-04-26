@@ -216,7 +216,64 @@ void Simulator::policeTruckControl() {
 	return;
 }
 
+void Simulator::drive() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+
+	std::vector<FireTruck*> vecFTrucks = fTown->getFireTrucksOnWay();
+	std::vector<PoliceTruck*> vecPTrucks = fTown->getPoliceTrucksOnWay();
+
+	for (unsigned int index = 0; index < vecFTrucks.size(); index++) {
+		Point curPos = vecFTrucks[index]->getPosition();
+		Point destination = vecFTrucks[index]->getDestination();
+
+		Point next = fTown->nextStep(curPos, destination);
+
+		if (curPos.getX() == next.getX()) {
+			if (next.getY() > curPos.getY()) {
+				vecFTrucks[index]->goUp();
+			}
+			else {
+				vecFTrucks[index]->goDown();
+			}
+		}
+		else if (curPos.getY() == next.getY()) {
+			if (next.getX() > curPos.getX()) {
+				vecFTrucks[index]->goRight();
+			}
+			else {
+				vecFTrucks[index]->goLeft();
+			}
+		}
+	}
+
+	for (unsigned int index = 0; index < vecPTrucks.size(); index++) {
+		Point curPos = vecPTrucks[index]->getPosition();
+		Point destination = vecPTrucks[index]->getDestination();
+
+		Point next = fTown->nextStep(curPos, destination);
+
+		if (curPos.getX() == next.getX()) {
+			if (next.getY() > curPos.getY()) {
+				vecPTrucks[index]->goUp();
+			}
+			else {
+				vecPTrucks[index]->goDown();
+			}
+		}
+		else if (curPos.getY() == next.getY()) {
+			if (next.getX() > curPos.getX()) {
+				vecPTrucks[index]->goRight();
+			}
+			else {
+				vecPTrucks[index]->goLeft();
+			}
+		}
+	}
+}
+
 void Simulator::repairBuildings() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+
 	std::vector<Building*> vecBuilding = fTown->getBuildingsToRepair();
 
 	for (unsigned int index = 0; index < vecBuilding.size(); index++) {

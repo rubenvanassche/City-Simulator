@@ -796,7 +796,7 @@ void CityParser::parsePoliceCar(TiXmlElement* node) {
 	}
 	else {
 		// all attributes are ok
-		fTown->add(PoliceCar(name, ptrBase));
+		fTown->add(PoliceTruck(name, ptrBase));
 		return;
 	}
 }

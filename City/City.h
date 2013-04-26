@@ -147,12 +147,12 @@ public:
 	// ENSURE(fShops[index]->isRobbing() == false, "The shop is not being robbed");
 	// ENSURE(fShops[index]->isEmpty() == false, "There are stuffs in the shop");
 
-	std::vector<House*> getHouses();
-	std::vector<FireDepot*> getFireDepots();
-	std::vector<PoliceDepot*> getPoliceDepots();
-	std::vector<Hospital*> getHospitals();
-	std::vector<Shop*> getShops();
-	// todo: do we really need this?
+	std::vector<House*> getHouses() const;
+	std::vector<FireDepot*> getFireDepots() const;
+	std::vector<PoliceDepot*> getPoliceDepots() const;
+	std::vector<Hospital*> getHospitals() const;
+	std::vector<Shop*> getShops() const;
+	// look at all those ridiculous getters!!!
 
 	std::vector<FireTruck*> getFireTrucksInDepot();
 	// get all the firetrucks that is in the depot (that is not burnt down)

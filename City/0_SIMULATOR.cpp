@@ -9,12 +9,15 @@
 
 #include <iostream>
 #include "CityParser.h"
-#include <sstream>
 #include "Simulator.h"
 
 int main(int argc, char* argv[]) {
 	City town;	// create city
-	CityParser parser(&town);	// create parser
+
+	while (!town.isDead()) {
+		// do something useful here
+	}
+
 	return 0;
 }
 
