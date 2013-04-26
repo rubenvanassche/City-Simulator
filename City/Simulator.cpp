@@ -477,23 +477,93 @@ void Simulator::repairBuildings() {
 	return;
 }
 
-/*
-void spreadFire(){
-	// todo: this
-	// iterate over each house that is burning and check if spreadfire() is true
-	// if so use the calculateSurroundingPoints() function
-	// then make a vector with all the points of houses by using calculatepoints() (this must be done only once)
-	// then check if there are equivalent points between those two vetcors and put these points in yet another vector!
-	// Then select a random house from this vector and set it on fire
 
-	// Do the same with shops
-	// use the pregenerated points of houses vector generated some lines above
-	// check again for equivalent points and set 2 houses on fire
+void Simulator::spreadFire(){
+	typedef std::pair<Point,House*> HousePoint;
+
+	std::vector<HousePoint> allHouses; // All Points in the map + their houses
+
+	std::vector<House*> houses = fTown->getHouses();
+
+	for(unsigned int i = 0;i < houses.size();i++){
+		std::vector<Point> housePoints = (*houses.at(i)).calculatePoints();
+		for(unsigned int j = 0;j < housePoints.size();j++){
+			HousePoint newHousePoint;
+			newHousePoint.first = housePoints.at(j);
+			newHousePoint.second = houses.at(i);
+
+			allHouses.push_back(newHousePoint);
+		}
+	}
+
+	for(unsigned int i = 0;i < houses.size();i++){
+		if((*houses.at(i)).startSpreadingFire()){
+			// Jeej, we can set other buildings on fire!
+
+			std::vector<HousePoint> nextTargets; // Houses surrounding this house we can set on fire
+			std::vector<Point> surroundingPoints = (*houses.at(i)).calculateSurroundingPoints(); // All the points surroundig the house that will spread fire
+
+			for(unsigned int j = 0;j < surroundingPoints.size();j++){
+				for(unsigned int k = 0;k < allHouses.size();k++){
+					// now check with the points in the allHouses vector if one has a point equal to the current surrounding point wer're investigating then add it to the nextTargets vector
+					if( allHouses.at(k).first == surroundingPoints.at(j) ){
+						HousePoint nextTarget;
+						nextTarget.first = surroundingPoints.at(j);
+						nextTarget.second = allHouses.at(k).second;
+
+						nextTargets.push_back(nextTarget);
+					}
+				}
+			}
+
+			// Now we need to select a random house in the nextTargets vector and set it on fire
+			if(nextTargets.size() >= 1){
+				int randomIndex = rand() % nextTargets.size();
+				(*nextTargets.at(randomIndex).second).setFire();
+			}
+		}
+	}
+
+	// Now do the same thing with shops
+
+	std::vector<Shop*> shops = fTown->getShops();
+
+	for(unsigned int i = 0;i < shops.size();i++){
+		if((*shops.at(i)).startSpreadingFire()){
+			// Jeej, we can set other buildings on fire!
+
+			std::vector<HousePoint> nextTargets; // Houses surrounding this house we can set on fire
+			std::vector<Point> surroundingPoints = (*shops.at(i)).calculateSurroundingPoints(); // All the points surroundig the house that will spread fire
+
+			for(unsigned int j = 0;j < surroundingPoints.size();j++){
+				for(unsigned int k = 0;k < allHouses.size();k++){
+					// now check with the points in the allHouses vector if one has a point equal to the current surrounding point wer're investigating then add it to the nextTargets vector
+					if( allHouses.at(k).first == surroundingPoints.at(j) ){
+						HousePoint nextTarget;
+						nextTarget.first = surroundingPoints.at(j);
+						nextTarget.second = allHouses.at(k).second;
+
+						nextTargets.push_back(nextTarget);
+					}
+				}
+			}
+
+			// Now we need to select a random house in the nextTargets vector and set it on fire
+			if(nextTargets.size() >= 2){
+				int randomIndex = rand() % nextTargets.size();
+				(*nextTargets.at(randomIndex).second).setFire();
+				int randomIndex2 = rand() % nextTargets.size();
+				(*nextTargets.at(randomIndex2).second).setFire();
+			}else if(nextTargets.size() == 1){
+				int randomIndex = rand() % nextTargets.size();
+				(*nextTargets.at(randomIndex).second).setFire();
+			}
+		}
+	}
 }
-*/
-/*
+
+
 void Simulator::step(){
-	// todo: almost done
 	this->fireBreaksOut();
 	this->burningDown();
 	this->robbing();
@@ -502,4 +572,4 @@ void Simulator::step(){
 	this->policeTruckControl();
 	this->spreadFire();
 }
-*/
+
