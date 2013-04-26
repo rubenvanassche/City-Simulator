@@ -20,28 +20,35 @@ public:
 	// checks whether the object is initialized properly
 
 	Depot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health);
-	//REQUIRE(entrance.isInitialized(), "Point is initialized");
-	//ENSURE(this->isInitialized(), "Depot is initialized");
-	//ENSURE(this->fName == name, "Name is set");
-	//ENSURE(this->fEntrance == entrance, "Entrance is set");
+	// constructor
+	// REQUIRE(entrance.isInitialized(), "Point is initialized");
+
+	// ENSURE(this->isInitialized(), "Depot is initialized");
+	// ENSURE(this->fName == name, "Name is set");
+	// ENSURE(this->fEntrance == entrance, "Entrance is set");
 
 	Depot(const Depot& d);
-	//REQUIRE(d.isInitialized(), "Depot is initialized");
-	//ENSURE(this->isInitialized(), "Depot is initialized");
-	//ENSURE(this->fName == d.fName, "Name is copied");
-	//ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
-	//ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+	// copy constructor
+	// REQUIRE(d.isInitialized(), "Depot is initialized");
+
+	// ENSURE(this->isInitialized(), "Depot is initialized");
+	// ENSURE(this->fName == d.fName, "Name is copied");
+	// ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
+	// ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
 
 	void operator= (const Depot& d);
-	//REQUIRE(d.isInitialized(), "Depot is initialized");
-	//REQUIRE(this->isInitialized(), "Depot is initialized");
-	//ENSURE(this->fName == d.fName, "Name is copied");
-	//ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
-	//ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+	// copy by assignment
+	// REQUIRE(d.isInitialized(), "Depot is initialized");
+	// REQUIRE(this->isInitialized(), "Depot is initialized");
+
+	// ENSURE(this->fName == d.fName, "Name is copied");
+	// ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
+	// ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
 
 	void addVehicle(Vehicle* v);
 	// add a vehicle
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
+
 	// ENSURE(this->fVehicles.back()->getName() == v->getName(), "Vehicle is added");
 
 	unsigned int getNrVehicles() const;

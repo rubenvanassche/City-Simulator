@@ -2,8 +2,8 @@
  * City.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -95,6 +95,78 @@ City::~City() {
 	ENSURE(this->fFireTrucks.empty(), "FireTrucks empty'd");
 	ENSURE(this->fPoliceTrucks.empty(), "PoliceTrucks empty'd");
 	ENSURE(this->fAmbulances.empty(), "Ambulance empty'd");
+}
+
+bool City::isDead() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	bool allRobbed = true;
+	for (unsigned int index = 0; index < fShops.size(); index++) {
+		if (fShops[index]->isEmpty()) {
+			continue;
+		}
+		else {
+			allRobbed = false;
+			break;
+		}
+	}
+
+	if (allRobbed) {
+		return true;
+	}
+
+	// if you've reached here, then not all shops were robbed, now let's check if all is burnt down
+	// first check all houses
+	for (unsigned int index = 0; index < fHouses.size(); index++) {
+		if (fHouses[index]->isDead() ) {
+			continue;
+		}
+		else {
+			return false;
+		}
+	}
+
+	// then check all shops
+	for (unsigned int index = 0; index < fShops.size(); index++) {
+		if (fShops[index]->isDead()) {
+			continue;
+		}
+		else {
+			return false;
+		}
+	}
+
+	// then check all depots
+	for (unsigned int index = 0; index < fPoliceDepots.size(); index++) {
+		if (fPoliceDepots[index]->isDead()) {
+			continue;
+		}
+		else {
+			return false;
+		}
+	}
+
+	for (unsigned int index = 0; index < fHospitals.size(); index++) {
+		if (fHospitals[index]->isDead()) {
+			continue;
+		}
+		else {
+			return false;
+		}
+	}
+
+	for (unsigned int index = 0; index < fFireDepots.size(); index++) {
+		if (fFireDepots[index]->isDead()) {
+			continue;
+		}
+		else {
+			return false;
+		}
+	}
+
+	// if you've reached here, then all buildings were burnt down
+	return true;
+
 }
 
 bool City::add(const Street& str) {
@@ -249,6 +321,44 @@ PoliceDepot* City::findPoliceDepot(const std::string& name) {
 	return NULL;
 }
 
+std::vector<Building*> City::getBuildingsNotOnFire() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector< Building*> vecBuilding;
+
+	for (unsigned int index = 0; index < fHouses.size(); index++) {
+		if (fHouses[index]->isBurning()) {
+			vecBuilding.push_back(fHouses[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fShops.size(); index++) {
+		if (fShops[index]->isBurning()) {
+			vecBuilding.push_back(fShops[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fPoliceDepots.size(); index++) {
+		if (fPoliceDepots[index]->isBurning()) {
+			vecBuilding.push_back(fPoliceDepots[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fHospitals.size(); index++) {
+		if (fHospitals[index]->isBurning()) {
+			vecBuilding.push_back(fHospitals[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fFireDepots.size(); index++) {
+		if (fFireDepots[index]->isBurning()) {
+			vecBuilding.push_back(fFireDepots[index]);
+		}
+	}
+
+	return vecBuilding;
+}
+
 std::vector<Building*> City::getBuildingsOnFire() {
 	REQUIRE(this->isInitialized(), "City is initialized");
 
@@ -300,7 +410,6 @@ std::vector<Building*> City::getBuildingsToRepair() {
 
 	std::vector<Building*> vecBuildings;
 
-
 	for (unsigned int index = 0; index < fHouses.size(); index++) {
 		if (fHouses[index]->startRepair()) {
 			vecBuildings.push_back(fHouses[index]);
@@ -348,80 +457,28 @@ std::vector<Shop*> City::getRobbingShops() {
 	return vecShops;
 }
 
-House* City::randHouse() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	unsigned int index = std::rand() % fHouses.size();
-
-	if (fHouses[index]->isBurning()) {
-		// the house is already on fire
-		return this->randHouse();
-	}
-
-	return fHouses[index];
-}
-
-Shop* City::randShop(const bool& fire, const bool& rob) {
+Shop* City::randShop() {
 	REQUIRE(this->isInitialized(), "City is initialized");
 
 	unsigned int index = std::rand() % fShops.size();
 
-	if (fire) {
-		if (fShops[index]->isBurning()) {
-			return this->randShop(fire, rob);
-		}
-
-		return fShops[index];
-	}
-	else if (rob) {
-		if (fShops[index]->isRobbing()) {
-			return this->randShop(fire, rob);
-		}
-
-		return fShops[index];
-	}
-	else {
-		return NULL;
-	}
-}
-
-FireDepot* City::randFireDepot() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	unsigned int index = std::rand() % fFireDepots.size();
-
-	if (fFireDepots[index]->isBurning()) {
-		// the depot is already on fire
-		return this->randFireDepot();
+	if (fShops[index]->isBurning()) {
+		return this->randShop();	// is burning
 	}
 
-	return fFireDepots[index];
-}
-
-PoliceDepot* City::randPoliceDepot() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	unsigned int index = std::rand() % fPoliceDepots.size();
-
-	if (fPoliceDepots[index]->isBurning()) {
-		// the house is already on fire
-		return this->randPoliceDepot();
+	if (fShops[index]->isRobbing()) {
+		return this->randShop();	// already robbing
 	}
 
-	return fPoliceDepots[index];
-}
-
-Hospital* City::randHospital() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	unsigned int index = std::rand() % fHospitals.size();
-
-	if (fHospitals[index]->isBurning()) {
-		// the house is already on fire
-		return this->randHospital();
+	if (fShops[index]->isEmpty()) {
+		return this->randShop();	// nothing to rob
 	}
 
-	return fHospitals[index];
+	ENSURE(fShops[index] != NULL, "A shop is given");
+	ENSURE(fShops[index]->isBurning() == false, "The shop is not on fire");
+	ENSURE(fShops[index]->isRobbing() == false, "The shop is not being robbed");
+	ENSURE(fShops[index]->isEmpty() == false, "There are stuffs in the shop");
+	return fShops[index];
 }
 
 std::vector<FireTruck*> City::getFireTrucksInDepot() {
@@ -550,6 +607,25 @@ std::vector<Ambulance*> City::getAmbulancesArrived() {
 	return vecAmbuces;
 }
 
+bool City::isInMap(const Point& p) {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	REQUIRE(p.isInitialized(), "City is initialized");
+
+	for (unsigned int index = 0; index < fVerticals.size(); index++) {
+		if (fVerticals[index]->isElement(p)) {
+			return true;
+		}
+	}
+
+	for (unsigned int index = 0; index < fHorizontals.size(); index++) {
+		if (fHorizontals[index]->isElement(p)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 Street* City::findStreet(const Point& position, const EDirection& dir) {
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(position.isInitialized(), "Point is initialized");
@@ -594,6 +670,7 @@ Street* City::findStreet(const Point& position, const EDirection& dir) {
 Point City::findClosestCrosspoint(const Point& position) {
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(position.isInitialized(), "Point is initialized");
+	REQUIRE(this->isInMap(position) == true, "Position is in roadmap");
 
 	// first find the street where you are
 	Street* street = this->findStreet(position, kVERTICAL);
@@ -656,6 +733,8 @@ Point City::nextStep(const Point& curPos, const Point& destination) {
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(curPos.isInitialized(), "Point is initialized");
 	REQUIRE(destination.isInitialized(), "Point is initialized");
+	REQUIRE(this->isInMap(curPos), "CurPos is in roadmap");
+	REQUIRE(this->isInMap(destination), "Destination is in roadmap");
 
 	int x = curPos.getX();
 	int y = curPos.getY();
@@ -747,29 +826,9 @@ Point City::nextStep(const Point& curPos, const Point& destination) {
 	return curPos;
 }
 
-bool City::isInMap(const Point& p) {
-	REQUIRE(this->isInitialized(), "City is initialized");
-	REQUIRE(p.isInitialized(), "City is initialized");
-
-	for (unsigned int index = 0; index < fVerticals.size(); index++) {
-		if (fVerticals[index]->isElement(p)) {
-			return true;
-		}
-	}
-
-	for (unsigned int index = 0; index < fHorizontals.size(); index++) {
-		if (fHorizontals[index]->isElement(p)) {
-			return true;
-		}
-	}
-
-	return false;
-}
-
 std::ostream& City::print(){
 	  std::filebuf fb; // No idea why this stands here but it's the only way to make it work
 	  std::ostream stream(&fb);
-
 
 	  // FireDepots
 	  for (unsigned int i = 0;i < fFireDepots.size();i++){

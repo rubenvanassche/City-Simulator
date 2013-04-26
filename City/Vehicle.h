@@ -2,8 +2,8 @@
  * Vehicle.h
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -21,6 +21,7 @@ public:
 	Vehicle(const std::string& name, const Point& curPos);
 	// constructor
 	// REQUIRE(curPos.isInitialized(), "Point is initialized");
+
 	// ENSURE(this->isInitialized(), "Vehicle is initialized");
 	// ENSURE(this->fName == name, "Name is set");
 	// ENSURE(this->fDestination == curPos, "Destination is set");
@@ -29,6 +30,7 @@ public:
 	Vehicle(const Vehicle& v);
 	// copy constructor
 	// REQUIRE(v.isInitialized(), "Vehicle is initialized");
+
 	// ENSURE(this->isInitialized(), "Vehicle is initialized");
 	// ENSURE(this->fName == v.fName, "Name is copied");
 	// ENSURE(this->fDestination == v.fDestination, "Destination is copied");
@@ -38,6 +40,8 @@ public:
 	// copy assignment operator overloading
 	// REQUIRE(v.isInitialized(), "Vehicle is initialized");
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
+
+	// ENSURE(this->isInitialized(), "Vehicle is initialized");
 	// ENSURE(this->fName == v.fName, "Name is copied");
 	// ENSURE(this->fDestination == v.fDestination, "Destination is copied");
 	// ENSURE(this->fPosition == v.fPosition, "Position is copied");
@@ -58,11 +62,14 @@ public:
 	// change the destination of the vehicle
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
+
 	// ENSURE(this->fDestination == destination, "Destination is set");
 
 	void setPosition(const Point& pos);
+	// change the current position of the vehicle (rare use, you should better use the driving functions)
 	//REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	//REQUIRE(pos.isInitialized(), "Point is initialized");
+
 	//ENSURE(this->fPosition == pos, "Position is set");
 
 	bool isOnWay() const;

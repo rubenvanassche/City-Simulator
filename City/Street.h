@@ -2,8 +2,8 @@
  * Street.h
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -34,6 +34,7 @@ public:
 	// constructor
 	// REQUIRE(start.isInitialized(), "Startpoint is initialized");
 	// REQUIRE(end.isInitialized(), "Endpoint is initialized");
+
 	// ENSURE(this->isInitialized(), "Street is initialized");
 	// ENSURE(this->fStartPoint == start, "Startpoint is set");
 	// ENSURE(this->fEndPoint == end, "Endpoint is set");
@@ -42,6 +43,7 @@ public:
 	Street(const Street& s);
 	// copy constructor
 	// REQUIRE(s.isInitialized(), "Street is initialized");
+
 	// ENSURE(this->isInitialized(), "Street is initialized");
 	// ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
 	// ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
@@ -51,6 +53,7 @@ public:
 	// copy by assignment
 	// REQUIRE(s.isInitialized(), "Street is initialized");
 	// REQUIRE(this->isInitialized(), "Street is initialized");
+
 	// ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
 	// ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
 	// ENSURE(this->fName == s.fName, "Name is copied");
@@ -102,7 +105,8 @@ public:
 
 	std::vector<Point> calculatePoints();
 	// todo: what is this?
-	// 	REQUIRE(this->isInitialized(), "Street is initialized");
+	// REQUIRE(this->isInitialized(), "Street is initialized");
+
 	// ENSURE(out.size() > 0, "There are no points given as output");
 
 private:

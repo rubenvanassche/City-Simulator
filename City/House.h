@@ -2,8 +2,8 @@
  * House.h
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -30,12 +30,14 @@ public:
 	House(const House& h);
 	// copy constructor
 	// REQUIRE(h.isInitialized(), "House is initialized");
+
 	// ENSURE(this->isInitialized(), "House is initialized");
 
 	void operator= (const House& h);
 	// copy by assignment
 	// REQUIRE(h.isInitialized(), "House is initialized");
 	// REQUIRE(this->isInitialized(), "House is initialized");
+
 	// ENSURE(this->isInitialized(), "House is initialized");
 
 	char getSymbol() const;

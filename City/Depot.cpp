@@ -75,6 +75,7 @@ unsigned int Depot::getAvailableVehicles() const {
 
 	unsigned int count = 0;
 	for (unsigned int index=0; index < fVehicles.size(); index++) {
+		// check for each vehicles whether their position corresponds to the depot's location
 		if (fVehicles[index]->getPosition() == this->getLocation()) {
 			count++;
 		}

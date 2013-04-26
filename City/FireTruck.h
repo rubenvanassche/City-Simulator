@@ -2,8 +2,8 @@
  * FireTruck.h
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -28,18 +28,17 @@ public:
 	FireTruck(const std::string& name, FireDepot* base);
 	// constructor
 	// REQUIRE(base->isInitialized(), "FireDepot is initialized");
+
 	// ENSURE(this->isInitialized(), "FireTruck is initialized");
 	// ENSURE(this->fBase == base, "Base is set");
-	// ENSURE(this->getPosition() == base->getLocation(), "Position is set");
-	// ENSURE(this->getDestination() == base->getLocation(), "Destination is set");
+	// ENSURE(this->isInDepot(), "FireTruck is in depot");
 	// ENSURE(this->fBuilding == NULL, "FireTruck doesn't have building (yet)" );
 
 	FireTruck(const FireTruck& f);
 	// copy constructor
 	// REQUIRE(f.isInitialized(), "FireTruck is initialized");
+
 	// ENSURE(this->isInitialized(), "FireTruck is initialized");
-	// ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
-	// ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
 	// ENSURE(this->fBase == f.fBase, "Base is copied");
 	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 
@@ -47,15 +46,16 @@ public:
 	// copy by assignment
 	// REQUIRE(f.isInitialized(), "FireTruck is initialized");
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
+
 	// ENSURE(this->isInitialized(), "FireTruck is initialized");
-	// ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
-	// ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
 	// ENSURE(this->fBase == f.fBase, "Base is copied");
 	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 
 	FireDepot* getBase() const;
 	// get it's base
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
+
+	// ENSURE(this->fBase != NULL, "There must be an existing base");
 
 	Building* getBuilding() const;
 	// get the building that the FireTruck has to go
@@ -66,33 +66,36 @@ public:
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
 	void send(Building* building, const Point& destination);
-	// send the FireTruck to the building with hurts
-	// REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
+	// send the FireTruck to the building that is on fire
+	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	// REQUIRE(building->isInitialized(), "Building is initialized");
 	// REQUIRE(building->isBurning(), "Building is on fire");
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
 	// REQUIRE(this->isInDepot(), "FireTruck is in depot");
+
 	// ENSURE(this->fBuilding == building, "Building is set");
 	// ENSURE(this->getDestination() == destination, "Destination is set");
-	// ENSURE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at the entrance");
+	// ENSURE(this->isAtEntranceDepot(), "FireTruck is at the entrance of it's base");
 
 	void sendBack();
 	// send the FireTruck back to it's base
-	// REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
+	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	// REQUIRE(this->fBuilding->isBurning() == false, "Building is not on fire anymore");
+
 	// ENSURE(this->fBuilding == NULL, "FireTruck has not a building to extinguish anymore");
-	// ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to it's base");
+	// ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to the base's entrance");
 
 	bool isAtEntranceDepot() const;
 	// checks whether the FireTruck is at the entrance of its base
-	// REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
+	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
 	void enterDepot();
 	// enter the depot
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
-	// REQUIRE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at entrance");
-	// ENSURE(this->getPosition() == this->fBase->getLocation(), "FireTruck is now in depot");
-	// ENSURE(this->getDestination() == this->fBase->getLocation(), "FireTruck is now in depot");
+	// REQUIRE(this->isAtEntranceDepot(), "FireTruck is at entrance of it's base");
+	// REQUIRE(this->fBase->isBurning() == false, "The base is not on fire");
+
+	// ENSURE(this->isInDepot(), "FireTruck is now in depot");
 
 	char getSymbol() const;
 	// for graphical impression

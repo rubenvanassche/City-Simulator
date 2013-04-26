@@ -2,8 +2,8 @@
  * PoliceTruck.h
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	
- * @date:		
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -11,7 +11,6 @@
 #define POLICETRUCK_H_
 
 #include "Vehicle.h"
-#include "Building.h"
 #include "PoliceDepot.h"
 #include "Shop.h"
 
@@ -27,18 +26,17 @@ public:
 	PoliceTruck(const std::string& name, PoliceDepot* base);
 	// constructor
 	// REQUIRE(base->isInitialized(), "PoliceDepot is initialized");
+
 	// ENSURE(this->isInitialized(), "PoliceTruck is initialized");
 	// ENSURE(this->fBase == base, "Base is set");
-	// ENSURE(this->getPosition() == base->getLocation(), "Position is set");
-	// ENSURE(this->getDestination() == base->getLocation(), "Destination is set");
-	// ENSURE(this->fBuilding == NULL, "PoliceTruck doesn't have building (yet)" );
+	// ENSURE(this->isInDepot(), "PoliceTruck is in depot");
+	// ENSURE(this->fBuilding == NULL, "PoliceTruck doesn't have a shop (yet)" );
 
 	PoliceTruck(const PoliceTruck& f);
 	// copy constructor
 	// REQUIRE(f.isInitialized(), "PoliceTruck is initialized");
+
 	// ENSURE(this->isInitialized(), "PoliceTruck is initialized");
-	// ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
-	// ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
 	// ENSURE(this->fBase == f.fBase, "Base is copied");
 	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 
@@ -46,9 +44,8 @@ public:
 	// copy by assignment
 	// REQUIRE(f.isInitialized(), "PoliceTruck is initialized");
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
+
 	// ENSURE(this->isInitialized(), "PoliceTruck is initialized");
-	// ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
-	// ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
 	// ENSURE(this->fBase == f.fBase, "Base is copied");
 	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 
@@ -66,20 +63,22 @@ public:
 
 	void send(Shop* building, const Point& destination);
 	// send the PoliceTruck to the building with hurts
-	// REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
+	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 	// REQUIRE(building->isInitialized(), "Building is initialized");
 	// REQUIRE(building->isRobbing() == true, "Shop is being robbed");
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
 	// REQUIRE(this->isInDepot(), "PoliceTruck is in depot");
+
 	// ENSURE(this->fBuilding == building, "Building is set");
 	// ENSURE(this->getDestination() == destination, "Destination is set");
-	// ENSURE(this->getPosition() == this->fBase->getEntrance(), "PoliceTruck is at the entrance");
+	// ENSURE(this->isAtEntranceDepot(), "PoliceTruck is at the entrance of it's base");
 
 	void sendBack();
 	// send the PoliceTruck back to it's base
-	// REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
-	// REQUIRE(this->getBuilding()->isBurning() == false, "Building is not on fire anymore");
-	// ENSURE(this->fBuilding == NULL, "PoliceTruck has not a building to extinguish anymore");
+	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
+	// REQUIRE(this->fBuilding->isRobbing() == false, "Shop is not being robbed anymore");
+
+	// ENSURE(this->fBuilding == NULL, "PoliceTruck has not a shop to go anymore");
 	// ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to it's base");
 
 	bool isAtEntranceDepot() const;
@@ -89,9 +88,10 @@ public:
 	void enterDepot();
 	// enter the depot
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
-	// REQUIRE(this->getPosition() == this->fBase->getEntrance(), "PoliceTruck is at entrance");
-	// ENSURE(this->getPosition() == this->fBase->getLocation(), "PoliceTruck is now in depot");
-	// ENSURE(this->getDestination() == this->fBase->getLocation(), "PoliceTruck is now in depot");
+	// REQUIRE(this->isAtEntranceDepot(), "PoliceTruck is at entrance");
+	// REQUIRE(this->fBuilding->isBurning(), "It's base is not on fire");
+
+	// ENSURE(this->isInDepot(), "PoliceTruck is now in depot");
 
 	char getSymbol() const;
 	// for graphical impression

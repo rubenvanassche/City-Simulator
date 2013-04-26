@@ -2,8 +2,8 @@
  * Street.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -185,15 +185,12 @@ Point Street::getCrosspoint(Street& str) {
 		for (unsigned int y = yMin; y <= yMax; y++) {
 
 			if (str.isElement( Point(x, y) ) ) {
-
-				ENSURE( ( (this->isElement(Point(x, y) ) ) &&
-						(str.isElement(Point(x, y) ) ) ) , "Point is crosspoint ");
 				return Point(x, y);
 			}
 		}
 	}
 
-	ENSURE(true == false, "a point should be found");
+	// you should never reach here
 	return Point();
 }
 

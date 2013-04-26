@@ -2,8 +2,8 @@
  * Simulator.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Saturday 16 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -19,47 +19,24 @@ Simulator::Simulator(City* town) {
 
 	fMyself = this;
 	fTown = town;
-	fEndSimulation = false;
 
 	ENSURE(this->isInitialized(), "Simulator is initialized");
-	ENSURE(this->fTown == town, "city is set");
+	ENSURE(this->fTown == town, "Town is set");
 }
 
 bool Simulator::endSimulation() const {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	return fEndSimulation;
+	return fTown->isDead();
 }
 
 void Simulator::fireBreaksOut() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	int type = std::rand() % 5;
-	if (type == 0) {
-		FireDepot* depot = fTown->randFireDepot();
-		depot->setFire();
-		return;
-	}
-	else if (type == 1) {
-		PoliceDepot* depot = fTown->randPoliceDepot();
-		depot->setFire();
-		return;
-	}
-	else if (type == 2) {
-		Hospital* hosp = fTown->randHospital();
-		hosp->setFire();
-		return;
-	}
-	else if (type == 3) {
-		Shop* shop = fTown->randShop(true, false);
-		shop->setFire();
-		return;
-	}
-	else if (type == 4) {
-		House* h = fTown->randHouse();
-		h->setFire();
-		return;
-	}
+	std::vector<Building*> vecBuildings = fTown->getBuildingsNotOnFire();
+
+	int index = std::rand() % vecBuildings.size();
+	vecBuildings[index]->setFire();
 
 	return;
 }
@@ -67,6 +44,7 @@ void Simulator::fireBreaksOut() {
 void Simulator::fireTruckControl() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
+	// iterate over buildings that is on fire (except firedepot, that is a special case)
 	std::vector<Building*> vecBuildings = fTown->getBuildingsOnFire();
 	for (unsigned int index = 0; index < vecBuildings.size(); index++) {
 
@@ -74,6 +52,7 @@ void Simulator::fireTruckControl() {
 			continue;
 		}
 
+		// if no firetruck assigned, then try to send a firetruck
 		std::vector<FireTruck*> vecTrucks = fTown->getFireTrucksInDepot();
 		if (vecTrucks.empty()) {
 			continue;	// you have bad luck, there isn't a fireTruck that is in the depot available
@@ -82,6 +61,7 @@ void Simulator::fireTruckControl() {
 		int i = std::rand() % vecTrucks.size();
 		FireTruck* truck = vecTrucks.at(i);
 
+		// okay, then find a location where the truck must go
 		Point destination = vecBuildings[index]->getLocation();
 		int x = destination.getX();
 		int y = destination.getY();
@@ -105,20 +85,23 @@ void Simulator::fireTruckControl() {
 		truck->send(vecBuildings[index], destination);
 	}
 
+	// then iterate over firedepots on fire
 	std::vector<FireDepot*> vecDepots = fTown->getFireDepotsOnFire();
 	for (unsigned int index = 0; index < vecDepots.size(); index++) {
+		// if there are trucks in the depot, then stop the fire
 		if (vecDepots[index]->getAvailableVehicles() > 0) {
 			vecDepots[index]->stopFire();
-			continue;
-		}
-		else {
-			vecDepots[index]->burningDown();
 		}
 	}
 
+	// finally, check whether there are trucks arrived, so they can extinguish and send back to it's base
 	std::vector<FireTruck*> vecTrucks = fTown->getFireTrucksArrived();
 	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
 		if (vecTrucks[index]->isAtEntranceDepot()) {
+			if (vecTrucks[index]->getBase()->isBurning()) {
+				vecTrucks[index]->getBase()->stopFire();
+			}
+
 			vecTrucks[index]->enterDepot();
 		}
 		else {
@@ -157,8 +140,8 @@ void Simulator::burningDown() {
 void Simulator::commitRob() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	Shop* ptrShop = fTown->randShop(false, true);
-	ptrShop->StartRobbing();
+	Shop* ptrShop = fTown->randShop();
+	ptrShop->startRobbing();
 	return;
 }
 
@@ -182,14 +165,16 @@ void Simulator::policeTruckControl() {
 			continue;
 		}
 
+		// let's try to assign a policeTruck to the shop being robbed
 		std::vector<PoliceTruck*> trucksInDepot = fTown->getPoliceTrucksInDepot();
 		if (trucksInDepot.empty()) {
-			continue;
+			continue;	// bad luck, there are no policetrucks avialable
 		}
 
 		int i = std::rand() % trucksInDepot.size();
 		PoliceTruck* truck = trucksInDepot.at(i);
 
+		// okay, then find a point where the truck has to drive to
 		Point destination = robbingShops[index]->getLocation();
 		int x = destination.getX();
 		int y = destination.getY();
@@ -214,6 +199,7 @@ void Simulator::policeTruckControl() {
 	}
 
 
+	// also sendback trucks that is arrived
 	std::vector<PoliceTruck*> vecTrucks = fTown->getPoliceTrucksArrived();
 	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
 		if (vecTrucks[index]->isAtEntranceDepot()) {
@@ -221,7 +207,7 @@ void Simulator::policeTruckControl() {
 		}
 		else {
 			Shop* robbedShop = vecTrucks[index]->getShop();
-			robbedShop->StopRobbing();
+			robbedShop->stopRobbing();
 			vecTrucks[index]->sendBack();
 			robbedShop->withdrawPoliceTruckAssignment();
 		}
@@ -253,10 +239,10 @@ void spreadFire(){
 	// check again for equivalent points and set 2 houses on fire
 }
 */
-
 /*
 void Simulator::step(){
 	// todo: almost done
+	this->fireBreaksOut();
 	this->burningDown();
 	this->robbing();
 	this->drive();

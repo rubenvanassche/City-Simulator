@@ -2,8 +2,8 @@
  * Simulator.h
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Saturday 16 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -20,7 +20,9 @@ public:
 	Simulator(City* town);
 	// constructor
 	// REQUIRE(town->isInitialized(), "City is initialized");
+
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
+	// ENSURE(this->fTown == town, "Town is set");
 
 	bool endSimulation() const;
 	// checks whether it's the end of the simulation
@@ -59,27 +61,7 @@ public:
 	void step();
 	// one step in the simulation
 
-/*
-	void burningDown(int factor=1);
-	// BURN CITY BURN!!
-	// REQUIRE(this->isInitialized(), "Simulator is initialized");
-	// REQUIRE(factor > 0, "burning factor is greater than 0");
-
-	void drive(int repeat=1);
-	// let all the vehicles drive around
-	// REQUIRE(this->isInitialized(), "Simulator is initialized");
-	// REQUIRE(repeat > 0, "repeat at least 1");
-
-	void extinguish();
-	// extinguish the fire (if a firetruck is arrived)
-	// REQUIRE(this->isInitialized(), "Simulator is initialized");
-
-	void sendTrucks();
-	// send a trucks for houses on fire
-	// REQUIRE(this->isInitialized(), "Simulator is initialized");
-*/
 private:
-	bool fEndSimulation;
 	City* fTown;
 
 	Simulator* fMyself;

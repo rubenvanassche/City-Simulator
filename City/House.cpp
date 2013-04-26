@@ -2,8 +2,8 @@
  * House.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	Friday 15 March 2013
- * @date:		1.0
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 

@@ -75,10 +75,16 @@ bool Shop::isRobbing() const {
 	return fIsRobbing;
 }
 
-
-void Shop::StartRobbing(){
+bool Shop::isEmpty() const {
 	REQUIRE(this->isInitialized(), "Shop is initialized");
-	REQUIRE(this->getSecurity() > 0, "Security Level is positive");
+
+	return fSecurityLevel <= 0;
+}
+
+void Shop::startRobbing(){
+	REQUIRE(this->isInitialized(), "Shop is initialized");
+	REQUIRE(this->isEmpty() == false, "Shop is not empty");
+	REQUIRE(this->fIsRobbing == false, "Shop is not being robbed already");
 
 	fIsRobbing = true;
 
@@ -86,27 +92,20 @@ void Shop::StartRobbing(){
 	return;
 }
 
-
 void Shop::rob(int substracter){
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 	REQUIRE(substracter >= 0, "Substracter is positive");
-	REQUIRE(this->fIsRobbing, "Robbery is going on");
+	REQUIRE(this->fIsRobbing == true, "Robbery is going on");
 
-	if(this->isRobbing() == true){
-		fSecurityLevel -= substracter;
-	}
-
-	if (fSecurityLevel <= 0) {
-		fIsRobbing = false;
-	}
+	fSecurityLevel -= substracter;
 
 	return;
-
 }
 
 
-void Shop::StopRobbing(){
+void Shop::stopRobbing(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
+	REQUIRE(this->fIsRobbing == true, "Shop is being robbed");
 
 	fIsRobbing = false;
 
@@ -124,6 +123,7 @@ bool Shop::isPoliceTruckAssigned() const{
 void Shop::assignPoliceTruck(){
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 	REQUIRE(this->fIsRobbing == true, "The shop is being robbed");
+	REQUIRE(this->fPoliceTruckAssigned == false, "There is no PoliceTruck assigned already");
 
 	fPoliceTruckAssigned = true;
 
@@ -134,6 +134,7 @@ void Shop::assignPoliceTruck(){
 void Shop::withdrawPoliceTruckAssignment(){
 	REQUIRE(this->isInitialized(), "Shop is initialized");
 	REQUIRE(this->fIsRobbing == false, "The shop is not being robbed anymore");
+	REQUIRE(this->fPoliceTruckAssigned == true, "A police truck is assigned");
 
 	fPoliceTruckAssigned = false;
 

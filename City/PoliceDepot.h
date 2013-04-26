@@ -24,17 +24,20 @@ public:
 
 	PoliceDepot(const Point& location, const Point& entrance, const Size& size, const std::string& name, const double& health);
 	// constructor
+
 	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
 
 	PoliceDepot(const PoliceDepot& p);
 	// copy constructor
 	// REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
+
 	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
 
 	void operator= (const PoliceDepot& p);
 	// copy by assignment
 	// REQUIRE(p.isInitialized(), "PoliceDepot is initialized");
 	// REQUIRE(this->isInitialized(), "PoliceDepot is initialized");
+
 	// ENSURE(this->isInitialized(), "PoliceDepot is initialized");
 
 	char getSymbol() const;

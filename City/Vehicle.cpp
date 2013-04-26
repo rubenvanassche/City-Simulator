@@ -2,8 +2,8 @@
  * Vehicle.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Friday 15 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -49,6 +49,7 @@ void Vehicle::operator= (const Vehicle& v) {
 	fDestination = v.fDestination;
 	fName = v.fName;
 
+	ENSURE(this->isInitialized(), "Vehicle is initialized");
 	ENSURE(this->fName == v.fName, "Name is copied");
 	ENSURE(this->fDestination == v.fDestination, "Destination is copied");
 	ENSURE(this->fPosition == v.fPosition, "Position is copied");

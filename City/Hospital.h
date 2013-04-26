@@ -29,11 +29,13 @@ public:
 	Hospital(const Hospital& h);
 	// copy constructor
 	// REQUIRE(h.isInitialized(), "Hospital is initialized");
+
 	// ENSURE(this->isInitialized(), "Hospital is initialized");
 
 	void operator= (const Hospital& h);
 	// REQUIRE(h.isInitialized(), "Hospital is initialized");
 	// REQUIRE(this->isInitialized(), "Hospital is initialized");
+
 	// ENSURE(this->isInitialized(), "Hospital is initialized");
 
 	char getSymbol() const;

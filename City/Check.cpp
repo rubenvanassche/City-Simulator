@@ -29,9 +29,9 @@ EState Check::checkPoint(const Point& p, const EType& type) {
 		if (it->first == p) {
 			if (type == kSTREET) {	// if the point you want to check is a street
 				if (it->second == kBUILDING) {	// but there's already a building on it
-					return kOCCUPPIED;	// so return true, it's occupied
+					return kOCCUPPIED;	// so return occupied
 				}
-				continue; //otherwise
+				continue; //otherwise, streets may overlap (even if you've change the whole street)
 			}
 			else {	// the point is a building
 				// whether the point found is a street or building, this place is occupied
@@ -81,8 +81,8 @@ bool Check::fit(const Street& street) {
 		}
 		else {
 			// it's the first time you add a vertical street, so it's always ok
-			fHeight = (yMax - yMin);
-			fHasHeight = true;
+			fHeight = (yMax - yMin);	// this is the fixed height
+			fHasHeight = true;	// Check has now a fixed height
 			return true;
 		}
 	}
@@ -94,8 +94,9 @@ bool Check::fit(const Street& street) {
 			return fWidth == (xMax - xMin);
 		}
 		else {
-			fWidth = (xMax - xMin);
-			fHasWidth = true;
+			// it's the first time you add a horizontal street, so it's always ok
+			fWidth = (xMax - xMin);	// this is the fixed width
+			fHasWidth = true;	// Check has now a fixed width
 			return true;
 		}
 	}
@@ -175,7 +176,7 @@ bool Check::go(const Street& street) {
 
 	// if you've reached here, then there's no problem at all
 	for (unsigned int index = 0; index < vecTupple.size(); index++) {
-		fUsedPoints.push_back(vecTupple[index]);
+		fUsedPoints.push_back(vecTupple[index]);	// add all the new points to the used points
 	}
 	return true;
 }

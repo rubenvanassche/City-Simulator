@@ -2,8 +2,8 @@
  * Ambulance.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	
- * @date:		
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
@@ -30,8 +30,7 @@ Ambulance::Ambulance(const std::string& name, Hospital* base)
 
 	ENSURE(this->isInitialized(), "Ambulance is initialized");
 	ENSURE(this->fBase == base, "Base is set");
-	ENSURE(this->getPosition() == base->getLocation(), "Position is set");
-	ENSURE(this->getDestination() == base->getLocation(), "Destination is set");
+	ENSURE(this->isInDepot(), "Ambulance is in depot");
 	ENSURE(this->fBuilding == NULL, "Ambulance doesn't have building (yet)" );
 }
 
@@ -44,8 +43,6 @@ Ambulance::Ambulance(const Ambulance& f)
 	fBuilding = f.fBuilding;
 
 	ENSURE(this->isInitialized(), "Ambulance is initialized");
-	ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
-	ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
 	ENSURE(this->fBase == f.fBase, "Base is copied");
 	ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 }
@@ -58,8 +55,6 @@ void Ambulance::operator= (const Ambulance& f) {
 	fBuilding = f.fBuilding;
 
 	ENSURE(this->isInitialized(), "Ambulance is initialized");
-	ENSURE(this->getPosition() == f.getPosition(), "Position is copied");
-	ENSURE(this->getDestination() == f.getDestination(), "Destination is copied");
 	ENSURE(this->fBase == f.fBase, "Base is copied");
 	ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
 	return;
@@ -68,6 +63,7 @@ void Ambulance::operator= (const Ambulance& f) {
 Hospital* Ambulance::getBase() const {
 	REQUIRE(this->isInitialized(), "Ambulance is initialized");
 
+	ENSURE(this->fBase != NULL, "A pointer to the base must be returned");
 	return fBase;
 }
 
@@ -84,29 +80,29 @@ bool Ambulance::isInDepot() const {
 }
 
 void Ambulance::send(Building* building, const Point& destination) {
-	REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
+	REQUIRE(this->isInitialized(), "Ambulance is initialized");
 	REQUIRE(building->isInitialized(), "Building is initialized");
 	REQUIRE(destination.isInitialized(), "Point is initialized");
 	REQUIRE(this->isInDepot(), "Ambulance is in depot");
 
-	fBuilding = building;
-	this->setDestination(destination);
-	this->setPosition(fBase->getEntrance());
+	fBuilding = building;	// first set the building
+	this->setDestination(destination);	// then set the destination, (may be different from the building's location)
+	this->setPosition(fBase->getEntrance());	// then set it to the entrance of it's depot
 
 	ENSURE(this->fBuilding == building, "Building is set");
 	ENSURE(this->getDestination() == destination, "Destination is set");
-	ENSURE(this->getPosition() == this->fBase->getEntrance(), "Ambulance is at the entrance");
+	ENSURE(this->isAtEntranceDepot(), "Ambulance is at the entrance of it's depot");
 	return;
 }
 
 void Ambulance::sendBack() {
-	REQUIRE(this->isInitialized(), "EmergencyCar is initialized");
+	REQUIRE(this->isInitialized(), "Ambulance is initialized");
 
-	fBuilding = NULL;
-	this->setDestination(fBase->getEntrance());
+	fBuilding = NULL;	// set the building to NULL
+	this->setDestination(fBase->getEntrance());	// then set it's destination to the entrance of it's depot
 
 	ENSURE(this->fBuilding == NULL, "EmergencyCar has not a building to extinguish anymore");
-	ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to it's base");
+	ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to the base's entrance");
 	return;
 }
 
@@ -118,13 +114,14 @@ bool Ambulance::isAtEntranceDepot() const {
 
 void Ambulance::enterDepot() {
 	REQUIRE(this->isInitialized(), "Ambulance is initialized");
-	REQUIRE(this->getPosition() == this->fBase->getEntrance(), "Ambulance is at entrance");
+	REQUIRE(this->isAtEntranceDepot(), "Ambulance is at entrance of the depot");
+	REQUIRE(this->getBase()->isBurning() == false, "The base is not on fire");
 
+	// set both position and destination to the base's location
 	this->setPosition(fBase->getLocation());
 	this->setDestination(fBase->getLocation());
 
-	ENSURE(this->getPosition() == this->fBase->getLocation(), "Ambulance is now in depot");
-	ENSURE(this->getDestination() == this->fBase->getLocation(), "Ambulance is now in depot");
+	ENSURE(this->isAtEntranceDepot(), "Ambulance is now in depot");
 	return;
 }
 
