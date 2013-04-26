@@ -56,7 +56,7 @@ public:
 	// get it's base
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 
-	Building* getBuilding() const;
+	Shop* getShop() const;
 	// get the building that the PoliceTruck has to go
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 
@@ -98,7 +98,7 @@ public:
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 
 private:
-	Building* fBuilding;
+	Shop* fBuilding;
 	PoliceDepot* fBase;
 
 	PoliceTruck* fMyself;

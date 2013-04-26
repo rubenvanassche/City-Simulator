@@ -70,7 +70,7 @@ PoliceDepot* PoliceTruck::getBase() const {
 	return fBase;
 }
 
-Building* PoliceTruck::getBuilding() const {
+Shop* PoliceTruck::getShop() const {
 	REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 
 	return fBuilding;

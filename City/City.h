@@ -104,8 +104,16 @@ public:
 	//REQUIRE(this->isInitialized(), "City is initialized");
 
 	std::vector<Building*> getBuildingsOnFire();
-	// get all the buildings that is on fire
+	// get all the buildings that is on fire (except fireDepot)
 	//REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<FireDepot*> getFireDepotsOnFire();
+	// get all the FireDepots that is on fire
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<Building*> getBuildingsToRepair();
+	// get all the building that you may repair
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 	std::vector<Shop*> getRobbingShops();
 	// get all the shops that is being robbed

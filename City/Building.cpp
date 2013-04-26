@@ -156,6 +156,20 @@ bool Building::startSpreadingFire() const {
 	return false;
 }
 
+bool Building::startRepair() const {
+	REQUIRE(this->isInitialized(), "Building is initialized");
+
+	if ( (fIsBurning) || (this->isDead() ) ) {
+		return false;
+	}
+	else if (fHealthNormal != fHealth) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 void Building::repair(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
 

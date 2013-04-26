@@ -95,6 +95,10 @@ public:
 	// checks whether you may spread the fire
 	// REQUIRE(this->isInitialized(), "Building is initialized");
 
+	bool startRepair() const;
+	// checks whether you may repair the building
+	// REQUIRE(this->isInitialized(), "Building is initialized");
+
 	void repair();
 	// raises the health level with 0.5
 	// REQUIRE(this->isInitialized(), "Building is initialized");

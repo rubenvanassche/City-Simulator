@@ -266,12 +266,6 @@ std::vector<Building*> City::getBuildingsOnFire() {
 		}
 	}
 
-	for (unsigned int index = 0; index < fFireDepots.size(); index++) {
-		if (fFireDepots[index]->isBurning() ) {
-			vecBuilding.push_back(fFireDepots[index]);
-		}
-	}
-
 	for (unsigned int index = 0; index < fPoliceDepots.size(); index++) {
 		if (fPoliceDepots[index]->isBurning()) {
 			vecBuilding.push_back(fPoliceDepots[index]);
@@ -285,6 +279,59 @@ std::vector<Building*> City::getBuildingsOnFire() {
 	}
 
 	return vecBuilding;
+}
+
+std::vector<FireDepot*> City::getFireDepotsOnFire() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<FireDepot*> vecDepot;
+
+	for (unsigned int index = 0; index < fFireDepots.size(); index++) {
+		if (fFireDepots[index]->isBurning()) {
+			vecDepot.push_back(fFireDepots[index]);
+		}
+	}
+
+	return vecDepot;
+}
+
+std::vector<Building*> City::getBuildingsToRepair() {
+	REQUIRE(this->isInitialized(), "City is initialized");
+
+	std::vector<Building*> vecBuildings;
+
+
+	for (unsigned int index = 0; index < fHouses.size(); index++) {
+		if (fHouses[index]->startRepair()) {
+			vecBuildings.push_back(fHouses[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fShops.size(); index++) {
+		if (fShops[index]->startRepair()) {
+			vecBuildings.push_back(fShops[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fPoliceDepots.size(); index++) {
+		if (fPoliceDepots[index]->startRepair()) {
+			vecBuildings.push_back(fPoliceDepots[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fHospitals.size(); index++) {
+		if (fHospitals[index]->startRepair()) {
+			vecBuildings.push_back(fHospitals[index]);
+		}
+	}
+
+	for (unsigned int index = 0; index < fFireDepots.size(); index++) {
+		if (fFireDepots[index]->startRepair()) {
+			vecBuildings.push_back(fFireDepots[index]);
+		}
+	}
+
+	return vecBuildings;
 }
 
 std::vector<Shop*> City::getRobbingShops() {

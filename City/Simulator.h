@@ -35,16 +35,20 @@ public:
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void burningDown();
-	// let the city burn
+	// let the city burn (substracting health points)
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void commitRob();
-	// let go rob a random shop
+	// let rob a random shop
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void robbing();
 	// substracting robbing points
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void policeTruckControl();
-	// checks the vector of robbing shops ands sends a police truck to those who are being robbed
+	// Sends a police truck to shops being robbed
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
 	void drive();
 

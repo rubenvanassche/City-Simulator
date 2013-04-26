@@ -67,37 +67,20 @@ void Simulator::fireBreaksOut() {
 void Simulator::fireTruckControl() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	std::vector<FireTruck*> vecTrucks = fTown->getFireTrucksArrived();
-	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
-		if (vecTrucks[index]->isAtEntranceDepot()) {
-			vecTrucks[index]->enterDepot();
-		}
-		else {
-			Building* buildingOnFire = vecTrucks[index]->getBuilding();
-			buildingOnFire->stopFire();
-			vecTrucks[index]->sendBack();
-		}
-	}
-
-	return;
-}
-/*
-void Simulator::burningDown() {
-
-	// todo:
-	// everything!
-	// for all buildings except for a fireDepot, check if the FireTruckAssigned bool is true if so : just use the burningdown() function
-	// if not : check if there is a firetrcuk avaible and send it + set the FireTruckAssigned bool to true
-
 	std::vector<Building*> vecBuildings = fTown->getBuildingsOnFire();
-
 	for (unsigned int index = 0; index < vecBuildings.size(); index++) {
-		if (vecBuildings[index]->isFireTruckAssigned()) {
+
+		if (vecBuildings[index]->isFireTruckAssigned() ) {
 			continue;
 		}
 
-		std::vector<>
-		FireTruck* truck = fTown->getFireTrucksInDepot().front();
+		std::vector<FireTruck*> vecTrucks = fTown->getFireTrucksInDepot();
+		if (vecTrucks.empty()) {
+			continue;	// you have bad luck, there isn't a fireTruck that is in the depot available
+		}
+
+		int i = std::rand() % vecTrucks.size();
+		FireTruck* truck = vecTrucks.at(i);
 
 		Point destination = vecBuildings[index]->getLocation();
 		int x = destination.getX();
@@ -122,44 +105,143 @@ void Simulator::burningDown() {
 		truck->send(vecBuildings[index], destination);
 	}
 
+	std::vector<FireDepot*> vecDepots = fTown->getFireDepotsOnFire();
+	for (unsigned int index = 0; index < vecDepots.size(); index++) {
+		if (vecDepots[index]->getAvailableVehicles() > 0) {
+			vecDepots[index]->stopFire();
+			continue;
+		}
+		else {
+			vecDepots[index]->burningDown();
+		}
+	}
 
+	std::vector<FireTruck*> vecTrucks = fTown->getFireTrucksArrived();
+	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
+		if (vecTrucks[index]->isAtEntranceDepot()) {
+			vecTrucks[index]->enterDepot();
+		}
+		else {
+			Building* buildingOnFire = vecTrucks[index]->getBuilding();
+			buildingOnFire->stopFire();
+			vecTrucks[index]->sendBack();
+			buildingOnFire->withdrawFireTruckAssignment();
+		}
+	}
+
+	return;
 }
 
-/*
-void Simulator::commitRob() {
-	Shop* ptrShop = fTown->randShop();
-	ptrShop->StartRobbing();
+void Simulator::burningDown() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
+	std::vector<Building*> vecBuildings = fTown->getBuildingsOnFire();
+	for (unsigned int index = 0; index < vecBuildings.size(); index++) {
+		vecBuildings[index]->burningDown();
+	}
+
+	std::vector<FireDepot*> vecDepots = fTown->getFireDepotsOnFire();
+	for (unsigned int index = 0; index < vecDepots.size(); index++) {
+		if (vecDepots[index]->getAvailableVehicles() > 0) {
+			vecDepots[index]->stopFire();
+			continue;
+		}
+		else {
+			vecDepots[index]->burningDown();
+		}
+	}
+
+	return;
+}
+
+void Simulator::commitRob() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+
+	Shop* ptrShop = fTown->randShop(false, true);
+	ptrShop->StartRobbing();
 	return;
 }
 
 void Simulator::robbing() {
-	std::vector<Shop*> robbedShops = fTown->getRobbingShop();
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	for (unsigned int index = 0; index < robbedShops.size(); index++) {
-		robbedShops[index]->rob();
+	std::vector<Shop*> robbingShops = fTown->getRobbingShops();
+	for (unsigned int index = 0; index < robbingShops.size(); index++) {
+		robbingShops[index]->rob(1);
+	}
+
+	return;
+}
+
+void Simulator::policeTruckControl() {
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+
+	std::vector<Shop*> robbingShops = fTown->getRobbingShops();
+	for (unsigned int index = 0; index < robbingShops.size(); index++) {
+		if (robbingShops[index]->isPoliceTruckAssigned() ) {
+			continue;
+		}
+
+		std::vector<PoliceTruck*> trucksInDepot = fTown->getPoliceTrucksInDepot();
+		if (trucksInDepot.empty()) {
+			continue;
+		}
+
+		int i = std::rand() % trucksInDepot.size();
+		PoliceTruck* truck = trucksInDepot.at(i);
+
+		Point destination = robbingShops[index]->getLocation();
+		int x = destination.getX();
+		int y = destination.getY();
+		int width = robbingShops[index]->getSize().getWidth();
+		int height = robbingShops[index]->getSize().getHeight();
+
+		if (!fTown->isInMap(destination)) {
+			destination.set(x, y + 1);
+		}
+		if(!fTown->isInMap(destination)) {
+			destination.set(x + width, y);
+		}
+		if (!fTown->isInMap(destination)) {
+			destination.set(x, y - height);
+		}
+		if (!fTown->isInMap(destination)) {
+			destination.set(x - 1, y);
+		}
+
+		robbingShops[index]->assignPoliceTruck();
+		truck->send(robbingShops[index], destination);
+	}
+
+
+	std::vector<PoliceTruck*> vecTrucks = fTown->getPoliceTrucksArrived();
+	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
+		if (vecTrucks[index]->isAtEntranceDepot()) {
+			vecTrucks[index]->enterDepot();
+		}
+		else {
+			Shop* robbedShop = vecTrucks[index]->getShop();
+			robbedShop->StopRobbing();
+			vecTrucks[index]->sendBack();
+			robbedShop->withdrawPoliceTruckAssignment();
+		}
+	}
+
+	return;
+}
+
+void Simulator::repairBuildings() {
+	std::vector<Building*> vecBuilding = fTown->getBuildingsToRepair();
+
+	for (unsigned int index = 0; index < vecBuilding.size(); index++) {
+		vecBuilding[index]->repair();
 	}
 	return;
 }
 
-void policeTruckControl(){
-	// todo: here
-	// check the vector of shops being robbed
-	// check for each shop if there is a Police Car assigned
-	// if not check if there are avaible and send one
-	// if assigned, go to the next shop
-
-	// + check if a polcietruck is at his destination
-	// if so stop robbing and send back to the policeDepot
-	// if not continue driving(so nothing to do here)
-}
-
-void repairBuildings(){
-	// iterate over each building(so over each building type vector)
-	// and use the repair() function
-}
-
+/*
 void spreadFire(){
+	// todo: this
 	// iterate over each house that is burning and check if spreadfire() is true
 	// if so use the calculateSurroundingPoints() function
 	// then make a vector with all the points of houses by using calculatepoints() (this must be done only once)
@@ -174,6 +256,7 @@ void spreadFire(){
 
 /*
 void Simulator::step(){
+	// todo: almost done
 	this->burningDown();
 	this->robbing();
 	this->drive();
