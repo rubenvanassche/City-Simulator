@@ -121,7 +121,7 @@ void Ambulance::enterDepot() {
 	this->setPosition(fBase->getLocation());
 	this->setDestination(fBase->getLocation());
 
-	ENSURE(this->isAtEntranceDepot(), "Ambulance is now in depot");
+	ENSURE(this->isInDepot(), "Ambulance is now in depot");
 	return;
 }
 

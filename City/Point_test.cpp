@@ -2,60 +2,99 @@
  * Point_test.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Saturday 2 March 2013
+ * @version:	2.0
+ * @date:		Friday 26 April 2013
  * 
  */
 
 #include "gtest/gtest.h"
 #include "Point.h"
 
-TEST(Point, construct){
+class PointTest : public testing::Test {
+public:
+	int zero;
+	int positive0;
+	int positive1;
+
+	int negative0;
+	int negative1;
+
+	virtual void SetUp() {
+		zero = 0;
+		positive0 = 5;
+		positive1 = 10;
+
+		negative0 = -1;
+		negative1 = -12;
+	}
+
+	virtual void TearDown() {
+
+	}
+};
+
+
+TEST_F(PointTest, construct) {
 	EXPECT_NO_FATAL_FAILURE(Point Default);
-	EXPECT_NO_FATAL_FAILURE(Point zero(0, 0));
-	EXPECT_NO_FATAL_FAILURE(Point positive(1, 3));
+	EXPECT_NO_FATAL_FAILURE(Point null(zero, zero));
+	EXPECT_NO_FATAL_FAILURE(Point positive(positive0, positive1));
+	EXPECT_NO_FATAL_FAILURE(Point positive(positive1, positive0));
 
-	//EXPECT_DEATH(Point negative(-1, -3), "\\w");
-	//EXPECT_DEATH(Point xNegative(-1, 3), "\\w");
-	//EXPECT_DEATH(Point yNegative(1, -3), "\\w");
+	EXPECT_DEATH(Point negative(negative0, negative1), "\\w");
+	EXPECT_DEATH(Point negative(negative1, negative0), "\\w");
+	EXPECT_DEATH(Point negative(negative0, positive1), "\\w");
+	EXPECT_DEATH(Point negative(negative1, positive0), "\\w");
+	EXPECT_DEATH(Point negative(positive0, negative1), "\\w");
+	EXPECT_DEATH(Point negative(positive1, negative0), "\\w");
+}
 
-	Point positive(1, 3);
+TEST_F(PointTest, setters_getters) {
+	Point null(zero, zero);
+	Point positive_0(positive0, positive1);
+	Point positive_1(positive1, positive0);
+
+	EXPECT_EQ(zero, null.getX());
+	EXPECT_EQ(zero, null.getY());
+	EXPECT_EQ(positive0, positive_0.getX());
+	EXPECT_EQ(positive1, positive_0.getY());
+	EXPECT_EQ(positive1, positive_1.getX());
+	EXPECT_EQ(positive0, positive_1.getY());
+
+	EXPECT_NO_FATAL_FAILURE(null.set(zero, zero));
+	EXPECT_NO_FATAL_FAILURE(positive_0.set(positive1, positive0));
+	EXPECT_NO_FATAL_FAILURE(positive_1.set(positive0, positive1));
+	EXPECT_EQ(zero, null.getX());
+	EXPECT_EQ(zero, null.getY());
+	EXPECT_EQ(positive1, positive_0.getX());
+	EXPECT_EQ(positive0, positive_0.getY());
+	EXPECT_EQ(positive0, positive_1.getX());
+	EXPECT_EQ(positive1, positive_1.getY());
+
+	EXPECT_DEATH(null.set(negative0, negative1), "\\w");
+	EXPECT_DEATH(null.set(positive0, negative1), "\\w");
+	EXPECT_DEATH(null.set(negative1, positive1), "\\w");
+	EXPECT_DEATH(positive_0.set(negative0, negative1), "\\w");
+	EXPECT_DEATH(positive_0.set(positive0, negative1), "\\w");
+	EXPECT_DEATH(positive_0.set(negative1, positive1), "\\w");
+	EXPECT_DEATH(positive_1.set(negative0, negative1), "\\w");
+	EXPECT_DEATH(positive_1.set(positive0, negative1), "\\w");
+	EXPECT_DEATH(positive_1.set(negative1, positive1), "\\w");
+}
+
+TEST_F(PointTest, copying) {
+	Point positive(positive0, positive1);
+	Point null;
+
 	EXPECT_NO_FATAL_FAILURE(Point copy = positive);
-}
+	Point copy = positive;
 
-TEST(Point, setters_getters) {
-	Point Default;
-	Point zero(0, 0);
-	Point positive0(1, 3);
-	Point positive1(5, 2);
+	EXPECT_EQ(positive0, copy.getX());
+	EXPECT_EQ(positive1, copy.getY());
+	EXPECT_TRUE(copy == positive);
 
-	EXPECT_EQ(0, Default.getX());
-	EXPECT_EQ(0, Default.getY());
-	EXPECT_EQ(0, zero.getX());
-	EXPECT_EQ(0, zero.getY());
-	EXPECT_EQ(1, positive0.getX());
-	EXPECT_EQ(3, positive0.getY());
-	EXPECT_EQ(5, positive1.getX());
-	EXPECT_EQ(2, positive1.getY());
-
-	EXPECT_NO_FATAL_FAILURE(Default.set(5, 3));
-	EXPECT_EQ(5, Default.getX());
-	EXPECT_EQ(3, Default.getY());
-
-	//EXPECT_DEATH(Default.set(-5, 3), "\\w");
-	//EXPECT_DEATH(Default.set(5, -3), "\\w");
-	//EXPECT_DEATH(Default.set(-5, -3), "\\w");
-}
-
-TEST(Point, operators) {
-	Point pointDefault;
-	Point pointZero(0, 0);
-	Point pointPos0(1, 3);
-	Point pointPos1(5, 2);
-
-	EXPECT_TRUE(pointDefault == pointZero);
-	EXPECT_FALSE(pointPos0 == pointPos1);
-	EXPECT_TRUE(pointPos0 != pointPos1);
-	EXPECT_NO_FATAL_FAILURE(pointPos0 = pointPos1);
-	EXPECT_TRUE(pointPos0 == pointPos1);
+	EXPECT_FALSE(null == positive);
+	EXPECT_NO_FATAL_FAILURE(null = positive);
+	EXPECT_EQ(positive0, null.getX());
+	EXPECT_EQ(positive1, null.getY());
+	EXPECT_TRUE(null == positive);
 }

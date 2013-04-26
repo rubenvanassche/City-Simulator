@@ -91,7 +91,7 @@ public:
 	// REQUIRE(this->isAtEntranceDepot(), "Ambulance is at entrance of the depot");
 	// REQUIRE(this->getBase()->isBurning() == false, "The base is not on fire");
 
-	// ENSURE(this->isAtEntrancDepot(), "Ambulance is now in depot");
+	// ENSURE(this->isInDepot(), "Ambulance is now in depot");
 
 	char getSymbol() const;
 	// for graphical impression

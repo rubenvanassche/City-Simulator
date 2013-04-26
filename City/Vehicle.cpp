@@ -109,7 +109,7 @@ void Vehicle::goRight(const int& units) {
 	REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	REQUIRE(units > 0, "Positive units");
 
-	fPosition.setX(fPosition.getX() - units);
+	fPosition.setX(fPosition.getX() + units);
 	return;
 }
 
