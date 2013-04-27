@@ -94,6 +94,7 @@ public:
 	// REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	// REQUIRE(this->isAtEntranceDepot(), "FireTruck is at entrance of it's base");
 	// REQUIRE(this->fBase->isBurning() == false, "The base is not on fire");
+	// REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
 
 	// ENSURE(this->isInDepot(), "FireTruck is now in depot");
 

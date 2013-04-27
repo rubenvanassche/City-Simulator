@@ -117,7 +117,11 @@ void Building::burningDown() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 	REQUIRE(this->fIsBurning, "Building is on fire");
 
-	fHealth -= this->fReducer;	// use the predefined reducer
+	fHealth -= fReducer;	// use the predefined reducer
+
+	if (fHealth <= 0) {
+		fIsBurning = false;	// then the fire stopped automatically
+	}
 
 	ENSURE(this->fHealth < this->fHealthNormal, "There is at least one point substracted");
 	return;

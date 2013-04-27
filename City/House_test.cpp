@@ -10,47 +10,98 @@
 #include "gtest/gtest.h"
 #include "House.h"
 
-TEST(House, constructs) {
-	EXPECT_NO_FATAL_FAILURE(House house(Point(0, 0), 2));
-	//EXPECT_DEATH(House magic(Point(-5, 3), 2), "\\w");
-	//EXPECT_DEATH(House magic(Point(5, 3), -2), "\\w");
+class HouseTest : public testing::Test {
+protected:
+	Point loc;
+	Size sizeFixed;
+	int health;
+	int reducer;
 
-	House house(Point(5, 3), 10);
-	EXPECT_NO_FATAL_FAILURE(House copy = house);
+	virtual void SetUp() {
+		loc.set(0, 0);
+		sizeFixed.set(2, 2);
+		health = 2;
+		reducer = 1;
+	}
+
+	virtual void TearDown() {
+		// nothing to clean up
+	}
+};
+
+TEST_F(HouseTest, constructs) {
+	EXPECT_NO_FATAL_FAILURE(House home(loc, health));
 }
 
-TEST(House, getters) {
-	House app(Point(0, 0), 100);
+TEST_F(HouseTest, getters) {
+	House home(loc, health);
 
-	EXPECT_EQ(Point(0, 0), app.getLocation());
-	EXPECT_EQ(Size(2), app.getSize());
-	EXPECT_EQ(100, app.getHealth());
+	EXPECT_EQ(loc, home.getLocation());
+	EXPECT_EQ(sizeFixed, home.getSize());
+	EXPECT_EQ(health, home.getHealth());
 }
 
-TEST(House, fire) {
-	House house(Point(0, 0), 2);
+TEST_F(HouseTest, fire) {
+	House home(loc, health);
 
-	EXPECT_FALSE(house.isBurning());
-	EXPECT_FALSE(house.isDead());
-	EXPECT_EQ(2, house.getHealth());
+	EXPECT_FALSE(home.isBurning());
 
-	EXPECT_NO_FATAL_FAILURE(house.setFire());
-	EXPECT_TRUE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.burningDown());
-	EXPECT_EQ(1, house.getHealth());
-	EXPECT_FALSE(house.isDead());
+	//EXPECT_DEATH(home.burningDown(), "\\w");	// ooops, house is not on fire
+	//EXPECT_DEATH(home.stopFire(), "\\w");	// oops, house is not on fire
 
-	EXPECT_NO_FATAL_FAILURE(house.stopFire());
-	EXPECT_FALSE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.repair());
-	EXPECT_EQ(1.5, house.getHealth());
-	EXPECT_FALSE(house.isDead());
+	EXPECT_FALSE(home.isDead());
+	EXPECT_FALSE(home.startSpreadingFire());
+	EXPECT_FALSE(home.startRepair());
 
-	//EXPECT_DEATH(house.burningDown(), "\\w");
+	//EXPECT_DEATH(home.repair(), "\\w");	// oops, house has still it's original health
 
-	EXPECT_NO_FATAL_FAILURE(house.setFire());
-	EXPECT_TRUE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.burningDown());
-	EXPECT_EQ(-0.5, house.getHealth());
-	EXPECT_TRUE(house.isDead());
+	EXPECT_FALSE(home.isFireTruckAssigned());
+	//EXPECT_DEATH(home.assignFireTruck(), "\\w");	// oops, the house is not on fire
+	//EXPECT_DEATH(home.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
+
+	// okay, start the fire scenario
+	EXPECT_NO_FATAL_FAILURE(home.setFire());
+	EXPECT_TRUE(home.isBurning());
+	EXPECT_NO_FATAL_FAILURE(home.burningDown());
+	EXPECT_EQ(health - reducer, home.getHealth());
+	EXPECT_FALSE(home.isDead());
+	EXPECT_FALSE(home.startSpreadingFire());	// no, it has lost only 1 health points
+	EXPECT_FALSE(home.startRepair());
+
+	//EXPECT_DEATH(home.repair(), "\\w");	// oops, house is still on fire
+
+	// let's send a firetruck
+	EXPECT_NO_FATAL_FAILURE(home.assignFireTruck());
+	EXPECT_TRUE(home.isFireTruckAssigned());
+
+	// extinguish fire, repair and sendback firetruck
+	//EXPECT_DEATH(home.withdrawFireTruckAssignment(), "\\w");	// oops, house is still on fire
+
+	EXPECT_NO_FATAL_FAILURE(home.stopFire());
+	EXPECT_FALSE(home.isBurning());
+	EXPECT_TRUE(home.startRepair());
+	EXPECT_NO_FATAL_FAILURE(home.repair());
+	EXPECT_EQ(health - reducer + 0.5, home.getHealth());
+	EXPECT_NO_FATAL_FAILURE(home.withdrawFireTruckAssignment());
+	EXPECT_FALSE(home.isFireTruckAssigned());
+	EXPECT_FALSE(home.isDead());
+
+	// fire breaks out again
+	EXPECT_NO_FATAL_FAILURE(home.setFire());
+	EXPECT_TRUE(home.isBurning());
+	EXPECT_NO_FATAL_FAILURE(home.burningDown());
+	EXPECT_EQ(health - reducer + 0.5 - reducer, home.getHealth());
+	EXPECT_FALSE(home.isDead());
+
+	// let it burning down 'till death
+	EXPECT_NO_FATAL_FAILURE(home.burningDown());
+	EXPECT_TRUE(home.isDead());
+	EXPECT_EQ(health - reducer + 0.5 - reducer - reducer, home.getHealth());
+
+	// now, house is not on fire anymore
+	EXPECT_FALSE(home.isBurning());
+	EXPECT_FALSE(home.startRepair());	// you cannot repair a dead house
+	EXPECT_FALSE(home.startSpreadingFire());
+
+	// end of fire scenario
 }

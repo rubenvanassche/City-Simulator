@@ -90,6 +90,7 @@ public:
 	// REQUIRE(this->isInitialized(), "Ambulance is initialized");
 	// REQUIRE(this->isAtEntranceDepot(), "Ambulance is at entrance of the depot");
 	// REQUIRE(this->getBase()->isBurning() == false, "The base is not on fire");
+	// REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
 
 	// ENSURE(this->isInDepot(), "Ambulance is now in depot");
 

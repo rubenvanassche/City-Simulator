@@ -2,60 +2,104 @@
  * Building_test.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Saturday 9 March 2013
+ * @version:	2.0
+ * @date:		Saturday 27 April 2013
  * 
  */
 
 #include "gtest/gtest.h"
 #include "Building.h"
-#include "Point.h"
-#include "Size.h"
 
-TEST(Building, constructs) {
-	EXPECT_NO_FATAL_FAILURE(Building building(Point(0, 0), Size(2), 0, 1));
-	EXPECT_NO_FATAL_FAILURE(Building building(Point(0, 0), Size(4), 5, 1));
+class BuildingTest : public testing::Test {
+protected:
+	Point loc;
+	Size size;
+	int health;
+	int reducer;
 
-//	EXPECT_DEATH(Building magic(Point(-3, 2), Size(1), 0), "\\w");
-//	EXPECT_DEATH(Building magic(Point(1, 1), Size(0), 5), "\\w");
-//	EXPECT_DEATH(Building magic(Point(1, 1), Size(1), -1), "\\w");
+	virtual void SetUp() {
+		loc.set(0, 0);
+		size.set(2, 2);
+		health = 10;
+		reducer = 5;
+	}
 
-	Building app(Point(0, 0), Size(5), 100, 1);
-	EXPECT_NO_FATAL_FAILURE(Building copy = app);
+	virtual void TearDown() {
+		// nothing to clean up
+	}
+};
+
+TEST_F(BuildingTest, constructs) {
+	EXPECT_NO_FATAL_FAILURE(Building build(loc, size, health, reducer));
 }
 
-TEST(Building, getters) {
-	Building app(Point(0, 0), Size(5), 100, 1);
+TEST_F(BuildingTest, getters) {
+	Building build(loc, size, health, reducer);
 
-	EXPECT_EQ(Point(0, 0), app.getLocation());
-	EXPECT_EQ(Size(5), app.getSize());
-	EXPECT_EQ(100, app.getHealth());
+	EXPECT_EQ(loc, build.getLocation());
+	EXPECT_EQ(size, build.getSize());
+	EXPECT_EQ(health, build.getHealth());
 }
 
-TEST(Building, fire) {
-	Building house(Point(0, 0), Size(2), 2, 1);
+TEST_F(BuildingTest, fire) {
+	Building build(loc, size, health, reducer);
 
-	EXPECT_FALSE(house.isBurning());
-	EXPECT_FALSE(house.isDead());
-	EXPECT_EQ(2, house.getHealth());
+	EXPECT_FALSE(build.isBurning());
 
-	EXPECT_NO_FATAL_FAILURE(house.setFire());
-	EXPECT_TRUE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.burningDown());
-	EXPECT_EQ(1, house.getHealth());
-	EXPECT_FALSE(house.isDead());
+	//EXPECT_DEATH(build.burningDown(), "\\w");	// ooops, building is not on fire
+	//EXPECT_DEATH(build.stopFire(), "\\w");	// oops, building is not on fire
 
-	EXPECT_NO_FATAL_FAILURE(house.stopFire());
-	EXPECT_FALSE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.repair());
-	EXPECT_EQ(1.5, house.getHealth());
-	EXPECT_FALSE(house.isDead());
+	EXPECT_FALSE(build.isDead());
+	EXPECT_FALSE(build.startSpreadingFire());
+	EXPECT_FALSE(build.startRepair());
 
-	//EXPECT_DEATH(house.burningDown(), "\\w");
+	//EXPECT_DEATH(build.repair(), "\\w");	// oops, building has still it's original health
 
-	EXPECT_NO_FATAL_FAILURE(house.setFire());
-	EXPECT_TRUE(house.isBurning());
-	EXPECT_NO_FATAL_FAILURE(house.burningDown());
-	EXPECT_EQ(-0.5, house.getHealth());
-	EXPECT_TRUE(house.isDead());
+	EXPECT_FALSE(build.isFireTruckAssigned());
+	//EXPECT_DEATH(build.assignFireTruck(), "\\w");	// oops, the building is not on fire
+	//EXPECT_DEATH(build.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
+
+	// okay, start the fire scenario
+	EXPECT_NO_FATAL_FAILURE(build.setFire());
+	EXPECT_TRUE(build.isBurning());
+	EXPECT_NO_FATAL_FAILURE(build.burningDown());
+	EXPECT_EQ(health - reducer, build.getHealth());
+	EXPECT_FALSE(build.isDead());
+	EXPECT_TRUE(build.startSpreadingFire());	// yes, it has lost over more than 3 health points
+	EXPECT_FALSE(build.startRepair());
+
+	//EXPECT_DEATH(build.repair(), "\\w");	// oops, building is still on fire
+
+	// let's send a firetruck
+	EXPECT_NO_FATAL_FAILURE(build.assignFireTruck());
+	EXPECT_TRUE(build.isFireTruckAssigned());
+
+	// extinguish fire, repair and sendback firetruck
+	//EXPECT_DEATH(build.withdrawFireTruckAssignment(), "\\w");	// oops, building is still on fire
+
+	EXPECT_NO_FATAL_FAILURE(build.stopFire());
+	EXPECT_FALSE(build.isBurning());
+	EXPECT_TRUE(build.startRepair());
+	EXPECT_NO_FATAL_FAILURE(build.repair());
+	EXPECT_EQ(health - reducer + 0.5, build.getHealth());
+	EXPECT_NO_FATAL_FAILURE(build.withdrawFireTruckAssignment());
+	EXPECT_FALSE(build.isFireTruckAssigned());
+	EXPECT_FALSE(build.isDead());
+
+	// fire breaks out again
+	EXPECT_NO_FATAL_FAILURE(build.setFire());
+	EXPECT_TRUE(build.isBurning());
+	EXPECT_NO_FATAL_FAILURE(build.burningDown());
+	EXPECT_EQ(health - reducer + 0.5 - reducer, build.getHealth());
+	EXPECT_FALSE(build.isDead());
+
+	// let them burning down 'till death
+	EXPECT_NO_FATAL_FAILURE(build.burningDown());
+	EXPECT_TRUE(build.isDead());
+	EXPECT_EQ(health - reducer + 0.5 - reducer - reducer, build.getHealth());
+
+	// now, building is not on fire anymore
+	EXPECT_FALSE(build.isBurning());
+	EXPECT_FALSE(build.startRepair());	// you cannot repair a dead building
+	EXPECT_FALSE(build.startSpreadingFire());
 }

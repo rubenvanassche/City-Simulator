@@ -89,7 +89,8 @@ public:
 	// enter the depot
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 	// REQUIRE(this->isAtEntranceDepot(), "PoliceTruck is at entrance");
-	// REQUIRE(this->fBuilding->isBurning(), "It's base is not on fire");
+	// REQUIRE(this->fBase->isBurning(), "It's base is not on fire");
+	// REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
 
 	// ENSURE(this->isInDepot(), "PoliceTruck is now in depot");
 

@@ -117,7 +117,8 @@ bool PoliceTruck::isAtEntranceDepot() const {
 void PoliceTruck::enterDepot() {
 	REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 	REQUIRE(this->isAtEntranceDepot(), "PoliceTruck is at entrance");
-	REQUIRE(this->fBuilding->isBurning() == false, "It's base is not on fire");
+	REQUIRE(this->fBase->isBurning() == false, "It's base is not on fire");
+	REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
 
 	// change both position and location to the base's location
 	this->setPosition(fBase->getLocation());

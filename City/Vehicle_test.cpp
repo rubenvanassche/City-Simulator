@@ -11,54 +11,87 @@
 #include "Vehicle.h"
 #include "Point.h"
 
-TEST(Vehicles, constructs) {
-	EXPECT_NO_FATAL_FAILURE(Vehicle car("car", Point(0, 0)));
-	EXPECT_NO_FATAL_FAILURE(Vehicle car("car", Point(0, 0)));
+class VehicleTest : public testing::Test {
+protected:
 
-	//EXPECT_DEATH(Vehicle magic("magic", Point(-5, 2), Point(-3, 2)), "\\w");
+	std::string name;
+	Point pos;
+	Point destination;
 
-	Vehicle car("car", Point(0, 0));
-	EXPECT_NO_FATAL_FAILURE(Vehicle copy = car);
+	virtual void SetUp() {
+		name = "an ordinary car";
+		pos.set(0, 0);
+		destination.set(1, 1);
+	}
+
+	virtual void TearDown() {
+
+	}
+
+};
+
+TEST_F(VehicleTest, construct) {
+	EXPECT_NO_FATAL_FAILURE(Vehicle car(name, pos));
 }
 
-TEST(Vehicles, getters_setters) {
-	Vehicle car("car", Point(1, 2));
+TEST_F(VehicleTest, getters_setters) {
+	Vehicle car(name, pos);
 
-	EXPECT_EQ(Point(1, 2), car.getPosition());
-	EXPECT_EQ(Point(1, 2), car.getDestination());
-	EXPECT_EQ("car", car.getName());
+	EXPECT_EQ(name, car.getName());
+	EXPECT_EQ(pos, car.getPosition());
+	EXPECT_EQ(pos, car.getDestination());
 
-	EXPECT_NO_FATAL_FAILURE(car.setDestination(Point(0, 0)));
-	EXPECT_EQ(Point(0, 0), car.getDestination());
+	EXPECT_NO_FATAL_FAILURE(car.setPosition(destination));
+	EXPECT_EQ(destination, car.getPosition());
 
-	//EXPECT_DEATH(car.setDestination(Point(-5, 0)), "\\w");
+	EXPECT_NO_FATAL_FAILURE(car.setDestination(destination));
+	EXPECT_EQ(destination, car.getDestination());
 }
 
-TEST(Vehicles, driving) {
-	Vehicle car("car", Point(1, 1));
 
-	EXPECT_TRUE(car.isArrived());
+TEST_F(VehicleTest, driving) {
+	Vehicle car(name, pos);
+
 	EXPECT_FALSE(car.isOnWay());
+	EXPECT_TRUE(car.isArrived());
 
-	EXPECT_NO_FATAL_FAILURE(car.goLeft());
-	EXPECT_FALSE(car.isArrived());
+	EXPECT_NO_FATAL_FAILURE(car.setDestination(destination));
 	EXPECT_TRUE(car.isOnWay());
-	EXPECT_EQ(Point(0, 1), car.getPosition());
-	//EXPECT_DEATH(car.goLeft(), "\\w");
+	EXPECT_FALSE(car.isArrived());
 
-	EXPECT_NO_FATAL_FAILURE(car.goDown());
-	EXPECT_FALSE(car.isArrived());
-	EXPECT_TRUE(car.isOnWay());
-	EXPECT_EQ(Point(0, 0), car.getPosition());
-	//EXPECT_DEATH(car.goDown(), "\\w");
+	//EXPECT_DEATH(car.goLeft(), "\\w");	// oops, just got negative coordinates
 
 	EXPECT_NO_FATAL_FAILURE(car.goRight());
-	EXPECT_FALSE(car.isArrived());
+	EXPECT_EQ(Point(pos.getX() + 1, pos.getY()), car.getPosition());
 	EXPECT_TRUE(car.isOnWay());
-	EXPECT_EQ(Point(1, 0), car.getPosition());
+	EXPECT_FALSE(car.isArrived());
+
+	//EXPECT_DEATH(car.goDown(), "\\w");	// oops, just got negative coordinates
 
 	EXPECT_NO_FATAL_FAILURE(car.goUp());
-	EXPECT_TRUE(car.isArrived());
+	EXPECT_EQ(Point(pos.getX() + 1, pos.getY() + 1), car.getPosition());
 	EXPECT_FALSE(car.isOnWay());
-	EXPECT_EQ(Point(1, 1), car.getPosition());
+	EXPECT_TRUE(car.isArrived());
+
+	// then go back to the original point
+	EXPECT_NO_FATAL_FAILURE(car.setDestination(pos));
+	EXPECT_EQ(destination, car.getPosition());
+	EXPECT_TRUE(car.isOnWay());
+	EXPECT_FALSE(car.isArrived());
+
+	EXPECT_NO_FATAL_FAILURE(car.goLeft());
+	EXPECT_EQ(Point(pos.getX(), pos.getY() + 1), car.getPosition());
+	EXPECT_TRUE(car.isOnWay());
+	EXPECT_FALSE(car.isArrived());
+
+	//EXPECT_DEATH(car.goLeft(), "\\w");	// oops, just got negative coordinates!
+
+	EXPECT_NO_FATAL_FAILURE(car.goDown());
+	EXPECT_EQ(pos, car.getPosition());
+	EXPECT_FALSE(car.isOnWay());
+	EXPECT_TRUE(car.isArrived());
+
+	//EXPECT_DEATH(car.goDown(), "\\w");	// ooops, just got negative coordinates!
+
+	// end of driving
 }

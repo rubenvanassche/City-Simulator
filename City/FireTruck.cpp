@@ -119,6 +119,7 @@ void FireTruck::enterDepot() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	REQUIRE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at entrance");
 	REQUIRE(this->fBase->isBurning() == false, "The base is not on fire");
+	REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
 
 	// set both position and destination to the location of the depot
 	this->setPosition(fBase->getLocation());

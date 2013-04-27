@@ -99,6 +99,10 @@ void Shop::rob(int substracter){
 
 	fSecurityLevel -= substracter;
 
+	if (fSecurityLevel == 0) {
+		fIsRobbing = false;
+	}
+
 	return;
 }
 
