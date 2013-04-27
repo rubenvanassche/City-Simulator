@@ -2,99 +2,214 @@
  * Street_test.cpp
  *
  * @author:		Stijn Wouters - 20121136 - stijn.wouters2@student.ua.ac.be
- * @version:	1.0
- * @date:		Sunday 3 March 2013
+ * @version:	2.0
+ * @date:		Saturday 27 March 2013
  * 
  */
 
 
-
 #include "gtest/gtest.h"
 #include "Street.h"
-#include "Point.h"
+#include <cmath>
 
-TEST(Street, constructs) {
-	EXPECT_NO_FATAL_FAILURE(Street horizontal("Horizontal", Point(0, 5), Point(10, 5)));
-	EXPECT_NO_FATAL_FAILURE(Street vertical("Vertical", Point(1, 3), Point(1, 7)));
-	EXPECT_NO_FATAL_FAILURE(Street irregular("Irregular", Point(0, 0), Point(10, 10)));
+class StreetTest : public testing::Test {
+protected:
+	Point startHorizontal;
+	Point endHorizontal;
+	std::string nameHorizontal;
 
-	//EXPECT_DEATH(Street magic("magic", Point(-5, 0), Point(-3, 5)), "\\w");
+	Point startVertical;
+	Point endVertical;
+	std::string nameVertical;
 
-	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
-	EXPECT_NO_FATAL_FAILURE(Street copy = horizontal);
+	Point startIrregular;
+	Point endIrregular;
+	std::string nameIrregular;
+
+	Point startHorizontal1;
+	Point endHorizontal1;
+	std::string nameHorizontal1;
+
+	Point startVertical1;
+	Point endVertical1;
+	std::string nameVertical1;
+
+	virtual void SetUp() {
+		startHorizontal.set(0, 0);
+		endHorizontal.set(10, 0);
+		nameHorizontal = "Horizontal street";
+
+		startVertical.set(0, 0);
+		endVertical.set(0, 10);
+		nameVertical = "Vertical street";
+
+		startIrregular.set(0, 0);
+		endIrregular.set(10, 10);
+		nameIrregular = "Irregular street";
+
+		startHorizontal1.set(0, 1);
+		endHorizontal1.set(10, 1);
+		nameHorizontal1 = "Another horizontal street";
+
+		startVertical1.set(1, 0);
+		endVertical1.set(1, 10);
+		nameVertical1 = "Another vertical street";
+	}
+
+	virtual void TearDown() {
+		// nothing to clean up
+	}
+
+	void isElementTest(const Point& start, const Point& end, Street& str) {
+		/*
+		 * Helper function: test whether for each point in the street is an element of the street
+		 */
+		if (str.isVertical()) {
+			int yMin = std::min(start.getY(), end.getY());
+			int yMax = std::max(start.getY(), end.getY());
+
+			for (int y = yMin; y <= yMax; y++) {
+				Point p(start.getX(), y);
+				EXPECT_TRUE(str.isElement(p) );
+			}
+
+			return;
+		}
+		else if (str.isHorizontal()) {
+			int xMin = std::min(start.getX(), end.getX());
+			int xMax = std::max(start.getX(), end.getX());
+
+			for (int x = xMin; x <= xMax; x++) {
+				Point p(x, start.getY());
+				EXPECT_TRUE(str.isElement(p));
+			}
+		}
+		else {
+			EXPECT_DEATH(str.isElement(start), "\\w");
+			EXPECT_DEATH(str.isElement(end), "\\w");
+			return;
+		}
+	}
+};
+
+TEST_F(StreetTest, construct) {
+	EXPECT_NO_FATAL_FAILURE(Street horizontal(nameHorizontal, startHorizontal, endHorizontal));
+	EXPECT_NO_FATAL_FAILURE(Street horizontalRev(nameHorizontal, endHorizontal, startHorizontal));
+
+	EXPECT_NO_FATAL_FAILURE(Street vertical(nameVertical, startVertical, endVertical));
+	EXPECT_NO_FATAL_FAILURE(Street verticalRev(nameVertical, endVertical, startVertical));
+
+	EXPECT_NO_FATAL_FAILURE(Street irregular(nameIrregular, startIrregular, endIrregular));
+	EXPECT_NO_FATAL_FAILURE(Street irregularRev(nameIrregular, endIrregular, startIrregular));
 }
 
-TEST(Street, getters) {
-	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
-	Street vertical("Vertical", Point(1, 3), Point(1, 7));
-	Street irregular("Irregular", Point(0, 0), Point(5, 10));
+TEST_F(StreetTest, getters) {
+	Street horizontal(nameHorizontal, startHorizontal, endHorizontal);
+	Street horizontalRev(nameHorizontal, endHorizontal, startHorizontal);
 
-	EXPECT_EQ(Point(0, 5), horizontal.getStartPoint());
-	EXPECT_EQ(Point(10, 5), horizontal.getEndPoint());
-	EXPECT_EQ("Horizontal", horizontal.getName());
-	EXPECT_EQ(Point(1, 3), vertical.getStartPoint());
-	EXPECT_EQ(Point(1, 7), vertical.getEndPoint());
-	EXPECT_EQ("Vertical", vertical.getName());
-	EXPECT_EQ(Point(0, 0), irregular.getStartPoint());
-	EXPECT_EQ(Point(5, 10), irregular.getEndPoint());
-	EXPECT_EQ("Irregular", irregular.getName());
+	Street vertical(nameVertical, startVertical, endVertical);
+	Street verticalRev(nameVertical, endVertical, startVertical);
+
+	Street irregular(nameIrregular, startIrregular, endIrregular);
+	Street irregularRev(nameIrregular, endIrregular, startIrregular);
+
+	EXPECT_EQ(nameHorizontal, horizontal.getName());
+	EXPECT_EQ(startHorizontal, horizontal.getStartPoint());
+	EXPECT_EQ(endHorizontal, horizontal.getEndPoint());
+
+	EXPECT_EQ(nameHorizontal, horizontalRev.getName());
+	EXPECT_EQ(endHorizontal, horizontalRev.getStartPoint());
+	EXPECT_EQ(startHorizontal, horizontalRev.getEndPoint());
+
+	EXPECT_EQ(nameVertical, vertical.getName());
+	EXPECT_EQ(startVertical, vertical.getStartPoint());
+	EXPECT_EQ(endVertical, vertical.getEndPoint());
+
+	EXPECT_EQ(nameVertical, verticalRev.getName());
+	EXPECT_EQ(endVertical, verticalRev.getStartPoint());
+	EXPECT_EQ(startVertical, verticalRev.getEndPoint());
+
+	EXPECT_EQ(nameIrregular, irregular.getName());
+	EXPECT_EQ(startIrregular, irregular.getStartPoint());
+	EXPECT_EQ(endIrregular, irregular.getEndPoint());
+
+	EXPECT_EQ(nameIrregular, irregularRev.getName());
+	EXPECT_EQ(endIrregular, irregularRev.getStartPoint());
+	EXPECT_EQ(startIrregular, irregularRev.getEndPoint());
 }
 
-
-TEST(Street, vertical_horizontal) {
-	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
-	Street vertical("Vertical", Point(1, 3), Point(1, 7));
-	Street irregular("Irregular", Point(0, 0), Point(5, 10));
+TEST_F(StreetTest, directions) {
+	Street horizontal(nameHorizontal, startHorizontal, endHorizontal);
+	Street vertical(nameVertical, startVertical, endVertical);
+	Street irregular(nameIrregular, startIrregular, endIrregular);
 
 	EXPECT_TRUE(horizontal.isHorizontal());
 	EXPECT_FALSE(horizontal.isVertical());
-	EXPECT_TRUE(vertical.isVertical());
+
 	EXPECT_FALSE(vertical.isHorizontal());
+	EXPECT_TRUE(vertical.isVertical());
+
 	EXPECT_FALSE(irregular.isHorizontal());
 	EXPECT_FALSE(irregular.isVertical());
 }
 
-TEST(Street, element) {
-	Street horizontal("Horizontal", Point(0, 5), Point(10, 5));
-	Street vertical("Vertical", Point(1, 3), Point(1, 7));
-	Street irregular("Irregular", Point(0, 0), Point(5, 10));
+TEST_F(StreetTest, elements) {
+	Street horizontal(nameHorizontal, startHorizontal, endHorizontal);
+	Street vertical(nameVertical, startVertical, endVertical);
+	Street irregular(nameIrregular, startIrregular, endIrregular);
 
-	EXPECT_TRUE(horizontal.isElement(Point(3, 5)));
-	EXPECT_FALSE(horizontal.isElement(Point(1, 2)));
-	EXPECT_FALSE(vertical.isElement(Point(3, 5)));
-	EXPECT_TRUE(vertical.isElement(Point(1, 3)));
+	EXPECT_NO_FATAL_FAILURE(isElementTest(startHorizontal, endHorizontal, horizontal));
+	EXPECT_NO_FATAL_FAILURE(isElementTest(startVertical, endVertical, vertical));
+	EXPECT_NO_FATAL_FAILURE(isElementTest(startIrregular, endIrregular, irregular));
 
-	//EXPECT_DEATH(irregular.isElement(Point(3, 5)), "\\w");
-	//EXPECT_DEATH(irregular.isElement(Point(1, 2)), "\\w");
+	EXPECT_FALSE(horizontal.isElement(endIrregular));
+	EXPECT_FALSE(horizontal.isElement(endVertical));
+
+	EXPECT_FALSE(vertical.isElement(endIrregular));
+	EXPECT_FALSE(vertical.isElement(endHorizontal));
+
+	EXPECT_DEATH(irregular.isElement(endHorizontal), "\\w");	// oops, irregular street
+	EXPECT_DEATH(irregular.isElement(endVertical), "\\w");	// oops, irregular street
 }
 
-TEST(Street, crossing_parallel) {
-	Street horizontal0("Horizontal0", Point(0, 3), Point(5, 3));
-	Street horizontal1("Horizontal1", Point(5, 2), Point(10, 2));
-	Street vertical0("Vertical0", Point(0, 0), Point(0, 5));
-	Street vertical1("Vertical1", Point(5, 0), Point(5, 5));
+TEST_F(StreetTest, crossing) {
+	Street horizontal(nameHorizontal, startHorizontal, endHorizontal);
+	Street vertical(nameVertical, startVertical, endVertical);
+	Street irregular(nameIrregular, startIrregular, endIrregular);
 
-	EXPECT_TRUE(horizontal0.isParallel(horizontal1));
-	EXPECT_FALSE(horizontal0.isParallel(vertical0));
-	EXPECT_FALSE(horizontal0.isParallel(vertical1));
+	Street horizontal1(nameHorizontal1, startHorizontal1, endHorizontal1);
+	Street vertical1(nameVertical1, startVertical1, endVertical1);
 
-	EXPECT_TRUE(horizontal1.isParallel(horizontal0));
-	EXPECT_FALSE(horizontal1.isParallel(vertical0));
-	EXPECT_FALSE(horizontal1.isParallel(vertical1));
+	EXPECT_TRUE(horizontal.isCrossing(vertical));
+	EXPECT_TRUE(vertical.isCrossing(horizontal));
+	EXPECT_FALSE(irregular.isCrossing(horizontal));
+	EXPECT_FALSE(irregular.isCrossing(vertical));
+	EXPECT_FALSE(horizontal.isCrossing(irregular));
+	EXPECT_FALSE(vertical.isCrossing(irregular));
+	EXPECT_FALSE(vertical.isCrossing(vertical1));
+	EXPECT_FALSE(horizontal.isCrossing(horizontal1));
 
-	EXPECT_FALSE(vertical0.isParallel(horizontal1));
-	EXPECT_FALSE(vertical0.isParallel(horizontal0));
-	EXPECT_TRUE(vertical0.isParallel(vertical1));
+	EXPECT_EQ(startHorizontal, horizontal.getCrosspoint(vertical));
+	EXPECT_EQ(startVertical, vertical.getCrosspoint(horizontal));
+	EXPECT_DEATH(horizontal.getCrosspoint(irregular), "\\w");	// oops, irregular street
+	EXPECT_DEATH(irregular.getCrosspoint(horizontal), "\\w");	// oops, irregular street
 
-	EXPECT_FALSE(vertical1.isParallel(horizontal1));
-	EXPECT_FALSE(vertical1.isParallel(horizontal0));
-	EXPECT_TRUE(vertical1.isParallel(vertical0));
+	EXPECT_TRUE(horizontal.isParallel(horizontal1));
+	EXPECT_TRUE(horizontal1.isParallel(horizontal));
+	EXPECT_DEATH(horizontal.getCrosspoint(horizontal1), "\\w");
+	EXPECT_DEATH(horizontal1.getCrosspoint(horizontal), "\\w");
 
-	EXPECT_EQ(Point(0, 3), vertical0.getCrosspoint(horizontal0));
-	EXPECT_EQ(Point(0, 3), horizontal0.getCrosspoint(vertical0));
-//	EXPECT_DEATH(vertical0.getCrosspoint(vertical1), "\\w");
-
-	EXPECT_EQ(Point(5, 3), vertical1.getCrosspoint(horizontal0));
-	EXPECT_EQ(Point(5, 2), vertical1.getCrosspoint(horizontal1));
-//	EXPECT_DEATH(vertical1.getCrosspoint(vertical0), "\\w");
+	EXPECT_TRUE(vertical.isParallel(vertical1));
+	EXPECT_TRUE(vertical1.isParallel(vertical));
+	EXPECT_DEATH(vertical.getCrosspoint(vertical1), "\\w");
+	EXPECT_DEATH(vertical1.getCrosspoint(vertical), "\\w");
 }
+
+
+
+
+
+
+
+
+

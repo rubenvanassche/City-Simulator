@@ -137,24 +137,16 @@ bool Street::isElement(const Point& p) {
 
 bool Street::isCrossing(Street& str) {
 	REQUIRE(str.isInitialized(), "Street is initialized");
-	REQUIRE((this->isVertical()) || (this->isHorizontal()), "Street is horizontal or vertical");
-	REQUIRE((str.isVertical()) || (str.isHorizontal()), "Street is horizontal or vertical");
 
-	unsigned int xMin = std::min(fStartPoint.getX(), fEndPoint.getX());
-	unsigned int xMax = std::max(fStartPoint.getX(), fEndPoint.getX());
-	unsigned int yMin = std::min(fStartPoint.getY(), fEndPoint.getY());
-	unsigned int yMax = std::max(fStartPoint.getY(), fEndPoint.getY());
-
-	for (unsigned int x = xMin; x <= xMax; x++) {
-		for (unsigned int y = yMin; y <= yMax; y++) {
-			// if you can find a point which is an element of the street given, then return true
-			if (str.isElement( Point(x, y) ) ) {
-				return true;
-			}
-		}
+	if (this->isVertical()) {
+		return str.isHorizontal();
 	}
-	// if you cannot find any point, then return false
-	return false;
+	else if (this->isHorizontal()) {
+		return str.isVertical();
+	}
+	else {	// this is irregular, we assume then false
+		return false;
+	}
 }
 
 bool Street::isParallel(const Street& str) {

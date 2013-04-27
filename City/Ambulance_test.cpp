@@ -78,7 +78,7 @@ TEST_F(AmbulanceTest, sending) {
 	EXPECT_EQ(entrDepot, ambuce.getPosition());
 
 	// then drive
-	//EXPECT_DEATH(ambuce.goLeft(), "\\w");	// ooops, you just got negative coordinates!
+	EXPECT_DEATH(ambuce.goLeft(), "\\w");	// ooops, you just got negative coordinates!
 	EXPECT_NO_FATAL_FAILURE(ambuce.goRight());
 	EXPECT_EQ(Point(entrDepot.getX() + 1, entrDepot.getY()), ambuce.getPosition());
 	EXPECT_FALSE(ambuce.isInDepot());
@@ -86,7 +86,7 @@ TEST_F(AmbulanceTest, sending) {
 	EXPECT_FALSE(ambuce.isAtEntranceDepot());
 	EXPECT_FALSE(ambuce.isArrived());
 
-	//EXPECT_DEATH(ambuce.goDown(), "\\w");	// ooops, you just got negative coordinates!
+	EXPECT_DEATH(ambuce.goDown(), "\\w");	// ooops, you just got negative coordinates!
 	EXPECT_NO_FATAL_FAILURE(ambuce.goUp());
 	EXPECT_EQ(Point(entrDepot.getX() + 1, entrDepot.getY() + 1), ambuce.getPosition());
 	EXPECT_FALSE(ambuce.isInDepot());
@@ -121,7 +121,7 @@ TEST_F(AmbulanceTest, sending) {
 
 	// okay, then enter depot, but it went on fire suddenly,
 	EXPECT_NO_FATAL_FAILURE(ptrBase->setFire());
-	//EXPECT_DEATH(ambuce.enterDepot(), "\\w");
+	EXPECT_DEATH(ambuce.enterDepot(), "\\w");
 
 	// a firetruck is arrived, so stop the fire
 	EXPECT_NO_FATAL_FAILURE(ptrBase->stopFire());

@@ -48,17 +48,17 @@ TEST_F(ShopTest, fire) {
 
 	EXPECT_FALSE(appleStore.isBurning());
 
-	//EXPECT_DEATH(appleStore.burningDown(), "\\w");	// oops, this shop is not on fire (damn!)
-	//EXPECT_DEATH(appleStore.stopFire(), "\\w");	// oops, no fire in the shop!
+	EXPECT_DEATH(appleStore.burningDown(), "\\w");	// oops, this shop is not on fire (damn!)
+	EXPECT_DEATH(appleStore.stopFire(), "\\w");	// oops, no fire in the shop!
 	EXPECT_FALSE(appleStore.isDead());	// Bill Gates: "damn..", Steve Jobs: "oh dear..", Linus Torvalds: "What?"
 	EXPECT_FALSE(appleStore.startSpreadingFire());
 	EXPECT_FALSE(appleStore.startRepair());
 
-	//EXPECT_DEATH(appleStore.repair(), "\\w");	// oops, shop has still it's original health
+	EXPECT_DEATH(appleStore.repair(), "\\w");	// oops, shop has still it's original health
 
 	EXPECT_FALSE(appleStore.isFireTruckAssigned());
-	//EXPECT_DEATH(appleStore.assignFireTruck(), "\\w");	// oops, shop is not on fire
-	//EXPECT_DEATH(appleStore.withdrawFireTruckAssignment(), "\\w");	// oops, no firetruck assigned
+	EXPECT_DEATH(appleStore.assignFireTruck(), "\\w");	// oops, shop is not on fire
+	EXPECT_DEATH(appleStore.withdrawFireTruckAssignment(), "\\w");	// oops, no firetruck assigned
 
 	// okay, start the fire scenario
 	// Bill Gates: "HUEHUEHUE", Steve Jobs: "Oh noooo...", Linus Torvalds: "What?"
@@ -75,7 +75,7 @@ TEST_F(ShopTest, fire) {
 	EXPECT_TRUE(appleStore.isFireTruckAssigned());
 
 	// extinguish fire, repair and sendback firetruck
-	//EXPECT_DEATH(appleStore.withdrawFireTruckAssignment(), "\\w");	// oops, shop is still on fire
+	EXPECT_DEATH(appleStore.withdrawFireTruckAssignment(), "\\w");	// oops, shop is still on fire
 
 	EXPECT_NO_FATAL_FAILURE(appleStore.stopFire());
 	EXPECT_FALSE(appleStore.isBurning());
@@ -111,8 +111,8 @@ TEST_F(ShopTest, robbing) {
 
 	EXPECT_FALSE(appleStore.isRobbing());
 
-	//EXPECT_DEATH(appleStore.rob(), "\\w");	// no burglar in here
-	//EXPECT_DEATH(appleStore.stopRobbing(), "\\w");	// no burglar in here
+	EXPECT_DEATH(appleStore.rob(), "\\w");	// no burglar in here
+	EXPECT_DEATH(appleStore.stopRobbing(), "\\w");	// no burglar in here
 	EXPECT_FALSE(appleStore.isEmpty());
 
 	// okay, now a burglar enters the applestore
@@ -133,5 +133,5 @@ TEST_F(ShopTest, robbing) {
 	EXPECT_TRUE(appleStore.isEmpty());
 
 	EXPECT_FALSE(appleStore.isRobbing());	// there are no stuffs in the shop anymore
-	//EXPECT_DEATH(appleStore.rob(), "\\w"); // nothing to rob
+	EXPECT_DEATH(appleStore.rob(), "\\w"); // nothing to rob
 }

@@ -65,18 +65,18 @@ TEST_F(DepotTest, fire) {
 
 	EXPECT_FALSE(depot.isBurning());
 
-	//EXPECT_DEATH(depot.burningDown(), "\\w");	// ooops, depot is not on fire
-	//EXPECT_DEATH(depot.stopFire(), "\\w");	// oops, depot is not on fire
+	EXPECT_DEATH(depot.burningDown(), "\\w");	// ooops, depot is not on fire
+	EXPECT_DEATH(depot.stopFire(), "\\w");	// oops, depot is not on fire
 
 	EXPECT_FALSE(depot.isDead());
 	EXPECT_FALSE(depot.startSpreadingFire());
 	EXPECT_FALSE(depot.startRepair());
 
-	//EXPECT_DEATH(depot.repair(), "\\w");	// oops, Depot has still it's original health
+	EXPECT_DEATH(depot.repair(), "\\w");	// oops, Depot has still it's original health
 
 	EXPECT_FALSE(depot.isFireTruckAssigned());
-	//EXPECT_DEATH(depot.assignFireTruck(), "\\w");	// oops, the Depot is not on fire
-	//EXPECT_DEATH(depot.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
+	EXPECT_DEATH(depot.assignFireTruck(), "\\w");	// oops, the Depot is not on fire
+	EXPECT_DEATH(depot.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
 
 	// okay, start the fire scenario
 	EXPECT_NO_FATAL_FAILURE(depot.setFire());
@@ -87,14 +87,14 @@ TEST_F(DepotTest, fire) {
 	EXPECT_FALSE(depot.startSpreadingFire());	// No, it has lost "only" 2 health points
 	EXPECT_FALSE(depot.startRepair());
 
-	//EXPECT_DEATH(depot.repair(), "\\w");	// oops, Depot is still on fire
+	EXPECT_DEATH(depot.repair(), "\\w");	// oops, Depot is still on fire
 
 	// let's send a firetruck
 	EXPECT_NO_FATAL_FAILURE(depot.assignFireTruck());
 	EXPECT_TRUE(depot.isFireTruckAssigned());
 
 	// extinguish fire, repair and sendback firetruck
-	//EXPECT_DEATH(depot.withdrawFireTruckAssignment(), "\\w");	// oops, Depot is still on fire
+	EXPECT_DEATH(depot.withdrawFireTruckAssignment(), "\\w");	// oops, Depot is still on fire
 
 	EXPECT_NO_FATAL_FAILURE(depot.stopFire());
 	EXPECT_FALSE(depot.isBurning());

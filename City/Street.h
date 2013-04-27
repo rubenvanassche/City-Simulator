@@ -87,8 +87,6 @@ public:
 	bool isCrossing(Street& str);
 	// checks whether the streets are crossing
 	// REQUIRE(str.isInitialized(), "Street is initialized");
-	// REQUIRE((this->isVertical()) || (this->isHorizontal()), "Street is horizontal or vertical");
-	// REQUIRE((str.isVertical()) || (str.isHorizontal()), "Street is horizontal or vertical");
 
 	bool isParallel(const Street& str);
 	// checks whether the streets are parallel

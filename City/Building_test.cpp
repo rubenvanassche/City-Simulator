@@ -46,18 +46,18 @@ TEST_F(BuildingTest, fire) {
 
 	EXPECT_FALSE(build.isBurning());
 
-	//EXPECT_DEATH(build.burningDown(), "\\w");	// ooops, building is not on fire
-	//EXPECT_DEATH(build.stopFire(), "\\w");	// oops, building is not on fire
+	EXPECT_DEATH(build.burningDown(), "\\w");	// ooops, building is not on fire
+	EXPECT_DEATH(build.stopFire(), "\\w");	// oops, building is not on fire
 
 	EXPECT_FALSE(build.isDead());
 	EXPECT_FALSE(build.startSpreadingFire());
 	EXPECT_FALSE(build.startRepair());
 
-	//EXPECT_DEATH(build.repair(), "\\w");	// oops, building has still it's original health
+	EXPECT_DEATH(build.repair(), "\\w");	// oops, building has still it's original health
 
 	EXPECT_FALSE(build.isFireTruckAssigned());
-	//EXPECT_DEATH(build.assignFireTruck(), "\\w");	// oops, the building is not on fire
-	//EXPECT_DEATH(build.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
+	EXPECT_DEATH(build.assignFireTruck(), "\\w");	// oops, the building is not on fire
+	EXPECT_DEATH(build.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
 
 	// okay, start the fire scenario
 	EXPECT_NO_FATAL_FAILURE(build.setFire());
@@ -68,14 +68,14 @@ TEST_F(BuildingTest, fire) {
 	EXPECT_TRUE(build.startSpreadingFire());	// yes, it has lost over more than 3 health points
 	EXPECT_FALSE(build.startRepair());
 
-	//EXPECT_DEATH(build.repair(), "\\w");	// oops, building is still on fire
+	EXPECT_DEATH(build.repair(), "\\w");	// oops, building is still on fire
 
 	// let's send a firetruck
 	EXPECT_NO_FATAL_FAILURE(build.assignFireTruck());
 	EXPECT_TRUE(build.isFireTruckAssigned());
 
 	// extinguish fire, repair and sendback firetruck
-	//EXPECT_DEATH(build.withdrawFireTruckAssignment(), "\\w");	// oops, building is still on fire
+	EXPECT_DEATH(build.withdrawFireTruckAssignment(), "\\w");	// oops, building is still on fire
 
 	EXPECT_NO_FATAL_FAILURE(build.stopFire());
 	EXPECT_FALSE(build.isBurning());
