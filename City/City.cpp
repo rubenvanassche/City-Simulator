@@ -600,15 +600,177 @@ Point City::nextStep(const Point& curPos, const Point& destination) {
 }
 
 std::ostream& City::print(){
-	  std::filebuf fb; // No idea why this stands here but it's the only way to make it work
-	  std::ostream stream(&fb);
+	REQUIRE(this->isInitialized(), "City is initialized");
 
-	  // FireDepots
-	  for (unsigned int i = 0;i < fFireDepots.size();i++){
-		  this->fFireDepots.at(i);
+  std::filebuf fb; // No idea why this stands here but it's the only way to make it work
+  std::ostream stream(&fb);
+
+  std::vector<Point> fireDepotPoints;
+  std::vector<Point> housePoints;
+  std::vector<Point> shopPoints;
+  std::vector<Point> policeDepotPoints;
+  std::vector<Point> hospitalPoints;
+  std::vector<Point> policeTruckPoints;
+  std::vector<Point> fireTruckPoints;
+  std::vector<Point> ambulancePoints;
+  std::vector<Point> streetPoints;
+
+  std::vector<Point> burningBuildingPoints;
+
+  // Buildings
+
+  for(unsigned int i = 0;i < fFireDepots.size();i++){
+	  std::vector<Point> temp = (*fFireDepots.at(i)).calculatePoints();
+	  if((*fFireDepots.at(i)).isBurning()){
+		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else{
+		  fireDepotPoints.insert(fireDepotPoints.end(), temp.begin(), temp.end() );
 	  }
+  }
 
-	  stream << "leeg";
+  for(unsigned int i = 0;i < fHouses.size();i++){
+	  std::vector<Point> temp = (*fHouses.at(i)).calculatePoints();
+	  if((*fHouses.at(i)).isBurning()){
+		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else{
+		  housePoints.insert(housePoints.end(), temp.begin(), temp.end() );
+	  }
+  }
 
-	  return stream;
+  for(unsigned int i = 0;i < fShops.size();i++){
+	  std::vector<Point> temp = (*fShops.at(i)).calculatePoints();
+	  if((*fShops.at(i)).isBurning()){
+		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else{
+		  shopPoints.insert(shopPoints.end(), temp.begin(), temp.end() );
+	  }
+  }
+
+  for(unsigned int i = 0;i < fPoliceDepots.size();i++){
+	  std::vector<Point> temp = (*fPoliceDepots.at(i)).calculatePoints();
+	  if((*fPoliceDepots.at(i)).isBurning()){
+		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else{
+		  policeDepotPoints.insert(policeDepotPoints.end(), temp.begin(), temp.end() );
+	  }
+  }
+
+  for(unsigned int i = 0;i < fHospitals.size();i++){
+	  std::vector<Point> temp = (*fHospitals.at(i)).calculatePoints();
+	  if((*fHospitals.at(i)).isBurning()){
+		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else{
+		  hospitalPoints.insert(hospitalPoints.end(), temp.begin(), temp.end() );
+	  }
+  }
+
+  // Vehicles
+
+  for(unsigned int i = 0;i < fFireTrucks.size();i++){
+	  fireTruckPoints.push_back((*fFireTrucks.at(i)).getPosition());
+  }
+
+  for(unsigned int i = 0;i < fPoliceTrucks.size();i++){
+	  policeTruckPoints.push_back((*fPoliceTrucks.at(i)).getPosition());
+  }
+
+  for(unsigned int i = 0;i < fAmbulances.size();i++){
+	  ambulancePoints.push_back((*fAmbulances.at(i)).getPosition());
+  }
+
+  // Streets
+
+  for(unsigned int i = 0;i < fVerticals.size();i++){
+	  std::vector<Point> temp = (*fVerticals.at(i)).calculatePoints();
+	  streetPoints.insert(streetPoints.end(), temp.begin(), temp.end() );
+  }
+
+  for(unsigned int i = 0;i < fHorizontals.size();i++){
+	  std::vector<Point> temp = (*fHorizontals.at(i)).calculatePoints();
+	  streetPoints.insert(streetPoints.end(), temp.begin(), temp.end() );
+  }
+
+  // Now determine the size of the map
+
+  Point biggestPoint(0,0);
+
+  for(unsigned int i = 0;i < streetPoints.size();i++){
+	  Point refferPoint = streetPoints.at(i);
+	  if(refferPoint.getX() > biggestPoint.getX() or refferPoint.getY() > biggestPoint.getY()){
+		  biggestPoint = refferPoint;
+	  }
+  }
+
+  // Make a vector matrix
+  std::vector< std::vector<char> > map;
+
+  for(unsigned int i = 0;i < biggestPoint.getX();i++){
+	  std::vector<char> row;
+	  for(unsigned int j = 0;j < biggestPoint.getY();j++){
+		  row.push_back('\0');
+	  }
+  }
+
+  // Put the points in the map
+
+  for(unsigned int i = 0;i < fireDepotPoints.size();i++){
+	  Point newPoint = fireDepotPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = 'K';
+  }
+
+  for(unsigned int i = 0;i < housePoints.size();i++){
+	  Point newPoint = housePoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = 'H';
+  }
+
+  for(unsigned int i = 0;i < shopPoints.size();i++){
+	  Point newPoint = shopPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = 'W';
+  }
+
+  for(unsigned int i = 0;i < policeDepotPoints.size();i++){
+	  Point newPoint = policeDepotPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = 'P';
+  }
+
+  for(unsigned int i = 0;i < hospitalPoints.size();i++){
+	  Point newPoint = hospitalPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = 'Z';
+  }
+
+  for(unsigned int i = 0;i < burningBuildingPoints.size();i++){
+	  Point newPoint = burningBuildingPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = '#';
+  }
+
+  for(unsigned int i = 0;i < streetPoints.size();i++){
+	  Point newPoint = streetPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = ' ';
+  }
+
+  for(unsigned int i = 0;i < fireTruckPoints.size();i++){
+	  Point newPoint = fireTruckPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = '*';
+  }
+
+  for(unsigned int i = 0;i < policeTruckPoints.size();i++){
+	  Point newPoint = policeTruckPoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = '%';
+  }
+
+  for(unsigned int i = 0;i < ambulancePoints.size();i++){
+	  Point newPoint = ambulancePoints.at(i);
+	  map[newPoint.getX()][newPoint.getY()] = '=';
+  }
+
+  // now let's add the map to the stream
+
+  for(unsigned int i = 0;i < biggestPoint.getY();i++){
+	  for(unsigned int j = 0;j < biggestPoint.getX();j++){
+		  stream << map[j][i];
+	  }
+	  stream << '\n';
+  }
+
+  return stream;
 }

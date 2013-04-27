@@ -173,7 +173,8 @@ public:
 	// REQUIRE(this->isInMap(destination), "Destination is in roadmap");
 
 	std::ostream& print();
-	// todo: what is this?
+	// Gives a graphical impression of the city
+	// REQUIRE(this->isInitialized(), "City is initialized");
 
 private:
 	Check fChecker;
