@@ -7,18 +7,21 @@
  * 
  */
 
-#include <iostream>
+#include <string>
+#include "City.h"
 #include "CityParser.h"
 #include "Simulator.h"
+#include "GUI.h"
+#include "Out.h"
 
-int main(int argc, char* argv[]) {
-	City town;	// create city
+int main(int argc, char* argv[]){
+	std::string outputFile = "output.txt";
 
-	while (!town.isDead()) {
-		// do something useful here
-	}
-
-	return 0;
+	Out output(outputFile); // Our output
+	City city; // Our City
+	CityParser parser(&city); // Our Parser
+	Simulator simulator(&city); // Our simulator
+	GUI gui(&city, &simulator, &parser, &output); // Our GUI
 }
 
 
