@@ -42,6 +42,8 @@ public:
 
     void newFile();
 
+    std::ofstream get();
+
     ~Out();
 private:
 

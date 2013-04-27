@@ -1,102 +1,107 @@
 #include "Out.h"
 
-    Out::Out(const std::string &filename){
-    	Out::fMyself = this;
-    	Out::fFileName = filename.c_str();
-    	Out::fIndent = false;
+Out::Out(const std::string &filename){
+	Out::fMyself = this;
+	Out::fFileName = filename.c_str();
+	Out::fIndent = false;
 
-    	// Create a new file
-    	Out::filestream.open(Out::fFileName, std::ios_base::out);
-    	Out::filestream.close();
-    	Out::filestream.open(Out::fFileName, std::ios_base::app);
-    }
+	// Create a new file
+	Out::filestream.open(Out::fFileName, std::ios_base::out);
+	Out::filestream.close();
+	Out::filestream.open(Out::fFileName, std::ios_base::app);
+}
 
-    bool Out::isInitialized() const {
-    	return this == Out::fMyself;
-    }
-
-    template <class T>
-    Out& Out::operator<<(T& v){
-    	this->indentHere();
-    	Out::filestream << v;
-        return *this;
-    }
-    Out& Out::operator<<(const int& v){
-    	this->indentHere();
-    	Out::filestream << v;
-        return *this;
-    }
-    Out& Out::operator<<(const double& v){
-    	this->indentHere();
-    	Out::filestream << v;
-        return *this;
-    }
-    Out& Out::operator<<(const char v[]){
-    	this->indentHere();
-    	Out::filestream << v;
-        return *this;
-    }
-    Out& Out::operator<<(Point& p) {
-    	this->indentHere();
-    	Out::filestream << p;
-    	return *this;
-    }
-    std::string Out::endl(){
-    	return "\n";
-    }
-
-    void Out::error(const std::string& failure, const std::string& location, const int& line){
-    	std::cout << "ERROR" << std::endl;
-    	std::cout << failure << std::endl;
-    	std::cout << "At " << location << " line: " << line << std::endl << std::endl;
-    }
+bool Out::isInitialized() const {
+	return this == Out::fMyself;
+}
 
 
-    bool Out::indent(){
-    	if(fIndent == true){
-    		fIndent = false;
-    	}else{
-    		fIndent = true;
-    	}
+template <class T>
+Out& Out::operator<<(T& v){
+	this->indentHere();
+	Out::filestream << v;
+	return *this;
+}
+Out& Out::operator<<(const int& v){
+	this->indentHere();
+	Out::filestream << v;
+	return *this;
+}
+Out& Out::operator<<(const double& v){
+	this->indentHere();
+	Out::filestream << v;
+	return *this;
+}
+Out& Out::operator<<(const char v[]){
+	this->indentHere();
+	Out::filestream << v;
+	return *this;
+}
+Out& Out::operator<<(Point& p) {
+	this->indentHere();
+	Out::filestream << p;
+	return *this;
+}
+std::string Out::endl(){
+	return "\n";
+}
 
-    	return fIndent;
-    }
+void Out::error(const std::string& failure, const std::string& location, const int& line){
+	std::cout << "ERROR" << std::endl;
+	std::cout << failure << std::endl;
+	std::cout << "At " << location << " line: " << line << std::endl << std::endl;
+}
 
-    bool Out::indent(const bool& yes){
-    	if(yes == true){
-    		fIndent = true;
-    	}else{
-    		fIndent = false;
-    	}
 
-    	return fIndent;
-    }
+bool Out::indent(){
+	if(fIndent == true){
+		fIndent = false;
+	}else{
+		fIndent = true;
+	}
 
-    bool Out::isIndenting(){
-    	return fIndent;
-    }
+	return fIndent;
+}
 
-    void Out::writeFile(){
-    	Out::filestream.close();
-    	Out::filestream.open(Out::fFileName, std::ios_base::app);
-    }
+bool Out::indent(const bool& yes){
+	if(yes == true){
+		fIndent = true;
+	}else{
+		fIndent = false;
+	}
 
-    void Out::newFile(){
-    	Out::filestream.close();
-    	Out::filestream.open(Out::fFileName, std::ios_base::out);
-    	Out::filestream.close();
-    	Out::filestream.open(Out::fFileName, std::ios_base::app);
-    }
+	return fIndent;
+}
 
-    void Out::indentHere(){
-    	if(fIndent == true){
-    		Out::filestream << "    ";
-    	}
-    }
+bool Out::isIndenting(){
+	return fIndent;
+}
 
-    Out::~Out(){
-    	Out::filestream << "\n\n\n\n--------------\n";
-    	Out::filestream << "City-Simulator\n";
-    	Out::filestream << "--------------\n";
-    	Out::filestream.close();
-    }
+void Out::writeFile(){
+	Out::filestream.close();
+	Out::filestream.open(Out::fFileName, std::ios_base::app);
+}
+
+void Out::newFile(){
+	Out::filestream.close();
+	Out::filestream.open(Out::fFileName, std::ios_base::out);
+	Out::filestream.close();
+	Out::filestream.open(Out::fFileName, std::ios_base::app);
+}
+
+void Out::indentHere(){
+	if(fIndent == true){
+		Out::filestream << "    ";
+	}
+}
+
+std::ofstream Out::get(){
+	return this->filestream;
+}
+
+Out::~Out(){
+	Out::filestream << "\n\n\n\n--------------\n";
+	Out::filestream << "City-Simulator\n";
+	Out::filestream << "--------------\n";
+	Out::filestream.close();
+}
