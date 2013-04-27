@@ -563,7 +563,6 @@ void Simulator::spreadFire(){
 }
 
 void Simulator::step(){
-	this->fireBreaksOut();
 	this->burningDown();
 	this->robbing();
 	this->drive();
