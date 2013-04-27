@@ -6,71 +6,182 @@
  */
 
 #include "gtest/gtest.h"
-#include "House.h"
-#include "FireDepot.h"
-#include "Point.h"
-#include "Size.h"
 #include "Check.h"
-#include "Street.h"
-#include <string>
 
-TEST(Check, streets) {
-	Street horizontal0("Horizontal0", Point(0, 5), Point(5, 5));
-	Street horizontal1("Horizontal1", Point(0, 0), Point(5, 0));
-	Street vertical0("Vertical0", Point(0, 0), Point(0, 5));
-	Street vertical1("Vertical1", Point(5, 0), Point(5, 5));
+class CheckTest : public testing::Test {
+protected:
+	Street* ptrHorizontalBottom;
+	Street* ptrHorizontalTop;
+	Street* ptrHorizontalMid;
 
-	Street horizontalShort("short horizontal", Point(1, 1), Point(4, 1));
-	Street verticalShort("short vertical", Point(1, 1), Point(1, 4));
-	Street horizontalLong("Long horizontal", Point(0, 3), Point(10, 3));
-	Street verticalLong("Long vertical", Point(3, 0), Point(3, 12));
-	Street irregular("irregular", Point(0, 0), Point(5, 5));
-	Check check;
+	Street* ptrVerticalLeft;
+	Street* ptrVerticalRight;
+	Street* ptrVerticalMid;
 
-	EXPECT_TRUE(check.go(horizontal0));
-	EXPECT_TRUE(check.go(horizontal1));
-	EXPECT_TRUE(check.go(vertical0));
-	EXPECT_TRUE(check.go(vertical1));
+	Street* ptrIrregular;
 
-	EXPECT_FALSE(check.go(horizontalShort));
-	EXPECT_FALSE(check.go(verticalShort));
-	EXPECT_FALSE(check.go(horizontalLong));
-	EXPECT_FALSE(check.go(verticalLong));
-	EXPECT_FALSE(check.go(irregular));
+	Street* ptrVerticalShort;
+	Street* ptrVerticalLong;
+	Street* ptrHorizontalShort;
+	Street* ptrHorizontalLong;
+
+	Building* ptrLeftTop;
+	Building* ptrLeftBottom;
+	Building* ptrRightTop;
+	Building* ptrRightBottom;
+
+	Building* ptrMid;
+
+	virtual void SetUp() {
+		ptrHorizontalBottom = new Street("HorizontalBottom", Point(0, 0), Point(10, 0));
+		ptrHorizontalTop = new Street("HorizontalTop", Point(0, 10), Point(10, 10));
+		ptrHorizontalMid = new Street("HorizontalMid", Point(0, 5), Point(10, 5));
+
+		ptrVerticalLeft = new Street("VerticalLeft", Point(0, 0), Point(0, 10));
+		ptrVerticalRight = new Street("VerticalRight", Point(10, 0), Point(10, 10));
+		ptrVerticalMid = new Street("VerticalMid", Point(5, 0), Point(5, 10));
+
+		ptrIrregular = new Street("Irregular", Point(0, 0), Point(10, 10));
+
+		ptrVerticalShort = new Street("Short, vertical street", Point(2, 0), Point(2, 9));
+		ptrVerticalLong = new Street("Long, vertical street", Point(8, 0), Point(8, 11));
+		ptrHorizontalShort = new Street("Short, horizontal street", Point(0, 2), Point(9, 2));
+		ptrHorizontalLong = new Street("Long, horizontal street", Point(0, 8), Point(11, 8));
+
+		Size size(4, 4);
+		int health = 10;
+		int reducer = 1;
+
+		ptrLeftTop = new Building(Point(1, 9), size, health, reducer);
+		ptrLeftBottom = new Building(Point(1, 4), size, health, reducer);
+		ptrRightTop = new Building(Point(6, 9), size, health, reducer);
+		ptrRightBottom = new Building(Point(6, 4), size, health, reducer);
+
+		ptrMid = new Building(Point(4, 6), Size(3, 3), health, reducer);
+	}
+
+	virtual void TearDown() {
+		delete ptrHorizontalBottom;
+		delete ptrHorizontalMid;
+		delete ptrHorizontalTop;
+
+		delete ptrVerticalLeft;
+		delete ptrVerticalRight;
+		delete ptrVerticalMid;
+
+		delete ptrIrregular;
+
+		delete ptrVerticalShort;
+		delete ptrVerticalLong;
+		delete ptrHorizontalShort;
+		delete ptrHorizontalLong;
+
+		delete ptrLeftTop;
+		delete ptrLeftBottom;
+		delete ptrRightTop;
+		delete ptrRightBottom;
+
+		delete ptrMid;
+	}
+
+};
+
+TEST_F(CheckTest, construct) {
+	EXPECT_NO_FATAL_FAILURE(Check checker);
 }
-/*
-TEST(Check, building) {
-	House home(Point(0, 2), 10);
-	FireDepot firedepot(Point(5, 5), Point(3, 3), "firedepot", 10);
-	House irregular(Point(0, 0), 10);
-	Check check;
 
-	EXPECT_TRUE(check.go(home));
-	EXPECT_TRUE(check.go(firedepot));
-	EXPECT_FALSE(check.go(irregular));
+TEST_F(CheckTest, streets) {
+	Check checker;
+
+	EXPECT_TRUE(checker.go(*ptrHorizontalBottom));
+	EXPECT_TRUE(checker.go(*ptrHorizontalTop));
+	EXPECT_TRUE(checker.go(*ptrHorizontalMid));
+	EXPECT_TRUE(checker.go(*ptrHorizontalBottom));	// heraanleg
+
+	EXPECT_TRUE(checker.go(*ptrVerticalLeft));
+	EXPECT_TRUE(checker.go(*ptrVerticalMid));
+	EXPECT_TRUE(checker.go(*ptrVerticalRight));
+	EXPECT_TRUE(checker.go(*ptrVerticalRight));
+
+	EXPECT_FALSE(checker.go(*ptrIrregular));
+
+	EXPECT_FALSE(checker.go(*ptrHorizontalShort));
+	EXPECT_FALSE(checker.go(*ptrHorizontalLong));
+	EXPECT_FALSE(checker.go(*ptrVerticalShort));
+	EXPECT_FALSE(checker.go(*ptrVerticalLong));
 }
 
-TEST(Check, mix) {
-	Street horizontal0("Horizontal0", Point(0, 5), Point(5, 5));
-	Street horizontal1("Horizontal1", Point(0, 0), Point(5, 0));
-	Street vertical0("Vertical0", Point(0, 0), Point(0, 5));
-	Street vertical1("Vertical1", Point(5, 0), Point(5, 5));
+TEST_F(CheckTest, Building) {
+	Check checker;
 
-	House homeOnStreet(Point(0, 2), 10);
-	House home(Point(1, 2), 10);
+	EXPECT_TRUE(checker.go(*ptrLeftTop));
+	EXPECT_TRUE(checker.go(*ptrRightTop));
+	EXPECT_TRUE(checker.go(*ptrLeftBottom));
+	EXPECT_TRUE(checker.go(*ptrRightBottom));
 
-	Check check;
-
-	EXPECT_TRUE(check.go(horizontal0));
-	EXPECT_FALSE(check.go(horizontal0));
-	EXPECT_TRUE(check.go(horizontal1));
-	EXPECT_FALSE(check.go(horizontal1));
-	EXPECT_TRUE(check.go(vertical0));
-	EXPECT_FALSE(check.go(vertical0));
-	EXPECT_TRUE(check.go(vertical1));
-	EXPECT_FALSE(check.go(vertical1));
-	EXPECT_TRUE(check.go(home));
-	EXPECT_FALSE(check.go(homeOnStreet));
+	EXPECT_FALSE(checker.go(*ptrRightBottom));
+	EXPECT_FALSE(checker.go(*ptrMid));
 }
 
-*/
+TEST_F(CheckTest, mix0) {
+	// mix0 creates first streets, then buildings
+
+	Check checker;
+
+	EXPECT_TRUE(checker.go(*ptrHorizontalBottom));
+	EXPECT_TRUE(checker.go(*ptrHorizontalTop));
+	EXPECT_TRUE(checker.go(*ptrHorizontalMid));
+
+	EXPECT_TRUE(checker.go(*ptrVerticalLeft));
+	EXPECT_TRUE(checker.go(*ptrVerticalMid));
+	EXPECT_TRUE(checker.go(*ptrVerticalRight));
+
+	EXPECT_FALSE(checker.go(*ptrMid));
+
+	EXPECT_TRUE(checker.go(*ptrLeftTop));
+	EXPECT_TRUE(checker.go(*ptrRightTop));
+	EXPECT_TRUE(checker.go(*ptrLeftBottom));
+	EXPECT_TRUE(checker.go(*ptrRightBottom));
+
+	EXPECT_FALSE(checker.go(*ptrMid));
+}
+
+TEST_F(CheckTest, mix1) {
+	// mix1 creates building first, then streets
+	Check checker;
+
+	EXPECT_TRUE(checker.go(*ptrMid));
+
+	EXPECT_FALSE(checker.go(*ptrLeftTop));
+	EXPECT_FALSE(checker.go(*ptrRightTop));
+	EXPECT_FALSE(checker.go(*ptrLeftBottom));
+	EXPECT_FALSE(checker.go(*ptrRightBottom));
+
+	EXPECT_TRUE(checker.go(*ptrHorizontalBottom));
+	EXPECT_TRUE(checker.go(*ptrHorizontalTop));
+	EXPECT_FALSE(checker.go(*ptrHorizontalMid));
+
+	EXPECT_TRUE(checker.go(*ptrVerticalLeft));
+	EXPECT_FALSE(checker.go(*ptrVerticalMid));
+	EXPECT_TRUE(checker.go(*ptrVerticalRight));
+}
+
+TEST_F(CheckTest, mix2) {
+	// same as mix1
+	Check checker;
+
+	EXPECT_TRUE(checker.go(*ptrLeftTop));
+	EXPECT_TRUE(checker.go(*ptrRightTop));
+	EXPECT_TRUE(checker.go(*ptrLeftBottom));
+	EXPECT_TRUE(checker.go(*ptrRightBottom));
+
+	EXPECT_FALSE(checker.go(*ptrMid));
+
+	EXPECT_TRUE(checker.go(*ptrHorizontalBottom));
+	EXPECT_TRUE(checker.go(*ptrHorizontalTop));
+	EXPECT_TRUE(checker.go(*ptrHorizontalMid));
+
+	EXPECT_TRUE(checker.go(*ptrVerticalLeft));
+	EXPECT_TRUE(checker.go(*ptrVerticalMid));
+	EXPECT_TRUE(checker.go(*ptrVerticalRight));
+}

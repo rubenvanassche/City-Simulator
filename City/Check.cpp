@@ -117,8 +117,8 @@ bool Check::go(const Building& building) {
 	unsigned int height = building.getSize().getHeight();
 	std::vector<Tupple> vecTupple;
 
-	for (unsigned int h = 0; h <= height; h++) {
-		for (unsigned int w = 0; w <= width; w++) {
+	for (unsigned int h = 0; h < height; h++) {
+		for (unsigned int w = 0; w < width; w++) {
 			int x = building.getLocation().getX() + w;
 			int y = building.getLocation().getY() - h;
 
