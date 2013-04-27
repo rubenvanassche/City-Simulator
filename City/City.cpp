@@ -489,8 +489,8 @@ Point City::findClosestCrosspoint(const Point& position) {
 		// then compar it with the current position
 		Point crosspoint = vecPoints[0];
 		for (unsigned int index = 0; index < vecPoints.size(); index++) {
-			int delta0 = std::abs(crosspoint.getX() - position.getX());
-			int delta1 = std::abs(vecPoints[index].getX() - position.getX());
+			int delta0 = abs(crosspoint.getX() - position.getX());
+			int delta1 = abs(vecPoints[index].getX() - position.getX());
 
 			if (delta1 < delta0) {
 				// then change the crosspoint
@@ -696,80 +696,91 @@ std::ostream& City::print(){
 
   for(unsigned int i = 0;i < streetPoints.size();i++){
 	  Point refferPoint = streetPoints.at(i);
-	  if(refferPoint.getX() > biggestPoint.getX() or refferPoint.getY() > biggestPoint.getY()){
-		  biggestPoint = refferPoint;
+	  if(refferPoint.getX() > biggestPoint.getX()){
+		  biggestPoint.setX(refferPoint.getX());
+	  }
+
+	  if(refferPoint.getY() > biggestPoint.getY()){
+		  biggestPoint.setY(refferPoint.getY());
 	  }
   }
 
   // Make a vector matrix
   std::vector< std::vector<char> > map;
 
-  for(unsigned int i = 0;i < biggestPoint.getX();i++){
+  for(unsigned int i = 0;i < biggestPoint.getX() + 1;i++){
 	  std::vector<char> row;
-	  for(unsigned int j = 0;j < biggestPoint.getY();j++){
+	  for(unsigned int j = 0;j < biggestPoint.getY() + 1;j++){
 		  row.push_back('\0');
 	  }
+	  map.push_back(row);
   }
+
+
 
   // Put the points in the map
 
   for(unsigned int i = 0;i < fireDepotPoints.size();i++){
 	  Point newPoint = fireDepotPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = 'K';
+	  std::cout << "Kazerne : " << newPoint << std::endl;
+	  map.at(newPoint.getX()).at(newPoint.getY()) = 'K';
   }
 
   for(unsigned int i = 0;i < housePoints.size();i++){
 	  Point newPoint = housePoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = 'H';
+	  std::cout << "huis : " << newPoint << std::endl;
+	  map.at(newPoint.getX()).at(newPoint.getY()) = 'H';
   }
 
   for(unsigned int i = 0;i < shopPoints.size();i++){
 	  Point newPoint = shopPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = 'W';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = 'W';
   }
 
   for(unsigned int i = 0;i < policeDepotPoints.size();i++){
 	  Point newPoint = policeDepotPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = 'P';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = 'P';
   }
 
   for(unsigned int i = 0;i < hospitalPoints.size();i++){
 	  Point newPoint = hospitalPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = 'Z';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = 'Z';
   }
 
   for(unsigned int i = 0;i < burningBuildingPoints.size();i++){
 	  Point newPoint = burningBuildingPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = '#';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = '#';
   }
 
   for(unsigned int i = 0;i < streetPoints.size();i++){
 	  Point newPoint = streetPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = ' ';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = ' ';
   }
 
   for(unsigned int i = 0;i < fireTruckPoints.size();i++){
 	  Point newPoint = fireTruckPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = '*';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = '*';
   }
 
   for(unsigned int i = 0;i < policeTruckPoints.size();i++){
 	  Point newPoint = policeTruckPoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = '%';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = '%';
   }
 
   for(unsigned int i = 0;i < ambulancePoints.size();i++){
 	  Point newPoint = ambulancePoints.at(i);
-	  map[newPoint.getX()][newPoint.getY()] = '=';
+	  map.at(newPoint.getX()).at(newPoint.getY()) = '=';
   }
 
   // now let's add the map to the stream
 
-  for(unsigned int i = 0;i < biggestPoint.getY();i++){
-	  for(unsigned int j = 0;j < biggestPoint.getX();j++){
-		  stream << map[j][i];
+  for(unsigned int i = 1;i < biggestPoint.getY() + 1;i++){
+	  for(unsigned int j = 1;j < biggestPoint.getX() + 1;j++){
+		  stream << map.at(j).at(i);
+		  std::cout << map.at(j).at(i);
 	  }
 	  stream << '\n';
+	  std::cout << std::endl;
   }
 
   return stream;

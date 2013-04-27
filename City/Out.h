@@ -42,7 +42,7 @@ public:
 
     void newFile();
 
-    std::ofstream get();
+    void get();
 
     ~Out();
 private:

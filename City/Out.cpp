@@ -95,8 +95,8 @@ void Out::indentHere(){
 	}
 }
 
-std::ofstream Out::get(){
-	return this->filestream;
+void Out::get(){
+	std::cout << this->filestream << std::endl;
 }
 
 Out::~Out(){

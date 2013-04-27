@@ -32,6 +32,7 @@ void GUI::start(){
 	std::cout << "8) Grafische impressie tonen" << std::endl;
 	std::cout << "9) 1 stap in de simulatie uitvoeren" << std::endl;
 	std::cout << "10) Meerdere stappen in de simulatie uitvoeren" << std::endl;
+	std::cout << "11) Afsluiten" << std::endl;
 
 	std::string input;
 	std::cin >> input;
@@ -55,6 +56,8 @@ void GUI::start(){
 		GUI::oneSimulationStep();
 	}else if(input == "10"){
 		GUI::multipleSimulationStep();
+	}else if(input == "10"){
+		return;
 	}else{
 		std::cout << "Verkeerde keuze, probeer opnieuw!" << std::endl;
 		GUI::start();
@@ -75,7 +78,7 @@ void GUI::readCity(){
 	std::string inputFile;
 	std::cin >> inputFile;
 
-	*parser->parseBuildings(inputFile);
+	(*parser).parseBuildings(inputFile);
 
 	this->cityRead = true;
 
@@ -91,7 +94,7 @@ void GUI::readVehicles(){
 	std::string inputFile;
 	std::cin >> inputFile;
 
-	*parser->parseVehicles(inputFile);
+	(*parser).parseVehicles(inputFile);
 
 	this->carsRead = true;
 
@@ -109,7 +112,7 @@ void GUI::setBuildingOnFire(){
 	std::cout << "Zet een gebouw in brand" << std::endl;
 	std::cout << "-----------------------" << std::endl << std::endl;
 
-	*simulator->fireBreaksOut();
+	(*simulator).fireBreaksOut();
 
 	std::cout << "Een willekeurig gebouw is in brand gestoken" << std::endl << std::endl << std::endl;
 
@@ -126,7 +129,7 @@ void GUI::startRobbery(){
 	std::cout << "Overval een winkel" << std::endl;
 	std::cout << "------------------" << std::endl << std::endl;
 
-	*simulator->commitRob();
+	(*simulator).commitRob();
 
 	std::cout << "Een willekeurige winkel wordt nu overvallen." << std::endl << std::endl << std::endl;
 
@@ -149,7 +152,7 @@ void GUI::sendFireTruck(){
 	std::cout << "Brandweerwagen laten uitrukken" << std::endl;
 	std::cout << "------------------------------" << std::endl << std::endl;
 
-	*simulator->fireTruckControl();
+	(*simulator).fireTruckControl();
 
 	std::cout << "Er is geprobeerd om een brandweerwagen(s) uit te sturen naar een brandend gebouw." << std::endl << std::endl << std::endl;
 
@@ -173,7 +176,7 @@ void GUI::sendPoliceTruck(){
 	std::cout << "Politiewagen laten uitrukken" << std::endl;
 	std::cout << "----------------------------" << std::endl << std::endl;
 
-	*simulator->policeTruckControl();
+	(*simulator).policeTruckControl();
 
 	std::cout << "Er is geprobeerd om een politiewagen(s) uit te sturen naar een winkel die wordt overvallen." << std::endl << std::endl << std::endl;
 
@@ -191,7 +194,9 @@ void GUI::simpleOutput(){
 	std::cout << "Simpele uitvoer tonen" << std::endl;
 	std::cout << "---------------------" << std::endl << std::endl;
 
-	std::cout << *output->get() << std::endl << std::endl << std::endl;
+	(*output).get();
+
+	std::cout << std::endl << std::endl << std::endl;
 
 	GUI::start();
 }
@@ -206,7 +211,7 @@ void GUI::graphicalImpression(){
 	std::cout << "Grafische impressie tonen" << std::endl;
 	std::cout << "-------------------------" << std::endl << std::endl;
 
-	std::cout << *city->print() << std::endl << std::endl << std::endl;
+	std::cout << (*city).print() << std::endl << std::endl << std::endl;
 
 	GUI::start();
 }
@@ -227,7 +232,7 @@ void GUI::oneSimulationStep(){
 	std::cout << "1 stap in de simulatie uitvoeren" << std::endl;
 	std::cout << "--------------------------------" << std::endl << std::endl;
 
-	*simulator->step();
+	(*simulator).step();
 
 	GUI::start();
 }
@@ -254,7 +259,7 @@ void GUI::multipleSimulationStep(){
 	std::cin >> numberOfSteps;
 
 	for(int i = 0;i < numberOfSteps;i++){
-		*simulator->step();
+		(*simulator).step();
 	}
 
 	std::cout << numberOfSteps << " stappen in de simulatie uitgevoerd." << std::endl << std::endl << std::endl;
