@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<TEST>
+	<STRAAT>
+		<NAAM></NAAM>
+		<VAN x="0" y="0"/>
+		<NAAR x="5" y="0"/>
+	</STRAAT>
+</TEST>

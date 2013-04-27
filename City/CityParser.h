@@ -13,6 +13,7 @@
 #include "tinyxml.h"
 #include "City.h"
 #include "DesignByContract.h"
+#include <string>
 
 class CityParser {
 public:
@@ -24,47 +25,47 @@ public:
 	// ENSURE(this->fTown == town, "Town is set");
 	// ENSURE(this->isInitialized(), "Parser is initialized()");
 
-	void parseStreet(TiXmlElement* node);
+	bool parseStreet(TiXmlElement* node);
 	// parse one street
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseHouse(TiXmlElement* node);
+	bool parseHouse(TiXmlElement* node);
 	// parse one house
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseFireDepot(TiXmlElement* node);
+	bool parseFireDepot(TiXmlElement* node);
 	// parse one firedepot
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseHospital(TiXmlElement* node);
+	bool parseHospital(TiXmlElement* node);
 	// parse one hosiptal
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parsePoliceDepot(TiXmlElement* node);
+	bool parsePoliceDepot(TiXmlElement* node);
 	// parse one policedepot
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseShop(TiXmlElement* node);
+	bool parseShop(TiXmlElement* node);
 	// parse one shop
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseFireTruck(TiXmlElement* node);
+	bool parseFireTruck(TiXmlElement* node);
 	// parse one firetruck
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseAmbulance(TiXmlElement* node);
+	bool parseAmbulance(TiXmlElement* node);
 	// parse one ambulance
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parsePoliceCar(TiXmlElement* node);
+	bool parsePoliceCar(TiXmlElement* node);
 	// parse one ambulance
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseBuildings(const char* filename);
+	bool parseBuildings(const std::string& filename);
 	// parse all buildings and street
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	void parseVehicles(const char* filename);
+	bool parseVehicles(const std::string& filename);
 	// parse all vehicles
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
