@@ -85,7 +85,10 @@ void GUI::readCity(){
 	std::string inputFile;
 	std::cin >> inputFile;
 
-	(*parser).parseBuildings(inputFile);
+	if (! (*parser).parseBuildings(inputFile) ) {
+		std::cout << "Mogelijk heeft u een verkeerde bestandsnaam ingevoerd." << std::endl << std::endl << std::endl;
+		return GUI::start();
+	}
 
 	this->cityRead = true;
 
@@ -101,7 +104,10 @@ void GUI::readVehicles(){
 	std::string inputFile;
 	std::cin >> inputFile;
 
-	(*parser).parseVehicles(inputFile);
+	if (! (*parser).parseVehicles(inputFile) ) {
+		std::cout << "Mogelijk heeft u een verkeerde bestandsnaam ingevoerd." << std::endl << std::endl << std::endl;
+		return GUI::start();
+	}
 
 	this->carsRead = true;
 
