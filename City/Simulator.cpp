@@ -213,7 +213,12 @@ void Simulator::fireTruckControl() {
 	// finally, check whether there are trucks arrived, so they can extinguish and send back to it's base
 	for (unsigned int index = 0; index < vecTrucksArrived.size(); index++) {
 		if (vecTrucksArrived[index]->isAtEntranceDepot()) {
-			// first check whether it's base is on fire, then enter depot
+			// if the depot is burnt down, then continue
+			if (vecTrucks[index]->getBase()->isDead()) {
+				continue;	// trucks will stay at the entrance
+			}
+
+			// then check whether it's base is on fire (extinguish if so), then enter depot
 			if (vecTrucks[index]->getBase()->isBurning()) {
 				vecTrucks[index]->getBase()->stopFire();
 			}
@@ -222,7 +227,10 @@ void Simulator::fireTruckControl() {
 		}
 		else {	// truck is on a building
 			Building* buildingOnFire = vecTrucks[index]->getBuilding();
-			buildingOnFire->stopFire();
+			// first check whether the building is not burnt down
+			if (!buildingOnFire->isDead()) {
+				buildingOnFire->stopFire();
+			}
 			vecTrucks[index]->sendBack();
 			buildingOnFire->withdrawFireTruckAssignment();
 		}
@@ -362,7 +370,12 @@ void Simulator::policeTruckControl() {
 	// also sendback trucks that is arrived
 	for (unsigned int index = 0; index < trucksArrived.size(); index++) {
 		if (trucksArrived[index]->isAtEntranceDepot()) {
-			// first check whether it's base is on fire or not
+			// first check whether it's base is not burnt down
+			if (trucksArrived[index]->getBase()->isDead()) {
+				continue;	// stay at the entrance
+			}
+
+			// then check whether it's base is on fire or not
 			if (trucksArrived[index]->getBase()->isBurning()) {
 				continue;	// then wait for the firetruck
 			}
@@ -372,7 +385,9 @@ void Simulator::policeTruckControl() {
 		}
 		else {	// the police is at a building
 			Shop* robbedShop = vecTrucks[index]->getShop();
-			robbedShop->stopRobbing();
+			if (!robbedShop->isEmpty()) {
+				robbedShop->stopRobbing();
+			}
 			vecTrucks[index]->sendBack();
 			robbedShop->withdrawPoliceTruckAssignment();
 		}
