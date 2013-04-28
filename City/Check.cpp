@@ -50,9 +50,8 @@ bool Check::fit(const Building& building) {
 
 	unsigned int width = building.getSize().getWidth();
 	unsigned int height = building.getSize().getHeight();
-
-	for (unsigned int h = 0; h <= height; h++) {
-		for (unsigned int w = 0; w <= width; w++) {
+	for (unsigned int h = 0; h < height; h++) {
+		for (unsigned int w = 0; w < width; w++) {
 			int x = building.getLocation().getX() + w;
 			int y = building.getLocation().getY() - h;
 
@@ -110,6 +109,7 @@ bool Check::go(const Building& building) {
 	REQUIRE(building.isInitialized(), "Building is initialized");
 
 	if (!this->fit(building)) {
+		std::cout << "Building does not fit"<< std::endl;
 		return false;
 	}
 
