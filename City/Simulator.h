@@ -28,41 +28,52 @@ public:
 	// checks whether it's the end of the simulation
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 
-	void fireBreaksOut();
+	bool fireBreaksOut();
 	// set a random chosen house on fire
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void fireTruckControl();
-	// checks the vector of burning houses and sends a firetruck to those who are burning
+	bool sendFireTrucks();
+	// try to send a firetruck
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void burningDown();
+	bool burningDown();
 	// let the city burn (substracting health points)
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void commitRob();
+	bool commitRob();
 	// let rob a random shop
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void robbing();
+	bool robbing();
 	// substracting robbing points
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void policeTruckControl();
-	// Sends a police truck to shops being robbed
+	bool sendPoliceTrucks();
+	// try to send a policetruck
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void drive();
-	// drive all the vehicles around
+	bool drive();
+	// drive all the vehicles around, enter depot, extinguish fire/stop robbing and sendback
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
-	void repairBuildings();
+	bool repairBuildings();
 	// repair all the buildings
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
 	void spreadFire();
+	// todo: operation contracts
+	// spreads the fire
 
 	void step();
+	// todo: operation contracts
 	// one step in the simulation
 
 private:

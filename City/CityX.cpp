@@ -18,10 +18,16 @@ int main(int argc, char* argv[]){
 	std::string outputFile = "output.txt";
 
 	Out output(outputFile); // Our output
+
 	City city; // Our City
+
 	CityParser parser(&city); // Our Parser
+
 	Simulator simulator(&city); // Our simulator
+
 	GUI gui(&city, &simulator, &parser, &output); // Our GUI
+
+	gui.start();	// start the GUI
 }
 
 

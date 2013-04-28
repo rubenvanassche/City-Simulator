@@ -25,6 +25,7 @@ public:
 	void startRobbery();
 	void sendFireTruck();
 	void sendPoliceTruck();
+	void driveAround();
 	void simpleOutput();
 	void graphicalImpression();
 	void oneSimulationStep();

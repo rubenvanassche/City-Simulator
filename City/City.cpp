@@ -100,22 +100,7 @@ City::~City() {
 bool City::isDead() {
 	REQUIRE(this->isInitialized(), "City is initialized");
 
-	bool allRobbed = true;
-	for (unsigned int index = 0; index < fShops.size(); index++) {
-		if (fShops[index]->isEmpty()) {
-			continue;
-		}
-		else {
-			allRobbed = false;
-			break;
-		}
-	}
-
-	if (allRobbed) {
-		return true;
-	}
-
-	// if you've reached here, then not all shops were robbed, now let's check if all is burnt down
+	// check whether all buildings were burnt down
 	// first check all houses
 	for (unsigned int index = 0; index < fHouses.size(); index++) {
 		if (fHouses[index]->isDead() ) {
@@ -166,7 +151,6 @@ bool City::isDead() {
 
 	// if you've reached here, then all buildings were burnt down
 	return true;
-
 }
 
 bool City::add(const Street& str) {

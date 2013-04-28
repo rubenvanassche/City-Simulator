@@ -6,7 +6,7 @@
  */
 
 #include "GUI.h"
-
+#include <sstream>
 
 GUI::GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Out* outputPtr) {
 	this->cityRead = false;
@@ -15,8 +15,6 @@ GUI::GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Out* out
 	this->simulator = simulatorPtr;
 	this->parser = parserPtr;
 	this->output = outputPtr;
-
-	GUI::start();
 }
 
 void GUI::start(){
@@ -28,39 +26,48 @@ void GUI::start(){
 	std::cout << "4) Overval een winkel" << std::endl;
 	std::cout << "5) Brandweerwagen laten uitrukken" << std::endl;
 	std::cout << "6) Politiewagen laten uitrukken" << std::endl;
-	std::cout << "7) Simpele uitvoer tonen" << std::endl;
-	std::cout << "8) Grafische impressie tonen" << std::endl;
-	std::cout << "9) 1 stap in de simulatie uitvoeren" << std::endl;
-	std::cout << "10) Meerdere stappen in de simulatie uitvoeren" << std::endl;
-	std::cout << "11) Afsluiten" << std::endl;
+	std::cout << "7) Wagens laten rondrijden" << std::endl;
+	std::cout << "8) Simpele uitvoer tonen" << std::endl;
+	std::cout << "9) Grafische impressie tonen" << std::endl;
+	std::cout << "10) 1 stap in de simulatie uitvoeren" << std::endl;
+	std::cout << "11) Meerdere stappen in de simulatie uitvoeren" << std::endl;
+	std::cout << "12) Afsluiten" << std::endl;
 
-	std::string input;
-	std::cin >> input;
-	if(input == "1"){
-		GUI::readCity();
-	}else if(input == "2"){
-		GUI::readVehicles();
-	}else if(input == "3"){
-		GUI::setBuildingOnFire();
-	}else if(input == "4"){
-		GUI::startRobbery();
-	}else if(input == "5"){
-		GUI::sendFireTruck();
-	}else if(input == "6"){
-		GUI::sendPoliceTruck();
-	}else if(input == "7"){
-		GUI::simpleOutput();
-	}else if(input == "8"){
-		GUI::graphicalImpression();
-	}else if(input == "9"){
-		GUI::oneSimulationStep();
-	}else if(input == "10"){
-		GUI::multipleSimulationStep();
-	}else if(input == "11"){
+	std::string in;
+	std::cin >> in;
+
+	int input;
+	std::stringstream ss;
+	ss << in;
+	ss >> input;
+
+	if(input == 1){
+		return GUI::readCity();
+	}else if(input == 2){
+		return GUI::readVehicles();
+	}else if(input == 3){
+		return GUI::setBuildingOnFire();
+	}else if(input == 4){
+		return GUI::startRobbery();
+	}else if(input == 5){
+		return GUI::sendFireTruck();
+	}else if(input == 6){
+		return GUI::sendPoliceTruck();
+	}else if(input == 7){
+		return GUI::driveAround();
+	}else if(input == 8){
+		return GUI::simpleOutput();
+	}else if(input == 9){
+		return GUI::graphicalImpression();
+	}else if(input == 10){
+		return GUI::oneSimulationStep();
+	}else if(input == 11){
+		return GUI::multipleSimulationStep();
+	}else if(input == 12){
 		return;
 	}else{
 		std::cout << "Verkeerde keuze, probeer opnieuw!" << std::endl;
-		GUI::start();
+		return GUI::start();
 	}
 }
 
@@ -68,7 +75,7 @@ void GUI::readCity(){
 	if(this->cityRead == true){
 		std::cout << "De Stad is al reeds ingelezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	std::cout << "Stad inlezen" << std::endl;
@@ -83,7 +90,7 @@ void GUI::readCity(){
 	this->cityRead = true;
 
 	std::cout << "Stad " << inputFile << " ingelezen." << std::endl << std::endl << std::endl;
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::readVehicles(){
@@ -99,64 +106,89 @@ void GUI::readVehicles(){
 	this->carsRead = true;
 
 	std::cout << "Voetuigen " << inputFile << " ingelezen." << std::endl << std::endl << std::endl;
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::setBuildingOnFire(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
 	}
 
 	std::cout << "Zet een gebouw in brand" << std::endl;
 	std::cout << "-----------------------" << std::endl << std::endl;
 
-	(*simulator).fireBreaksOut();
+	if ( (*simulator).fireBreaksOut() ) {
+		std::cout << "Een willekeurig gebouw is in brand gestoken" << std::endl << std::endl << std::endl;
+	}
+	else {
+		std::cout << "Er is geen enkele gebouw die niet in brand staat" << std::endl << std::endl << std::endl;
+	}
 
-	std::cout << "Een willekeurig gebouw is in brand gestoken" << std::endl << std::endl << std::endl;
-
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::startRobbery(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
 	}
 
 	std::cout << "Overval een winkel" << std::endl;
 	std::cout << "------------------" << std::endl << std::endl;
 
-	(*simulator).commitRob();
+	if ( (*simulator).commitRob() ){
+		std::cout << "Een willekeurige winkel wordt nu overvallen." << std::endl << std::endl << std::endl;
 
-	std::cout << "Een willekeurige winkel wordt nu overvallen." << std::endl << std::endl << std::endl;
+	}
+	else {
+		std::cout << "Er is geen winkel die niet overvallen word" << std::endl << std::endl << std::endl;
+	}
 
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::sendFireTruck(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	if(this->carsRead == false){
 		std::cout << "Gelieve eerst voertuigen in te lezen.." << std::endl;
 
-		GUI::start();
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
 	}
 
 	std::cout << "Brandweerwagen laten uitrukken" << std::endl;
 	std::cout << "------------------------------" << std::endl << std::endl;
 
-	(*simulator).fireTruckControl();
+	if ( (*simulator).sendFireTrucks() ) {
+		std::cout << "Er zijn brandweerwagen(s) uitgestuurd." << std::endl << std::endl << std::endl;
+	}
+	else {
+		std::cout << "Er zijn geen brandweerwagens beschikbaar." << std::endl << std::endl << std::endl;
+	}
 
-	std::cout << "Er is geprobeerd om een brandweerwagen(s) uit te sturen naar een brandend gebouw." << std::endl << std::endl << std::endl;
-
-	GUI::start();
+	return GUI::start();
 
 }
 
@@ -164,23 +196,61 @@ void GUI::sendPoliceTruck(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	if(this->carsRead == false){
 		std::cout << "Gelieve eerst voertuigen in te lezen.." << std::endl;
 
-		GUI::start();
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
 	}
 
 	std::cout << "Politiewagen laten uitrukken" << std::endl;
 	std::cout << "----------------------------" << std::endl << std::endl;
 
-	(*simulator).policeTruckControl();
+	if ( (*simulator).sendPoliceTrucks() ) {
+		std::cout << "Er zijn politiewagen(s) uitgestuurd." << std::endl << std::endl << std::endl;
+	}
+	else {
+		std::cout << "Er zijn geen politiewagens beschikbaar" << std::endl << std::endl << std::endl;
+	}
+	return GUI::start();
 
-	std::cout << "Er is geprobeerd om een politiewagen(s) uit te sturen naar een winkel die wordt overvallen." << std::endl << std::endl << std::endl;
+}
 
-	GUI::start();
+void GUI::driveAround() {
+	if (this->cityRead == false) {
+		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
+
+		return GUI::start();
+	}
+
+	if(this->carsRead == false){
+		std::cout << "Gelieve eerst voertuigen in te lezen.." << std::endl;
+
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
+	}
+
+	std::cout << "Wagens laten rondrijden" << std::endl;
+	std::cout << "-----------------------" << std::endl << std::endl;
+
+	if ( (*simulator).drive() ) {
+		std::cout << "Er zijn wagens(s) rondgereden." << std::endl << std::endl << std::endl;
+	}
+	else {
+		std::cout << "Er zijn geen wagens onderweg." << std::endl << std::endl << std::endl;
+	}
+	return GUI::start();
 
 }
 
@@ -188,7 +258,7 @@ void GUI::simpleOutput(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	std::cout << "Simpele uitvoer tonen" << std::endl;
@@ -198,14 +268,14 @@ void GUI::simpleOutput(){
 
 	std::cout << std::endl << std::endl << std::endl;
 
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::graphicalImpression(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	std::cout << "Grafische impressie tonen" << std::endl;
@@ -213,20 +283,25 @@ void GUI::graphicalImpression(){
 
 	std::cout << (*city).print() << std::endl << std::endl << std::endl;
 
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::oneSimulationStep(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	if(this->carsRead == false){
 		std::cout << "Gelieve eerst voertuigen in te lezen.." << std::endl;
 
-		GUI::start();
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
 	}
 
 	std::cout << "1 stap in de simulatie uitvoeren" << std::endl;
@@ -234,20 +309,25 @@ void GUI::oneSimulationStep(){
 
 	(*simulator).step();
 
-	GUI::start();
+	return GUI::start();
 }
 
 void GUI::multipleSimulationStep(){
 	if(this->cityRead == false){
 		std::cout << "Gelieve eerst een stad in te lezen." << std::endl;
 
-		GUI::start();
+		return GUI::start();
 	}
 
 	if(this->carsRead == false){
 		std::cout << "Gelieve eerst voertuigen in te lezen.." << std::endl;
 
-		GUI::start();
+		return GUI::start();
+	}
+
+	if (simulator->endSimulation()) {
+		std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+		return GUI::start();
 	}
 
 	std::cout << "Meerdere stappen in de simulatie uitvoeren" << std::endl;
@@ -263,7 +343,5 @@ void GUI::multipleSimulationStep(){
 	}
 
 	std::cout << numberOfSteps << " stappen in de simulatie uitgevoerd." << std::endl << std::endl << std::endl;
-	GUI::start();
+	return GUI::start();
 }
-
-
