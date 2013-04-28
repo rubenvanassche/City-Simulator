@@ -126,7 +126,6 @@ bool CityParser::parseStreet(TiXmlElement* node) {
 		Street newStr(name, Point(x0, y0), Point(x1, y1));
 		if (!fTown->add(newStr) ) {
 			std::cout << "Kan " << newStr << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -196,7 +195,6 @@ bool CityParser::parseHouse(TiXmlElement* node) {
 		House newHouse(Point(x, y), flam);
 		if (!fTown->add(newHouse)) {
 			std::cout << "Kan " << newHouse << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -308,7 +306,6 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 		FireDepot newDepot(Point(xLoc, yLoc), Point(xEntr, yEntr), name, flam);
 		if (!fTown->add(newDepot) ) {
 			std::cout << "Kan " << newDepot << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -450,7 +447,6 @@ bool CityParser::parseHospital(TiXmlElement* node) {
 		Hospital newHospital(Point(xLoc, yLoc), Point(xEntr, yEntr), Size(width, height), name, flam);
 		if (!fTown->add(newHospital) ) {
 			std::cout << "Kan " << newHospital << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -590,7 +586,6 @@ bool CityParser::parsePoliceDepot(TiXmlElement* node) {
 		PoliceDepot newDepot(Point(xLoc, yLoc), Point(xEntr, yEntr), Size(width, height), name, flam);
 		if (!fTown->add(newDepot) ) {
 			std::cout << "Kan " << newDepot << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -704,7 +699,6 @@ bool CityParser::parseShop(TiXmlElement* node) {
 		Shop newShop(Point(x, y), Size(width, height), flam, security);
 		if (!fTown->add(newShop) ) {
 			std::cout << "Kan " << newShop << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -768,7 +762,6 @@ bool CityParser::parseFireTruck(TiXmlElement* node) {
 		FireTruck newTruck(name, ptrBase);
 		if (!fTown->add(newTruck) ) {
 			std::cout << "Kan " << newTruck << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -832,7 +825,6 @@ bool CityParser::parseAmbulance(TiXmlElement* node) {
 		Ambulance newAmbuce(name, ptrBase);
 		if (!fTown->add(newAmbuce) ) {
 			std::cout << "Kan " << newAmbuce << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
@@ -896,7 +888,6 @@ bool CityParser::parsePoliceCar(TiXmlElement* node) {
 		PoliceTruck newTruck(name, ptrBase);
 		if (!fTown->add(newTruck) ) {
 			std::cout << "Kan " << newTruck << " niet toevoegen." << std::endl;
-			return false;
 		}
 		return true;
 	}
