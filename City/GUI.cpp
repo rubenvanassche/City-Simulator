@@ -56,7 +56,7 @@ void GUI::start(){
 		GUI::oneSimulationStep();
 	}else if(input == "10"){
 		GUI::multipleSimulationStep();
-	}else if(input == "10"){
+	}else if(input == "11"){
 		return;
 	}else{
 		std::cout << "Verkeerde keuze, probeer opnieuw!" << std::endl;
