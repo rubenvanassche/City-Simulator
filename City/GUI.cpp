@@ -71,6 +71,49 @@ void GUI::start(){
 	}
 }
 
+void GUI::readArguments(int argc, char* argv[]){
+   if(argc == 1){
+	   return;
+   }else if(argc == 2){
+	   std::string inputFile = "";
+	   std::stringstream ss;
+	   ss << argv[1];
+	   ss >> inputFile;
+		if (! (*parser).parseBuildings(inputFile) ) {
+			std::cout << "(Stad)Mogelijk heeft u een verkeerde bestandsnaam ingevoerd." << std::endl << std::endl << std::endl;
+			 return;
+		}
+
+		this->cityRead = true;
+
+   }else if(argc == 3){
+	   std::string inputFile = "";
+	   std::stringstream ss;
+	   ss << argv[1];
+	   ss >> inputFile;
+		if (! (*parser).parseBuildings(inputFile) ) {
+			std::cout << "(Stad)Mogelijk heeft u een verkeerde bestandsnaam ingevoerd." << std::endl << std::endl << std::endl;
+			 return;
+		}
+
+		this->cityRead = true;
+
+	   std::string inputFile2 = "";
+	   std::stringstream ss2;
+	   ss2 << argv[2];
+	   ss2 >> inputFile2;
+		if (! (*parser).parseVehicles(inputFile2) ) {
+			std::cout << "(Voertuigen)Mogelijk heeft u een verkeerde bestandsnaam ingevoerd." << std::endl << std::endl << std::endl;
+			 return;
+		}
+
+		this->carsRead = true;
+
+   }else{
+	   std::cout << "U heeft te veel argumenten meegegeven." << std::endl;
+   }
+}
+
 void GUI::readCity(){
 	if(this->cityRead == true){
 		std::cout << "De Stad is al reeds ingelezen." << std::endl;
