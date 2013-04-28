@@ -9,6 +9,7 @@
 #define GUI_H_
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include "City.h"
 #include "Simulator.h"
@@ -19,12 +20,15 @@ class GUI {
 public:
 	GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Out* outputPtr);
 	void start();
+	void readArguments(int argc, char* argv[]);
 	void readCity();
 	void readVehicles();
 	void setBuildingOnFire();
 	void startRobbery();
 	void sendFireTruck();
 	void sendPoliceTruck();
+	void burning();
+	void robbing();
 	void driveAround();
 	void simpleOutput();
 	void graphicalImpression();

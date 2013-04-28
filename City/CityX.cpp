@@ -27,6 +27,8 @@ int main(int argc, char* argv[]){
 
 	GUI gui(&city, &simulator, &parser, &output); // Our GUI
 
+	gui.readArguments(argc, argv); // give the arguments to the GUI
+
 	gui.start();	// start the GUI
 }
 
