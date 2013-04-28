@@ -340,30 +340,6 @@ std::vector<PoliceTruck*> City::getPoliceTrucks() const {
 	return fPoliceTrucks;
 }
 
-Shop* City::randShop() {
-	REQUIRE(this->isInitialized(), "City is initialized");
-
-	unsigned int index = std::rand() % fShops.size();
-
-	if (fShops[index]->isBurning()) {
-		return this->randShop();	// is burning
-	}
-
-	if (fShops[index]->isRobbing()) {
-		return this->randShop();	// already robbing
-	}
-
-	if (fShops[index]->isEmpty()) {
-		return this->randShop();	// nothing to rob
-	}
-
-	ENSURE(fShops[index] != NULL, "A shop is given");
-	ENSURE(fShops[index]->isBurning() == false, "The shop is not on fire");
-	ENSURE(fShops[index]->isRobbing() == false, "The shop is not being robbed");
-	ENSURE(fShops[index]->isEmpty() == false, "There are stuffs in the shop");
-	return fShops[index];
-}
-
 bool City::isInMap(const Point& p) {
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(p.isInitialized(), "City is initialized");

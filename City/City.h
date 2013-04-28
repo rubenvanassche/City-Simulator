@@ -118,15 +118,6 @@ public:
 	// find a policedepot with the given name, NULL if not in city
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
-	Shop* randShop();
-	// get a random shop (that you want to set on fire or rob)
-	// REQUIRE(this->isInitialized(), "City is initialized");
-
-	// ENSURE(fShops[index] != NULL, "A shop is given");
-	// ENSURE(fShops[index]->isBurning == false, "The shop is not on fire");
-	// ENSURE(fShops[index]->isRobbing() == false, "The shop is not being robbed");
-	// ENSURE(fShops[index]->isEmpty() == false, "There are stuffs in the shop");
-
 	std::vector<House*> getHouses() const;
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
