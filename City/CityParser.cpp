@@ -330,7 +330,7 @@ bool CityParser::parseHospital(TiXmlElement* node) {
 
 		if (subtag == "naam") {
 			foundName = true;
-			if (subnode->GetText()) {
+			if (subnode->GetText() == NULL) {
 				std::cout << "Naam van ziekenhuis ontbreekt" << std::endl;
 				return false;
 			}
@@ -844,7 +844,7 @@ bool CityParser::parsePoliceCar(TiXmlElement* node) {
 
 		if (subtag == "naam") {
 			foundName = true;
-			if (subnode->GetText()) {
+			if (subnode->GetText() == NULL) {
 				std::cout << "Naam van politiewagen ontbreekt/ongeldig." << std::endl;
 				return false;
 			}

@@ -672,11 +672,9 @@ void Simulator::spreadFire(){
 }
 
 void Simulator::step(){
-	this->fireBreaksOut();
 	this->burningDown();
 	this->sendFireTrucks();
 
-	this->commitRob();
 	this->robbing();
 	this->sendPoliceTrucks();
 
