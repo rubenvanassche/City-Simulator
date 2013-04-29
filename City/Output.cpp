@@ -8,20 +8,37 @@
 #include "Output.h"
 
 Output::Output(City* town, char filename[]){
+	REQUIRE((*town).isInitialized(), "City is initialized");
+
 	fTown = town;
+	fMyself = this;
 
 	// Create a new file
 	fFile.open(filename, std::ios_base::out);
 	fFile.close();
 	fFile.open(filename, std::ios_base::app);
+
+	ENSURE(this->fTown = town, "Town is set");
+	ENSURE(FileTest::fileExists(filename), "Empty file made");
+	ENSURE(this->isInitialized(), "Output is initialized");
 }
 
 std::ostream& operator<< (std::ostream& stream, Output& o){
+	REQUIRE(o.isInitialized(), "Ouput is initialized");
+
 	stream << o.get();
 	return stream;
 }
 
+bool Output::isInitialized() const {
+	return fMyself == this;
+}
+
+
 void Output::shopsOnFire(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<Shop*> shops = this->fTown->getShops();
 	for(unsigned int i = 0;i < shops.size();i++){
 		if(shops.at(i)->isBurning()){
@@ -30,6 +47,9 @@ void Output::shopsOnFire(){
 	}
 }
 void Output::housesOnFire(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<House*> houses = this->fTown->getHouses();
 	for(unsigned int i = 0;i < houses.size();i++){
 		if(houses.at(i)->isBurning()){
@@ -38,6 +58,9 @@ void Output::housesOnFire(){
 	}
 }
 void Output::fireDepotsOnFire(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<FireDepot*> fireDepots = this->fTown->getFireDepots();
 	for(unsigned int i = 0;i < fireDepots.size();i++){
 		if(fireDepots.at(i)->isBurning()){
@@ -46,6 +69,9 @@ void Output::fireDepotsOnFire(){
 	}
 }
 void Output::policeDepotsOnFire(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<PoliceDepot*> policeDepots = this->fTown->getPoliceDepots();
 	for(unsigned int i = 0;i < policeDepots.size();i++){
 		if(policeDepots.at(i)->isBurning()){
@@ -54,6 +80,9 @@ void Output::policeDepotsOnFire(){
 	}
 }
 void Output::hospitalsOnFire(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<Hospital*> hospitals = this->fTown->getHospitals();
 	for(unsigned int i = 0;i < hospitals.size();i++){
 		if(hospitals.at(i)->isBurning()){
@@ -63,6 +92,9 @@ void Output::hospitalsOnFire(){
 }
 
 void Output::shopsBeingRobbed(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<Shop*> shops = this->fTown->getShops();
 	for(unsigned int i = 0;i < shops.size();i++){
 		if(shops.at(i)->isRobbing()){
@@ -72,6 +104,9 @@ void Output::shopsBeingRobbed(){
 }
 
 void Output::fireTrucksdriving(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<FireTruck*> trucks = this->fTown->getFireTrucks();
 	for(unsigned int i = 0;i < trucks.size();i++){
 		if(trucks.at(i)->isOnWay()){
@@ -88,6 +123,9 @@ void Output::fireTrucksdriving(){
 }
 
 void Output::policeTrucksDriving(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<PoliceTruck*> trucks = this->fTown->getPoliceTrucks();
 	for(unsigned int i = 0;i < trucks.size();i++){
 		if(trucks.at(i)->isOnWay()){
@@ -104,6 +142,9 @@ void Output::policeTrucksDriving(){
 }
 
 void Output::ambulancesDriving(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<Ambulance*> trucks = this->fTown->getAmbulances();
 	for(unsigned int i = 0;i < trucks.size();i++){
 		if(trucks.at(i)->isOnWay()){
@@ -120,6 +161,9 @@ void Output::ambulancesDriving(){
 }
 
 void Output::fireDepotsTrucks(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<FireDepot*> depots = this->fTown->getFireDepots();
 	std::vector<FireTruck*> trucks = this->fTown->getFireTrucks();
 
@@ -143,6 +187,9 @@ void Output::fireDepotsTrucks(){
 	}
 }
 void Output::policeDepotsTrucks(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<PoliceDepot*> depots = this->fTown->getPoliceDepots();
 	std::vector<PoliceTruck*> trucks = this->fTown->getPoliceTrucks();
 
@@ -166,6 +213,9 @@ void Output::policeDepotsTrucks(){
 	}
 }
 void Output::hospitalsTrucks(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	std::vector<Hospital*> depots = this->fTown->getHospitals();
 	std::vector<Ambulance*> trucks = this->fTown->getAmbulances();
 
@@ -190,6 +240,8 @@ void Output::hospitalsTrucks(){
 }
 
 void Output::parse(){
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	fOut << "Events:\n";
 
 	this->shopsOnFire();
@@ -216,6 +268,8 @@ void Output::parse(){
 }
 
 std::string Output::get(){
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	fOut.str(""); // clean the Out stream
 
 	this->parse();
@@ -224,6 +278,8 @@ std::string Output::get(){
 }
 
 void Output::step(){
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	fOut.str(""); // clean the Out stream
 	this->parse();
 	fFile << fOut.str(); // Write to the fileStream
@@ -231,6 +287,8 @@ void Output::step(){
 
 
 Output::~Output(){
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
 	this->fFile.close();
 }
 

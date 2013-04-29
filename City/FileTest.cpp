@@ -1,5 +1,11 @@
 #include "FileTest.h"
 
+bool FileTest::fileExists(const char *filename){
+	// via : http://www.cplusplus.com/forum/general/1796/
+	ifstream ifile(filename);
+	return ifile;
+}
+
 bool FileTest::directoryExists(const char *dirname) {
 	struct stat st;
 	return stat(dirname, &st) == 0;

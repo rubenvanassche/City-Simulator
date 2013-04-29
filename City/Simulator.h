@@ -21,6 +21,7 @@ public:
 	Simulator(City* town, Output* output);
 	// constructor
 	// REQUIRE(town->isInitialized(), "City is initialized");
+	// REQUIRE(output->isInitialized(), "Output is initialized");
 
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
 	// ENSURE(this->fTown == town, "Town is set");

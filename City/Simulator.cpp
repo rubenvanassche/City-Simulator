@@ -16,6 +16,7 @@ bool Simulator::isInitialized() const {
 
 Simulator::Simulator(City* town, Output* output) {
 	REQUIRE(town->isInitialized(), "City is initialized");
+	REQUIRE(output->isInitialized(), "Output is initialized");
 
 	fMyself = this;
 	fTown = town;
