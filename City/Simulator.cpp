@@ -466,16 +466,22 @@ bool Simulator::drive() {
 			if (next.getY() > curPos.getY()) {
 				vecTrucksOnWay[index]->goUp();
 			}
-			else {
+			else if (next.getY() < curPos.getY()) {
 				vecTrucksOnWay[index]->goDown();
+			}
+			else {
+				continue;
 			}
 		}
 		else if (curPos.getY() == next.getY()) {
 			if (next.getX() > curPos.getX()) {
 				vecTrucksOnWay[index]->goRight();
 			}
-			else {
+			else if (next.getX() < curPos.getX()) {
 				vecTrucksOnWay[index]->goLeft();
+			}
+			else {
+				continue;
 			}
 		}
 	}

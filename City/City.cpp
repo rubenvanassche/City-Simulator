@@ -81,7 +81,7 @@ City::~City() {
 	fPoliceTrucks.clear();
 
 	for (unsigned int index = 0; index < fAmbulances.size(); index++) {
-		delete fFireTrucks[index];
+		delete fAmbulances[index];
 	}
 	fAmbulances.clear();
 
