@@ -9,13 +9,16 @@
 
 #include "gtest/gtest.h"
 #include "Simulator.h"
+#include "Output.h"
 
 class SimulatorTest : public testing::Test {
 protected:
 	City* ptrCity;
+	Output* ptrOutput;
 
 	virtual void SetUp() {
 		ptrCity = new City;
+		ptrOutput = new Output(ptrCity, "simulatorTest.txt");
 	}
 
 	virtual void TearDown() {
@@ -24,7 +27,7 @@ protected:
 };
 
 TEST_F(SimulatorTest, construct) {
-	EXPECT_NO_FATAL_FAILURE(Simulator sim(ptrCity));
+	EXPECT_NO_FATAL_FAILURE(Simulator sim(ptrCity, ptrOutput));
 }
 
 
@@ -38,7 +41,7 @@ TEST_F(SimulatorTest, fire) {
 	ASSERT_TRUE(ptrCity->add(verticalLeft));
 	ASSERT_TRUE(ptrCity->add(verticalRight));
 
-	Simulator sim(ptrCity);
+	Simulator sim(ptrCity, ptrOutput);
 	House* ptrHouse = ptrCity->getHouses()[0];
 	ASSERT_TRUE(ptrHouse != NULL);
 
@@ -137,7 +140,7 @@ TEST_F(SimulatorTest, robbing) {
 	ASSERT_TRUE(ptrCity->add(verticalLeft));
 	ASSERT_TRUE(ptrCity->add(verticalRight));
 
-	Simulator sim(ptrCity);
+	Simulator sim(ptrCity, ptrOutput);
 	Shop* ptrShop = ptrCity->getShops()[0];
 	ASSERT_TRUE(ptrShop != NULL);
 

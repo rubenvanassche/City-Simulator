@@ -1,9 +1,7 @@
 #include "FileTest.h"
 
 bool FileTest::fileExists(const char *filename){
-	// via : http://www.cplusplus.com/forum/general/1796/
-	ifstream ifile(filename);
-	return ifile;
+	return FileTest::directoryExists(filename);
 }
 
 bool FileTest::directoryExists(const char *dirname) {

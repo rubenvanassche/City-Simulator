@@ -52,3 +52,15 @@ TEST(FileTestTest, FileCompare) {
 	EXPECT_FALSE(FileTest::compare("testOutput/file1.txt", "testOutput/nonexisting.txt"));
 	EXPECT_FALSE(FileTest::compare("testOutput/nonexisting.txt", "testOutput/file1.txt"));
 }
+
+TEST(FileTestTest, fileExists){
+	ofstream myfile;
+	myfile.open("testOutput/file1.txt");
+	myfile.close();
+	myfile.open("testOutput/file2.txt");
+	myfile.close();
+
+	EXPECT_TRUE(FileTest::fileExists("testOutput/file1.txt"));
+	EXPECT_TRUE(FileTest::fileExists("testOutput/file2.txt"));
+	EXPECT_FALSE(FileTest::fileExists("testOutput/file3.txt"));
+}
