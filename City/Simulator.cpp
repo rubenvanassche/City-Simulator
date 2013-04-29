@@ -307,6 +307,9 @@ bool Simulator::commitRob() {
 		else if (vecShops[index]->isDead()) {
 			continue;	// shop is burnt down, no stuffs to steal anymore
 		}
+		else if (vecShops[index]->isEmpty()) {
+			continue;	// shop is empty, so nothing to steal
+		}
 
 		shopsToBeRobbed.push_back(vecShops[index]);
 	}
