@@ -78,7 +78,7 @@ TEST_F(AmbulanceTest, sending) {
 	EXPECT_EQ(entrDepot, ambuce.getPosition());
 
 	// then drive
-	EXPECT_DEATH(ambuce.goLeft(), "\\w");	// ooops, you just got negative coordinates!
+	EXPECT_DEATH(ambuce.goLeft(), "");	// ooops, you just got negative coordinates!
 	EXPECT_NO_FATAL_FAILURE(ambuce.goRight());
 	EXPECT_EQ(Point(entrDepot.getX() + 1, entrDepot.getY()), ambuce.getPosition());
 	EXPECT_FALSE(ambuce.isInDepot());
