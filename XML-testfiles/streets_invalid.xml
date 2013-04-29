@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<TEST>
+	<straat>
+		<naam></naam>
+		<van x="0" y="0" />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<van x="0" y="0" />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>0</naam>
+		<van x="0" />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>1</naam>
+		<van y="0" />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>2</naam>
+		<van />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>3</naam>
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>4</naam>
+		<van x="0" y="0" />
+		<naar x="0" />
+	</straat>
+	
+	<straat>
+		<naam>5</naam>
+		<van x="0" y="0" />
+		<naar y="0" />
+	</straat>
+	
+	<straat>
+		<naam>6</naam>
+		<van x="0" y="0"/>
+		<naar />
+	</straat>
+	
+	<straat>
+		<naam>7</naam>
+		<van x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>8</naam>
+		<van x="-1" y="0" />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>9</naam>
+		<van x="0" y="-1" />
+		<naar x="0" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>10</naam>
+		<van x="0" y="0" />
+		<naar x="-1" y="0" />
+	</straat>
+	
+	<straat>
+		<naam>11</naam>
+		<van x="0" y="0"/>
+		<naar x="0" y="-1" />
+	</straat>
+</TEST>

@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<TEST>
+	<Straat>
+		<Naam>0</Naam>
+		<Van x="0" y="0"/>
+		<Naar x="0" y="0"/>
+	</Straat>
+
+	<straat>
+		<naam>1</naam>
+		<van x="0" y="0"/>
+		<naar x="0" y="0"/>
+	</straat>
+
+	<STRAAT>
+		<NAAM>2</NAAM>
+		<VAN X="0" Y="0" />
+		<NAAR X="0" Y="0"/>
+	</STRAAT>
+
+	<straat>
+		<van x="0" y="0"/>
+		<naam>3</naam>
+		<naar x="0" y="0"/>
+	</straat>
+
+	<straat>
+		<naam>4</naam>
+		<van y="0" x="0" />
+		<naar y="0" x="0" />
+	</straat>
+
+	<straat>
+		<naam thequestion="What's the answer to the question of the meaning of life, universe and everything?">5</naam>
+		<van x="0" y="0" theanswer="42" />
+		<naar x="0" y="0" useless="this information is useless"/>
+	</straat>
+	
+	<straat>
+		<naam>6</naam>
+		<van x="0" y="0" />
+		<naar x="0" y="0" />
+		<randomtag theanswer="42">The answer to the question of the meaning of life, universe and everything</randomtag>
+	</straat>
+</TEST>

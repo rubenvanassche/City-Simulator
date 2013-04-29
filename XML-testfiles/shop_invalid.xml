@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<TEST>
+	<winkel>
+		<locatie x="0"/>
+		<grootte hoogte="1" breedte="1" />
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie/>
+		<grootte hoogte="1" breedte="1" />
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" />
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid></brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+	</winkel>
+	
+	<winkel>
+		<locatie x="-1" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="-1" />
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="0" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="-1" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0" />
+		<grootte hoogte="1" breedte="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="-1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid>-1</brandbaarheid>
+	</winkel>
+</TEST>

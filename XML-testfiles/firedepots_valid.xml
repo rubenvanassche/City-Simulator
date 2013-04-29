@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<TEST>
+	<Brandweerkazerne>
+		<Naam>0</Naam>
+		<Locatie X="0" Y="0" />
+		<Ingang X="0" Y="0" />
+		<Brandbaarheid>10</Brandbaarheid>
+	</Brandweerkazerne>
+	
+	<brandweerkazerne>
+		<naam>1</naam>
+		<locatie x="0" y="0" />
+		<ingang x="0" y="0" />
+		<brandbaarheid>10</brandbaarheid>
+	</brandweerkazerne>
+	
+	<BRANDWEERKAZERNE>
+		<NAAM>2</NAAM>
+		<LOCATIE X="0" Y="0"/>
+		<INGANG X="0" Y="0"/>
+		<BRANDBAARHEID>10</BRANDBAARHEID>
+	</BRANDWEERKAZERNE>
+	
+	<brandweerkazerne>
+		<locatie x="0" y="0"/>
+		<naam>3</naam>
+		<brandbaarheid>10</brandbaarheid>
+		<ingang x="0" y="0"/>
+	</brandweerkazerne>
+	
+	<brandweerkazerne>
+		<naam>4</naam>
+		<locatie y="0" x="0" />
+		<ingang y="0" x="0" />
+		<brandbaarheid>10</brandbaarheid>
+	</brandweerkazerne>
+	
+	<brandweerkazerne>
+		<naam thequestion="?">5</naam>
+		<locatie x="0" y="0" theanswer="!"/>
+		<ingang x="0" y="0" thequestion="?" />
+		<brandbaarheid theanswer="!">10</brandbaarheid>
+	</brandweerkazerne>
+	
+	<brandweerkazerne>
+		<naam>6</naam>
+		<locatie x="0" y="0" />
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+		<useless attr="this is useless">useless text</useless>
+	</brandweerkazerne>
+	
+	<brandweerkazerne>
+		<naam>7</naam>
+		<locatie x="0" y="0"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>0</brandbaarheid>
+	</brandweerkazerne>
+</TEST>
