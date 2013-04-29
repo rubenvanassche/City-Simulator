@@ -489,19 +489,19 @@ bool Simulator::drive() {
 			}
 
 			// then check whether it's base is on fire (extinguish if so), then enter depot
-			if (vecFireTrucks[index]->getBase()->isBurning()) {
-				vecFireTrucks[index]->getBase()->stopFire();
+			if (vecFireTrucksArrived[index]->getBase()->isBurning()) {
+				vecFireTrucksArrived[index]->getBase()->stopFire();
 			}
 
-			vecFireTrucks[index]->enterDepot();
+			vecFireTrucksArrived[index]->enterDepot();
 		}
 		else {	// truck is on a building
-			Building* buildingOnFire = vecFireTrucks[index]->getBuilding();
+			Building* buildingOnFire = vecFireTrucksArrived[index]->getBuilding();
 			// first check whether the building is not burnt down
 			if (!buildingOnFire->isDead()) {
 				buildingOnFire->stopFire();
 			}
-			vecFireTrucks[index]->sendBack();
+			vecFireTrucksArrived[index]->sendBack();
 			buildingOnFire->withdrawFireTruckAssignment();
 		}
 	}
@@ -628,7 +628,9 @@ void Simulator::spreadFire(){
 			// Now we need to select a random house in the nextTargets vector and set it on fire
 			if(nextTargets.size() >= 1){
 				int randomIndex = rand() % nextTargets.size();
-				(*nextTargets.at(randomIndex).second).setFire();
+				if (!(*nextTargets.at(randomIndex).second).isDead() ) {
+					(*nextTargets.at(randomIndex).second).setFire();
+				}
 			}
 		}
 	}
@@ -660,12 +662,21 @@ void Simulator::spreadFire(){
 			// Now we need to select a random house in the nextTargets vector and set it on fire
 			if(nextTargets.size() >= 2){
 				int randomIndex = rand() % nextTargets.size();
-				(*nextTargets.at(randomIndex).second).setFire();
+				if (!(*nextTargets.at(randomIndex).second).isDead() ){
+					(*nextTargets.at(randomIndex).second).setFire();
+				}
+
 				int randomIndex2 = rand() % nextTargets.size();
-				(*nextTargets.at(randomIndex2).second).setFire();
+				if (!(*nextTargets.at(randomIndex2).second).isDead() ){
+					(*nextTargets.at(randomIndex2).second).setFire();
+				}
+
 			}else if(nextTargets.size() == 1){
 				int randomIndex = rand() % nextTargets.size();
-				(*nextTargets.at(randomIndex).second).setFire();
+				if (!(*nextTargets.at(randomIndex).second).isDead() ){
+					(*nextTargets.at(randomIndex).second).setFire();
+				}
+
 			}
 		}
 	}

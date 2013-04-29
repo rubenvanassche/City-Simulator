@@ -31,9 +31,6 @@ public:
     Out &operator<<(Point& p);
     std::string endl();
 
-    void error(const std::string& failure, const std::string& location, const int& line);
-
-
     bool indent();
     bool indent(const bool& yes);
     bool isIndenting();

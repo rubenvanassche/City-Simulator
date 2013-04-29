@@ -46,11 +46,6 @@ std::string Out::endl(){
 	return "\n";
 }
 
-void Out::error(const std::string& failure, const std::string& location, const int& line){
-	std::cout << "ERROR" << std::endl;
-	std::cout << failure << std::endl;
-	std::cout << "At " << location << " line: " << line << std::endl << std::endl;
-}
 
 
 bool Out::indent(){
