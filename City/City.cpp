@@ -576,6 +576,8 @@ std::ostream& City::print(){
   std::vector<Point> streetPoints;
 
   std::vector<Point> burningBuildingPoints;
+  std::vector<Point> deadBuildingPoints;
+  std::vector<Point> robbingshopPoints;
 
   // Buildings
 
@@ -583,6 +585,8 @@ std::ostream& City::print(){
 	  std::vector<Point> temp = (*fFireDepots.at(i)).calculatePoints();
 	  if((*fFireDepots.at(i)).isBurning()){
 		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else if((*fFireDepots.at(i)).isDead()){
+		  deadBuildingPoints.insert(deadBuildingPoints.end(), temp.begin(), temp.end() );
 	  }else{
 		  fireDepotPoints.insert(fireDepotPoints.end(), temp.begin(), temp.end() );
 	  }
@@ -592,6 +596,8 @@ std::ostream& City::print(){
 	  std::vector<Point> temp = (*fHouses.at(i)).calculatePoints();
 	  if((*fHouses.at(i)).isBurning()){
 		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else if((*fHouses.at(i)).isDead()){
+		  deadBuildingPoints.insert(deadBuildingPoints.end(), temp.begin(), temp.end() );
 	  }else{
 		  housePoints.insert(housePoints.end(), temp.begin(), temp.end() );
 	  }
@@ -601,6 +607,10 @@ std::ostream& City::print(){
 	  std::vector<Point> temp = (*fShops.at(i)).calculatePoints();
 	  if((*fShops.at(i)).isBurning()){
 		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else if((*fShops.at(i)).isDead()){
+		  deadBuildingPoints.insert(deadBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else if((*fShops.at(i)).isRobbing()){
+		  robbingshopPoints.insert(robbingshopPoints.end(), temp.begin(), temp.end() );
 	  }else{
 		  shopPoints.insert(shopPoints.end(), temp.begin(), temp.end() );
 	  }
@@ -610,6 +620,8 @@ std::ostream& City::print(){
 	  std::vector<Point> temp = (*fPoliceDepots.at(i)).calculatePoints();
 	  if((*fPoliceDepots.at(i)).isBurning()){
 		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else if((*fPoliceDepots.at(i)).isDead()){
+		  deadBuildingPoints.insert(deadBuildingPoints.end(), temp.begin(), temp.end() );
 	  }else{
 		  policeDepotPoints.insert(policeDepotPoints.end(), temp.begin(), temp.end() );
 	  }
@@ -619,6 +631,8 @@ std::ostream& City::print(){
 	  std::vector<Point> temp = (*fHospitals.at(i)).calculatePoints();
 	  if((*fHospitals.at(i)).isBurning()){
 		  burningBuildingPoints.insert(burningBuildingPoints.end(), temp.begin(), temp.end() );
+	  }else if((*fHospitals.at(i)).isDead()){
+		  deadBuildingPoints.insert(deadBuildingPoints.end(), temp.begin(), temp.end() );
 	  }else{
 		  hospitalPoints.insert(hospitalPoints.end(), temp.begin(), temp.end() );
 	  }
@@ -682,13 +696,11 @@ std::ostream& City::print(){
 
   for(unsigned int i = 0;i < fireDepotPoints.size();i++){
 	  Point newPoint = fireDepotPoints.at(i);
-	  std::cout << "Kazerne : " << newPoint << std::endl;
 	  map.at(newPoint.getX()).at(newPoint.getY()) = 'K';
   }
 
   for(unsigned int i = 0;i < housePoints.size();i++){
 	  Point newPoint = housePoints.at(i);
-	  std::cout << "huis : " << newPoint << std::endl;
 	  map.at(newPoint.getX()).at(newPoint.getY()) = 'H';
   }
 
@@ -710,6 +722,16 @@ std::ostream& City::print(){
   for(unsigned int i = 0;i < burningBuildingPoints.size();i++){
 	  Point newPoint = burningBuildingPoints.at(i);
 	  map.at(newPoint.getX()).at(newPoint.getY()) = '#';
+  }
+
+  for(unsigned int i = 0;i < deadBuildingPoints.size();i++){
+	  Point newPoint = deadBuildingPoints.at(i);
+	  map.at(newPoint.getX()).at(newPoint.getY()) = 'X';
+  }
+
+  for(unsigned int i = 0;i < robbingshopPoints.size();i++){
+	  Point newPoint = robbingshopPoints.at(i);
+	  map.at(newPoint.getX()).at(newPoint.getY()) = '&';
   }
 
   for(unsigned int i = 0;i < streetPoints.size();i++){
@@ -734,10 +756,10 @@ std::ostream& City::print(){
 
   // now let's add the map to the stream
 
-  for(unsigned int i = 1;i < biggestPoint.getY() + 1;i++){
-	  for(unsigned int j = 1;j < biggestPoint.getX() + 1;j++){
-		  stream << map.at(j).at(i);
-		  std::cout << map.at(j).at(i);
+  for(unsigned int i = 0;i < biggestPoint.getY() + 1;i++){
+	  for(unsigned int j = 0;j < biggestPoint.getX() + 1;j++){
+		  stream << map.at(j).at(biggestPoint.getY()-i);
+		  std::cout <<  map.at(j).at(biggestPoint.getY()-i);
 	  }
 	  stream << '\n';
 	  std::cout << std::endl;

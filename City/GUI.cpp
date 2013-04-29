@@ -382,9 +382,22 @@ void GUI::graphicalImpression(){
 	}
 
 	std::cout << "Grafische impressie tonen" << std::endl;
-	std::cout << "-------------------------" << std::endl << std::endl;
+	std::cout << "-------------------------" << std::endl;
+	std::cout << "P : Politiebureau" << std::endl;
+	std::cout << "K : Brandweerkazerne" << std::endl;
+	std::cout << "Z : Ziekenhuis" << std::endl;
+	std::cout << "W : Winkel" << std::endl;
+	std::cout << "& : Winkel die wordt overvallen" << std::endl;
+	std::cout << "H : Huis" << std::endl;
+	std::cout << "# : Brandend gebouw" << std::endl;
+	std::cout << "X : Kapot gebouw" << std::endl;
+	std::cout << "* : Brandweerwagen" << std::endl;
+	std::cout << "% : Politiewagen" << std::endl;
+	std::cout << "= : Ziekenwagen" << std::endl;
 
-	std::cout << (*city).print() << std::endl << std::endl << std::endl;
+	(*city).print();
+
+	std::cout << std::endl << std::endl << std::endl;
 
 	return GUI::start();
 }
