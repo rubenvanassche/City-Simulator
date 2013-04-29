@@ -14,14 +14,16 @@ bool Simulator::isInitialized() const {
 	return this == Simulator::fMyself;
 }
 
-Simulator::Simulator(City* town) {
+Simulator::Simulator(City* town, Output* output) {
 	REQUIRE(town->isInitialized(), "City is initialized");
 
 	fMyself = this;
 	fTown = town;
+	fOutput = output;
 
 	ENSURE(this->isInitialized(), "Simulator is initialized");
 	ENSURE(this->fTown == town, "Town is set");
+	ENSURE(this->fOutput == output, "output is set");
 }
 
 bool Simulator::endSimulation() const {
@@ -698,5 +700,7 @@ void Simulator::step(){
 	this->drive();
 
 	this->spreadFire();
+
+	(*fOutput).step();
 }
 

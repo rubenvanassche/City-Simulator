@@ -11,18 +11,20 @@
 #define SIMULATOR_H_
 
 #include "City.h"
+#include "Output.h"
 #include "DesignByContract.h"
 
 class Simulator {
 public:
 	bool isInitialized() const;
 
-	Simulator(City* town);
+	Simulator(City* town, Output* output);
 	// constructor
 	// REQUIRE(town->isInitialized(), "City is initialized");
 
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
 	// ENSURE(this->fTown == town, "Town is set");
+	// ENSURE(this->fOutput == output, "output is set");
 
 	bool endSimulation() const;
 	// checks whether it's the end of the simulation
@@ -78,6 +80,7 @@ public:
 
 private:
 	City* fTown;
+	Output* fOutput;
 
 	Simulator* fMyself;
 };

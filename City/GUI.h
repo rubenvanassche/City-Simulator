@@ -14,11 +14,11 @@
 #include "City.h"
 #include "Simulator.h"
 #include "CityParser.h"
-#include "Out.h"
+#include "Output.h"
 
 class GUI {
 public:
-	GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Out* outputPtr);
+	GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Output* outputPtr);
 	void start();
 	void readArguments(int argc, char* argv[]);
 	void readCity();
@@ -40,7 +40,7 @@ private:
 	City* city;
 	Simulator* simulator;
 	CityParser* parser;
-	Out* output;
+	Output* output;
 };
 
 #endif /* GUI_H_ */

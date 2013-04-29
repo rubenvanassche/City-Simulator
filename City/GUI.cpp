@@ -8,7 +8,7 @@
 #include "GUI.h"
 #include <sstream>
 
-GUI::GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Out* outputPtr) {
+GUI::GUI(City* cityPtr, Simulator* simulatorPtr, CityParser* parserPtr, Output* outputPtr) {
 	this->cityRead = false;
 	this->carsRead = false;
 	this->city = cityPtr;
@@ -367,9 +367,8 @@ void GUI::simpleOutput(){
 	std::cout << "Simpele uitvoer tonen" << std::endl;
 	std::cout << "---------------------" << std::endl << std::endl;
 
-	(*output).get();
 
-	std::cout << std::endl << std::endl << std::endl;
+	std::cout << (*output) << std::endl << std::endl << std::endl;
 
 	return GUI::start();
 }

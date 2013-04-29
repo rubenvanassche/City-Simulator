@@ -340,6 +340,11 @@ std::vector<PoliceTruck*> City::getPoliceTrucks() const {
 	return fPoliceTrucks;
 }
 
+std::vector<Ambulance*> City::getAmbulances() const {
+	REQUIRE(this->isInitialized(), "City is initialized");
+	return fAmbulances;
+}
+
 bool City::isInMap(const Point& p) {
 	REQUIRE(this->isInitialized(), "City is initialized");
 	REQUIRE(p.isInitialized(), "City is initialized");

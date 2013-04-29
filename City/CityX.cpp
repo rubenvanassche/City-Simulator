@@ -12,18 +12,18 @@
 #include "CityParser.h"
 #include "Simulator.h"
 #include "GUI.h"
-#include "Out.h"
+#include "Output.h"
 
 int main(int argc, char* argv[]){
-	std::string outputFile = "output.txt";
-
-	Out output(outputFile); // Our output
+	char filename[] = "output.txt";
 
 	City city; // Our City
 
 	CityParser parser(&city); // Our Parser
 
-	Simulator simulator(&city); // Our simulator
+	Output output(&city, filename); // Our output
+
+	Simulator simulator(&city, &output); // Our simulator
 
 	GUI gui(&city, &simulator, &parser, &output); // Our GUI
 

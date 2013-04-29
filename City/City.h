@@ -139,6 +139,10 @@ public:
 	std::vector<PoliceTruck*> getPoliceTrucks() const;
 	// REQUIRE(this->isInitialized(), "City is initialized");
 
+	std::vector<Ambulance*> getAmbulances() const;
+	// REQUIRE(this->isInitialized(), "City is initialized");
+
+
 	bool isInMap(const Point& p);
 	// checks whether a given point is on a street (so you can drive there)
 	// REQUIRE(this->isInitialized(), "City is initialized");
