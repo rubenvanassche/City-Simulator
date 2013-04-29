@@ -85,8 +85,8 @@ protected:
 			}
 		}
 		else {
-			EXPECT_DEATH(str.isElement(start), "\\w");
-			EXPECT_DEATH(str.isElement(end), "\\w");
+			EXPECT_DEATH(str.isElement(start), "");
+			EXPECT_DEATH(str.isElement(end), "");
 			return;
 		}
 	}
@@ -168,8 +168,8 @@ TEST_F(StreetTest, elements) {
 	EXPECT_FALSE(vertical.isElement(endIrregular));
 	EXPECT_FALSE(vertical.isElement(endHorizontal));
 
-	EXPECT_DEATH(irregular.isElement(endHorizontal), "\\w");	// oops, irregular street
-	EXPECT_DEATH(irregular.isElement(endVertical), "\\w");	// oops, irregular street
+	EXPECT_DEATH(irregular.isElement(endHorizontal), "");	// oops, irregular street
+	EXPECT_DEATH(irregular.isElement(endVertical), "");	// oops, irregular street
 }
 
 TEST_F(StreetTest, crossing) {
@@ -191,18 +191,18 @@ TEST_F(StreetTest, crossing) {
 
 	EXPECT_EQ(startHorizontal, horizontal.getCrosspoint(vertical));
 	EXPECT_EQ(startVertical, vertical.getCrosspoint(horizontal));
-	EXPECT_DEATH(horizontal.getCrosspoint(irregular), "\\w");	// oops, irregular street
-	EXPECT_DEATH(irregular.getCrosspoint(horizontal), "\\w");	// oops, irregular street
+	EXPECT_DEATH(horizontal.getCrosspoint(irregular), "");	// oops, irregular street
+	EXPECT_DEATH(irregular.getCrosspoint(horizontal), "");	// oops, irregular street
 
 	EXPECT_TRUE(horizontal.isParallel(horizontal1));
 	EXPECT_TRUE(horizontal1.isParallel(horizontal));
-	EXPECT_DEATH(horizontal.getCrosspoint(horizontal1), "\\w");
-	EXPECT_DEATH(horizontal1.getCrosspoint(horizontal), "\\w");
+	EXPECT_DEATH(horizontal.getCrosspoint(horizontal1), "");
+	EXPECT_DEATH(horizontal1.getCrosspoint(horizontal), "");
 
 	EXPECT_TRUE(vertical.isParallel(vertical1));
 	EXPECT_TRUE(vertical1.isParallel(vertical));
-	EXPECT_DEATH(vertical.getCrosspoint(vertical1), "\\w");
-	EXPECT_DEATH(vertical1.getCrosspoint(vertical), "\\w");
+	EXPECT_DEATH(vertical.getCrosspoint(vertical1), "");
+	EXPECT_DEATH(vertical1.getCrosspoint(vertical), "");
 }
 
 

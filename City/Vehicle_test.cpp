@@ -59,14 +59,14 @@ TEST_F(VehicleTest, driving) {
 	EXPECT_TRUE(car.isOnWay());
 	EXPECT_FALSE(car.isArrived());
 
-	EXPECT_DEATH(car.goLeft(), "\\w");	// oops, just got negative coordinates
+	EXPECT_DEATH(car.goLeft(), "");	// oops, just got negative coordinates
 
 	EXPECT_NO_FATAL_FAILURE(car.goRight());
 	EXPECT_EQ(Point(pos.getX() + 1, pos.getY()), car.getPosition());
 	EXPECT_TRUE(car.isOnWay());
 	EXPECT_FALSE(car.isArrived());
 
-	EXPECT_DEATH(car.goDown(), "\\w");	// oops, just got negative coordinates
+	EXPECT_DEATH(car.goDown(), "");	// oops, just got negative coordinates
 
 	EXPECT_NO_FATAL_FAILURE(car.goUp());
 	EXPECT_EQ(Point(pos.getX() + 1, pos.getY() + 1), car.getPosition());
@@ -84,14 +84,14 @@ TEST_F(VehicleTest, driving) {
 	EXPECT_TRUE(car.isOnWay());
 	EXPECT_FALSE(car.isArrived());
 
-	EXPECT_DEATH(car.goLeft(), "\\w");	// oops, just got negative coordinates!
+	EXPECT_DEATH(car.goLeft(), "");	// oops, just got negative coordinates!
 
 	EXPECT_NO_FATAL_FAILURE(car.goDown());
 	EXPECT_EQ(pos, car.getPosition());
 	EXPECT_FALSE(car.isOnWay());
 	EXPECT_TRUE(car.isArrived());
 
-	EXPECT_DEATH(car.goDown(), "\\w");	// ooops, just got negative coordinates!
+	EXPECT_DEATH(car.goDown(), "");	// ooops, just got negative coordinates!
 
 	// end of driving
 }

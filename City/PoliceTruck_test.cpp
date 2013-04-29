@@ -70,7 +70,7 @@ TEST_F(PoliceTruckTest, sending) {
 	EXPECT_TRUE(truck.isArrived());
 
 	// first send the policetruck
-	EXPECT_DEATH(truck.send(ptrAppleStore, ptrAppleStore->getLocation()), "\\w");	// ooops, AppleStore is not being robbed!
+	EXPECT_DEATH(truck.send(ptrAppleStore, ptrAppleStore->getLocation()), "");	// ooops, AppleStore is not being robbed!
 
 	// HOORAY! Let's rob AppleStore!
 	EXPECT_NO_FATAL_FAILURE(ptrAppleStore->startRobbing());
@@ -85,7 +85,7 @@ TEST_F(PoliceTruckTest, sending) {
 	EXPECT_EQ(entrDepot, truck.getPosition());
 
 	// then drive to the AppleStore
-	EXPECT_DEATH(truck.goLeft(), "\\w");	// ooops, you just got negative coordinates!
+	EXPECT_DEATH(truck.goLeft(), "");	// ooops, you just got negative coordinates!
 
 	EXPECT_NO_FATAL_FAILURE(truck.goRight());
 	EXPECT_EQ(Point(entrDepot.getX() + 1, entrDepot.getY()), truck.getPosition());
@@ -94,7 +94,7 @@ TEST_F(PoliceTruckTest, sending) {
 	EXPECT_TRUE(truck.isOnWay());
 	EXPECT_FALSE(truck.isArrived());
 
-	EXPECT_DEATH(truck.goDown(), "\\w");	// oops you just got negative coordinates!
+	EXPECT_DEATH(truck.goDown(), "");	// oops you just got negative coordinates!
 
 	EXPECT_NO_FATAL_FAILURE(truck.goUp());
 	EXPECT_EQ(Point(entrDepot.getX() + 1, entrDepot.getY() + 1), truck.getPosition());
@@ -104,7 +104,7 @@ TEST_F(PoliceTruckTest, sending) {
 	EXPECT_TRUE(truck.isArrived());
 
 	// then sendback
-	EXPECT_DEATH(truck.sendBack(), "\\w");	// ooops, the AppleStore is still being robbed
+	EXPECT_DEATH(truck.sendBack(), "");	// ooops, the AppleStore is still being robbed
 	EXPECT_NO_FATAL_FAILURE(truck.getShop()->stopRobbing());
 
 	EXPECT_NO_FATAL_FAILURE(truck.sendBack());
@@ -123,7 +123,7 @@ TEST_F(PoliceTruckTest, sending) {
 	EXPECT_TRUE(truck.isOnWay());
 	EXPECT_FALSE(truck.isArrived());
 
-	EXPECT_DEATH(truck.goLeft(), "\\w"); // oops, just got negative coordinates!
+	EXPECT_DEATH(truck.goLeft(), ""); // oops, just got negative coordinates!
 
 	EXPECT_NO_FATAL_FAILURE(truck.goDown());
 	EXPECT_EQ(entrDepot, truck.getPosition());
@@ -134,7 +134,7 @@ TEST_F(PoliceTruckTest, sending) {
 
 	// okay, enter depot, but it went on fire suddenly
 	EXPECT_NO_FATAL_FAILURE(ptrBase->setFire());
-	EXPECT_DEATH(truck.enterDepot(), "\\w");	// oops, base is on fire!
+	EXPECT_DEATH(truck.enterDepot(), "");	// oops, base is on fire!
 
 	// a firetruck is arrived and stopped the fire
 	EXPECT_NO_FATAL_FAILURE(ptrBase->stopFire());

@@ -40,12 +40,12 @@ TEST_F(PointTest, construct) {
 	EXPECT_NO_FATAL_FAILURE(Point positive(positive0, positive1));
 	EXPECT_NO_FATAL_FAILURE(Point positive(positive1, positive0));
 
-	EXPECT_DEATH(Point negative(negative0, negative1), "\\w");
-	EXPECT_DEATH(Point negative(negative1, negative0), "\\w");
-	EXPECT_DEATH(Point negative(negative0, positive1), "\\w");
-	EXPECT_DEATH(Point negative(negative1, positive0), "\\w");
-	EXPECT_DEATH(Point negative(positive0, negative1), "\\w");
-	EXPECT_DEATH(Point negative(positive1, negative0), "\\w");
+	EXPECT_DEATH(Point negative(negative0, negative1), "");
+	EXPECT_DEATH(Point negative(negative1, negative0), "");
+	EXPECT_DEATH(Point negative(negative0, positive1), "");
+	EXPECT_DEATH(Point negative(negative1, positive0), "");
+	EXPECT_DEATH(Point negative(positive0, negative1), "");
+	EXPECT_DEATH(Point negative(positive1, negative0), "");
 }
 
 TEST_F(PointTest, setters_getters) {
@@ -70,15 +70,15 @@ TEST_F(PointTest, setters_getters) {
 	EXPECT_EQ(positive0, positive_1.getX());
 	EXPECT_EQ(positive1, positive_1.getY());
 
-	EXPECT_DEATH(null.set(negative0, negative1), "\\w");
-	EXPECT_DEATH(null.set(positive0, negative1), "\\w");
-	EXPECT_DEATH(null.set(negative1, positive1), "\\w");
-	EXPECT_DEATH(positive_0.set(negative0, negative1), "\\w");
-	EXPECT_DEATH(positive_0.set(positive0, negative1), "\\w");
-	EXPECT_DEATH(positive_0.set(negative1, positive1), "\\w");
-	EXPECT_DEATH(positive_1.set(negative0, negative1), "\\w");
-	EXPECT_DEATH(positive_1.set(positive0, negative1), "\\w");
-	EXPECT_DEATH(positive_1.set(negative1, positive1), "\\w");
+	EXPECT_DEATH(null.set(negative0, negative1), "");
+	EXPECT_DEATH(null.set(positive0, negative1), "");
+	EXPECT_DEATH(null.set(negative1, positive1), "");
+	EXPECT_DEATH(positive_0.set(negative0, negative1), "");
+	EXPECT_DEATH(positive_0.set(positive0, negative1), "");
+	EXPECT_DEATH(positive_0.set(negative1, positive1), "");
+	EXPECT_DEATH(positive_1.set(negative0, negative1), "");
+	EXPECT_DEATH(positive_1.set(positive0, negative1), "");
+	EXPECT_DEATH(positive_1.set(negative1, positive1), "");
 }
 
 TEST_F(PointTest, copying) {

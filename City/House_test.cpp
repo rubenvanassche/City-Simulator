@@ -46,18 +46,18 @@ TEST_F(HouseTest, fire) {
 
 	EXPECT_FALSE(home.isBurning());
 
-	EXPECT_DEATH(home.burningDown(), "\\w");	// ooops, house is not on fire
-	EXPECT_DEATH(home.stopFire(), "\\w");	// oops, house is not on fire
+	EXPECT_DEATH(home.burningDown(), "");	// ooops, house is not on fire
+	EXPECT_DEATH(home.stopFire(), "");	// oops, house is not on fire
 
 	EXPECT_FALSE(home.isDead());
 	EXPECT_FALSE(home.startSpreadingFire());
 	EXPECT_FALSE(home.startRepair());
 
-	EXPECT_DEATH(home.repair(), "\\w");	// oops, house has still it's original health
+	EXPECT_DEATH(home.repair(), "");	// oops, house has still it's original health
 
 	EXPECT_FALSE(home.isFireTruckAssigned());
-	EXPECT_DEATH(home.assignFireTruck(), "\\w");	// oops, the house is not on fire
-	EXPECT_DEATH(home.withdrawFireTruckAssignment(), "\\w");	// oops, there is no firetruck assigned
+	EXPECT_DEATH(home.assignFireTruck(), "");	// oops, the house is not on fire
+	EXPECT_DEATH(home.withdrawFireTruckAssignment(), "");	// oops, there is no firetruck assigned
 
 	// okay, start the fire scenario
 	EXPECT_NO_FATAL_FAILURE(home.setFire());
@@ -68,14 +68,14 @@ TEST_F(HouseTest, fire) {
 	EXPECT_FALSE(home.startSpreadingFire());	// no, it has lost only 1 health points
 	EXPECT_FALSE(home.startRepair());
 
-	EXPECT_DEATH(home.repair(), "\\w");	// oops, house is still on fire
+	EXPECT_DEATH(home.repair(), "");	// oops, house is still on fire
 
 	// let's send a firetruck
 	EXPECT_NO_FATAL_FAILURE(home.assignFireTruck());
 	EXPECT_TRUE(home.isFireTruckAssigned());
 
 	// extinguish fire, repair and sendback firetruck
-	EXPECT_DEATH(home.withdrawFireTruckAssignment(), "\\w");	// oops, house is still on fire
+	EXPECT_DEATH(home.withdrawFireTruckAssignment(), "");	// oops, house is still on fire
 
 	EXPECT_NO_FATAL_FAILURE(home.stopFire());
 	EXPECT_FALSE(home.isBurning());
