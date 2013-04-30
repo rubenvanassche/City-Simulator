@@ -130,8 +130,8 @@ bool Simulator::sendFireTrucks() {
 			continue;
 		}
 		if (vecTrucks[index]->isInDepot()) {
-			if (vecAvailableTrucks[index]->getBase()->isBurning()) {
-				vecAvailableTrucks[index]->getBase()->stopFire();
+			if (vecTrucks[index]->getBase()->isBurning()) {
+				vecTrucks[index]->getBase()->stopFire();
 			}
 			vecAvailableTrucks.push_back(vecTrucks[index]);
 		}
