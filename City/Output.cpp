@@ -239,6 +239,71 @@ void Output::hospitalsTrucks(){
 	}
 }
 
+void Output::shopsRepairing(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
+	std::vector<Shop*> buildings = this->fTown->getShops();
+	for(unsigned int i = 0;i < buildings.size();i++){
+		if(buildings.at(i)->startRepair()){
+			this->fOut << "Winkel op locatie " << buildings.at(i)->getLocation() << " is zichzelf aan het herstellen, " << buildings.at(i)->getHealth() << " HP.\n";
+		}
+	}
+}
+
+
+void Output::housesRepairing(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
+	std::vector<House*> buildings = this->fTown->getHouses();
+	for(unsigned int i = 0;i < buildings.size();i++){
+		if(buildings.at(i)->startRepair()){
+			this->fOut << "Huis op locatie " << buildings.at(i)->getLocation() << " is zichzelf aan het herstellen, " << buildings.at(i)->getHealth() << " HP.\n";
+		}
+	}
+}
+
+
+void Output::fireDepotsRepairing(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
+	std::vector<FireDepot*> buildings = this->fTown->getFireDepots();
+	for(unsigned int i = 0;i < buildings.size();i++){
+		if(buildings.at(i)->startRepair()){
+			this->fOut << "Brandweerkazerne op locatie " << buildings.at(i)->getLocation() << " is zichzelf aan het herstellen, " << buildings.at(i)->getHealth() << " HP.\n";
+		}
+	}
+}
+
+
+void Output::policeDepotsRepairing(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
+	std::vector<PoliceDepot*> buildings = this->fTown->getPoliceDepots();
+	for(unsigned int i = 0;i < buildings.size();i++){
+		if(buildings.at(i)->startRepair()){
+			this->fOut << "Politiebureau op locatie " << buildings.at(i)->getLocation() << " is zichzelf aan het herstellen, " << buildings.at(i)->getHealth() << " HP.\n";
+		}
+	}
+}
+
+
+void Output::HospitalsRepairing(){
+	REQUIRE((*fTown).isInitialized(), "City is initialized");
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
+	std::vector<Hospital*> buildings = this->fTown->getHospitals();
+	for(unsigned int i = 0;i < buildings.size();i++){
+		if(buildings.at(i)->startRepair()){
+			this->fOut << "Ziekenhuis op locatie " << buildings.at(i)->getLocation() << " is zichzelf aan het herstellen, " << buildings.at(i)->getHealth() << " HP.\n";
+		}
+	}
+}
+
+
 void Output::parse(){
 	REQUIRE(this->isInitialized(), "Output is initialized");
 
@@ -263,6 +328,14 @@ void Output::parse(){
 	this->fireDepotsTrucks();
 	this->policeDepotsTrucks();
 	this->hospitalsTrucks();
+
+	fOut << "\nGebouwen die gerepareerd worden:\n";
+
+	this->shopsRepairing();
+	this->housesRepairing();
+	this->fireDepotsRepairing();
+	this->policeDepotsRepairing();
+	this->HospitalsRepairing();
 
 	fOut << "\n\n\n";
 }

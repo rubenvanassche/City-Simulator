@@ -130,9 +130,6 @@ bool Simulator::sendFireTrucks() {
 			continue;
 		}
 		if (vecTrucks[index]->isInDepot()) {
-			if (vecTrucks[index]->getBase()->isBurning()) {
-				vecTrucks[index]->getBase()->stopFire();
-			}
 			vecAvailableTrucks.push_back(vecTrucks[index]);
 		}
 		else {	// truck is not in depot
@@ -726,6 +723,10 @@ void Simulator::step(){
 
 	if (!this->endSimulation()) {
 		this->spreadFire();
+	}
+
+	if (!this->endSimulation()) {
+		this->repairBuildings();
 	}
 
 	(*fOutput).step();

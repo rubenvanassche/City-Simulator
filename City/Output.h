@@ -112,6 +112,31 @@ private:
 	// REQUIRE((*fTown).isInitialized(), "City is initialized");
 	// REQUIRE(this->isInitialized(), "Output is initialized");
 
+	void shopsRepairing();
+	// Write all the shops who are repairing
+	// REQUIRE((*fTown).isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "Output is initialized");
+
+	void housesRepairing();
+	// Write all the houses who are repairing
+	// REQUIRE((*fTown).isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "Output is initialized");
+
+	void fireDepotsRepairing();
+	// Write all the fire depots who are repairing
+	// REQUIRE((*fTown).isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "Output is initialized");
+
+	void policeDepotsRepairing();
+	// Write all the police depots who are repairing
+	// REQUIRE((*fTown).isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "Output is initialized");
+
+	void HospitalsRepairing();
+	// Write all the hospitals who are repairing
+	// REQUIRE((*fTown).isInitialized(), "City is initialized");
+	// REQUIRE(this->isInitialized(), "Output is initialized");
+
 	City* fTown;
 
 	std::stringstream fOut;
