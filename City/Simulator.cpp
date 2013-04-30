@@ -35,7 +35,7 @@ bool Simulator::endSimulation() const {
 
 bool Simulator::fireBreaksOut() {
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
-	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	//REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
 	std::vector<Building*> vecBuildings;
 
@@ -695,15 +695,29 @@ void Simulator::spreadFire(){
 }
 
 void Simulator::step(){
-	this->burningDown();
-	this->sendFireTrucks();
+	if (!this->endSimulation()) {
+		this->burningDown();
+	}
 
-	this->robbing();
-	this->sendPoliceTrucks();
+	if (!this->endSimulation()) {
+		this->sendFireTrucks();
+	}
 
-	this->drive();
+	if (!this->endSimulation()) {
+		this->robbing();
+	}
 
-	this->spreadFire();
+	if (!this->endSimulation()) {
+		this->sendPoliceTrucks();
+	}
+
+	if (!this->endSimulation()) {
+		this->drive();
+	}
+
+	if (!this->endSimulation()) {
+		this->spreadFire();
+	}
 
 	(*fOutput).step();
 }

@@ -453,10 +453,15 @@ void GUI::multipleSimulationStep(){
 	int numberOfSteps;
 	std::cin >> numberOfSteps;
 
-	for(int i = 0;i < numberOfSteps;i++){
+	int i = 0;
+	for(;i < numberOfSteps;i++){
 		(*simulator).step();
+		if (simulator->endSimulation()) {
+			std::cout << "U kunt niets meer doen: de stad is platgebrand." << std::endl;
+			break;
+		}
 	}
 
-	std::cout << numberOfSteps << " stappen in de simulatie uitgevoerd." << std::endl << std::endl << std::endl;
+	std::cout << i << " stappen in de simulatie uitgevoerd." << std::endl << std::endl << std::endl;
 	return GUI::start();
 }
