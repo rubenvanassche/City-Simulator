@@ -126,6 +126,9 @@ bool Simulator::sendFireTrucks() {
 
 	std::vector<FireTruck*> vecTrucks = fTown->getFireTrucks();
 	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
+		if (vecTrucks[index]->getBase()->isDead()) {
+			continue;
+		}
 		if (vecTrucks[index]->isInDepot()) {
 			vecAvailableTrucks.push_back(vecTrucks[index]);
 		}
@@ -177,6 +180,14 @@ bool Simulator::sendFireTrucks() {
 		}
 	}
 
+	// then iterate over firedepots on fire
+	for (unsigned int index = 0; index < vecFireDepotsOnFire.size(); index++) {
+		// if there are trucks in the depot, then stop the fire
+		if (vecFireDepotsOnFire[index]->getAvailableVehicles() > 0) {
+			vecFireDepotsOnFire[index]->stopFire();
+		}
+	}
+
 	// iterate over buildings that is on fire (except firedepot, that is a special case)
 	for (unsigned int index = 0; index < vecBuildingsOnFire.size(); index++) {
 		if (vecBuildingsOnFire[index]->isFireTruckAssigned() ) {
@@ -214,14 +225,6 @@ bool Simulator::sendFireTrucks() {
 
 		vecBuildingsOnFire[index]->assignFireTruck();
 		truck->send(vecBuildingsOnFire[index], destination);
-	}
-
-	// then iterate over firedepots on fire
-	for (unsigned int index = 0; index < vecFireDepotsOnFire.size(); index++) {
-		// if there are trucks in the depot, then stop the fire
-		if (vecFireDepotsOnFire[index]->getAvailableVehicles() > 0) {
-			vecFireDepotsOnFire[index]->stopFire();
-		}
 	}
 
 	return true;
@@ -355,6 +358,9 @@ bool Simulator::sendPoliceTrucks() {
 
 	std::vector<PoliceTruck*> vecTrucks = fTown->getPoliceTrucks();
 	for (unsigned int index = 0; index < vecTrucks.size(); index++) {
+		if (vecTrucks[index]->getBase()->isDead()) {
+			continue;
+		}
 		if (vecTrucks[index]->isInDepot()) {
 			vecAvailableTrucks.push_back(vecTrucks[index]);
 		}
