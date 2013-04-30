@@ -109,7 +109,6 @@ bool Check::go(const Building& building) {
 	REQUIRE(building.isInitialized(), "Building is initialized");
 
 	if (!this->fit(building)) {
-		std::cout << "Building does not fit"<< std::endl;
 		return false;
 	}
 
