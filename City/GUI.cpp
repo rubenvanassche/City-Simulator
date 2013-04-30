@@ -294,6 +294,7 @@ void GUI::burning(){
 	std::cout << "-------------------------------" << std::endl << std::endl;
 
 	if ( (*simulator).burningDown() ) {
+		(*simulator).spreadFire();
 		std::cout << "Gebouwen branden af." << std::endl << std::endl << std::endl;
 	}
 	else {

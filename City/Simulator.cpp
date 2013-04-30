@@ -645,10 +645,35 @@ void Simulator::spreadFire(){
 
 			// Now we need to select a random house in the nextTargets vector and set it on fire
 			if(nextTargets.size() >= 1){
-				int randomIndex = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex).second).isDead() ) {
-					(*nextTargets.at(randomIndex).second).setFire();
+				// check if all houses are death
+
+				bool allDeath = true; // If true, there are no houses anymore to set on fire because they are all death or burning
+
+				for(unsigned int i = 0;i < nextTargets.size();i++){
+					if(!(*nextTargets.at(i).second).isDead()){
+						if(!(*nextTargets.at(i).second).isBurning()){
+							allDeath = false;
+						}
+					}
 				}
+
+				if(allDeath == true){
+					return;
+				}
+
+				// Yeey there is still a house we can set on fire
+
+				for(;true;){
+					int randomIndex = rand() % nextTargets.size();
+					if (!(*nextTargets.at(randomIndex).second).isDead() ) {
+						if(!(*nextTargets.at(randomIndex).second).isBurning() ){
+							(*nextTargets.at(randomIndex).second).setFire();
+							break;
+						}
+					}
+				}
+
+
 			}
 		}
 	}
@@ -679,22 +704,87 @@ void Simulator::spreadFire(){
 
 			// Now we need to select a random house in the nextTargets vector and set it on fire
 			if(nextTargets.size() >= 2){
-				int randomIndex = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex).second).isDead() ){
-					(*nextTargets.at(randomIndex).second).setFire();
+				// check if all houses are death
+
+				bool allDeath = true; // If true, there are no houses anymore to set on fire because they are all death or burning
+
+				for(unsigned int i = 0;i < nextTargets.size();i++){
+					if(!(*nextTargets.at(i).second).isDead()){
+						if(!(*nextTargets.at(i).second).isBurning()){
+							allDeath = false;
+						}
+					}
 				}
 
-				int randomIndex2 = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex2).second).isDead() ){
-					(*nextTargets.at(randomIndex2).second).setFire();
+				if(allDeath == true){
+					return;
 				}
 
+				// Yeey there is still a house we can set on fire
+
+				for(;true;){
+					int randomIndex = rand() % nextTargets.size();
+					if (!(*nextTargets.at(randomIndex).second).isDead() ) {
+						if(!(*nextTargets.at(randomIndex).second).isBurning() ){
+							(*nextTargets.at(randomIndex).second).setFire();
+							break;
+						}
+					}
+				}
+
+				// and again
+
+				allDeath = true;
+
+				for(unsigned int i = 0;i < nextTargets.size();i++){
+					if(!(*nextTargets.at(i).second).isDead()){
+						if(!(*nextTargets.at(i).second).isBurning()){
+							allDeath = false;
+						}
+					}
+				}
+
+				if(allDeath == true){
+					return;
+				}
+
+				for(;true;){
+					int randomIndex = rand() % nextTargets.size();
+					if (!(*nextTargets.at(randomIndex).second).isDead() ) {
+						if(!(*nextTargets.at(randomIndex).second).isBurning() ){
+							(*nextTargets.at(randomIndex).second).setFire();
+							break;
+						}
+					}
+				}
 			}else if(nextTargets.size() == 1){
-				int randomIndex = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex).second).isDead() ){
-					(*nextTargets.at(randomIndex).second).setFire();
+				// check if all houses are death
+
+				bool allDeath = true; // If true, there are no houses anymore to set on fire because they are all death or burning
+
+				for(unsigned int i = 0;i < nextTargets.size();i++){
+					if(!(*nextTargets.at(i).second).isDead()){
+						if(!(*nextTargets.at(i).second).isBurning()){
+							allDeath = false;
+						}
+					}
 				}
 
+				if(allDeath == true){
+					return;
+				}
+
+				// Yeey there is still a house we can set on fire
+
+				for(;true;){
+					int randomIndex = rand() % nextTargets.size();
+					if (!(*nextTargets.at(randomIndex).second).isDead() ) {
+						if(!(*nextTargets.at(randomIndex).second).isBurning() ){
+							(*nextTargets.at(randomIndex).second).setFire();
+							break;
+						}
+					}
+				}
 			}
 		}
 	}
