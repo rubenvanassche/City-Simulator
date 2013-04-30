@@ -1,60 +1,44 @@
-
-
-
-
-
-
-
-
-
-
-
-OVERVALBAARHEID NOG!!!
-
-
-
-
-
-
-
-
-
-
 <?xml version="1.0" ?>
 <TEST>
 	<Winkel>
 		<Locatie X="0" Y="0"/>
 		<Grootte Hoogte="1" Breedte="1"/>
 		<Brandbaarheid>10</Brandbaarheid>
+		<Overvalbaarheid>10</Overvalbaarheid>
 	</Winkel>
 	
 	<winkel>
 		<locatie x="0" y="0"/>
 		<grootte hoogte="1" breedte="1"/>
 		<brandbaarheid>10</brandbaarheid>
+		<overvalbaarheid>10</overvalbaarheid>
 	</winkel>
 	
 	<WINKEL>
 		<LOCATIE X="0" Y="0"/>
 		<GROOTTE HOOGTE="1" BREEDTE="1"/>
 		<BRANDBAARHEID>10</BRANDBAARHEID>
+		<OVERVALBAARHEID>10</OVERVALBAARHEID>
 	</WINKEL>
 	
 	<winkel>
 		<locatie y="0" x="0"/>
 		<grootte hoogte="1" breedte="1"/>
 		<brandbaarheid>10</brandbaarheid>
+		<overvalbaarheid>10</overvalbaarheid>
 	</winkel>
 	
 	<winkel>
 		<locatie x="0" y="0"/>
 		<grootte breedte="1" hoogte="1"/>
 		<brandbaarheid>10</brandbaarheid>
+		<overvalbaarheid>10</overvalbaarheid>
 	</winkel>
 	
 	<winkel>
 		<grootte hoogte="1" breedte="1"/>
 		<locatie x="0" y="0"/>
+		<overvalbaarheid>10</overvalbaarheid>
 		<brandbaarheid>10</brandbaarheid>
 	</winkel>
 	
@@ -62,12 +46,14 @@ OVERVALBAARHEID NOG!!!
 		<locatie x="0" y="0" thequestion="?"/>
 		<grootte hoogte="1" breedte="1" theanswer="42"/>
 		<brandbaarheid useless="this is useless">10</brandbaarheid>
+		<overvalbaarheid thisispointless="pointless">10</overvalbaarheid>
 	</winkel>
 	
 	<winkel>
 		<locatie x="0" y="0"/>
 		<grootte hoogte="1" breedte="1"/>
 		<brandbaarheid>10</brandbaarheid>
+		<overvalbaarheid>10</overvalbaarheid>
 		<pointless_button warning="do not press this pointless button">KABOOM</pointless_button>
 	</winkel>
 	
@@ -75,5 +61,13 @@ OVERVALBAARHEID NOG!!!
 		<locatie x="0" y="0"/>
 		<grootte hoogte="1" breedte="1" />
 		<brandbaarheid>0</brandbaarheid>
+		<overvalbaarheid>10</overvalbaarheid>
+	</winkel>
+	
+	<winkel>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+		<overvalbaarheid>0</overvalbaarheid>
 	</winkel>
 </TEST>

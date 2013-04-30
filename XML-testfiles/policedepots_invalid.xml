@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<TEST>
+	<politiebureau>
+		<naam></naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>0</naam>
+		<locatie x="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>1</naam>
+		<locatie y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>2</naam>
+		<locatie/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>3</naam>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>4</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" />
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>5</naam>
+		<locatie x="0" y="0"/>
+		<grootte/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>6</naam>
+		<locatie x="0" y="0"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>7</naam>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<ingang x="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>8</naam>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<ingang y="0" />
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>9</naam>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<ingang />
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>10</naam>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>11</naam>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid/>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>12</naam>
+		<locatie x="0" y="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<ingang x="0" y="0"/>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>13</naam>
+		<locatie x="0" y="-1"/>
+		<grootte hoogte="0" breedte="0"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>14</naam>
+		<locatie x="-1" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>15</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="0" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>16</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="0"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>17</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="-1"/>
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>18</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="-1" y="0" />
+		<brandbaarheid>10</brandbaarheid>
+	</politiebureau>
+	
+	<politiebureau>
+		<naam>19</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0" />
+		<brandbaarheid>-1</brandbaarheid>
+	</politiebureau>
+</TEST>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<TEST>
+	<ziekenwagen>
+		<naam></naam>
+		<basis>bestaat</basis>
+	</ziekenwagen>
+	
+	<ziekenwagen>
+		<basis>bestaat</basis>
+	</ziekenwagen>
+	
+	<ziekenwagen>
+		<naam>0</naam>
+		<basis></basis>
+	</ziekenwagen>
+	
+	<ziekenwagen>
+		<naam>1</naam>
+	</ziekenwagen>
+	
+	<ziekenwagen>
+		<naam>2</naam>
+		<basis>bestaat niet</basis>
+	</ziekenwagen>
+</TEST>

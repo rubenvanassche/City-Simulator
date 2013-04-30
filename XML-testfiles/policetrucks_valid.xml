@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<TEST>
+	<Politiewagen>
+		<Naam>0</Naam>
+		<Basis>bestaat</Basis>
+	</Politiewagen>
+	
+	<politiewagen>
+		<naam>1</naam>
+		<basis>bestaat</basis>
+	</politiewagen>
+	
+	<POLITIEWAGEN>
+		<NAAM>2</NAAM>
+		<BASIS>bestaat</BASIS>
+	</POLITIEWAGEN>
+	
+	<politiewagen>
+		<basis>bestaat</basis>
+		<naam>3</naam>
+	</politiewagen>
+	
+	<politiewagen>
+		<naam thesirene="wieuwieuwieuw!">4</naam>
+		<basis thecrash="wieuwieuBOOM!">bestaat</basis>
+	</politiewagen>
+	
+	<politiewagen>
+		<naam>5</naam>
+		<basis>bestaat</basis>
+		<random random="42">it's something</random>
+	</politiewagen>
+</TEST>

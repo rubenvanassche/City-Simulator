@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<TEST>
+	<politiewagen>
+		<naam></naam>
+		<basis>bestaat</basis>
+	</politiewagen>
+	
+	<politiewagen>
+		<basis>bestaat</basis>
+	</politiewagen>
+	
+	<politiewagen>
+		<naam>0</naam>
+		<basis></basis>
+	</politiewagen>
+	
+	<politiewagen>
+		<naam>1</naam>
+	</politiewagen>
+	
+	<politiewagen>
+		<naam>2</naam>
+		<basis>bestaat niet</basis>
+	</politiewagen>
+</TEST>

@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<TEST>
+	<Ziekenhuis>
+		<Naam>0</Naam>
+		<Locatie X="0" Y="0"/>
+		<Grootte Hoogte="1" Breedte="1"/>
+		<Ingang X="0" Y="0"/>
+		<Brandbaarheid>10</Brandbaarheid>
+	</Ziekenhuis>
+	
+	<ziekenhuis>
+		<naam>1</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1"/>
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</ziekenhuis>
+	
+	<ZIEKENHUIS>
+		<NAAM>2</NAAM>
+		<LOCATIE X="0" Y="0"/>
+		<GROOTTE HOOGTE="1" BREEDTE="1"/>
+		<INGANG X="0" Y="0"/>
+		<BRANDBAARHEID>10</BRANDBAARHEID>
+	</ZIEKENHUIS>
+	
+	<ziekenhuis>
+		<naam>3</naam>
+		<locatie y="0" x="0"/>
+		<grootte breedte="1" hoogte="1"/>
+		<ingang y="0" x="0"/>
+		<brandbaarheid>10</brandbaarheid>
+	</ziekenhuis>
+	
+	<ziekenhuis>
+		<grootte hoogte="1" breedte="1"/>
+		<naam>4</naam>
+		<locatie x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+		<ingang x="0" y="0"/>
+	</ziekenhuis>
+	
+	<ziekenhuis>
+		<naam thequestion="To be or not to be">5</naam>
+		<grootte hoogte="1" breedte="1" theanswer="that's the question"/>
+		<locatie x="0" y="0" author="shakespeare"/>
+		<ingang x="0" y="0" thequestion="Shall I pass the test?"/>
+		<brandbaarheid theanswer="yes!">10</brandbaarheid>
+	</ziekenhuis>
+	
+	<ziekenhuis>
+		<naam>6</naam>
+		<locatie x="0" y="0"/>
+		<grootte hoogte="1" breedte="1" />
+		<ingang x="0" y="0"/>
+		<brandbaarheid>10</brandbaarheid>
+		<random pi="3.14">Life of Pi</random>
+	</ziekenhuis>
+</TEST>

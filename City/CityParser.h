@@ -57,7 +57,7 @@ public:
 	// parse one ambulance
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 
-	bool parsePoliceCar(TiXmlElement* node);
+	bool parsePoliceTruck(TiXmlElement* node);
 	// parse one ambulance
 	// REQUIRE(this->isInitialized(), "Parser is initialized");
 

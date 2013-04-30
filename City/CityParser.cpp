@@ -186,7 +186,7 @@ bool CityParser::parseHouse(TiXmlElement* node) {
 		std::cout << "Y coordinaat van huis ontbreekt/ongeldig." << std::endl;
 		return false;
 	}
-	else if (!foundFlam) {
+	else if ( (!foundFlam) || (flam < 0) ) {
 		std::cout << "Brandbaarheid van huis ontbreekt." << std::endl;
 		return false;
 	}
@@ -265,6 +265,12 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 		}
 		else if (subtag == "brandbaarheid") {
 			foundFlam = true;
+
+			if (subnode->GetText() == NULL) {
+				std::cout << "Brandbaarheid van brandweerkazerne ontbreekt/ongeldig." << std::endl;
+				return false;
+			}
+
 			flam = std::atoi(subnode->GetText());
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
@@ -830,7 +836,7 @@ bool CityParser::parseAmbulance(TiXmlElement* node) {
 	}
 }
 
-bool CityParser::parsePoliceCar(TiXmlElement* node) {
+bool CityParser::parsePoliceTruck(TiXmlElement* node) {
 	REQUIRE(this->isInitialized(), "Parser is initialized");
 
 	bool foundName = false;
@@ -962,7 +968,7 @@ bool CityParser::parseVehicles(const std::string& filename) {
 			this->parseAmbulance(node);
 		}
 		else if (tag == "politiewagen") {
-			this->parsePoliceCar(node);
+			this->parsePoliceTruck(node);
 		}
 		else {
 			std::cout << "Onbekende tag " << tag << " overgeslagen." << std::endl;
