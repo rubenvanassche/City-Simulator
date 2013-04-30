@@ -169,7 +169,7 @@ Point Street::getCrosspoint(Street& str) {
 	REQUIRE(this->isCrossing(str), "Streets are crossing");
 
 	unsigned int xMin = std::min(fStartPoint.getX(), fEndPoint.getX());
-	unsigned int xMax = std::max(fStartPoint.getX(), fEndPoint.getY());
+	unsigned int xMax = std::max(fStartPoint.getX(), fEndPoint.getX());
 	unsigned int yMin = std::min(fStartPoint.getY(), fEndPoint.getY());
 	unsigned int yMax = std::max(fStartPoint.getY(), fEndPoint.getY());
 
