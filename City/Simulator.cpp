@@ -606,6 +606,10 @@ bool Simulator::repairBuildings() {
 
 
 void Simulator::spreadFire(){
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	REQUIRE(fTown->isInitialized(), "City is initialized");
+
 	typedef std::pair<Point,House*> HousePoint;
 
 	std::vector<HousePoint> allHouses; // All Points in the map + their houses
@@ -701,6 +705,10 @@ void Simulator::spreadFire(){
 }
 
 void Simulator::step(){
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	REQUIRE(fOutput->isInitialized(), "Output is initialized");
+
 	if (!this->endSimulation()) {
 		this->burningDown();
 	}
@@ -733,6 +741,10 @@ void Simulator::step(){
 }
 
 void Simulator::step(bool fireSpreading){
+	REQUIRE(this->isInitialized(), "Simulator is initialized");
+	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	REQUIRE(fOutput->isInitialized(), "Output is initialized");
+
 	if (!this->endSimulation()) {
 		this->burningDown();
 	}

@@ -73,12 +73,21 @@ public:
 
 	void spreadFire();
 	// spreads the fire
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	// REQUIRE(fTown->isInitialized(), "City is initialized");
 
 	void step();
 	// one step in the simulation
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	// REQUIRE(fOutput->isInitialized(), "Output is initialized");
 
 	void step(bool fireSpreading);
 	// One step in the simulation, with the bool you can turn firespreading on/off
+	// REQUIRE(this->isInitialized(), "Simulator is initialized");
+	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
+	// REQUIRE(fOutput->isInitialized(), "Output is initialized");
 
 private:
 	City* fTown;
