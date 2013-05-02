@@ -47,6 +47,10 @@ public:
 	// Write a snapshot of the output to the file
 	// REQUIRE(this->isInitialized(), "Output is initialized");
 
+	void write();
+	// Write a snapshot of the output to the file
+	// REQUIRE(this->isInitialized(), "Output is initialized");
+
 	virtual ~Output();
 	// DIE
 	// REQUIRE(this->isInitialized(), "Output is initialized");

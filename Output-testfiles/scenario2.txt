@@ -1,0 +1,569 @@
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 28 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 26 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 24 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 22 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 20 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 18 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 16 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 14 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 12 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 10 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 8 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 6 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 4 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 2 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 15 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 14 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 13 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 12 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 11 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 10 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 9 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 8 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 7 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 6 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 5 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 4 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 3 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 2 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) word overvallen en heeft nog 1 RP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+

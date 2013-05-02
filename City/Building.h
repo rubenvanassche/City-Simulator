@@ -77,7 +77,6 @@ public:
 	void setFire();
 	// set the building on fire
 	// REQUIRE(this->isInitialized(), "Building is initialized");
-	// REQUIRE(this->fHealth > 0, "Health point is positive");
 
 	// ENSURE(this->fIsBurning == true, "Building is set on fire");
 

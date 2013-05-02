@@ -1,0 +1,854 @@
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 48 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 46 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 44 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 42 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 40 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 38 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 36 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 34 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 32 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 30 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 28 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 26 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 24 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 22 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 20 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 18 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 16 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 14 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 12 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 10 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 8 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 6 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 4 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 2 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 19 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 18 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 17 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 16 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 15 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 14 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 13 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 12 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 11 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 10 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 9 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 8 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 7 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 6 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 5 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 4 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 3 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 2 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Huis op locatie (5, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 1 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
