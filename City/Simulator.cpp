@@ -199,9 +199,8 @@ bool Simulator::sendFireTrucks() {
 		}
 
 		// otherwise, choose a random truck
-		int i = std::rand() % vecAvailableTrucks.size();
-		FireTruck* truck = vecAvailableTrucks.at(i);
-		vecAvailableTrucks.erase(vecAvailableTrucks.begin() + i);
+		FireTruck* truck = vecAvailableTrucks.front();
+		vecAvailableTrucks.erase(vecAvailableTrucks.begin());
 
 		// okay, then find a location where the truck must go
 		Point destination = vecBuildingsOnFire[index]->getLocation();
@@ -393,9 +392,8 @@ bool Simulator::sendPoliceTrucks() {
 			continue;	// bad luck, there are no policetrucks avialable
 		}
 
-		int i = std::rand() % vecAvailableTrucks.size();
-		PoliceTruck* truck = vecAvailableTrucks.at(i);
-		vecAvailableTrucks.erase(vecAvailableTrucks.begin() + i);
+		PoliceTruck* truck = vecAvailableTrucks.front();
+		vecAvailableTrucks.erase(vecAvailableTrucks.begin());
 
 		// okay, then find a point where the truck has to drive to
 		Point destination = robbingShops[index]->getLocation();
