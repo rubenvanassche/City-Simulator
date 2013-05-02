@@ -822,3 +822,36 @@ void Simulator::step(){
 	(*fOutput).step();
 }
 
+void Simulator::step(bool fireSpreading){
+	if (!this->endSimulation()) {
+		this->burningDown();
+	}
+
+	if (!this->endSimulation()) {
+		this->sendFireTrucks();
+	}
+
+	if (!this->endSimulation()) {
+		this->robbing();
+	}
+
+	if (!this->endSimulation()) {
+		this->sendPoliceTrucks();
+	}
+
+	if (!this->endSimulation()) {
+		this->drive();
+	}
+
+	if(fireSpreading == true){
+		if (!this->endSimulation()) {
+			this->spreadFire();
+		}
+	}
+
+	if (!this->endSimulation()) {
+		this->repairBuildings();
+	}
+
+	(*fOutput).step();
+}

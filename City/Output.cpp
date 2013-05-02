@@ -358,6 +358,11 @@ void Output::step(){
 	fFile << fOut.str(); // Write to the fileStream
 }
 
+void Output::write(){
+	REQUIRE(this->isInitialized(), "Output is initialized");
+
+	this->fFile.close();
+}
 
 Output::~Output(){
 	REQUIRE(this->isInitialized(), "Output is initialized");

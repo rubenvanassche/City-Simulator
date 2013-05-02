@@ -72,12 +72,13 @@ public:
 	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
 
 	void spreadFire();
-	// todo: operation contracts
 	// spreads the fire
 
 	void step();
-	// todo: operation contracts
 	// one step in the simulation
+
+	void step(bool fireSpreading);
+	// One step in the simulation, with the bool you can turn firespreading on/off
 
 private:
 	City* fTown;

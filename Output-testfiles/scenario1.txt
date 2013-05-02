@@ -1,0 +1,1364 @@
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 53 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 28 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 38 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 25 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 19 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 19 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 19 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 19 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 19 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 19 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 19 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 19 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 19 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 19 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 19 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 19 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 19 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 19 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 19 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 19 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 19 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 19 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 19 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 19 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 19 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 19 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 48 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 28 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 58 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 51 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 26 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 36 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 23 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 18 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 18 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 18 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 18 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 18 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 18 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 18 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 18 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 18 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 18 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 18 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 18 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 18 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 18 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 18 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 18 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 18 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 18 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 18 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 18 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 18 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 18 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 46 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 26 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 56 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 49 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 24 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 34 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 21 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 17 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 17 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 17 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 17 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 17 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 17 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 17 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 17 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 17 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 17 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 17 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 17 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 17 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 17 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 17 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 17 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 17 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 17 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 17 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 17 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 17 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 17 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 44 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 24 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 54 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 47 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 22 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 32 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 19 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 16 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 16 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 16 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 16 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 16 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 16 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 16 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 16 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 16 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 16 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 16 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 16 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 16 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 16 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 16 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 16 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 16 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 16 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 16 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 16 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 16 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 16 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 42 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 22 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 52 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 45 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 20 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 30 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 17 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 15 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 15 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 15 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 15 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 15 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 15 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 15 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 15 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 15 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 15 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 15 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 15 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 15 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 15 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 15 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 15 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 15 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 15 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 15 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 15 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 15 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 15 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 40 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 20 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 50 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 43 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 18 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 28 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 15 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 14 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 14 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 14 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 14 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 14 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 14 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 14 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 14 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 14 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 14 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 14 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 14 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 14 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 14 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 14 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 14 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 14 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 14 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 14 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 14 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 14 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 14 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 38 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 18 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 48 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 41 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 16 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 26 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 13 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 13 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 13 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 13 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 13 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 13 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 13 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 13 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 13 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 13 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 13 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 13 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 13 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 13 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 13 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 13 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 13 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 13 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 13 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 13 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 13 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 13 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 13 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 36 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 16 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 46 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 39 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 14 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 24 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 11 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 12 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 12 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 12 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 12 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 12 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 12 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 12 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 12 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 12 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 12 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 12 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 12 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 12 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 12 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 12 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 12 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 12 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 12 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 12 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 12 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 12 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 12 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 34 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 14 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 44 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 37 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 12 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 22 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 9 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 11 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 11 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 11 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 11 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 11 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 11 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 11 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 11 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 11 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 11 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 11 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 11 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 11 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 11 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 11 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 11 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 11 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 11 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 11 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 11 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 11 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 11 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 32 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 12 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 42 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 35 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 10 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 20 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 7 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 10 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 10 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 10 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 10 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 10 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 10 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 10 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 10 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 10 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 10 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 10 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 10 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 10 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 10 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 10 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 10 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 10 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 10 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 10 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 10 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 10 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 10 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 30 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 10 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 40 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 33 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 8 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 18 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 5 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 9 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 9 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 9 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 9 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 9 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 9 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 9 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 9 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 9 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 9 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 9 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 9 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 9 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 9 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 9 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 9 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 9 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 9 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 9 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 9 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 9 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 9 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 28 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 8 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 38 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 31 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 6 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 16 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 3 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 8 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 8 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 8 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 8 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 8 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 8 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 8 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 8 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 8 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 8 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 8 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 8 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 8 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 8 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 8 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 8 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 8 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 8 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 8 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 8 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 8 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 8 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 26 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 6 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 36 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 29 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 4 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 14 HP.
+Winkel op locatie (12, 7) staat in brand en heeft nog 1 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 7 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 7 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 7 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 7 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 7 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 7 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 7 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 7 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 7 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 7 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 7 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 7 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 7 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 7 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 7 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 7 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 7 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 7 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 7 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 7 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 7 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 7 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 24 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 4 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 34 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 27 HP.
+Winkel op locatie (12, 9) staat in brand en heeft nog 2 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 12 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 6 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 6 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 6 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 6 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 6 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 6 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 6 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 6 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 6 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 6 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 6 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 6 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 6 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 6 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 6 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 6 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 6 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 6 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 6 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 6 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 6 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 6 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 22 HP.
+PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 2 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 32 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 25 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 10 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 5 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 5 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 5 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 5 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 5 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 5 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 5 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 5 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 5 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 5 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 5 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 5 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 5 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 5 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 5 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 5 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 5 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 5 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 5 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 5 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 5 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 5 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 20 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 30 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 23 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 8 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 4 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 4 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 4 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 4 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 4 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 4 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 4 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 4 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 4 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 4 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 4 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 4 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 4 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 4 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 4 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 4 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 4 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 4 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 4 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 4 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 4 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 4 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 18 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 28 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 21 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 6 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 3 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 3 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 3 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 3 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 3 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 3 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 3 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 3 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 3 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 3 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 3 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 3 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 3 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 3 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 3 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 3 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 3 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 3 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 3 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 3 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 3 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 3 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 16 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 26 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 19 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 4 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 2 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 2 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 2 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 2 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 2 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 2 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 2 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 2 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 2 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 2 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 2 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 2 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 2 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 2 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 2 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 2 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 2 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 2 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 2 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 2 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 2 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 2 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 14 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 24 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 17 HP.
+Winkel op locatie (14, 9) staat in brand en heeft nog 2 HP.
+Huis op locatie (1, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (3, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (5, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (8, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (10, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (12, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (14, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (17, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (19, 14) staat in brand en heeft nog 1 HP.
+Huis op locatie (1, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (3, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (5, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (12, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (14, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (17, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (19, 12) staat in brand en heeft nog 1 HP.
+Huis op locatie (1, 9) staat in brand en heeft nog 1 HP.
+Huis op locatie (3, 9) staat in brand en heeft nog 1 HP.
+Huis op locatie (5, 9) staat in brand en heeft nog 1 HP.
+Huis op locatie (17, 9) staat in brand en heeft nog 1 HP.
+Huis op locatie (19, 9) staat in brand en heeft nog 1 HP.
+Huis op locatie (1, 7) staat in brand en heeft nog 1 HP.
+Huis op locatie (3, 7) staat in brand en heeft nog 1 HP.
+Huis op locatie (5, 7) staat in brand en heeft nog 1 HP.
+Huis op locatie (17, 7) staat in brand en heeft nog 1 HP.
+Huis op locatie (19, 7) staat in brand en heeft nog 1 HP.
+Huis op locatie (12, 4) staat in brand en heeft nog 1 HP.
+Huis op locatie (14, 4) staat in brand en heeft nog 1 HP.
+Huis op locatie (17, 4) staat in brand en heeft nog 1 HP.
+Huis op locatie (19, 4) staat in brand en heeft nog 1 HP.
+Huis op locatie (8, 2) staat in brand en heeft nog 1 HP.
+Huis op locatie (10, 2) staat in brand en heeft nog 1 HP.
+Huis op locatie (12, 2) staat in brand en heeft nog 1 HP.
+Huis op locatie (14, 2) staat in brand en heeft nog 1 HP.
+Huis op locatie (17, 2) staat in brand en heeft nog 1 HP.
+Huis op locatie (19, 2) staat in brand en heeft nog 1 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 12 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 22 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 15 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 10 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 20 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 13 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 8 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 18 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 11 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 6 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 16 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 9 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 4 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 14 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 7 HP.
+Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 2 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 12 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 5 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 10 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 3 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 8 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (8, 12) staat in brand en heeft nog 1 HP.
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 6 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 4 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 2 HP.
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+

@@ -99,7 +99,10 @@ double Building::getHealth() const {
 
 void Building::setFire() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(this->fHealth > 0, "Health point is positive");
+
+	if(this->isDead()){
+		return;
+	}
 
 	fIsBurning = true;
 
