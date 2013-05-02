@@ -37,11 +37,11 @@ protected:
 	virtual void SetUp() {
 		ptrCity = new City;
 		ptrParser = new CityParser(ptrCity);
-		ptrOutput = new Output(ptrCity, "../Output-testfiles/OutputTest.txt");
+		ptrOutput = new Output(ptrCity, "Output-testfiles/OutputTest.txt");
 		ptrSimulator = new Simulator(ptrCity, ptrOutput);
 
-		ptrParser->parseBuildings("../XML-testfiles/stad.xml");
-		ptrParser->parseVehicles("../XML-testfiles/voertuigen.xml");
+		ptrParser->parseBuildings("XML-testfiles/stad.xml");
+		ptrParser->parseVehicles("XML-testfiles/voertuigen.xml");
 
 		shops = ptrCity->getShops();
 		houses = ptrCity->getHouses();
@@ -63,8 +63,8 @@ protected:
 };
 
 TEST_F(OutputTest, construct) {
-	EXPECT_NO_FATAL_FAILURE(Output out(ptrCity, "../Output-testfiles/OutputTest.txt"));
-	EXPECT_TRUE(FileTest::fileExists("../Output-testfiles/OutputTest.txt"));
+	EXPECT_NO_FATAL_FAILURE(Output out(ptrCity, "Output-testfiles/OutputTest.txt"));
+	EXPECT_TRUE(FileTest::fileExists("Output-testfiles/OutputTest.txt"));
 }
 
 // Burn the whole city down
@@ -99,7 +99,7 @@ TEST_F(OutputTest, scenario1) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario1.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario1.txt"));
 }
 
 // Set a policedepot on fire, don't extinghuish it and then start a robbery
@@ -124,7 +124,7 @@ TEST_F(OutputTest, scenario2) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario2.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario2.txt"));
 }
 
 
@@ -147,7 +147,7 @@ TEST_F(OutputTest, scenario3) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario3.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario3.txt"));
 }
 
 
@@ -169,7 +169,7 @@ TEST_F(OutputTest, scenario4) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario4.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario4.txt"));
 }
 
 // Set 4 houses on fire and a firedepot
@@ -192,7 +192,7 @@ TEST_F(OutputTest, scenario5) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario5.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario5.txt"));
 }
 
 // Set a fire depot on fire and don't extinghuish, then let 2 houses burn
@@ -218,7 +218,7 @@ TEST_F(OutputTest, scenario6) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario6.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario6.txt"));
 }
 
 // Rob 2 shops, let teh police handle it and after that, start again
@@ -244,7 +244,7 @@ TEST_F(OutputTest, scenario7) {
 
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario7.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario7.txt"));
 }
 
 // Let an Hospital die at a very long time(with repairs)
@@ -277,7 +277,7 @@ TEST_F(OutputTest, scenario8) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario8.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario8.txt"));
 }
 
 // Set one from each type of building on fire and check the repair function
@@ -296,7 +296,7 @@ TEST_F(OutputTest, scenario9) {
 	}
 
 	ptrOutput->write();
-	EXPECT_TRUE(FileTest::compare("../Output-testfiles/OutputTest.txt", "../Output-testfiles/scenario9.txt"));
+	EXPECT_TRUE(FileTest::compare("Output-testfiles/OutputTest.txt", "Output-testfiles/scenario9.txt"));
 }
 
 
