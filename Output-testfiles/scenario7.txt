@@ -3,8 +3,8 @@ Winkel op locatie (12, 9) word overvallen en heeft nog 14 RP.
 Winkel op locatie (12, 7) word overvallen en heeft nog 8 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (9, 5) in de Haskellstraat onderweg naar (12, 5) 
-Pw4 op locatie (7, 5) in de Haskellstraat onderweg naar (12, 10) 
+Pw3 op locatie (7, 5) in de Haskellstraat onderweg naar (12, 10) 
+Pw4 op locatie (9, 5) in de Haskellstraat onderweg naar (12, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -24,8 +24,8 @@ Winkel op locatie (12, 9) word overvallen en heeft nog 13 RP.
 Winkel op locatie (12, 7) word overvallen en heeft nog 7 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (10, 5) in de Haskellstraat onderweg naar (12, 5) 
-Pw4 op locatie (7, 6) in de Javastraat onderweg naar (12, 10) 
+Pw3 op locatie (7, 6) in de Javastraat onderweg naar (12, 10) 
+Pw4 op locatie (10, 5) in de Haskellstraat onderweg naar (12, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -45,8 +45,8 @@ Winkel op locatie (12, 9) word overvallen en heeft nog 12 RP.
 Winkel op locatie (12, 7) word overvallen en heeft nog 6 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (11, 5) in de Haskellstraat onderweg naar (12, 5) 
-Pw4 op locatie (7, 7) in de Javastraat onderweg naar (12, 10) 
+Pw3 op locatie (7, 7) in de Javastraat onderweg naar (12, 10) 
+Pw4 op locatie (11, 5) in de Haskellstraat onderweg naar (12, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -66,14 +66,14 @@ Winkel op locatie (12, 9) word overvallen en heeft nog 11 RP.
 Winkel op locatie (12, 7) word overvallen en heeft nog 5 RP.
 
 Voertuigen onderweg:
-Pw4 op locatie (7, 8) in de Javastraat onderweg naar (12, 10) 
+Pw3 op locatie (7, 8) in de Javastraat onderweg naar (12, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
 Bw12
 Bw34
 Beschikbare politiewagens in PB134 :
-Pw3
+Pw4
 Beschikbare ziekenwagens in Middelheim :
 Zw7
 
@@ -85,8 +85,8 @@ Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 10 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (12, 5) in de Haskellstraat onderweg naar (8, 5) 
-Pw4 op locatie (7, 9) in de Javastraat onderweg naar (12, 10) 
+Pw3 op locatie (7, 9) in de Javastraat onderweg naar (12, 10) 
+Pw4 op locatie (12, 5) in de Haskellstraat onderweg naar (8, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -105,8 +105,8 @@ Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 9 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (11, 5) in de Haskellstraat onderweg naar (8, 5) 
-Pw4 op locatie (7, 10) in de Cstraat onderweg naar (12, 10) 
+Pw3 op locatie (7, 10) in de Cstraat onderweg naar (12, 10) 
+Pw4 op locatie (11, 5) in de Haskellstraat onderweg naar (8, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -125,8 +125,8 @@ Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 8 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (10, 5) in de Haskellstraat onderweg naar (8, 5) 
-Pw4 op locatie (8, 10) in de Cstraat onderweg naar (12, 10) 
+Pw3 op locatie (8, 10) in de Cstraat onderweg naar (12, 10) 
+Pw4 op locatie (10, 5) in de Haskellstraat onderweg naar (8, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -145,8 +145,8 @@ Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 7 RP.
 
 Voertuigen onderweg:
-Pw3 op locatie (9, 5) in de Haskellstraat onderweg naar (8, 5) 
-Pw4 op locatie (9, 10) in de Cstraat onderweg naar (12, 10) 
+Pw3 op locatie (9, 10) in de Cstraat onderweg naar (12, 10) 
+Pw4 op locatie (9, 5) in de Haskellstraat onderweg naar (8, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -165,14 +165,14 @@ Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 6 RP.
 
 Voertuigen onderweg:
-Pw4 op locatie (10, 10) in de Cstraat onderweg naar (12, 10) 
+Pw3 op locatie (10, 10) in de Cstraat onderweg naar (12, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
 Bw12
 Bw34
 Beschikbare politiewagens in PB134 :
-Pw3
+Pw4
 Beschikbare ziekenwagens in Middelheim :
 Zw7
 
@@ -184,14 +184,14 @@ Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 5 RP.
 
 Voertuigen onderweg:
-Pw4 op locatie (11, 10) in de Cstraat onderweg naar (12, 10) 
+Pw3 op locatie (11, 10) in de Cstraat onderweg naar (12, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
 Bw12
 Bw34
 Beschikbare politiewagens in PB134 :
-Pw3
+Pw4
 Beschikbare ziekenwagens in Middelheim :
 Zw7
 
@@ -201,522 +201,6 @@ Gebouwen die gerepareerd worden:
 
 Events:
 Winkel op locatie (12, 9) word overvallen en heeft nog 4 RP.
-
-Voertuigen onderweg:
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Pw4
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (12, 10) in de Cstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (13, 10) in de Cstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (14, 10) in de Cstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (15, 10) in de Cstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (16, 10) in de Cstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (16, 9) in de Eiffelstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (16, 8) in de Eiffelstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (16, 7) in de Eiffelstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (16, 6) in de Eiffelstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (16, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (15, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (14, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (13, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (12, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (11, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (10, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw4 op locatie (9, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw3
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-Winkel op locatie (12, 9) word overvallen en heeft nog 2 RP.
-Winkel op locatie (12, 7) word overvallen en heeft nog 3 RP.
-
-Voertuigen onderweg:
-Pw3 op locatie (7, 5) in de Haskellstraat onderweg naar (12, 10) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw4
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-Winkel op locatie (12, 9) word overvallen en heeft nog 1 RP.
-Winkel op locatie (12, 7) word overvallen en heeft nog 2 RP.
-
-Voertuigen onderweg:
-Pw3 op locatie (7, 6) in de Javastraat onderweg naar (12, 10) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw4
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-Winkel op locatie (12, 7) word overvallen en heeft nog 1 RP.
-
-Voertuigen onderweg:
-Pw3 op locatie (7, 7) in de Javastraat onderweg naar (12, 10) 
-Pw4 op locatie (9, 5) in de Haskellstraat onderweg naar (12, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (7, 8) in de Javastraat onderweg naar (12, 10) 
-Pw4 op locatie (10, 5) in de Haskellstraat onderweg naar (12, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (7, 9) in de Javastraat onderweg naar (12, 10) 
-Pw4 op locatie (11, 5) in de Haskellstraat onderweg naar (12, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (7, 10) in de Cstraat onderweg naar (12, 10) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-Pw4
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (8, 10) in de Cstraat onderweg naar (12, 10) 
-Pw4 op locatie (12, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (9, 10) in de Cstraat onderweg naar (12, 10) 
-Pw4 op locatie (11, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (10, 10) in de Cstraat onderweg naar (12, 10) 
-Pw4 op locatie (10, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
-
-Voertuigen onderweg:
-Pw3 op locatie (11, 10) in de Cstraat onderweg naar (12, 10) 
-Pw4 op locatie (9, 5) in de Haskellstraat onderweg naar (8, 5) 
-
-Voertuigen in stations:
-Beschikbare brandweerwagens in BWK1337 :
-Bw12
-Bw34
-Beschikbare politiewagens in PB134 :
-geen
-Beschikbare ziekenwagens in Middelheim :
-Zw7
-
-Gebouwen die gerepareerd worden:
-
-
-
-Events:
 
 Voertuigen onderweg:
 
@@ -1033,6 +517,522 @@ Bw12
 Bw34
 Beschikbare politiewagens in PB134 :
 Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (12, 9) word overvallen en heeft nog 2 RP.
+Winkel op locatie (12, 7) word overvallen en heeft nog 3 RP.
+
+Voertuigen onderweg:
+Pw4 op locatie (7, 5) in de Haskellstraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (12, 9) word overvallen en heeft nog 1 RP.
+Winkel op locatie (12, 7) word overvallen en heeft nog 2 RP.
+
+Voertuigen onderweg:
+Pw4 op locatie (7, 6) in de Javastraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+Winkel op locatie (12, 7) word overvallen en heeft nog 1 RP.
+
+Voertuigen onderweg:
+Pw3 op locatie (9, 5) in de Haskellstraat onderweg naar (12, 5) 
+Pw4 op locatie (7, 7) in de Javastraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw3 op locatie (10, 5) in de Haskellstraat onderweg naar (12, 5) 
+Pw4 op locatie (7, 8) in de Javastraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw3 op locatie (11, 5) in de Haskellstraat onderweg naar (12, 5) 
+Pw4 op locatie (7, 9) in de Javastraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (7, 10) in de Cstraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw3 op locatie (12, 5) in de Haskellstraat onderweg naar (8, 5) 
+Pw4 op locatie (8, 10) in de Cstraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw3 op locatie (11, 5) in de Haskellstraat onderweg naar (8, 5) 
+Pw4 op locatie (9, 10) in de Cstraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw3 op locatie (10, 5) in de Haskellstraat onderweg naar (8, 5) 
+Pw4 op locatie (10, 10) in de Cstraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw3 op locatie (9, 5) in de Haskellstraat onderweg naar (8, 5) 
+Pw4 op locatie (11, 10) in de Cstraat onderweg naar (12, 10) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+geen
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Pw4
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (12, 10) in de Cstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (13, 10) in de Cstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (14, 10) in de Cstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (15, 10) in de Cstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (16, 10) in de Cstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (16, 9) in de Eiffelstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (16, 8) in de Eiffelstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (16, 7) in de Eiffelstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (16, 6) in de Eiffelstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (16, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (15, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (14, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (13, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (12, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (11, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (10, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
+Beschikbare ziekenwagens in Middelheim :
+Zw7
+
+Gebouwen die gerepareerd worden:
+
+
+
+Events:
+
+Voertuigen onderweg:
+Pw4 op locatie (9, 5) in de Haskellstraat onderweg naar (8, 5) 
+
+Voertuigen in stations:
+Beschikbare brandweerwagens in BWK1337 :
+Bw12
+Bw34
+Beschikbare politiewagens in PB134 :
+Pw3
 Beschikbare ziekenwagens in Middelheim :
 Zw7
 

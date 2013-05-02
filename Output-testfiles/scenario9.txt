@@ -6,8 +6,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 28 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 58 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 10) in de Cstraat onderweg naar (8, 15) 
-Bw34 op locatie (7, 10) in de Cstraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 10) in de Cstraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 10) in de Cstraat onderweg naar (8, 15) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -30,8 +30,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 26 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 56 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 11) in de Javastraat onderweg naar (8, 15) 
-Bw34 op locatie (7, 9) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 9) in de Javastraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 11) in de Javastraat onderweg naar (8, 15) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -54,8 +54,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 24 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 54 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 12) in de Javastraat onderweg naar (8, 15) 
-Bw34 op locatie (7, 8) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 8) in de Javastraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 12) in de Javastraat onderweg naar (8, 15) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -78,8 +78,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 22 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 52 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 13) in de Javastraat onderweg naar (8, 15) 
-Bw34 op locatie (7, 7) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 7) in de Javastraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 13) in de Javastraat onderweg naar (8, 15) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -102,8 +102,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 20 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 50 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 14) in de Javastraat onderweg naar (8, 15) 
-Bw34 op locatie (7, 6) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 6) in de Javastraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 14) in de Javastraat onderweg naar (8, 15) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -126,8 +126,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 18 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 48 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 15) in de Pythonstraat onderweg naar (8, 15) 
-Bw34 op locatie (7, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 15) in de Pythonstraat onderweg naar (8, 15) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -150,11 +150,11 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 16 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 46 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (6, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (6, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -172,8 +172,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 14 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 44 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (8, 15) in de Pythonstraat onderweg naar (8, 10) 
-Bw34 op locatie (5, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (5, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw34 op locatie (8, 15) in de Pythonstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -196,8 +196,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 12 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 42 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 15) in de Pythonstraat onderweg naar (8, 10) 
-Bw34 op locatie (4, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (4, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 15) in de Pythonstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -220,8 +220,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 10 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 40 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 14) in de Javastraat onderweg naar (8, 10) 
-Bw34 op locatie (3, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (3, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 14) in de Javastraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -244,8 +244,8 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 8 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 38 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 13) in de Javastraat onderweg naar (8, 10) 
-Bw34 op locatie (2, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (2, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw34 op locatie (7, 13) in de Javastraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -268,11 +268,11 @@ PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 6 HP.
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 36 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 12) in de Javastraat onderweg naar (8, 10) 
+Bw34 op locatie (7, 12) in de Javastraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw34
+Bw12
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -290,8 +290,8 @@ Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 24 HP.
 PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 4 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 11) in de Javastraat onderweg naar (8, 10) 
-Bw34 op locatie (1, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw12 op locatie (1, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw34 op locatie (7, 11) in de Javastraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -314,8 +314,8 @@ Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 22 HP.
 PolitieKantoor op locatie (8, 4) staat in brand en heeft nog 2 HP.
 
 Voertuigen onderweg:
-Bw12 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
-Bw34 op locatie (0, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw34 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
@@ -337,11 +337,11 @@ Winkel op locatie (8, 12) staat in brand en heeft nog 25 HP.
 Brandweerkazerne op locatie (8, 9) staat in brand en heeft nog 20 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 6) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 6) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -358,11 +358,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 23 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 7) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 7) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -380,11 +380,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 21 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 8) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 8) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -402,11 +402,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 19 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 9) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 9) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -424,11 +424,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 17 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -446,11 +446,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 15 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (1, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (1, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -468,11 +468,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 13 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (2, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (2, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -490,11 +490,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 11 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (3, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (3, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -512,11 +512,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 9 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (4, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (4, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -533,11 +533,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 7 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (5, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (5, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -554,11 +554,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 5 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (6, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (6, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -575,11 +575,11 @@ Events:
 Winkel op locatie (8, 12) staat in brand en heeft nog 3 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4

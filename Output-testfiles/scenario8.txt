@@ -534,11 +534,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 40 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 10) in de Cstraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 10) in de Cstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -553,11 +553,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 38 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 9) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 9) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -572,11 +572,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 36 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 8) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 8) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -591,11 +591,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 34 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 7) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 7) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -610,11 +610,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 32 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 6) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 6) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -629,11 +629,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 30 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -648,11 +648,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 28 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (6, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (6, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -667,11 +667,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 26 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (5, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (5, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -686,11 +686,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 24 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (4, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (4, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -705,11 +705,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 22 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (3, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (3, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -724,11 +724,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 20 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (2, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (2, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -761,11 +761,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (1, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw12 op locatie (1, 5) in de Haskellstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -780,11 +780,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 16.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 5) in de Haskellstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -799,11 +799,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 17 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 6) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 6) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -818,11 +818,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 17.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 7) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 7) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -837,11 +837,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 18 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 8) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 8) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -856,11 +856,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 18.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 9) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 9) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -875,11 +875,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 19 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -894,11 +894,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 19.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (1, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (1, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -913,11 +913,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 20 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (2, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (2, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -932,11 +932,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 20.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (3, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (3, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -951,11 +951,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 21 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (4, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (4, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -970,11 +970,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 21.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (5, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (5, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -989,11 +989,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 22 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (6, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (6, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1008,11 +1008,11 @@ Ziekenhuis op locatie (1, 4) is zichzelf aan het herstellen, 22.5 HP.
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1066,11 +1066,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 22 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 10) in de Cstraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 10) in de Cstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1085,11 +1085,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 20 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 9) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 9) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1104,11 +1104,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 18 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 8) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 8) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1123,11 +1123,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 16 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 7) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 7) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1142,11 +1142,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 14 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 6) in de Javastraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 6) in de Javastraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1161,11 +1161,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 12 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (7, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1180,11 +1180,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 10 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (6, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (6, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1199,11 +1199,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 8 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (5, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (5, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1218,11 +1218,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 6 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (4, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (4, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1237,11 +1237,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 4 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (3, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (3, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1256,11 +1256,11 @@ Events:
 Ziekenhuis op locatie (1, 4) staat in brand en heeft nog 2 HP.
 
 Voertuigen onderweg:
-Bw34 op locatie (2, 5) in de Haskellstraat onderweg naar (1, 5) 
+Bw12 op locatie (2, 5) in de Haskellstraat onderweg naar (1, 5) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1292,11 +1292,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (1, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw12 op locatie (1, 5) in de Haskellstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1310,11 +1310,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 5) in de Haskellstraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 5) in de Haskellstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1328,11 +1328,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 6) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 6) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1346,11 +1346,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 7) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 7) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1364,11 +1364,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 8) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 8) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1382,11 +1382,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 9) in de Assemblystraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 9) in de Assemblystraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1400,11 +1400,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (0, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (0, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1418,11 +1418,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (1, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (1, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1436,11 +1436,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (2, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (2, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1454,11 +1454,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (3, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (3, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1472,11 +1472,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (4, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (4, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1490,11 +1490,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (5, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (5, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1508,11 +1508,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (6, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (6, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
@@ -1526,11 +1526,11 @@ Gebouwen die gerepareerd worden:
 Events:
 
 Voertuigen onderweg:
-Bw34 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
+Bw12 op locatie (7, 10) in de Cstraat onderweg naar (8, 10) 
 
 Voertuigen in stations:
 Beschikbare brandweerwagens in BWK1337 :
-Bw12
+Bw34
 Beschikbare politiewagens in PB134 :
 Pw3
 Pw4
