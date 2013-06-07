@@ -14,14 +14,16 @@
 #include "City.h"
 #include "DesignByContract.h"
 #include <string>
+#include "Output.h"
 
 class CityParser {
 public:
 	bool isInitialized() const;
 
-	CityParser(City* town);
+	CityParser(City* town, Output* out);
 	// constructor
 	// REQUIRE(town->isInitialized(), "City is initialized");
+	// REQUIRE(out->isInitialized(), "Output is initialized");
 	// ENSURE(this->fTown == town, "Town is set");
 	// ENSURE(this->isInitialized(), "Parser is initialized()");
 
@@ -73,6 +75,7 @@ private:
 	std::string toLower(const std::string& str);
 
 	City* fTown;
+	Output* fOut;
 
 	CityParser* fMyself;
 };

@@ -15,10 +15,12 @@ bool CityParser::isInitialized() const {
 	return this == fMyself;
 }
 
-CityParser::CityParser(City* town) {
+CityParser::CityParser(City* town, Output* out) {
 	REQUIRE(town->isInitialized(), "City is initialized");
+	REQUIRE(out->isInitialized(), "Output is initialized");
 
 	fTown = town;
+	fOut = out;
 	fMyself = this;
 
 	ENSURE(this->fTown == town, "Town is set");
@@ -61,7 +63,8 @@ bool CityParser::parseStreet(TiXmlElement* node) {
 					y0 = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
@@ -78,14 +81,16 @@ bool CityParser::parseStreet(TiXmlElement* node) {
 					y1 = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van straat ontbreekt." << std::endl;
+				std::stringstream msg; msg << "Naam van straat ontbreekt.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 
@@ -93,39 +98,47 @@ bool CityParser::parseStreet(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van straat ontbreekt." << std::endl;
+		std::stringstream msg; msg << "Naam van straat ontbreekt.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundX0) || (x0 < 0) ) {
-		std::cout << "X coordinaat van startpositie van straat " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van startpositie van straat " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundY0) || (y0 <0) ){
-		std::cout << "Y coordinaat van startpositie van straat " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van startpositie van straat " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundX1) || (x1 < 0) ) {
-		std::cout << "X coordinaat van eindpositie van straat " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van eindpositie van straat " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundY1) || (y1 < 0) ) {
-		std::cout << "Y coordinaat van eindpositie van straat" << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van eindpositie van straat" << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		Street newStr(name, Point(x0, y0), Point(x1, y1));
 		if (!fTown->add(newStr) ) {
-			std::cout << "Kan " << newStr << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newStr << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -155,14 +168,16 @@ bool CityParser::parseHouse(TiXmlElement* node) {
 					y = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else if (subtag == "brandbaarheid") {
 			foundFlam = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Brandbaarheid van huis ontbreekt." << std::endl;
+				std::stringstream msg; msg << "Brandbaarheid van huis ontbreekt.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 
@@ -170,31 +185,37 @@ bool CityParser::parseHouse(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if ( (!foundX) || (x < 0) ) {
-		std::cout << "X coordinaat van huis ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van huis ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundY) || (y <0) ){
-		std::cout << "Y coordinaat van huis ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van huis ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundFlam) || (flam < 0) ) {
-		std::cout << "Brandbaarheid van huis ontbreekt." << std::endl;
+		std::stringstream msg; msg << "Brandbaarheid van huis ontbreekt.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		House newHouse(Point(x, y), flam);
 		if (!fTown->add(newHouse)) {
-			std::cout << "Kan " << newHouse << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newHouse << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -218,7 +239,8 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 		if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van brandweerkazerne ontbreekt." << std::endl;
+				std::stringstream msg; msg << "Naam van brandweerkazerne ontbreekt.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 
@@ -226,7 +248,8 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "locatie") {
@@ -242,7 +265,8 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 					yLoc = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
@@ -259,7 +283,8 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 					yEntr = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
@@ -267,7 +292,8 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 			foundFlam = true;
 
 			if (subnode->GetText() == NULL) {
-				std::cout << "Brandbaarheid van brandweerkazerne ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Brandbaarheid van brandweerkazerne ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 
@@ -275,43 +301,52 @@ bool CityParser::parseFireDepot(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van brandweerkazerne ontbreekt." << std::endl;
+		std::stringstream msg; msg << "Naam van brandweerkazerne ontbreekt.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundXLoc) || (xLoc < 0) ) {
-		std::cout << "X coordinaat van brandweerkazerne " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van brandweerkazerne " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundYLoc) || (yLoc <0) ){
-		std::cout << "Y coordinaat van brandweerkazerne " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van brandweerkazerne " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundXEntr) || (xEntr < 0) ) {
-		std::cout << "X coordinaat van ingang brandweerkazerne " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van ingang brandweerkazerne " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundYEntr) || (yEntr<0) ){
-		std::cout << "Y coordinaat van ingang brandweerkazerne " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van ingang brandweerkazerne " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundFlam) || (flam < 0) ) {
-		std::cout << "Brandbaarheid van brandweerkazerne " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Brandbaarheid van brandweerkazerne " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		FireDepot newDepot(Point(xLoc, yLoc), Point(xEntr, yEntr), name, flam);
 		if (!fTown->add(newDepot) ) {
-			std::cout << "Kan " << newDepot << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newDepot << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -337,14 +372,16 @@ bool CityParser::parseHospital(TiXmlElement* node) {
 		if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van ziekenhuis ontbreekt" << std::endl;
+				std::stringstream msg; msg << "Naam van ziekenhuis ontbreekt\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			name = subnode->GetText();
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "locatie") {
@@ -360,7 +397,8 @@ bool CityParser::parseHospital(TiXmlElement* node) {
 					yLoc = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
@@ -377,21 +415,24 @@ bool CityParser::parseHospital(TiXmlElement* node) {
 					yEntr = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else if (subtag == "brandbaarheid") {
 			foundFlam = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Brandbaarheid van ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Brandbaarheid van ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			flam = std::atoi(subnode->GetText());
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "grootte") {
@@ -407,52 +448,63 @@ bool CityParser::parseHospital(TiXmlElement* node) {
 					width = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van ziekenhuis ontbreekt" << std::endl;
+		std::stringstream msg; msg << "Naam van ziekenhuis ontbreekt\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundXLoc) || (xLoc < 0) ) {
-		std::cout << "X coordinaat van ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundYLoc) || (yLoc <0) ){
-		std::cout << "Y coordinaat van ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundXEntr) || (xEntr < 0) ) {
-		std::cout << "X coordinaat van ingang ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van ingang ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundYEntr) || (yEntr<0) ){
-		std::cout << "Y coordinaat van ingang ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van ingang ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundFlam) || (flam < 0) ) {
-		std::cout << "Brandbaarheid van ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Brandbaarheid van ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundWidth) || (width < 1) ) {
-		std::cout << "Breedte van ziekenhuis " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Breedte van ziekenhuis " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundHeight) || (height < 1) ) {
-		std::cout<< "Hoogte van ziekenhuis " << name << "ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Hoogte van ziekenhuis " << name << "ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		Hospital newHospital(Point(xLoc, yLoc), Point(xEntr, yEntr), Size(width, height), name, flam);
 		if (!fTown->add(newHospital) ) {
-			std::cout << "Kan " << newHospital << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newHospital << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -476,14 +528,16 @@ bool CityParser::parsePoliceDepot(TiXmlElement* node) {
 		if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van politiebureau ontbreekt" << std::endl;
+				std::stringstream msg; msg << "Naam van politiebureau ontbreekt\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			name = subnode->GetText();
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "locatie") {
@@ -499,7 +553,8 @@ bool CityParser::parsePoliceDepot(TiXmlElement* node) {
 					yLoc = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
@@ -516,21 +571,24 @@ bool CityParser::parsePoliceDepot(TiXmlElement* node) {
 					yEntr = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else if (subtag == "brandbaarheid") {
 			foundFlam = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Brandbaarheid van politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Brandbaarheid van politiebureau " << name << " ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			flam = std::atoi(subnode->GetText());
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "grootte") {
@@ -546,52 +604,63 @@ bool CityParser::parsePoliceDepot(TiXmlElement* node) {
 					width = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van politiebureau ontbreekt" << std::endl;
+		std::stringstream msg; msg << "Naam van politiebureau ontbreekt\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundXLoc) || (xLoc < 0) ) {
-		std::cout << "X coordinaat van politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van politiebureau " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundYLoc) || (yLoc <0) ){
-		std::cout << "Y coordinaat van politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van politiebureau " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundXEntr) || (xEntr < 0) ) {
-		std::cout << "X coordinaat van ingang politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van ingang politiebureau " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundYEntr) || (yEntr<0) ){
-		std::cout << "Y coordinaat van ingang politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van ingang politiebureau " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundFlam) || (flam < 0) ) {
-		std::cout << "Brandbaarheid van politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Brandbaarheid van politiebureau " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundWidth) || (width < 1) ) {
-		std::cout << "Breedte van politiebureau " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Breedte van politiebureau " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundHeight) || (height < 1) ) {
-		std::cout<< "Hoogte van politiebureau " << name << "ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg <<  "Hoogte van politiebureau " << name << "ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		PoliceDepot newDepot(Point(xLoc, yLoc), Point(xEntr, yEntr), Size(width, height), name, flam);
 		if (!fTown->add(newDepot) ) {
-			std::cout << "Kan " << newDepot << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newDepot << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -624,21 +693,24 @@ bool CityParser::parseShop(TiXmlElement* node) {
 					y = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else if (subtag == "brandbaarheid") {
 			foundFlam = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Brandbaarheid van winkel ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Brandbaarheid van winkel ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			flam = std::atoi(subnode->GetText());
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "grootte") {
@@ -654,57 +726,68 @@ bool CityParser::parseShop(TiXmlElement* node) {
 					width = attr->IntValue();
 				}
 				else {
-					std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+					std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+					fOut->write(msg.str());
 				}
 			}
 		}
 		else if (subtag == "overvalbaarheid") {
 			foundSec = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Overvalbaarheid van winkel ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Overvalbaarheid van winkel ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			security = std::atoi(subnode->GetText());
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if ( (!foundX) || (x < 0) ) {
-		std::cout << "X coordinaat van winkel ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "X coordinaat van winkel ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundY) || (y <0) ){
-		std::cout << "Y coordinaat van winkel ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Y coordinaat van winkel ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundFlam) || (flam < 0) ) {
-		std::cout << "Brandbaarheid van winkel ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Brandbaarheid van winkel ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundWidth) || (width < 1) ) {
-		std::cout << "Breedte van winkel ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Breedte van winkel ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundHeight) || (height < 1) ) {
-		std::cout << "Hoogte van winkel ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Hoogte van winkel ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundSec) || (security < 0) ) {
-		std::cout << "Overvalbaarheid van winkel ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Overvalbaarheid van winkel ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		Shop newShop(Point(x, y), Size(width, height), flam, security);
 		if (!fTown->add(newShop) ) {
-			std::cout << "Kan " << newShop << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newShop << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -725,20 +808,23 @@ bool CityParser::parseFireTruck(TiXmlElement* node) {
 		if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van brandweerwagen ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Naam van brandweerwagen ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			name = subnode->GetText();
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "basis") {
 			foundBase = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Basis van brandweerwagen " << name << " ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Basis van brandweerwagen " << name << " ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			std::string basename  = subnode->GetText();
@@ -747,27 +833,32 @@ bool CityParser::parseFireTruck(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van brandweerwagen ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Naam van brandweerwagen ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundBase) || (ptrBase == NULL) ) {
-		std::cout << "Basis van brandweerwagen " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Basis van brandweerwagen " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		FireTruck newTruck(name, ptrBase);
 		if (!fTown->add(newTruck) ) {
-			std::cout << "Kan " << newTruck << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newTruck << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -788,20 +879,23 @@ bool CityParser::parseAmbulance(TiXmlElement* node) {
 		if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van ambulance ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Naam van ambulance ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			name = subnode->GetText();
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "basis") {
 			foundBase = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Basis van ambulance " << name << " ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Basis van ambulance " << name << " ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			std::string basename  = subnode->GetText();
@@ -810,27 +904,32 @@ bool CityParser::parseAmbulance(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van ambulance ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Naam van ambulance ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundBase) || (ptrBase == NULL) ) {
-		std::cout << "Basis van ambulance " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Basis van ambulance " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		Ambulance newAmbuce(name, ptrBase);
 		if (!fTown->add(newAmbuce) ) {
-			std::cout << "Kan " << newAmbuce << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newAmbuce << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -851,20 +950,23 @@ bool CityParser::parsePoliceTruck(TiXmlElement* node) {
 		if (subtag == "naam") {
 			foundName = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Naam van politiewagen ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Naam van politiewagen ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			name = subnode->GetText();
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else if (subtag == "basis") {
 			foundBase = true;
 			if (subnode->GetText() == NULL) {
-				std::cout << "Basis van politiewagen " << name << " ontbreekt/ongeldig." << std::endl;
+				std::stringstream msg; msg << "Basis van politiewagen " << name << " ontbreekt/ongeldig.\n";
+				fOut->write(msg.str());
 				return false;
 			}
 			std::string basename  = subnode->GetText();
@@ -873,27 +975,32 @@ bool CityParser::parsePoliceTruck(TiXmlElement* node) {
 
 			for (TiXmlAttribute* attr = subnode->FirstAttribute(); attr != NULL; attr = attr->Next()) {
 				std::string attrName = CityParser::toLower(attr->Name());
-				std::cout << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen" << std::endl;
+				std::stringstream msg; msg << "Kan attribuut " << attrName << " van " << subtag << " niet herkennen, overgeslagen\n";
+				fOut->write(msg.str());
 			}
 		}
 		else {
-			std::cout << "Onbekende tag " << subtag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << subtag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
 	if (!foundName) {
-		std::cout << "Naam van politiewagen ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Naam van politiewagen ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else if ( (!foundBase) || (ptrBase == NULL) ) {
-		std::cout << "Basis van politiewagen " << name << " ontbreekt/ongeldig." << std::endl;
+		std::stringstream msg; msg << "Basis van politiewagen " << name << " ontbreekt/ongeldig.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 	else {
 		// all attributes are ok
 		PoliceTruck newTruck(name, ptrBase);
 		if (!fTown->add(newTruck) ) {
-			std::cout << "Kan " << newTruck << " niet toevoegen." << std::endl;
+			std::stringstream msg; msg << "Kan " << newTruck << " niet toevoegen.\n";
+			fOut->write(msg.str());
 		}
 		return true;
 	}
@@ -904,13 +1011,15 @@ bool CityParser::parseBuildings(const std::string& filename) {
 
 	TiXmlDocument doc;
 	if(!doc.LoadFile(filename.c_str())) {
-		std::cout << doc.ErrorDesc() << std::endl;
+		std::stringstream msg; msg << doc.ErrorDesc();
+		fOut->write(msg.str());
 		return false;
 	}
 
 	TiXmlElement* root = doc.FirstChildElement();
 	if (root == NULL) {
-		std::cout << "Kan file niet laden: geen root element." << std::endl;
+		std::stringstream msg; msg << "Kan file niet laden: geen root element.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 
@@ -936,7 +1045,8 @@ bool CityParser::parseBuildings(const std::string& filename) {
 			this->parseHospital(node);
 		}
 		else {
-			std::cout << "Onbekende tag " << tag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << tag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 
@@ -948,13 +1058,15 @@ bool CityParser::parseVehicles(const std::string& filename) {
 
 	TiXmlDocument doc;
 	if(!doc.LoadFile(filename.c_str())) {
-		std::cout << doc.ErrorDesc() << std::endl;
+		std::stringstream msg; msg << doc.ErrorDesc();
+		fOut->write(msg.str());
 		return false;
 	}
 
 	TiXmlElement* root = doc.FirstChildElement();
 	if (root == NULL) {
-		std::cout << "Kan file niet laden: geen root element." << std::endl;
+		std::stringstream msg; msg << "Kan file niet laden: geen root element.\n";
+		fOut->write(msg.str());
 		return false;
 	}
 
@@ -971,7 +1083,8 @@ bool CityParser::parseVehicles(const std::string& filename) {
 			this->parsePoliceTruck(node);
 		}
 		else {
-			std::cout << "Onbekende tag " << tag << " overgeslagen." << std::endl;
+			std::stringstream msg; msg << "Onbekende tag " << tag << " overgeslagen.\n";
+			fOut->write(msg.str());
 		}
 	}
 

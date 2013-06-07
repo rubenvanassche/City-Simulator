@@ -47,8 +47,8 @@ public:
 	// Write a snapshot of the output to the file
 	// REQUIRE(this->isInitialized(), "Output is initialized");
 
-	void write();
-	// Write a snapshot of the output to the file
+	void write(const std::string& msg="");
+	// Write a message/snapshot to the output to the file
 	// REQUIRE(this->isInitialized(), "Output is initialized");
 
 	virtual ~Output();

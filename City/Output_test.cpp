@@ -36,8 +36,8 @@ protected:
 
 	virtual void SetUp() {
 		ptrCity = new City;
-		ptrParser = new CityParser(ptrCity);
 		ptrOutput = new Output(ptrCity, "Output-testfiles/OutputTest.txt");
+		ptrParser = new CityParser(ptrCity, ptrOutput);
 		ptrSimulator = new Simulator(ptrCity, ptrOutput);
 
 		ptrParser->parseBuildings("XML-testfiles/stad.xml");
@@ -68,7 +68,7 @@ TEST_F(OutputTest, construct) {
 }
 
 // Burn the whole city down
-TEST_F(OutputTest, DISABLED_scenario1) {
+TEST_F(OutputTest, scenario1) {
 	// Set everything on fire
 	for(unsigned int i = 0;i < shops.size();i++){
 		shops.at(i)->setFire();
@@ -103,7 +103,7 @@ TEST_F(OutputTest, DISABLED_scenario1) {
 }
 
 // Set a policedepot on fire, don't extinghuish it and then start a robbery
-TEST_F(OutputTest, DISABLED_scenario2) {
+TEST_F(OutputTest, scenario2) {
 	policeDepots.at(0)->setFire();
 
 	// Let simulator run
@@ -129,7 +129,7 @@ TEST_F(OutputTest, DISABLED_scenario2) {
 
 
 // Set 5 houses on fire
-TEST_F(OutputTest, DISABLED_scenario3) {
+TEST_F(OutputTest, scenario3) {
 	// Set everything on fire
 
 	houses.at(0)->setFire();
@@ -152,7 +152,7 @@ TEST_F(OutputTest, DISABLED_scenario3) {
 
 
 // Set 2 houses on fire and rob a shop
-TEST_F(OutputTest, DISABLED_scenario4) {
+TEST_F(OutputTest, scenario4) {
 	// Set everything on fire
 
 	houses.at(0)->setFire();
@@ -173,7 +173,7 @@ TEST_F(OutputTest, DISABLED_scenario4) {
 }
 
 // Set 4 houses on fire and a firedepot
-TEST_F(OutputTest, DISABLED_scenario5) {
+TEST_F(OutputTest, scenario5) {
 	// Set everything on fire
 
 	houses.at(2)->setFire();
@@ -196,7 +196,7 @@ TEST_F(OutputTest, DISABLED_scenario5) {
 }
 
 // Set a fire depot on fire and don't extinghuish, then let 2 houses burn
-TEST_F(OutputTest, DISABLED_scenario6) {
+TEST_F(OutputTest, scenario6) {
 	// Set everything on fire
 
 	fireDepots.at(0)->setFire();
@@ -222,7 +222,7 @@ TEST_F(OutputTest, DISABLED_scenario6) {
 }
 
 // Rob 2 shops, let teh police handle it and after that, start again
-TEST_F(OutputTest, DISABLED_scenario7) {
+TEST_F(OutputTest, scenario7) {
 	shops.at(1)->startRobbing();
 	shops.at(3)->startRobbing();
 
@@ -248,7 +248,7 @@ TEST_F(OutputTest, DISABLED_scenario7) {
 }
 
 // Let an Hospital die at a very long time(with repairs)
-TEST_F(OutputTest, DISABLED_scenario8) {
+TEST_F(OutputTest, scenario8) {
 	hospitals.at(0)->setFire();
 
 	// Let simulator run
@@ -281,7 +281,7 @@ TEST_F(OutputTest, DISABLED_scenario8) {
 }
 
 // Set one from each type of building on fire and check the repair function
-TEST_F(OutputTest, DISABLED_scenario9) {
+TEST_F(OutputTest, scenario9) {
 	houses.at(3)->setFire();
 	shops.at(0)->setFire();
 	policeDepots.at(0)->setFire();

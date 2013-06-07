@@ -19,9 +19,9 @@ int main(int argc, char* argv[]){
 
 	City city; // Our City
 
-	CityParser parser(&city); // Our Parser
-
 	Output output(&city, filename); // Our output
+
+	CityParser parser(&city, &output); // Our Parser
 
 	Simulator simulator(&city, &output); // Our simulator
 

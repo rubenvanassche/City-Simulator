@@ -43,6 +43,8 @@ protected:
 	std::string validPoliceTrucks;
 	std::string invalidPoliceTrucks;
 
+	Output* ptrOut;
+
 	virtual void SetUp() {
 		Hospital hosp(Point(10, 10), Point(10, 10), Size(1), "bestaat", 10);
 		FireDepot fDept(Point(12, 12), Point(20, 20), "bestaat", 10);
@@ -80,20 +82,22 @@ protected:
 		validPoliceTrucks = "XML-testfiles/policetrucks_valid.xml";
 		invalidPoliceTrucks = "XML-testfiles/policetrucks_invalid.xml";
 
+		ptrOut = new Output(ptrCity, "test.txt");
 	}
 
 	virtual void TearDown() {
 		delete ptrCity;
+		delete ptrOut;
 	}
 
 };
 
 TEST_F(CityParserTest, construct) {
-	EXPECT_NO_FATAL_FAILURE(CityParser parser(ptrCity));
+	EXPECT_NO_FATAL_FAILURE(CityParser parser(ptrCity, ptrOut));
 }
 
 TEST_F(CityParserTest, validStreets) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validStreets.c_str())) {
@@ -114,7 +118,7 @@ TEST_F(CityParserTest, validStreets) {
 }
 
 TEST_F(CityParserTest, invalidStreets) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidStreets.c_str())) {
@@ -135,7 +139,7 @@ TEST_F(CityParserTest, invalidStreets) {
 }
 
 TEST_F(CityParserTest, validHouses) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validHouses.c_str())) {
@@ -156,7 +160,7 @@ TEST_F(CityParserTest, validHouses) {
 }
 
 TEST_F(CityParserTest, invalidHouses) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidHouses.c_str())) {
@@ -178,7 +182,7 @@ TEST_F(CityParserTest, invalidHouses) {
 
 
 TEST_F(CityParserTest, validFireDepots) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validFireDepots.c_str())) {
@@ -199,7 +203,7 @@ TEST_F(CityParserTest, validFireDepots) {
 }
 
 TEST_F(CityParserTest, invalidFireDepots) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidFireDepots.c_str())) {
@@ -220,7 +224,7 @@ TEST_F(CityParserTest, invalidFireDepots) {
 }
 
 TEST_F(CityParserTest, validPoliceDepots) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validPoliceDepots.c_str())) {
@@ -241,7 +245,7 @@ TEST_F(CityParserTest, validPoliceDepots) {
 }
 
 TEST_F(CityParserTest, invalidPoliceDepots) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidPoliceDepots.c_str())) {
@@ -262,7 +266,7 @@ TEST_F(CityParserTest, invalidPoliceDepots) {
 }
 
 TEST_F(CityParserTest, validShops) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validShops.c_str())) {
@@ -283,7 +287,7 @@ TEST_F(CityParserTest, validShops) {
 }
 
 TEST_F(CityParserTest, invalidShops) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidShops.c_str())) {
@@ -304,7 +308,7 @@ TEST_F(CityParserTest, invalidShops) {
 }
 
 TEST_F(CityParserTest, validHospitals) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validHospitals.c_str())) {
@@ -325,7 +329,7 @@ TEST_F(CityParserTest, validHospitals) {
 }
 
 TEST_F(CityParserTest, invalidHospitals) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidHospitals.c_str())) {
@@ -346,7 +350,7 @@ TEST_F(CityParserTest, invalidHospitals) {
 }
 
 TEST_F(CityParserTest, validAmbulances) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validAmbulances.c_str())) {
@@ -367,7 +371,7 @@ TEST_F(CityParserTest, validAmbulances) {
 }
 
 TEST_F(CityParserTest, invalidAmbulances) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidAmbulances.c_str())) {
@@ -388,7 +392,7 @@ TEST_F(CityParserTest, invalidAmbulances) {
 }
 
 TEST_F(CityParserTest, validFireTrucks) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validFireTrucks.c_str())) {
@@ -409,7 +413,7 @@ TEST_F(CityParserTest, validFireTrucks) {
 }
 
 TEST_F(CityParserTest, invalidFireTrucks) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidFireTrucks.c_str())) {
@@ -430,7 +434,7 @@ TEST_F(CityParserTest, invalidFireTrucks) {
 }
 
 TEST_F(CityParserTest, validPoliceTrucks) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(validPoliceTrucks.c_str())) {
@@ -451,7 +455,7 @@ TEST_F(CityParserTest, validPoliceTrucks) {
 }
 
 TEST_F(CityParserTest, invalidPoliceTrucks) {
-	CityParser parser(ptrCity);
+	CityParser parser(ptrCity, ptrOut);
 
 	TiXmlDocument doc;
 	if (!doc.LoadFile(invalidPoliceTrucks.c_str())) {

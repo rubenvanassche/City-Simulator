@@ -358,9 +358,10 @@ void Output::step(){
 	fFile << fOut.str(); // Write to the fileStream
 }
 
-void Output::write(){
+void Output::write(const std::string& msg){
 	REQUIRE(this->isInitialized(), "Output is initialized");
 
+	fFile << msg;	// write the message to the file
 	this->fFile.close();
 }
 
