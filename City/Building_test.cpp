@@ -9,6 +9,7 @@
 
 #include "gtest/gtest.h"
 #include "Building.h"
+#include <vector>
 
 class BuildingTest : public testing::Test {
 protected:
@@ -18,7 +19,7 @@ protected:
 	int reducer;
 
 	virtual void SetUp() {
-		loc.set(0, 0);
+		loc.set(0, 1);
 		size.set(2, 2);
 		health = 10;
 		reducer = 5;
@@ -102,4 +103,102 @@ TEST_F(BuildingTest, fire) {
 	EXPECT_FALSE(build.isBurning());
 	EXPECT_FALSE(build.startRepair());	// you cannot repair a dead building
 	EXPECT_FALSE(build.startSpreadingFire());
+}
+
+TEST_F(BuildingTest, calculatePoints){
+	Building build(loc, size, health, reducer);
+
+	std::vector<Point> expectedPoints;
+	Point p1(0, 0);
+	Point p2(0, 1);
+	Point p3(1, 0);
+	Point p4(1, 1);
+	expectedPoints.push_back(p1);
+	expectedPoints.push_back(p2);
+	expectedPoints.push_back(p3);
+	expectedPoints.push_back(p4);
+
+	std::vector<Point>::iterator it;
+	std::vector<Point> points = build.calculatePoints();
+
+	bool ok = true;
+
+	for(it = points.begin();it != points.end();it++){
+		if(std::find(expectedPoints.begin(), expectedPoints.end(), *it) == expectedPoints.end()){
+			ok = false;
+		}
+	}
+
+	EXPECT_EQ(ok, true);
+}
+
+TEST_F(BuildingTest, calculateSurroundingPoints){
+	Building build(Point(2, 2), size, health, reducer);
+
+	std::vector<Point> expectedPoints;
+	Point p1(1, 3);
+	Point p2(2, 3);
+	Point p3(3, 3);
+	Point p4(4, 3);
+	Point p5(1, 0);
+	Point p6(2, 0);
+	Point p7(3, 0);
+	Point p8(4, 0);
+	Point p9(1, 1);
+	Point p10(1, 2);
+	Point p11(4, 1);
+	Point p12(4, 2);
+	expectedPoints.push_back(p1);
+	expectedPoints.push_back(p2);
+	expectedPoints.push_back(p3);
+	expectedPoints.push_back(p4);
+	expectedPoints.push_back(p5);
+	expectedPoints.push_back(p6);
+	expectedPoints.push_back(p7);
+	expectedPoints.push_back(p8);
+	expectedPoints.push_back(p9);
+	expectedPoints.push_back(p10);
+	expectedPoints.push_back(p11);
+	expectedPoints.push_back(p12);
+
+	std::vector<Point>::iterator it;
+	std::vector<Point> points = build.calculateSurroundingPoints();
+
+	bool ok = true;
+
+	for(it = points.begin();it != points.end();it++){
+		if(std::find(expectedPoints.begin(), expectedPoints.end(), *it) == expectedPoints.end()){
+			ok = false;
+		}
+	}
+
+	EXPECT_EQ(ok, true);
+}
+
+TEST_F(BuildingTest, calculateSurroundingPoints2){
+	Building build(Point(0,0), size, health, reducer);
+
+	std::vector<Point> expectedPoints;
+	Point p1(0, 1);
+	Point p2(1, 1);
+	Point p3(2, 1);
+	Point p4(2, 0);
+	expectedPoints.push_back(p1);
+	expectedPoints.push_back(p2);
+	expectedPoints.push_back(p3);
+	expectedPoints.push_back(p4);
+
+
+	std::vector<Point>::iterator it;
+	std::vector<Point> points = build.calculateSurroundingPoints();
+
+	bool ok = true;
+
+	for(it = points.begin();it != points.end();it++){
+		if(std::find(expectedPoints.begin(), expectedPoints.end(), *it) == expectedPoints.end()){
+			ok = false;
+		}
+	}
+
+	EXPECT_EQ(ok, true);
 }

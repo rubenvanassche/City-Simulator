@@ -238,6 +238,7 @@ std::vector<Point> Building::calculateSurroundingPoints(){
 
 	std::vector<Point> points;
 
+	/*
 	for(int i = 0;i < this->fSize.getWidth();i++){
 		for(int j = 0;j < this->fSize.getHeight();j++){
 			int x = 0;
@@ -281,6 +282,51 @@ std::vector<Point> Building::calculateSurroundingPoints(){
 
 			Point newPoint(x, y);
 			points.push_back(newPoint);
+		}
+	}
+	*/
+
+	int p1X = this->fLocation.getX() - 1;
+	int p1Y = this->fLocation.getY() + 1;
+
+	int p2X = this->fLocation.getX() - 1;
+	int p2Y = this->fLocation.getY() - this->fSize.getHeight();
+
+	int p3X = this->fLocation.getX() + this->fSize.getWidth();
+	int p3Y = this->fLocation.getY() - this->fSize.getHeight();
+
+	int p4X = this->fLocation.getX() + this->fSize.getWidth();
+	int p4Y = this->fLocation.getY() + 1;
+
+	for(int i = p1X;i <= p4X;i++){
+		if(i >= 0 and p1Y >= 0){
+			Point p(i, p1Y);
+			points.push_back(p);
+		}
+	}
+
+	for(int i = p2X;i <= p3X;i++){
+		if(i >= 0 and p2Y >= 0){
+			Point p(i, p2Y);
+			points.push_back(p);
+		}
+	}
+
+	for(int i = p2Y;i <= p1Y;i++){
+		if(i >= 0 and p1X >= 0){
+			Point p(p1X, i);
+			if(std::find(points.begin(), points.end(), p) == points.end()){
+				points.push_back(p);
+			}
+		}
+	}
+
+	for(int i = p3Y;i <= p4Y;i++){
+		if(i >= 0 and p4X >= 0){
+			Point p(p4X, i);
+			if(std::find(points.begin(), points.end(), p) == points.end()){
+				points.push_back(p);
+			}
 		}
 	}
 
