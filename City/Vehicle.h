@@ -23,18 +23,18 @@ public:
 	// REQUIRE(curPos.isInitialized(), "Point is initialized");
 
 	// ENSURE(this->isInitialized(), "Vehicle is initialized");
-	// ENSURE(this->fName == name, "Name is set");
-	// ENSURE(this->fDestination == curPos, "Destination is set");
-	// ENSURE(this->fPosition == curPos, "Position is set");
+	// ENSURE(this->getName() == name, "Name is set");
+	// ENSURE(this->getDestination() == curPos, "Destination is set");
+	// ENSURE(this->getPosition() == curPos, "Position is set");
 
 	Vehicle(const Vehicle& v);
 	// copy constructor
 	// REQUIRE(v.isInitialized(), "Vehicle is initialized");
 
 	// ENSURE(this->isInitialized(), "Vehicle is initialized");
-	// ENSURE(this->fName == v.fName, "Name is copied");
-	// ENSURE(this->fDestination == v.fDestination, "Destination is copied");
-	// ENSURE(this->fPosition == v.fPosition, "Position is copied");
+	// ENSURE(this->getName() == v.getName(), "Name is copied");
+	// ENSURE(this->getDestination() == v.getDestination(), "Destination is copied");
+	// ENSURE(this->getPosition() == v.getPosition(), "Position is copied");
 
 	void operator= (const Vehicle& v);
 	// copy assignment operator overloading
@@ -42,9 +42,9 @@ public:
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 
 	// ENSURE(this->isInitialized(), "Vehicle is initialized");
-	// ENSURE(this->fName == v.fName, "Name is copied");
-	// ENSURE(this->fDestination == v.fDestination, "Destination is copied");
-	// ENSURE(this->fPosition == v.fPosition, "Position is copied");
+	// ENSURE(this->getName() == v.getName(), "Name is copied");
+	// ENSURE(this->getDestination() == v.getDestination(), "Destination is copied");
+	// ENSURE(this->getPosition() == v.getPosition(), "Position is copied");
 
 	Point getPosition() const;
 	// get the current position of the vehicle
@@ -63,14 +63,14 @@ public:
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
 
-	// ENSURE(this->fDestination == destination, "Destination is set");
+	// ENSURE(this->getDestination() == destination, "Destination is set");
 
 	void setPosition(const Point& pos);
 	// change the current position of the vehicle (rare use, you should better use the driving functions)
 	//REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	//REQUIRE(pos.isInitialized(), "Point is initialized");
 
-	//ENSURE(this->fPosition == pos, "Position is set");
+	//ENSURE(this->getPosition() == pos, "Position is set");
 
 	bool isOnWay() const;
 	// checks whether it's on way
@@ -80,7 +80,7 @@ public:
 	// go left
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	// REQUIRE(units > 0, "Positive units");
-	// REQUIRE(this->fPosition.getX() != 0, "You can not fall of");
+	// REQUIRE(this->getPosition().getX() != 0, "You can not fall of");
 
 	void goRight(const int& units = 1);
 	// go right
@@ -96,7 +96,7 @@ public:
 	// go down
 	// REQUIRE(this->isInitialized(), "Vehicle is initialized");
 	// REQUIRE(units > 0, "Positive units");
-	// REQUIRE(this->fPosition.getY() != 0, "You can not fall of");
+	// REQUIRE(this->getPosition().getY() != 0, "You can not fall of");
 
 	bool isArrived() const;
 	// checks whether the vehicle is arrived

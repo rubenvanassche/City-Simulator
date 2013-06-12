@@ -28,17 +28,17 @@ public:
 	// REQUIRE(base->isInitialized(), "PoliceDepot is initialized");
 
 	// ENSURE(this->isInitialized(), "PoliceTruck is initialized");
-	// ENSURE(this->fBase == base, "Base is set");
+	// ENSURE(this->getBase() == base, "Base is set");
 	// ENSURE(this->isInDepot(), "PoliceTruck is in depot");
-	// ENSURE(this->fBuilding == NULL, "PoliceTruck doesn't have a shop (yet)" );
+	// ENSURE(this->getShop() == NULL, "PoliceTruck doesn't have a shop (yet)" );
 
 	PoliceTruck(const PoliceTruck& f);
 	// copy constructor
 	// REQUIRE(f.isInitialized(), "PoliceTruck is initialized");
 
 	// ENSURE(this->isInitialized(), "PoliceTruck is initialized");
-	// ENSURE(this->fBase == f.fBase, "Base is copied");
-	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
+	// ENSURE(this->getBase() == f.getBase(), "Base is copied");
+	// ENSURE(this->getShop() == f.getShop(), "Building is copied");
 
 	void operator= (const PoliceTruck& f);
 	// copy by assignment
@@ -46,8 +46,8 @@ public:
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 
 	// ENSURE(this->isInitialized(), "PoliceTruck is initialized");
-	// ENSURE(this->fBase == f.fBase, "Base is copied");
-	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
+	// ENSURE(this->getBase() == f.getBase(), "Base is copied");
+	// ENSURE(this->getShop() == f.getShop(), "Building is copied");
 
 	PoliceDepot* getBase() const;
 	// get it's base
@@ -69,17 +69,17 @@ public:
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
 	// REQUIRE(this->isInDepot(), "PoliceTruck is in depot");
 
-	// ENSURE(this->fBuilding == building, "Building is set");
+	// ENSURE(this->getShop() == building, "Building is set");
 	// ENSURE(this->getDestination() == destination, "Destination is set");
 	// ENSURE(this->isAtEntranceDepot(), "PoliceTruck is at the entrance of it's base");
 
 	void sendBack();
 	// send the PoliceTruck back to it's base
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
-	// REQUIRE(this->fBuilding->isRobbing() == false, "Shop is not being robbed anymore");
+	// REQUIRE(this->getShop()->isRobbing() == false, "Shop is not being robbed anymore");
 
-	// ENSURE(this->fBuilding == NULL, "PoliceTruck has not a shop to go anymore");
-	// ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to it's base");
+	// ENSURE(this->getShop() == NULL, "PoliceTruck has not a shop to go anymore");
+	// ENSURE(this->getDestination() == this->getBase()->getEntrance(), "Destination is set to it's base");
 
 	bool isAtEntranceDepot() const;
 	// checks whether the PoliceTruck is at the entrance of its base
@@ -89,8 +89,8 @@ public:
 	// enter the depot
 	// REQUIRE(this->isInitialized(), "PoliceTruck is initialized");
 	// REQUIRE(this->isAtEntranceDepot(), "PoliceTruck is at entrance");
-	// REQUIRE(this->fBase->isBurning(), "It's base is not on fire");
-	// REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
+	// REQUIRE(this->getBase()->isBurning(), "It's base is not on fire");
+	// REQUIRE(this->getBase()->isDead() == false, "The base is not burnt down");
 
 	// ENSURE(this->isInDepot(), "PoliceTruck is now in depot");
 

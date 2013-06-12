@@ -21,6 +21,7 @@ std::ostream& operator<< (std::ostream& stream, FireTruck& f) {
 
 FireTruck::FireTruck(const std::string& name, FireDepot* base)
 	: Vehicle(name, base->getLocation()) {
+	REQUIRE(base != NULL, "depot pointer is not NULL");
 	REQUIRE(base->isInitialized(), "FireDepot is initialized");
 
 	fMyself = this;
@@ -28,9 +29,9 @@ FireTruck::FireTruck(const std::string& name, FireDepot* base)
 	fBase = base;
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
-	ENSURE(this->fBase == base, "Base is set");
+	ENSURE(this->getBase() == base, "Base is set");
 	ENSURE(this->isInDepot(), "FireTruck is in depot");
-	ENSURE(this->fBuilding == NULL, "FireTruck doesn't have a building (yet)");
+	ENSURE(this->getBuilding() == NULL, "FireTruck doesn't have a building (yet)");
 }
 
 FireTruck::FireTruck(const FireTruck& f)
@@ -42,8 +43,8 @@ FireTruck::FireTruck(const FireTruck& f)
 	fBase = f.fBase;
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
-	ENSURE(this->fBase == f.fBase, "Base is copied");
-	ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
+	ENSURE(this->getBase() == f.getBase(), "Base is copied");
+	ENSURE(this->getBuilding() == f.getBuilding(), "Building is copied");
 }
 
 void FireTruck::operator= (const FireTruck& f) {
@@ -54,15 +55,14 @@ void FireTruck::operator= (const FireTruck& f) {
 	fBuilding = f.fBuilding;
 
 	ENSURE(this->isInitialized(), "FireTruck is initialized");
-	ENSURE(this->fBase == f.fBase, "Base is copied");
-	ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
+	ENSURE(this->getBase() == f.getBase(), "Base is copied");
+	ENSURE(this->getBuilding() == f.getBuilding(), "Building is copied");
 	return;
 }
 
 FireDepot* FireTruck::getBase() const {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
 
-	ENSURE(this->fBase != NULL, "There must be an existing base");
 	return fBase;
 }
 
@@ -90,7 +90,7 @@ void FireTruck::send(Building* building, const Point& destination) {
 	this->setDestination(destination);	// then set the destination (may be different from building's location
 	this->setPosition(fBase->getEntrance());	// then put the car at the entrance of it's base
 
-	ENSURE(this->fBuilding == building, "Building is set");
+	ENSURE(this->getBuilding() == building, "Building is set");
 	ENSURE(this->getDestination() == destination, "Destination is set");
 	ENSURE(this->isAtEntranceDepot(), "FireTruck is at the entrance of it's base");
 	return;
@@ -98,12 +98,12 @@ void FireTruck::send(Building* building, const Point& destination) {
 
 void FireTruck::sendBack() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
-	REQUIRE(this->fBuilding->isBurning() == false, "Building is not on fire anymore");
+	REQUIRE(this->getBuilding()->isBurning() == false, "Building is not on fire anymore");
 
 	fBuilding = NULL;
 	this->setDestination(fBase->getEntrance());
 
-	ENSURE(this->fBuilding == NULL, "FireTruck has not a building to extinguish anymore");
+	ENSURE(this->getBuilding() == NULL, "FireTruck has not a building to extinguish anymore");
 	ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to the base's entrance");
 	return;
 }
@@ -118,8 +118,8 @@ bool FireTruck::isAtEntranceDepot() const {
 void FireTruck::enterDepot() {
 	REQUIRE(this->isInitialized(), "FireTruck is initialized");
 	REQUIRE(this->getPosition() == this->fBase->getEntrance(), "FireTruck is at entrance");
-	REQUIRE(this->fBase->isBurning() == false, "The base is not on fire");
-	REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
+	REQUIRE(this->getBase()->isBurning() == false, "The base is not on fire");
+	REQUIRE(this->getBase()->isDead() == false, "The base is not burnt down");
 
 	// set both position and destination to the location of the depot
 	this->setPosition(fBase->getLocation());

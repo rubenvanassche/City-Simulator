@@ -23,8 +23,6 @@ Simulator::Simulator(City* town, Output* output) {
 	fOutput = output;
 
 	ENSURE(this->isInitialized(), "Simulator is initialized");
-	ENSURE(this->fTown == town, "Town is set");
-	ENSURE(this->fOutput == output, "output is set");
 }
 
 bool Simulator::endSimulation() const {
@@ -606,7 +604,6 @@ bool Simulator::repairBuildings() {
 void Simulator::spreadFire(){
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
-	REQUIRE(fTown->isInitialized(), "City is initialized");
 
 	typedef std::pair<Point,House*> HousePoint;
 
@@ -705,7 +702,6 @@ void Simulator::spreadFire(){
 void Simulator::step(){
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
-	REQUIRE(fOutput->isInitialized(), "Output is initialized");
 
 	if (!this->endSimulation()) {
 		this->burningDown();
@@ -741,7 +737,6 @@ void Simulator::step(){
 void Simulator::step(bool fireSpreading){
 	REQUIRE(this->isInitialized(), "Simulator is initialized");
 	REQUIRE(this->endSimulation() == false, "Not the end of simulation");
-	REQUIRE(fOutput->isInitialized(), "Output is initialized");
 
 	if (!this->endSimulation()) {
 		this->burningDown();

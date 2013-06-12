@@ -25,20 +25,21 @@ public:
 
 	Ambulance(const std::string& name, Hospital* base);
 	// constructor
+	// REQUIRE(base != NULL, "base pointer must point to a hospital");
 	// REQUIRE(base->isInitialized(), "Hospital is initialized");
 
 	// ENSURE(this->isInitialized(), "Ambulance is initialized");
-	// ENSURE(this->fBase == base, "Base is set");
+	// ENSURE(this->getBase() == base, "Base is set");
 	// ENSURE(this->isInDepot(), "Ambulance is in depot");
-	// ENSURE(this->fBuilding == NULL, "Ambulance doesn't have a building (yet)" );
+	// ENSURE(this->getBuilding() == NULL, "Ambulance doesn't have a building (yet)" );
 
 	Ambulance(const Ambulance& f);
 	// copy constructor
 	// REQUIRE(f.isInitialized(), "Ambulance is initialized");
 
 	// ENSURE(this->isInitialized(), "Ambulance is initialized");
-	// ENSURE(this->fBase == f.fBase, "Base is copied");
-	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
+	// ENSURE(this->getBase() == f.getBase(), "Base is copied");
+	// ENSURE(this->getBuilding() == f.getBuilding(), "Building is copied");
 
 	void operator= (const Ambulance& f);
 	// copy by assignment
@@ -46,14 +47,12 @@ public:
 	// REQUIRE(this->isInitialized(), "Ambulance is initialized");
 
 	// ENSURE(this->isInitialized(), "Ambulance is initialized");
-	// ENSURE(this->fBase == f.fBase, "Base is copied");
-	// ENSURE(this->fBuilding == f.fBuilding, "Building is copied");
+	// ENSURE(this->getBase() == f.getBase(), "Base is copied");
+	// ENSURE(this->getBuilding()== f.getBuilding(), "Building is copied");
 
 	Hospital* getBase() const;
 	// get it's base
 	// REQUIRE(this->isInitialized(), "Ambulance is initialized");
-
-	// ENSURE(this->fBase != NULL, "A pointer to the base must be returned");
 
 	Building* getBuilding() const;
 	// get the building that the Ambulance has to go
@@ -70,7 +69,7 @@ public:
 	// REQUIRE(destination.isInitialized(), "Point is initialized");
 	// REQUIRE(this->isInDepot(), "Ambulance is in depot");
 
-	// ENSURE(this->fBuilding == building, "Building is set");
+	// ENSURE(this->getBuilding()== building, "Building is set");
 	// ENSURE(this->getDestination() == destination, "Destination is set");
 	// ENSURE(this->isAtEntranceDepot(), "Ambulance is at the entrance of it's depot");
 
@@ -78,8 +77,8 @@ public:
 	// send the ambulance back to it's base
 	// REQUIRE(this->isInitialized(), "Ambulance is initialized");
 
-	// ENSURE(this->getDestination() == this->fBase->getEntrance(), "Destination is set to the base's entrance");
-	// ENSURE(this->fBuilding == NULL, "Ambulance has not a building to go anymore");
+	// ENSURE(this->getDestination() == this->getBase()->getEntrance(), "Destination is set to the base's entrance");
+	// ENSURE(this->getBuilding() == NULL, "Ambulance has not a building to go anymore");
 
 	bool isAtEntranceDepot() const;
 	// checks whether the ambulance is at the entrance of its base
@@ -90,7 +89,7 @@ public:
 	// REQUIRE(this->isInitialized(), "Ambulance is initialized");
 	// REQUIRE(this->isAtEntranceDepot(), "Ambulance is at entrance of the depot");
 	// REQUIRE(this->getBase()->isBurning() == false, "The base is not on fire");
-	// REQUIRE(this->fBase->isDead() == false, "The base is not burnt down");
+	// REQUIRE(this->getBase()->isDead() == false, "The base is not burnt down");
 
 	// ENSURE(this->isInDepot(), "Ambulance is now in depot");
 

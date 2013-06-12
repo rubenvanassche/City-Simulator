@@ -22,9 +22,9 @@ Vehicle::Vehicle(const std::string& name, const Point& curPos) {
 	fName = name;
 
 	ENSURE(this->isInitialized(), "Vehicle is initialized");
-	ENSURE(this->fName == name, "Name is set");
-	ENSURE(this->fDestination == curPos, "Destination is set");
-	ENSURE(this->fPosition == curPos, "Position is set");
+	ENSURE(this->getName() == name, "Name is set");
+	ENSURE(this->getDestination() == curPos, "Destination is set");
+	ENSURE(this->getPosition() == curPos, "Position is set");
 }
 
 Vehicle::Vehicle(const Vehicle& v) {
@@ -36,9 +36,9 @@ Vehicle::Vehicle(const Vehicle& v) {
 	fName = v.fName;
 
 	ENSURE(this->isInitialized(), "Vehicle is initialized");
-	ENSURE(this->fName == v.fName, "Name is copied");
-	ENSURE(this->fDestination == v.fDestination, "Destination is copied");
-	ENSURE(this->fPosition == v.fPosition, "Position is copied");
+	ENSURE(this->getName() == v.getName(), "Name is copied");
+	ENSURE(this->getDestination() == v.getDestination(), "Destination is copied");
+	ENSURE(this->getPosition() == v.getPosition(), "Position is copied");
 }
 
 void Vehicle::operator= (const Vehicle& v) {
@@ -50,9 +50,9 @@ void Vehicle::operator= (const Vehicle& v) {
 	fName = v.fName;
 
 	ENSURE(this->isInitialized(), "Vehicle is initialized");
-	ENSURE(this->fName == v.fName, "Name is copied");
-	ENSURE(this->fDestination == v.fDestination, "Destination is copied");
-	ENSURE(this->fPosition == v.fPosition, "Position is copied");
+	ENSURE(this->getName() == v.getName(), "Name is copied");
+	ENSURE(this->getDestination() == v.getDestination(), "Destination is copied");
+	ENSURE(this->getPosition() == v.getPosition(), "Position is copied");
 	return;
 }
 
@@ -77,7 +77,7 @@ void Vehicle::setDestination(const Point& destination) {
 
 	fDestination = destination;
 
-	ENSURE(this->fDestination == destination, "Destination is set");
+	ENSURE(this->getDestination() == destination, "Destination is set");
 	return;
 }
 
@@ -87,7 +87,7 @@ void Vehicle::setPosition(const Point& pos)  {
 
 	fPosition = pos;
 
-	ENSURE(this->fPosition == pos, "Position is set");
+	ENSURE(this->getPosition() == pos, "Position is set");
 }
 
 bool Vehicle::isOnWay() const {
@@ -98,7 +98,7 @@ bool Vehicle::isOnWay() const {
 
 void Vehicle::goLeft(const int& units) {
 	REQUIRE(this->isInitialized(), "Vehicle is initialized");
-	REQUIRE(this->fPosition.getX() != 0, "You can not fall of");
+	REQUIRE(this->getPosition().getX() != 0, "You can not fall of");
 	REQUIRE(units > 0, "Positive units");
 
 	fPosition.setX( fPosition.getX() - units);
@@ -123,7 +123,7 @@ void Vehicle::goUp(const int& units) {
 
 void Vehicle::goDown(const int& units) {
 	REQUIRE(this->isInitialized(), "Vehicle is initialized");
-	REQUIRE(this->fPosition.getY() != 0, "You can not fall of");
+	REQUIRE(this->getPosition().getY() != 0, "You can not fall of");
 	REQUIRE(units > 0, "Positive units");
 
 	fPosition.setY(fPosition.getY()  - units);

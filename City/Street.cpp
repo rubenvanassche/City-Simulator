@@ -40,9 +40,9 @@ Street::Street(const std::string& name, const Point& start, const Point& end) {
 	fName = name;
 
 	ENSURE(this->isInitialized(), "Street is initialized");
-	ENSURE(this->fStartPoint == start, "Startpoint is set");
-	ENSURE(this->fEndPoint == end, "Endpoint is set");
-	ENSURE(this->fName == name, "Name is set");
+	ENSURE(this->getStartPoint() == start, "Startpoint is set");
+	ENSURE(this->getEndPoint() == end, "Endpoint is set");
+	ENSURE(this->getName() == name, "Name is set");
 }
 
 Street::Street(const Street& s) {
@@ -54,9 +54,9 @@ Street::Street(const Street& s) {
 	fName = s.fName;
 
 	ENSURE(this->isInitialized(), "Street is initialized");
-	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
-	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
-	ENSURE(this->fName == s.fName, "Name is copied");
+	ENSURE(this->getEndPoint() == s.getEndPoint(), "Endpoint is copied");
+	ENSURE(this->getStartPoint() == s.getStartPoint(), "Startpoint is copied");
+	ENSURE(this->getName() == s.getName(), "Name is copied");
 }
 
 void Street::operator= (const Street& s) {
@@ -67,9 +67,9 @@ void Street::operator= (const Street& s) {
 	fEndPoint = s.fEndPoint;
 	fName = s.fName;
 
-	ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
-	ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
-	ENSURE(this->fName == s.fName, "Name is copied");
+	ENSURE(this->getEndPoint() == s.getEndPoint(), "Endpoint is copied");
+	ENSURE(this->getStartPoint() == s.getStartPoint(), "Startpoint is copied");
+	ENSURE(this->getName() == s.getName(), "Name is copied");
 	return;
 }
 

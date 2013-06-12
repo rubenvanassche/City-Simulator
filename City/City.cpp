@@ -85,16 +85,14 @@ City::~City() {
 	}
 	fAmbulances.clear();
 
-	ENSURE(this->fFireDepots.empty(), "FireDepots empty'd");
-	ENSURE(this->fPoliceDepots.empty(), "Policedepots empty'd");
-	ENSURE(this->fHospitals.empty(), "Hospitals empty'd");
-	ENSURE(this->fShops.empty(), "Shops empty'd");
-	ENSURE(this->fHouses.empty(), "Houses empty'd");
-	ENSURE(this->fHorizontals.empty(), "Horizontals empty'd");
-	ENSURE(this->fVerticals.empty(), "Verticals empty'd");
-	ENSURE(this->fFireTrucks.empty(), "FireTrucks empty'd");
-	ENSURE(this->fPoliceTrucks.empty(), "PoliceTrucks empty'd");
-	ENSURE(this->fAmbulances.empty(), "Ambulance empty'd");
+	ENSURE(this->getFireDepots().empty(), "FireDepots empty'd");
+	ENSURE(this->getPoliceDepots().empty(), "Policedepots empty'd");
+	ENSURE(this->getHospitals().empty(), "Hospitals empty'd");
+	ENSURE(this->getShops().empty(), "Shops empty'd");
+	ENSURE(this->getHouses().empty(), "Houses empty'd");
+	ENSURE(this->getFireTrucks().empty(), "FireTrucks empty'd");
+	ENSURE(this->getPoliceTrucks().empty(), "PoliceTrucks empty'd");
+	ENSURE(this->getAmbulances().empty(), "Ambulance empty'd");
 }
 
 bool City::isDead() {
@@ -451,7 +449,7 @@ Point City::findClosestCrosspoint(const Point& position) {
 			}
 		}
 
-		// then compar it with the current position
+		// then compare it with the current position
 		Point crosspoint = vecPoints[0];
 		for (unsigned int index = 0; index < vecPoints.size(); index++) {
 			int delta0 = abs(crosspoint.getX() - position.getX());

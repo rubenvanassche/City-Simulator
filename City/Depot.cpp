@@ -22,8 +22,8 @@ Depot::Depot(const Point& location, const Point& entrance, const Size& size, con
 	fName = name;
 
 	ENSURE(this->isInitialized(), "Depot is initialized");
-	ENSURE(this->fName == name, "Name is set");
-	ENSURE(this->fEntrance == entrance, "Entrance is set");
+	ENSURE(this->getName() == name, "Name is set");
+	ENSURE(this->getEntrance() == entrance, "Entrance is set");
 }
 
 Depot::Depot(const Depot& d)
@@ -36,9 +36,9 @@ Depot::Depot(const Depot& d)
 	fVehicles = d.fVehicles;
 
 	ENSURE(this->isInitialized(), "Depot is initialized");
-	ENSURE(this->fName == d.fName, "Name is copied");
-	ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
-	ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+	ENSURE(this->getName() == d.getName(), "Name is copied");
+	ENSURE(this->getEntrance() == d.getEntrance(), "Entrance is copied");
+	ENSURE(this->getNrVehicles() == d.getNrVehicles(), "Vehicles copied");
 }
 
 void Depot::operator= (const Depot& d) {
@@ -49,9 +49,9 @@ void Depot::operator= (const Depot& d) {
 	fEntrance = d.fEntrance;
 	fVehicles = d.fVehicles;
 
-	ENSURE(this->fName == d.fName, "Name is initialized");
-	ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
-	ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+	ENSURE(this->getName() == d.getName(), "Name is initialized");
+	ENSURE(this->getEntrance() == d.getEntrance(), "Entrance is copied");
+	ENSURE(this->getNrVehicles() == d.getNrVehicles(), "Vehicles copied");
 	return;
 }
 
@@ -60,7 +60,7 @@ void Depot::addVehicle(Vehicle* v) {
 
 	fVehicles.push_back(v);
 
-	ENSURE(this->fVehicles.back()->getName() == v->getName(), "Vehicle is added");
+	ENSURE(this->getNrVehicles() > 0, "There's at least one vehicle");
 	return;
 }
 

@@ -25,46 +25,46 @@ public:
 	// default constructor
 
 	// ENSURE(this->isInitialized(), "Size is initialized");
-	// ENSURE(this->fWidth == 1, "Default width is 1");
-	// ENSURE(this->fHeight == 1, "Default height is 1");
+	// ENSURE(this->getWidth() == 1, "Default width is 1");
+	// ENSURE(this->getHeight() == 1, "Default height is 1");
 
 	Size(const int& value);
 	// constructor
 	// REQUIRE(value > 0, "Positive value");
 
 	// ENSURE(this->isInitialized(), "Size is initialized");
-	// ENSURE(this->fWidth == value, "Width is initialized");
-	// ENSURE(this->fHeight == value, "Height is initialized");
+	// ENSURE(this->getWidth() == value, "Width is initialized");
+	// ENSURE(this->getHeight() == value, "Height is initialized");
 
 	Size(const int& width, const int& height);
 	// REQUIRE(width > 0, "Positive width");
 	// REQUIRE(height > 0, "Positive height");
 
 	// ENSURE(this->isInitialized(), "Size is initialized");
-	// ENSURE(this->fWidth == width, "Width is initialized");
-	// ENSURE(this->fHeight == height, "Height is initialized");
+	// ENSURE(this->getWidth() == width, "Width is initialized");
+	// ENSURE(this->getHeight() == height, "Height is initialized");
 
 	Size(const Size& s);
 	// REQUIRE(s.isInitialized(), "Size is initialized");
 
-	// ENSURE(this->fWidth == s.fWidth, "Width is initialized");
-	// ENSURE(this->fHeight == s.fHeight, "Height is initialized");
+	// ENSURE(this->getWidth() == s.getWidth(), "Width is initialized");
+	// ENSURE(this->getHeight() == s.getHeight(), "Height is initialized");
 	// ENSURE(this->isInitialized(), "Size is initialized");
 
 	void operator= (const Size& s);
 	// REQUIRE(s.isInitialized(), "Size is initialized");
 	// REQUIRE(this->isInitialized(), "Size is initialized");
 
-	// ENSURE(this->fWidth == s.fWidth, "Width copied");
-	// ENSURE(this->fHeight == s.fHeight, "Height copied");
+	// ENSURE(this->getWidth() == s.getWidth(), "Width copied");
+	// ENSURE(this->getHeight() == s.getHeight(), "Height copied");
 
 	void set(const int& width, const int& height);
 	// REQUIRE(width > 0, "Positive width");
 	// REQUIRE(height > 0, "Positive height");
 	// REQUIRE(this->isInitialized(), "Size is initialized");
 
-	// ENSURE(this->fWidth == width, "Width is initialized");
-	// ENSURE(this->fHeight == height, "Height is initialized");
+	// ENSURE(this->getWidth() == width, "Width is initialized");
+	// ENSURE(this->getHeight() == height, "Height is initialized");
 
 	unsigned int getWidth() const;
 	// 	REQUIRE(this->isInitialized(), "Size is initialized");

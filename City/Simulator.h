@@ -24,8 +24,6 @@ public:
 	// REQUIRE(output->isInitialized(), "Output is initialized");
 
 	// ENSURE(this->isInitialized(), "Simulator is initialized");
-	// ENSURE(this->fTown == town, "Town is set");
-	// ENSURE(this->fOutput == output, "output is set");
 
 	bool endSimulation() const;
 	// checks whether it's the end of the simulation
@@ -75,19 +73,16 @@ public:
 	// spreads the fire
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
-	// REQUIRE(fTown->isInitialized(), "City is initialized");
 
 	void step();
 	// one step in the simulation
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
-	// REQUIRE(fOutput->isInitialized(), "Output is initialized");
 
 	void step(bool fireSpreading);
 	// One step in the simulation, with the bool you can turn firespreading on/off
 	// REQUIRE(this->isInitialized(), "Simulator is initialized");
 	// REQUIRE(this->endSimulation() == false, "Not the end of simulation");
-	// REQUIRE(fOutput->isInitialized(), "Output is initialized");
 
 private:
 	City* fTown;

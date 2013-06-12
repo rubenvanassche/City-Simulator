@@ -13,10 +13,6 @@ bool Check::isInitialized() const {
 
 Check::Check() : fMyself(this), fHasWidth(false), fHasHeight(false), fWidth(0), fHeight(0) {
 	ENSURE(this->isInitialized(), "Check is initialized");
-	ENSURE(this->fHasHeight == false, "Check has not a width yet");
-	ENSURE(this->fHasWidth == false, "Check has not a height yet");
-	ENSURE(this->fWidth == 0, "Width is currently 0");
-	ENSURE(this->fHeight == 0, "Height is currently 0");
 }
 
 EState Check::checkPoint(const Point& p, const EType& type) {

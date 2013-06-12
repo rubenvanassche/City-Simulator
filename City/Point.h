@@ -33,24 +33,24 @@ public:
 	// default constructor
 
 	// ENSURE(this->isInitialized(), "Point is initialized");
-	// ENSURE(this->fX == 0, "Default x is 0");
-	// ENSURE(this->fY == 0, "Default y is 0");
+	// ENSURE(this->getX() == 0, "Default x is 0");
+	// ENSURE(this->getY() == 0, "Default y is 0");
 
 	Point(const int& x, const int& y);
 	// Constructor
 	// REQUIRE(x >= 0, "x >= 0");
 	// REQUIRE(y >= 0, "y >= 0");
 
-	// ENSURE(this->fX == x, "X is initialized");
-	// ENSURE(this->fY == y, "Y is initialized");
+	// ENSURE(this->getX() == x, "X is initialized");
+	// ENSURE(this->getY() == y, "Y is initialized");
 	// ENSURE(this->isInitialized(), "Point is initialized");
 
 	Point(const Point& p);
 	// copy constructor
 	// REQUIRE(p.isInitialized(), "Point is initialized");
 
-	// ENSURE(this->fX == p.fX, "X copied");
-	// ENSURE(this->fY == p.fY, "Y copied");
+	// ENSURE(this->getX() == p.getX(), "X copied");
+	// ENSURE(this->getY() == p.getY(), "Y copied");
 	// ENSURE(this->isInitialized(), "Point is initialized");
 
 	void operator= (const Point& p);
@@ -58,22 +58,22 @@ public:
 	// REQUIRE(p.isInitialized(), "Point is initialized");
 	// REQUIRE(this->isInitialized(), "Point is initialized");
 
-	// ENSURE(this->fX == p.fX, "X copied");
-	// ENSURE(this->fY == p.fY, "Y copied");
+	// ENSURE(this->getX() == p.getX(), "X copied");
+	// ENSURE(this->getY() == p.getY(), "Y copied");
 
 	void setX(const int& x);
 	// change the x coordinates only
 	// REQUIRE(this->isInitialized(), "Point is initialized");
 	// REQUIRE(x >= 0, "x >= 0");
 
-	// ENSURE(this->fX == x, "X is set");
+	// ENSURE(this->getX() == x, "X is set");
 
 	void setY(const int& y);
 	// change the y coordinates only
 	// REQUIRE(this->isInitialized(), "Point is initialized");
 	// REQUIRE(y >= 0, "y >= 0");
 
-	// ENSURE(this->fY == y, "Y is set");
+	// ENSURE(this->getY() == y, "Y is set");
 
 	void set(const int& x, const int& y);
 	// change the x and y coordinates
@@ -81,8 +81,8 @@ public:
 	// REQUIRE(x >= 0, "x >= 0");
 	// REQUIRE(y >= 0, "y >= 0");
 
-	// ENSURE(this->fX == x, "X is set");
-	// ENSURE(this->fY == y, "Y is set");
+	// ENSURE(this->getX() == x, "X is set");
+	// ENSURE(this->getY() == y, "Y is set");
 
 	unsigned int getX() const;
 	// get the x coordinate

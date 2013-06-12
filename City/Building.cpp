@@ -8,6 +8,7 @@
  */
 
 #include "Building.h"
+#include <algorithm>
 
 bool Building::isInitialized() const {
 	return fMyself == this;
@@ -29,13 +30,11 @@ Building::Building(const Point& location, const Size& size, const double& health
 	fFireTruckAssigned = false;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
-	ENSURE(this->fLocation == location, "Location is set");
-	ENSURE(this->fSize == size, "Size is set");
-	ENSURE(this->fIsBurning == false, "Building is initially not on fire");
-	ENSURE(this->fHealthNormal == health, "HealthNormal is set");
-	ENSURE(this->fHealth == health, "Health is set");
-	ENSURE(this->fReducer ==  reducer, "reducer is set");
-	ENSURE(this->fFireTruckAssigned == false, "There is no FireTruck assigned (yet)");
+	ENSURE(this->getLocation() == location, "Location is set");
+	ENSURE(this->getSize() == size, "Size is set");
+	ENSURE(this->isBurning() == false, "Building is initially not on fire");
+	ENSURE(this->getHealth() == health, "Health is set");
+	ENSURE(this->isFireTruckAssigned() == false, "There is no FireTruck assigned (yet)");
 }
 
 Building::Building(const Building& b) {
@@ -51,13 +50,11 @@ Building::Building(const Building& b) {
 	fFireTruckAssigned = b.fFireTruckAssigned;
 
 	ENSURE(this->isInitialized(), "Building is initialized");
-	ENSURE(this->fLocation == b.fLocation, "Location is copied");
-	ENSURE(this->fSize == b.fSize, "Size is copied");
-	ENSURE(this->fHealth == b.fHealth, "Health is copied");
-	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
-	ENSURE(this->fHealthNormal == b.fHealthNormal, "HealthNormal is copied");
-	ENSURE(this->fReducer == b.fReducer, "Reducer is copied");
-	ENSURE(this->fFireTruckAssigned ==  b.fFireTruckAssigned, "FireTruckAssigned is copied");
+	ENSURE(this->getLocation() == b.getLocation(), "Location is copied");
+	ENSURE(this->getSize() == b.getSize(), "Size is copied");
+	ENSURE(this->getHealth() == b.getHealth(), "Health is copied");
+	ENSURE(this->isBurning() == b.isBurning(), "Burning is copied");
+	ENSURE(this->isFireTruckAssigned() ==  b.isFireTruckAssigned(), "FireTruckAssigned is copied");
 }
 
 void Building::operator= (const Building& b) {
@@ -72,13 +69,11 @@ void Building::operator= (const Building& b) {
 	fReducer = b.fReducer;
 	fFireTruckAssigned = b.fFireTruckAssigned;
 
-	ENSURE(this->fLocation == b.fLocation, "Location is copied");
-	ENSURE(this->fSize == b.fSize, "Size is copied");
-	ENSURE(this->fHealth == b.fHealth, "Health is copied");
-	ENSURE(this->fIsBurning == b.fIsBurning, "Burning is copied");
-	ENSURE(this->fHealthNormal == b.fHealthNormal, "HealthNormal is copied");
-	ENSURE(this->fReducer == b.fReducer, "Reducer is copied");
-	ENSURE(this->fFireTruckAssigned ==  b.fFireTruckAssigned, "FireTruckAssigned is copied");
+	ENSURE(this->getLocation() == b.getLocation(), "Location is copied");
+	ENSURE(this->getSize() == b.getSize(), "Size is copied");
+	ENSURE(this->getHealth() == b.getHealth(), "Health is copied");
+	ENSURE(this->isBurning() == b.isBurning(), "Burning is copied");
+	ENSURE(this->isFireTruckAssigned() ==  b.isFireTruckAssigned(), "FireTruckAssigned is copied");
 	return;
 }
 
@@ -106,7 +101,7 @@ void Building::setFire() {
 
 	fIsBurning = true;
 
-	ENSURE(this->fIsBurning == true, "Building is set on fire");
+	ENSURE(this->isBurning() == true, "Building is set on fire");
 	return;
 }
 
@@ -118,7 +113,7 @@ bool Building::isBurning() const {
 
 void Building::burningDown() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(this->fIsBurning, "Building is on fire");
+	REQUIRE(this->isBurning(), "Building is on fire");
 
 	fHealth -= fReducer;	// use the predefined reducer
 
@@ -126,17 +121,16 @@ void Building::burningDown() {
 		fIsBurning = false;	// then the fire stopped automatically
 	}
 
-	ENSURE(this->fHealth < this->fHealthNormal, "There is at least one point substracted");
 	return;
 }
 
 void Building::stopFire() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(this->fIsBurning == true, "Building is on fire");
+	REQUIRE(this->isBurning() == true, "Building is on fire");
 
 	fIsBurning = false;
 
-	ENSURE(this->fIsBurning == false, "Building is not on fire anymore");
+	ENSURE(this->isBurning() == false, "Building is not on fire anymore");
 	return;
 }
 
@@ -148,7 +142,6 @@ bool Building::isDead() const {
 
 bool Building::startSpreadingFire() const {
 	REQUIRE(this->isInitialized(), "Building is initialized");
-	REQUIRE(this->fHealthNormal >= this->fHealth, "Health points are valid");
 
 	// if the building is not on fire, then the fire cannnot spread
 	if( (!fIsBurning) || (this->isDead()) ) {
@@ -194,22 +187,22 @@ bool Building::isFireTruckAssigned() const {
 void Building::assignFireTruck() {
 	REQUIRE(this->isInitialized(), "Building is initialized");
 	REQUIRE(this->isBurning(), "The building is on fire");
-	REQUIRE(this->fFireTruckAssigned == false, "There's not already a firetruck assigned");
+	REQUIRE(this->isFireTruckAssigned() == false, "There's not already a firetruck assigned");
 
 	fFireTruckAssigned = true;
 
-	ENSURE(this->fFireTruckAssigned == true, "A firetruck is assigned to the house");
+	ENSURE(this->isFireTruckAssigned() == true, "A firetruck is assigned to the house");
 	return;
 }
 
 void Building::withdrawFireTruckAssignment(){
 	REQUIRE(this->isInitialized(), "Building is initialized");
 	REQUIRE(this->isBurning() == false, "The Building is not on fire anymore");
-	REQUIRE(this->fFireTruckAssigned == true, "There is a firetruck assigned previously");
+	REQUIRE(this->isFireTruckAssigned() == true, "There is a firetruck assigned previously");
 
 	fFireTruckAssigned = false;
 
-	ENSURE(this->fFireTruckAssigned == false, "A firetruck is withdrawed from the building");
+	ENSURE(this->isFireTruckAssigned() == false, "A firetruck is withdrawed from the building");
 }
 
 std::vector<Point> Building::calculatePoints(){

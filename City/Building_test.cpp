@@ -10,6 +10,7 @@
 #include "gtest/gtest.h"
 #include "Building.h"
 #include <vector>
+#include <algorithm>
 
 class BuildingTest : public testing::Test {
 protected:

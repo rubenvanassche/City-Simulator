@@ -48,8 +48,8 @@ Point::Point() {
 	fY = 0;
 
 	ENSURE(this->isInitialized(), "Point is initialized");
-	ENSURE(this->fX == 0, "Default x is 0");
-	ENSURE(this->fY == 0, "Default y is 0");
+	ENSURE(this->getX() == 0, "Default x is 0");
+	ENSURE(this->getY() == 0, "Default y is 0");
 }
 
 Point::Point(const int& x, const int& y) {
@@ -60,8 +60,8 @@ Point::Point(const int& x, const int& y) {
 	fX = x;
 	fY = y;
 
-	ENSURE(this->fX == x, "X is initizialized");
-	ENSURE(this->fY == y, "Y is initialized");
+	ENSURE(this->getX() == x, "X is initizialized");
+	ENSURE(this->getY() == y, "Y is initialized");
 	ENSURE(this->isInitialized(), "Point is initialized");
 }
 
@@ -72,8 +72,8 @@ Point::Point(const Point& p) {
 	fX = p.fX;
 	fY = p.fY;
 
-	ENSURE(this->fX == p.fX, "X copied");
-	ENSURE(this->fY == p.fY, "Y copied");
+	ENSURE(this->getX() == p.fX, "X copied");
+	ENSURE(this->getY() == p.fY, "Y copied");
 	ENSURE(this->isInitialized(), "Point is initialized");
 }
 
@@ -84,8 +84,8 @@ void Point::operator= (const Point& p) {
 	fX = p.fX;
 	fY = p.fY;
 
-	ENSURE(this->fX == p.fX, "X copied");
-	ENSURE(this->fY == p.fY, "Y copied");
+	ENSURE(this->getX() == p.fX, "X copied");
+	ENSURE(this->getY() == p.fY, "Y copied");
 	return;
 }
 
@@ -96,7 +96,7 @@ void Point::setX(const int& x) {
 
 	fX = x;
 
-	ENSURE(this->fX == x, "X is set");
+	ENSURE(this->getX() == x, "X is set");
 	return;
 }
 
@@ -106,7 +106,7 @@ void Point::setY(const int& y) {
 
 	fY = y;
 
-	ENSURE(this->fY == y, "Y is set");
+	ENSURE(this->getY() == y, "Y is set");
 }
 
 void Point::set(const int& x, const int& y) {
@@ -117,8 +117,8 @@ void Point::set(const int& x, const int& y) {
 	fX = x;
 	fY = y;
 
-	ENSURE(this->fX == x, "X is set");
-	ENSURE(this->fY == y, "Y is set");
+	ENSURE(this->getX() == x, "X is set");
+	ENSURE(this->getY() == y, "Y is set");
 	return;
 }
 

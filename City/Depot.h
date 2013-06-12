@@ -24,32 +24,32 @@ public:
 	// REQUIRE(entrance.isInitialized(), "Point is initialized");
 
 	// ENSURE(this->isInitialized(), "Depot is initialized");
-	// ENSURE(this->fName == name, "Name is set");
-	// ENSURE(this->fEntrance == entrance, "Entrance is set");
+	// ENSURE(this->getName() == name, "Name is set");
+	// ENSURE(this->getEntrance() == entrance, "Entrance is set");
 
 	Depot(const Depot& d);
 	// copy constructor
 	// REQUIRE(d.isInitialized(), "Depot is initialized");
 
 	// ENSURE(this->isInitialized(), "Depot is initialized");
-	// ENSURE(this->fName == d.fName, "Name is copied");
-	// ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
-	// ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+	// ENSURE(this->getName() == d.getName(), "Name is copied");
+	// ENSURE(this->getEntrance() == d.getEntrance(), "Entrance is copied");
+	// ENSURE(this->getNrVehicles() == d.getNrVehicles(), "Vehicles copied");
 
 	void operator= (const Depot& d);
 	// copy by assignment
 	// REQUIRE(d.isInitialized(), "Depot is initialized");
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	// ENSURE(this->fName == d.fName, "Name is copied");
-	// ENSURE(this->fEntrance == d.fEntrance, "Entrance is copied");
-	// ENSURE(this->fVehicles.size() == d.fVehicles.size(), "Vehicles copied");
+	// ENSURE(this->getName() == d.getName(), "Name is copied");
+	// ENSURE(this->getEntrance() == d.getEntrance(), "Entrance is copied");
+	// ENSURE(this->getNrVehicles() == d.getNrVehicles(), "Vehicles copied");
 
 	void addVehicle(Vehicle* v);
 	// add a vehicle
 	// REQUIRE(this->isInitialized(), "Depot is initialized");
 
-	// ENSURE(this->fVehicles.back()->getName() == v->getName(), "Vehicle is added");
+	// ENSURE(this->getNrVehicles() > 0, "There's at least one vehicle");
 
 	unsigned int getNrVehicles() const;
 	// gets the total amount of vehicles with this depot as base

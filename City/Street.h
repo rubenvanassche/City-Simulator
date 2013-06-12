@@ -36,27 +36,27 @@ public:
 	// REQUIRE(end.isInitialized(), "Endpoint is initialized");
 
 	// ENSURE(this->isInitialized(), "Street is initialized");
-	// ENSURE(this->fStartPoint == start, "Startpoint is set");
-	// ENSURE(this->fEndPoint == end, "Endpoint is set");
-	// ENSURE(this->fName == name, "Name is set");
+	// ENSURE(this->getStartPoint() == start, "Startpoint is set");
+	// ENSURE(this->getEndPoint() == end, "Endpoint is set");
+	// ENSURE(this->getName() == name, "Name is set");
 
 	Street(const Street& s);
 	// copy constructor
 	// REQUIRE(s.isInitialized(), "Street is initialized");
 
 	// ENSURE(this->isInitialized(), "Street is initialized");
-	// ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
-	// ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
-	// ENSURE(this->fName == s.fName, "Name is copied");
+	// ENSURE(this->getEndPoint() == s.getEndPoint(), "Endpoint is copied");
+	// ENSURE(this->getStartPoint() == s.getStartPoint(), "Startpoint is copied");
+	// ENSURE(this->getName() == s.getName(), "Name is copied");
 
 	void operator= (const Street& s);
 	// copy by assignment
 	// REQUIRE(s.isInitialized(), "Street is initialized");
 	// REQUIRE(this->isInitialized(), "Street is initialized");
 
-	// ENSURE(this->fEndPoint == s.fEndPoint, "Endpoint is copied");
-	// ENSURE(this->fStartPoint == s.fStartPoint, "Startpoint is copied");
-	// ENSURE(this->fName == s.fName, "Name is copied");
+	// ENSURE(this->getEndPoint() == s.getEndPoint(), "Endpoint is copied");
+	// ENSURE(this->getStartPoint() == s.getStartPoint(), "Startpoint is copied");
+	// ENSURE(this->getName() == s.getName(), "Name is copied");
 
 	Point getStartPoint() const;
 	// get the startpoint of the street
