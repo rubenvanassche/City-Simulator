@@ -611,6 +611,7 @@ void Simulator::spreadFire(){
 
 	std::vector<House*> houses = fTown->getHouses();
 
+	// generate allHouses
 	for(unsigned int i = 0;i < houses.size();i++){
 		std::vector<Point> housePoints = (*houses.at(i)).calculatePoints();
 		for(unsigned int j = 0;j < housePoints.size();j++){
@@ -626,18 +627,20 @@ void Simulator::spreadFire(){
 		if((*houses.at(i)).startSpreadingFire()){
 			// Jeej, we can set other buildings on fire!
 
-			std::vector<HousePoint> nextTargets; // Houses surrounding this house we can set on fire
+			std::vector<House*> nextTargets; // Houses surrounding this house we can set on fire
 			std::vector<Point> surroundingPoints = (*houses.at(i)).calculateSurroundingPoints(); // All the points surroundig the house that will spread fire
 
 			for(unsigned int j = 0;j < surroundingPoints.size();j++){
 				for(unsigned int k = 0;k < allHouses.size();k++){
 					// now check with the points in the allHouses vector if one has a point equal to the current surrounding point wer're investigating then add it to the nextTargets vector
 					if( allHouses.at(k).first == surroundingPoints.at(j) ){
-						HousePoint nextTarget;
-						nextTarget.first = surroundingPoints.at(j);
-						nextTarget.second = allHouses.at(k).second;
+						House* nextTarget;
+						nextTarget = allHouses.at(k).second;
 
-						nextTargets.push_back(nextTarget);
+						// Only add when the next target isn't burning or death
+						if(!nextTarget->isBurning() and !nextTarget->isDead()){
+							nextTargets.push_back(nextTarget);
+						}
 					}
 				}
 			}
@@ -645,9 +648,7 @@ void Simulator::spreadFire(){
 			// Now we need to select a random house in the nextTargets vector and set it on fire
 			if(nextTargets.size() >= 1){
 				int randomIndex = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex).second).isDead() ) {
-					(*nextTargets.at(randomIndex).second).setFire();
-				}
+				nextTargets.at(randomIndex)->setFire();
 			}
 		}
 	}
@@ -660,18 +661,20 @@ void Simulator::spreadFire(){
 		if((*shops.at(i)).startSpreadingFire()){
 			// Jeej, we can set other buildings on fire!
 
-			std::vector<HousePoint> nextTargets; // Houses surrounding this house we can set on fire
+			std::vector<House*> nextTargets; // Houses surrounding this house we can set on fire
 			std::vector<Point> surroundingPoints = (*shops.at(i)).calculateSurroundingPoints(); // All the points surroundig the house that will spread fire
 
 			for(unsigned int j = 0;j < surroundingPoints.size();j++){
 				for(unsigned int k = 0;k < allHouses.size();k++){
 					// now check with the points in the allHouses vector if one has a point equal to the current surrounding point wer're investigating then add it to the nextTargets vector
 					if( allHouses.at(k).first == surroundingPoints.at(j) ){
-						HousePoint nextTarget;
-						nextTarget.first = surroundingPoints.at(j);
-						nextTarget.second = allHouses.at(k).second;
+						House* nextTarget;
+						nextTarget = allHouses.at(k).second;
 
-						nextTargets.push_back(nextTarget);
+						// Only add when the next target isn't burning or death
+						if(!nextTarget->isBurning() and !nextTarget->isDead()){
+							nextTargets.push_back(nextTarget);
+						}
 					}
 				}
 			}
@@ -679,21 +682,20 @@ void Simulator::spreadFire(){
 			// Now we need to select a random house in the nextTargets vector and set it on fire
 			if(nextTargets.size() >= 2){
 				int randomIndex = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex).second).isDead() ){
-					(*nextTargets.at(randomIndex).second).setFire();
-				}
+				nextTargets.at(randomIndex)->setFire();
 
-				int randomIndex2 = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex2).second).isDead() ){
-					(*nextTargets.at(randomIndex2).second).setFire();
+				int randomIndex2;
+				while(true){
+					randomIndex2 = rand() % nextTargets.size();
+					if(randomIndex2 != randomIndex){
+						break;
+					}
 				}
+				nextTargets.at(randomIndex2)->setFire();
 
 			}else if(nextTargets.size() == 1){
 				int randomIndex = rand() % nextTargets.size();
-				if (!(*nextTargets.at(randomIndex).second).isDead() ){
-					(*nextTargets.at(randomIndex).second).setFire();
-				}
-
+				nextTargets.at(randomIndex)->setFire();
 			}
 		}
 	}

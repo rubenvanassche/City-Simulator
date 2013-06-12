@@ -10,6 +10,8 @@
 #include "gtest/gtest.h"
 #include "Simulator.h"
 #include "Output.h"
+#include <vector>
+#include <iostream>
 
 class SimulatorTest : public testing::Test {
 protected:
@@ -231,3 +233,397 @@ TEST_F(SimulatorTest, robbing) {
 
 	EXPECT_TRUE(sim.endSimulation());
 }
+
+TEST_F(SimulatorTest, spreadFireHouse1){
+	House house0(Point(3, 5), 17); // First burning house
+	House house1(Point(1, 3), 20);
+	House house2(Point(1, 5), 20);
+	House house3(Point(1, 7), 20);
+	House house4(Point(3, 3), 20);
+	House house5(Point(3, 7), 20);
+	House house6(Point(5, 3), 20);
+	House house7(Point(5, 5), 20);
+	House house8(Point(5, 7), 20);
+
+	Street horizontalDown("Horizontaldown", Point(0, 0), Point(8, 0));
+	Street horizontalUp("Horizontalup", Point(0, 8), Point(8, 8));
+	Street verticalLeft("verticalLeft", Point(0, 0), Point(0, 8));
+	Street verticalRight("verticalRigth", Point(8, 0), Point(8, 8));
+
+	EXPECT_TRUE(ptrCity->add(horizontalDown));
+	EXPECT_TRUE(ptrCity->add(horizontalUp));
+	EXPECT_TRUE(ptrCity->add(verticalLeft));
+	EXPECT_TRUE(ptrCity->add(verticalRight));
+
+	EXPECT_TRUE(ptrCity->add(house0));
+	EXPECT_TRUE(ptrCity->add(house1));
+	EXPECT_TRUE(ptrCity->add(house2));
+	EXPECT_TRUE(ptrCity->add(house3));
+	EXPECT_TRUE(ptrCity->add(house4));
+	EXPECT_TRUE(ptrCity->add(house5));
+	EXPECT_TRUE(ptrCity->add(house6));
+	EXPECT_TRUE(ptrCity->add(house7));
+	EXPECT_TRUE(ptrCity->add(house8));
+
+	std::cout << ptrCity->print() << std::endl;
+
+	Simulator sim(ptrCity, ptrOutput);
+
+	std::vector<House*> houses = ptrCity->getHouses();
+	std::vector<House*>::iterator it;
+
+	// Set first house on fire
+	houses.at(0)->setFire();
+
+	// Count houses on fire
+	int counter = 0;
+
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter,1);
+
+	sim.burningDown();
+	sim.burningDown();
+	sim.burningDown();
+	sim.spreadFire();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter,2);
+
+	sim.burningDown();
+	sim.burningDown();
+	sim.burningDown();
+	sim.spreadFire();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter,4);
+
+	sim.burningDown();
+	sim.burningDown();
+	sim.burningDown();
+	sim.spreadFire();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter,8);
+
+	sim.spreadFire();
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter,9);
+}
+
+TEST_F(SimulatorTest, spreadFireHouse2){
+	House house0(Point(3, 5), 20); // First burning house
+	House house1(Point(1, 3), 20);
+	House house2(Point(1, 5), 20);
+	House house3(Point(1, 7), 20);
+	House house4(Point(3, 3), 20);
+	House house5(Point(3, 7), 20);
+	House house6(Point(5, 3), 20);
+	House house7(Point(5, 5), 20);
+	House house8(Point(5, 7), 20);
+
+	Street horizontalDown("Horizontaldown", Point(0, 0), Point(8, 0));
+	Street horizontalUp("Horizontalup", Point(0, 8), Point(8, 8));
+	Street verticalLeft("verticalLeft", Point(0, 0), Point(0, 8));
+	Street verticalRight("verticalRigth", Point(8, 0), Point(8, 8));
+
+	EXPECT_TRUE(ptrCity->add(horizontalDown));
+	EXPECT_TRUE(ptrCity->add(horizontalUp));
+	EXPECT_TRUE(ptrCity->add(verticalLeft));
+	EXPECT_TRUE(ptrCity->add(verticalRight));
+
+	EXPECT_TRUE(ptrCity->add(house0));
+	EXPECT_TRUE(ptrCity->add(house1));
+	EXPECT_TRUE(ptrCity->add(house2));
+	EXPECT_TRUE(ptrCity->add(house3));
+	EXPECT_TRUE(ptrCity->add(house4));
+	EXPECT_TRUE(ptrCity->add(house5));
+	EXPECT_TRUE(ptrCity->add(house6));
+	EXPECT_TRUE(ptrCity->add(house7));
+	EXPECT_TRUE(ptrCity->add(house8));
+
+	std::cout << ptrCity->print() << std::endl;
+
+	Simulator sim(ptrCity, ptrOutput);
+
+	std::vector<House*> houses = ptrCity->getHouses();
+	std::vector<House*>::iterator it;
+
+	// Set first house on fire
+	houses.at(0)->setFire();
+	ptrOutput->step();
+
+	// Count houses on fire
+	int counter = 0;
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 1);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.burningDown();
+	ptrOutput->step();
+	sim.burningDown();
+	ptrOutput->step();
+	sim.burningDown();
+	sim.spreadFire();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 2);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 3);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 4);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 5);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 7);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 9);
+	std::cout << ptrCity->print() << std::endl;
+
+}
+
+TEST_F(SimulatorTest, spreadFireHouse3){
+	House house0(Point(3, 5), 20);
+	House house1(Point(1, 3), 20);// First burning house
+	House house2(Point(1, 5), 20);
+	House house3(Point(1, 7), 20);
+	House house4(Point(3, 3), 20);
+	House house5(Point(3, 7), 20);
+	House house6(Point(5, 3), 20);
+	House house7(Point(5, 5), 20);
+	House house8(Point(5, 7), 20);
+
+	Street horizontalDown("Horizontaldown", Point(0, 0), Point(8, 0));
+	Street horizontalUp("Horizontalup", Point(0, 8), Point(8, 8));
+	Street verticalLeft("verticalLeft", Point(0, 0), Point(0, 8));
+	Street verticalRight("verticalRigth", Point(8, 0), Point(8, 8));
+
+	EXPECT_TRUE(ptrCity->add(horizontalDown));
+	EXPECT_TRUE(ptrCity->add(horizontalUp));
+	EXPECT_TRUE(ptrCity->add(verticalLeft));
+	EXPECT_TRUE(ptrCity->add(verticalRight));
+
+	EXPECT_TRUE(ptrCity->add(house0));
+	EXPECT_TRUE(ptrCity->add(house1));
+	EXPECT_TRUE(ptrCity->add(house2));
+	EXPECT_TRUE(ptrCity->add(house3));
+	EXPECT_TRUE(ptrCity->add(house4));
+	EXPECT_TRUE(ptrCity->add(house5));
+	EXPECT_TRUE(ptrCity->add(house6));
+	EXPECT_TRUE(ptrCity->add(house7));
+	EXPECT_TRUE(ptrCity->add(house8));
+
+	std::cout << ptrCity->print() << std::endl;
+
+	Simulator sim(ptrCity, ptrOutput);
+
+	std::vector<House*> houses = ptrCity->getHouses();
+	std::vector<House*>::iterator it;
+
+	// Set first house on fire
+	houses.at(1)->setFire();
+	ptrOutput->step();
+
+	// Count houses on fire
+	int counter = 0;
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 1);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.burningDown();
+	ptrOutput->step();
+	sim.burningDown();
+	ptrOutput->step();
+	sim.burningDown();
+	sim.spreadFire();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 2);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 3);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 4);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 4);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 6);
+	std::cout << ptrCity->print() << std::endl;
+
+	sim.spreadFire();
+	sim.burningDown();
+	ptrOutput->step();
+	counter = 0;
+	for(it = houses.begin();it != houses.end();it++){
+		if((*it)->isBurning()){
+			counter++;
+		}
+	}
+
+	EXPECT_EQ(counter, 8);
+	std::cout << ptrCity->print() << std::endl;
+
+}
+
