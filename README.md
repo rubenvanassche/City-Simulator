@@ -15,7 +15,7 @@ A city simulator for project engineering.
 - Repair buildings when they have lost HP
 - Start a robbery
 - Let a police truck drive to a shop where there is robbery
-- Write the output from the siumaltion to file
+- Write the output from the siumaltion to a file
 
 ## Requirements
 City Simulator can be build on any system with:
@@ -24,14 +24,15 @@ City Simulator can be build on any system with:
 
 ## Buidling
 It's pretty easy to compile City Simulator, just type the following commands in the terminal:
-	$ cmake CMakelists.txt
-	$ make
+> $ cmake CMakelists.txt
+> $ make
 
 ## Running
 There are 3 options to run city Simulator
-1. $ ./CitySimulator *No city or vehicles loaded*
-2. $ ./CitySimulator cityFile.xml *A city is loaded from cityFile.xml, no vehicles loaded*
-3. $ ./CitySimulator cityFile.xml vechiclesFile.xml *A city is loaded from cityFile.xml and vehicles are loaded from vehiclesFile.xml*
+
+1. $ **./CitySimulator** *No city or vehicles loaded*
+2. $ **./CitySimulator cityFile.xml** *A city is loaded from cityFile.xml, no vehicles loaded*
+3. $ **./CitySimulator cityFile.xml vechiclesFile.xml** *A city is loaded from cityFile.xml and vehicles are loaded from vehiclesFile.xml*
 
 In the root folder you can find city.xml and vehicles.xml, these are two default files for a city and a set of vehicles.
 
