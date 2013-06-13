@@ -24,7 +24,7 @@ City Simulator can be build on any system with:
 
 ## Buidling
 It's pretty easy to compile City Simulator, just type the following commands in the terminal:
-> $ cmake CMakelists.txt
+> $ cmake CMakelists.txt <br/>
 > $ make
 
 ## Running
